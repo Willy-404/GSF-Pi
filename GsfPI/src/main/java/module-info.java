@@ -1,8 +1,8 @@
-module com.mycompany.gsfpi {
+module principal {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.base;
 
-    opens Principal to javafx.fxml;
-    exports Principal;
+    opens Controller to javafx.fxml;
+    exports principal;
 }
