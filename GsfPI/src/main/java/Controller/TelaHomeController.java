@@ -17,9 +17,6 @@ import javafx.scene.control.Button;
  */
 public class TelaHomeController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

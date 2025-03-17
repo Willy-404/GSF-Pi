@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaHomeController">
    <children>
-      <Button fx:id="btnCadastro" layoutX="100.0" layoutY="89.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Cadastrar Lotes" />
-      <Button layoutX="100.0" layoutY="161.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Cadastrar Funcionário" />
-      <Button layoutX="100.0" layoutY="230.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Cadastrar Fornecedor" />
-      <Button fx:id="btnPontoEletronico" layoutX="100.0" layoutY="302.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Ponto Eletrônico" />
-      <Button fx:id="btnVizualizarLotes" layoutX="313.0" layoutY="89.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Lotes" />
-      <Button layoutX="313.0" layoutY="161.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Funcionário" />
-      <Button layoutX="313.0" layoutY="230.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Fornecedor" />
-      <Button fx:id="btnVizualizarPonto" layoutX="313.0" layoutY="302.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Pontos" />
+      <Button layoutX="100.0" layoutY="70.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Cadastrar Lotes" />
+      <Button layoutX="100.0" layoutY="181.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Funcionário" />
+      <Button layoutX="100.0" layoutY="296.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Ponto Eletrônico" />
+      <Button layoutX="361.0" layoutY="70.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Lotes" />
+      <Button layoutX="361.0" layoutY="181.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Fornecedor" />
+      <Button layoutX="361.0" layoutY="296.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Pontos" />
+      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="54.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/lote.png" />
+         </image></ImageView>
+      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="54.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/fornecedor.png" />
+         </image></ImageView>
+      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="54.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/pontoEltronico.png" />
+         </image></ImageView>
+      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="315.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/visualizar.png" />
+         </image></ImageView>
+      <ImageView fitHeight="45.0" fitWidth="52.0" layoutX="307.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/caminhao.png" />
+         </image></ImageView>
+      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="311.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/visuPonto.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>
