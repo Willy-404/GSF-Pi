@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,8 +9,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroController">
    <children>
-      <TextField layoutX="205.0" layoutY="161.0" prefHeight="29.0" prefWidth="191.0" promptText="Nome Completo" />
-      <Button layoutX="250.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Cadastrar" />
+      <TextField fx:id="txtNomeCompleto" layoutX="205.0" layoutY="161.0" prefHeight="29.0" prefWidth="191.0" promptText="Nome Completo" />
+      <Button fx:id="btnCadastrar" layoutX="250.0" layoutY="338.0" mnemonicParsing="false" onAction="#onClickCadastrar" prefHeight="25.0" prefWidth="100.0" text="Cadastrar" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/gsf.png" />
@@ -25,12 +26,12 @@
             <Image url="@../imagens/email.png" />
          </image>
       </ImageView>
-      <TextField layoutX="205.0" layoutY="219.0" prefHeight="29.0" prefWidth="191.0" promptText="Email" />
-      <TextField layoutX="205.0" layoutY="273.0" prefHeight="29.0" prefWidth="191.0" promptText="Senha" />
+      <TextField fx:id="txtEmail" layoutX="205.0" layoutY="219.0" prefHeight="29.0" prefWidth="191.0" promptText="Email" />
       <ImageView fitHeight="42.0" fitWidth="30.0" layoutX="175.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/senha.png" />
          </image>
       </ImageView>
+      <PasswordField fx:id="txtSenha" layoutX="205.0" layoutY="273.0" prefHeight="29.0" prefWidth="191.0" promptText="Senha" />
    </children>
 </AnchorPane>

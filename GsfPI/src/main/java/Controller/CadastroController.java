@@ -1,26 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Aluno
- */
-public class CadastroController implements Initializable {
+public class CadastroController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private Button btnCadastrar;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtNomeCompleto;
+
+     @FXML
+    private PasswordField txtSenha;
+
+    @FXML
+    void onClickCadastrar(ActionEvent event)throws IOException{ 
+        
+        Stage login = new Stage();
+        login.setTitle("Login");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        Parent root= loader.load();
+        
+       Scene cena = new Scene(root);
+       login.setScene(cena);
+       login.show(); 
+    }
+
 }
