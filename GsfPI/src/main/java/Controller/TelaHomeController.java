@@ -6,7 +6,9 @@ package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -21,6 +23,20 @@ public class TelaHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    
+    @FXML
+    private Button btnCadastro;
+
+    @FXML
+    private Button btnPontoEletronico;
+
+    @FXML
+    private Button btnVizualizarLotes;
+
+    @FXML
+    private Button btnVizualizarPonto;
+
     
 }

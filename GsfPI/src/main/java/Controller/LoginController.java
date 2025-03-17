@@ -14,16 +14,16 @@ import javafx.stage.Stage;
 public class LoginController {
 
     @FXML
-    private Button Btnlogin;
+    private Button btnConfirmar;
 
     @FXML
-    private Button btnircadastro;
+    private Button btnCadastrar;
 
     @FXML
-    private TextField email;
+    private TextField txtEmail;
 
     @FXML
-    private TextField senha;
+    private TextField txtSenha;
 
     @FXML
     void onClickTelaHome(ActionEvent event) throws IOException{
@@ -33,19 +33,17 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaHome.fxml"));
         Parent root= loader.load();
         
-        
        Scene cena = new Scene(root);
        home.setScene(cena);
        home.show(); 
      
- 
     }
 
     @FXML
-    void onClickTelaCadastro(ActionEvent event) throws IOException {
+    void onClickTelaCadastro (ActionEvent event) throws IOException {
         
          Stage cadastro = new Stage();
-        cadastro.setTitle("home");
+        cadastro.setTitle("Cadastro");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Cadastro.fxml"));
         Parent root= loader.load();
@@ -55,5 +53,4 @@ public class LoginController {
        cadastro.setScene(cena);
        cadastro.show(); 
     }
-
 }

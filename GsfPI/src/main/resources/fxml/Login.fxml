@@ -9,9 +9,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <TextField fx:id="senha" layoutX="203.0" layoutY="200.0" prefHeight="25.0" prefWidth="195.0" promptText="Senha" />
-      <TextField fx:id="email" layoutX="202.0" layoutY="247.0" prefHeight="25.0" prefWidth="195.0" promptText="email" />
-      <Button fx:id="Btnlogin" layoutX="244.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar">
+      <TextField fx:id="txtEmail" layoutX="203.0" layoutY="200.0" prefHeight="25.0" prefWidth="195.0" promptText="Email" />
+      <TextField fx:id="txtSenha" layoutX="202.0" layoutY="247.0" prefHeight="25.0" prefWidth="195.0" promptText="Senha" />
+      <Button fx:id="btnConfirmar" layoutX="244.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar">
          <font>
             <Font size="14.0" />
          </font>
@@ -21,6 +21,6 @@
             <Image url="@../../../../../../../Pictures/Captura%20de%20tela%202025-03-11%20110528.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnircadastro" layoutX="267.0" layoutY="345.0" mnemonicParsing="false" onAction="#onClickTelaCadastro" text="cadastrar" />
+      <Button fx:id="btnCadastrar" layoutX="267.0" layoutY="345.0" mnemonicParsing="false" onAction="#onClickTelaCadastro" text="Cadastrar" />
    </children>
 </AnchorPane>
