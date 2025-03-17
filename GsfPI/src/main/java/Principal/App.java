@@ -18,9 +18,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Cadastro");
+        stage.setTitle("Login");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Cadastro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root= loader.load();
         
         
