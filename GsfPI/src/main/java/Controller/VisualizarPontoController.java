@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Aluno
  */
-public class VizualiarPontoController implements Initializable {
+public class VisualizarPontoController implements Initializable {
 
     /**
      * Initializes the controller class.
