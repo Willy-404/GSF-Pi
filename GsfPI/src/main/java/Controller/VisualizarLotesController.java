@@ -1,26 +1,88 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 
-/**
- * FXML Controller class
- *
- * @author Aluno
- */
-public class VisualizarLotesController implements Initializable {
+public class VisualizarLotesController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private MenuBar MenuBar;
+
+    @FXML
+    private MenuItem itemCadFornecedor;
+
+    @FXML
+    private MenuItem itemCadFuncionario;
+
+    @FXML
+    private MenuItem itemCadLote;
+
+    @FXML
+    private MenuItem itemTelaInicial;
+
+    @FXML
+    private MenuItem itemVisuFornecedor;
+
+    @FXML
+    private MenuItem itemVisuFuncionario;
+
+    @FXML
+    private MenuItem itemVisuLote;
+
+    @FXML
+    private MenuItem itemVisuPonto;
+
+    @FXML
+    private Label lblLotes;
+
+    @FXML
+    private Menu menuHome;
+
+    @FXML
+    private Menu menuVisualizar;
+
+    @FXML
+    void OnClickCadFornecedor1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickCadFuncionario1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickCadLote1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickVisuFornecedor1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickVisuFuncionario1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickVisuLote1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickVisuPonto1(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickVisuTelaHome(ActionEvent event) {
+
+    }
+
 }

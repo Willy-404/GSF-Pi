@@ -24,10 +24,10 @@ public class TelaHomeController {
     private Button btnPontoEletronico;
 
     @FXML
-    private Button btnVizualizarLotes;
+    private Button btnVisualizarLotes;
 
     @FXML
-    private Button btnVizualizarPonto;
+    private Button btnVisualizarPonto;
 
     @FXML
     void onClickCadastrarLotes(ActionEvent event)throws IOException{
@@ -86,31 +86,31 @@ public class TelaHomeController {
     }
 
     @FXML
-    void onClickVizualizarLotes(ActionEvent event) throws IOException{
+    void onClickVisualizarLotes(ActionEvent event) throws IOException{
           
-        Stage vizuLotes = new Stage();
-        vizuLotes.setTitle("Vizualizar Lotes");
+        Stage visuLotes = new Stage();
+        visuLotes.setTitle("Visualizar Lotes");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VizualizarLotes.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarLotes.fxml"));
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
-       vizuLotes.setScene(cena);
-       vizuLotes.show(); 
+       visuLotes.setScene(cena);
+       visuLotes.show(); 
     }
 
     @FXML
-    void onClickVizualizarPonto(ActionEvent event) throws IOException{
+    void onClickVisualizarPonto(ActionEvent event) throws IOException{
           
-        Stage vizuPonto = new Stage();
-        vizuPonto.setTitle("Vizualizar Pontos");
+        Stage visuPonto = new Stage();
+        visuPonto.setTitle("Visualizar Pontos");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VizualizarPonto.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarPonto.fxml"));
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
-       vizuPonto.setScene(cena);
-       vizuPonto.show(); 
+       visuPonto.setScene(cena);
+       visuPonto.show(); 
     }
 
 }

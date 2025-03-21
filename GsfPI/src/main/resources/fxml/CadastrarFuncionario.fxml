@@ -2,45 +2,89 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="424.0" prefWidth="628.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="Controller.CadastrarFuncionarioController">
+<AnchorPane id="AnchorPane" prefHeight="424.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastrarFuncionarioController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="424.0" prefWidth="632.0" style="-fx-background-color: #386b8f;">
+      <AnchorPane id="AnchorPane" prefHeight="424.0" prefWidth="635.0" style="-fx-background-color: #386b8f;">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Cadastro de Funcionário" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="115.0" text="Nome" textFill="WHITE">
+            <Label fx:id="lblNome" layoutX="28.0" layoutY="115.0" text="Nome" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="259.0" text="CPF" textFill="WHITE">
+            <Label fx:id="lblCpf" layoutX="27.0" layoutY="185.0" text="CPF" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="255.0" layoutY="259.0" text="Contato" textFill="WHITE">
+            <Label fx:id="lblContato" layoutX="282.0" layoutY="184.0" text="Contato" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="255.0" layoutY="115.0" text="Endereço" textFill="WHITE">
+            <Label fx:id="lblEndereco" layoutX="279.0" layoutY="115.0" text="Endereço" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
             <TextField fx:id="txtNome" layoutX="74.0" layoutY="112.0" promptText="Nome" />
-            <TextField fx:id="txtCnpj" layoutX="74.0" layoutY="256.0" promptText="Cnpj" />
-            <TextField fx:id="txtContato" layoutX="322.0" layoutY="255.0" prefHeight="26.0" prefWidth="150.0" promptText="Telefone" />
-            <TextField fx:id="txtEndereco" layoutX="322.0" layoutY="112.0" promptText="Endereço" />
-            <Button fx:id="btnCadastrarFuncionario" layoutX="32.0" layoutY="374.0" mnemonicParsing="false" text="Cadastrar" />
+            <TextField fx:id="txtCpf" layoutX="74.0" layoutY="182.0" promptText="Cpf" />
+            <TextField fx:id="txtContato" layoutX="362.0" layoutY="250.0" prefHeight="26.0" prefWidth="150.0" promptText="Telefone" />
+            <TextField fx:id="txtEndereco" layoutX="363.0" layoutY="112.0" promptText="Endereço" />
+            <Button fx:id="btnCadastrarFuncionario" layoutX="381.0" layoutY="356.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" text="Cadastrar" />
+            <Label fx:id="lblIdade" layoutX="29.0" layoutY="308.0" text="Idade" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCargo" layoutX="282.0" layoutY="254.0" text="Cargo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtdade" layoutX="74.0" layoutY="305.0" promptText="Idade" />
+            <TextField fx:id="txtCargo" layoutX="363.0" layoutY="181.0" prefHeight="26.0" prefWidth="150.0" promptText="Cargo" />
+            <Label fx:id="lblIdade1" layoutX="25.0" layoutY="245.0" text="Salário" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSalario" layoutX="74.0" layoutY="242.0" promptText="Salário" />
+            <MenuBar fx:id="MenuBar" layoutX="407.0" layoutY="18.0" prefHeight="26.0" prefWidth="210.0">
+               <menus>
+                  <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+                     <items>
+                        <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+                     <items>
+                        <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
+                        <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
+                        <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
+                        <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Cadastrar">
+                     <items>
+                        <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
+                        <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
+                        <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
          </children>
       </AnchorPane>
    </children>

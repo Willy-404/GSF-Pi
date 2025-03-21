@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PontoEletronicoController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PontoEletronicoController">
+   <children>
+      <TextField fx:id="txtCpfPonto" layoutX="213.0" layoutY="206.0" prefHeight="29.0" prefWidth="200.0" promptText="CPF" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/gsf.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="30.0" layoutX="185.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/email.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnConfirmarPonto" layoutX="258.0" layoutY="304.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Confirmar" />
+      <MenuBar fx:id="MenuBar" layoutX="375.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0">
+         <menus>
+            <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+               <items>
+                  <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
+                  <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
+                  <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Cadastrar">
+               <items>
+                  <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
+                  <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
 </AnchorPane>

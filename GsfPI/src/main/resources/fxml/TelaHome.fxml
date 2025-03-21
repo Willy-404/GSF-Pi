@@ -10,9 +10,9 @@
       <Button fx:id="btnCadastrarLote" layoutX="100.0" layoutY="70.0" mnemonicParsing="false" onAction="#onClickCadastrarLotes" prefHeight="39.0" prefWidth="136.0" text="Cadastrar Lotes" />
       <Button fx:id="btnFunconario" layoutX="100.0" layoutY="181.0" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="39.0" prefWidth="136.0" text="Funcionário" />
       <Button fx:id="btnPontoEletronico" layoutX="100.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickPontoEletronico" prefHeight="39.0" prefWidth="136.0" text="Ponto Eletrônico" />
-      <Button fx:id="btnVizualizarLotes" layoutX="361.0" layoutY="70.0" mnemonicParsing="false" onAction="#onClickVizualizarLotes" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Lotes" />
+      <Button fx:id="btnVisualizarLotes" layoutX="361.0" layoutY="70.0" mnemonicParsing="false" onAction="#onClickVisualizarLotes" prefHeight="39.0" prefWidth="136.0" text="Visualizar Lotes" />
       <Button fx:id="btnFornecedor" layoutX="361.0" layoutY="181.0" mnemonicParsing="false" onAction="#onClickTelaFornecedor" prefHeight="39.0" prefWidth="136.0" text="Fornecedor" />
-      <Button fx:id="btnVizualizarPonto" layoutX="361.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickVizualizarPonto" prefHeight="39.0" prefWidth="136.0" text="Vizualizar Pontos" />
+      <Button fx:id="btnVisualizarPonto" layoutX="361.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickVisualizarPonto" prefHeight="39.0" prefWidth="136.0" text="Visualizar Pontos" />
       <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="54.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/lote.png" />
