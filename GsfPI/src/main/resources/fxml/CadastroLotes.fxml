@@ -65,7 +65,7 @@
       <TextField fx:id="txtPreco" layoutX="338.0" layoutY="232.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="txtLinha" layoutX="338.0" layoutY="295.0" prefHeight="26.0" prefWidth="158.0" />
       <Button fx:id="btnConfirmarLote" layoutX="400.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Confirmar" />
-      <MenuBar fx:id="MenuBar" layoutX="375.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0">
+      <MenuBar fx:id="MenuBar" layoutX="391.0" layoutY="1.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
          <menus>
             <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
                <items>

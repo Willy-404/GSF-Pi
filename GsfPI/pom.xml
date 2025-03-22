@@ -20,6 +20,18 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+        <dependency>
+            <groupId>com.applitools</groupId>
+            <artifactId>eyes-common-java3</artifactId>
+            <version>5.0.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ws.osiris</groupId>
+            <artifactId>osiris-aws</artifactId>
+            <version>2.0.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

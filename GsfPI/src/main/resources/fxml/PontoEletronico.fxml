@@ -23,7 +23,7 @@
          </image>
       </ImageView>
       <Button fx:id="btnConfirmarPonto" layoutX="258.0" layoutY="304.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Confirmar" />
-      <MenuBar fx:id="MenuBar" layoutX="375.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0">
+      <MenuBar fx:id="MenuBar" layoutX="389.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
          <menus>
             <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
                <items>

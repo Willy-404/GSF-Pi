@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 
 public class LoginController {
-
     @FXML
     private Button btnConfirmar;
 

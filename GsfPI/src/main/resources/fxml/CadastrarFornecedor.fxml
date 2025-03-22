@@ -47,9 +47,9 @@
       <TextField fx:id="txtEndereco" layoutX="322.0" layoutY="99.0" promptText="Endereço" />
       <TextField fx:id="txtInscricaoEstadual" layoutX="128.0" layoutY="276.0" prefHeight="26.0" prefWidth="101.0" promptText="Isnc. Est" />
       <Button fx:id="btnCadastrarFornecedor" layoutX="346.0" layoutY="343.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Cadastrar" />
-      <MenuBar fx:id="MenuBar" layoutX="378.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0">
+      <MenuBar fx:id="MenuBar" layoutX="386.0" layoutY="1.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
          <menus>
-            <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+            <Menu fx:id="menuHome" mnemonicParsing="false" style="-fx--color: #ffffff;" text="Home">
                <items>
                   <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
                </items>
