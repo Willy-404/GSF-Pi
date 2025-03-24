@@ -40,6 +40,7 @@ public class TelaHomeController {
         
        Scene cena = new Scene(root);
        cadastroLote.setScene(cena);
+     
        cadastroLote.show(); 
     }
 

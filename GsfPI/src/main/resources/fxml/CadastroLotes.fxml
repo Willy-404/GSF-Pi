@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
+<AnchorPane id="AnchorPane" prefHeight="1025.0" prefWidth="1791.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Cadastro de Lote" textFill="WHITE">
+      <Label layoutX="8.0" layoutY="10.0" text="Cadastro de Lote" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -64,7 +64,7 @@
       <TextField fx:id="txtColecao" layoutX="348.0" layoutY="161.0" prefHeight="26.0" prefWidth="150.0" />
       <TextField fx:id="txtPreco" layoutX="338.0" layoutY="232.0" prefHeight="26.0" prefWidth="158.0" />
       <TextField fx:id="txtLinha" layoutX="338.0" layoutY="295.0" prefHeight="26.0" prefWidth="158.0" />
-      <Button fx:id="btnConfirmarLote" layoutX="400.0" layoutY="346.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Confirmar" />
+      <Button fx:id="btnConfirmarLote" layoutX="1430.0" layoutY="912.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="191.0" text="Confirmar" />
       <MenuBar fx:id="MenuBar" layoutX="391.0" layoutY="1.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
          <menus>
             <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">

@@ -28,6 +28,7 @@ public class LoginController {
     @FXML
     void onClickTelaHome(ActionEvent event) throws IOException{
         Stage home = new Stage();
+        home.setMaximized(true);
         home.setTitle("home");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaHome.fxml"));
@@ -43,12 +44,14 @@ public class LoginController {
     void onClickTelaCadastro (ActionEvent event) throws IOException {
         
          Stage cadastro = new Stage();
+        cadastro.setMaximized(true);
+
         cadastro.setTitle("Cadastro de Usuario");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Cadastro.fxml"));
         Parent root= loader.load();
         
-        
+         
        Scene cena = new Scene(root);
        cadastro.setScene(cena);
        cadastro.show(); 
