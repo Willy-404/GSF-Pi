@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-
 <FlowPane alignment="CENTER" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaHomeController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="941.0" prefWidth="1436.0" style="-fx-background-color: #386b8f;">
          <children>
-            <Button fx:id="btnCadastrarLote" layoutX="268.0" layoutY="471.0" mnemonicParsing="false" onAction="#onClickCadastrarLotes" prefHeight="66.0" prefWidth="268.0" text="Cadastrar Lotes">
+            <Button fx:id="btnCadastrarLote" layoutX="268.0" layoutY="201.0" mnemonicParsing="false" onAction="#onClickCadastrarLotes" prefHeight="66.0" prefWidth="268.0" text="Cadastrar Lotes">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="btnFunconario" layoutX="268.0" layoutY="201.0" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="66.0" prefWidth="268.0" text="Funcionário">
+            <Button fx:id="btnFunconario" layoutX="260.0" layoutY="471.0" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="66.0" prefWidth="268.0" text="Funcionário">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -27,12 +26,12 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="btnVisualizarLotes" layoutX="1000.0" layoutY="471.0" mnemonicParsing="false" onAction="#onClickVisualizarLotes" prefHeight="66.0" prefWidth="268.0" text="Visualizar Lotes">
+            <Button fx:id="btnVisualizarLotes" layoutX="988.0" layoutY="196.0" mnemonicParsing="false" onAction="#onClickVisualizarLotes" prefHeight="66.0" prefWidth="268.0" text="Visualizar Lotes">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="btnFornecedor" layoutX="1000.0" layoutY="199.0" mnemonicParsing="false" onAction="#onClickTelaFornecedor" prefHeight="70.0" prefWidth="268.0" text="Fornecedor">
+            <Button fx:id="btnFornecedor" layoutX="1000.0" layoutY="470.0" mnemonicParsing="false" onAction="#onClickTelaFornecedor" prefHeight="70.0" prefWidth="268.0" text="Fornecedor">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -52,12 +51,12 @@
                   <Image url="@../imagens/pontoEltronico.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="77.0" layoutX="928.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="70.0" fitWidth="77.0" layoutX="928.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/visualizar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="85.0" fitWidth="78.0" layoutX="922.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="85.0" fitWidth="78.0" layoutX="922.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagens/caminhao.png" />
                </image>
