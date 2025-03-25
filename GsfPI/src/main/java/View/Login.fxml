@@ -17,17 +17,17 @@
             <Button fx:id="btnConfirmar" layoutX="244.0" layoutY="304.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar" />
             <ImageView fitHeight="154.0" fitWidth="242.0" layoutX="179.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/gsf.png" />
+                  <Image url="@../../resources/imagens/gsf.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="165.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/email.png" />
+                  <Image url="@../../resources/imagens/email.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="165.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/senha.png" />
+                  <Image url="@../../resources/imagens/senha.png" />
                </image>
             </ImageView>
       
