@@ -42,6 +42,8 @@ public class LoginController {
         Scene cena = new Scene(root);
         home.setScene(cena);
         home.show();
+        
+        ((Stage) btnConfirmar.getScene().getWindow()).close();
 
     }
 
@@ -60,9 +62,12 @@ public class LoginController {
         Scene cena = new Scene(root);
         cadastro.setScene(cena);
         cadastro.show();
+        
+        ((Stage) btnCadastrar.getScene().getWindow()).close();
     }
 
     public void setStage(Stage stage) {
         this.stageLogin = stage;
     }
+
 }

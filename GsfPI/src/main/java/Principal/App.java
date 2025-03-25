@@ -25,18 +25,17 @@ public class App extends Application {
         stage.setMaximized(true);
         URL url = new File("src/main/java/view/login.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
-         Stage telaLogin = new Stage();
+        Parent root = loader.load();
+
+        Stage telaLogin = new Stage();
         LoginController lc = loader.getController();
-        
+
         lc.setStage(telaLogin);
-        
-       Scene cena = new Scene(root);
-       stage.setScene(cena);
-       stage.show(); 
+
+        Scene cena = new Scene(root);
+        stage.setScene(cena);
+        stage.show();
     }
-    
 
     public static void main(String[] args) {
         launch();

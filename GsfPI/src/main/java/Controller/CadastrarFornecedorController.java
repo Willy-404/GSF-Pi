@@ -75,10 +75,12 @@ public class CadastrarFornecedorController {
         cadastroFornecedor.setTitle("Cadastro de Fornecedor");
         URL url = new File("src/main/java/view/telaFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
+        Parent root = loader.load();
         Scene cena = new Scene(root);
         cadastroFornecedor.setScene(cena);
-        cadastroFornecedor.show(); 
+        cadastroFornecedor.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -88,11 +90,13 @@ public class CadastrarFornecedorController {
         cadastroFuncionario.setTitle("Cadastro de Funcionario");
         URL url = new File("src/main/java/view/telaFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
+        Parent root = loader.load();
+
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
-        cadastroFuncionario.show(); 
+        cadastroFuncionario.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -102,23 +106,27 @@ public class CadastrarFornecedorController {
         cadastroLote.setTitle("Cadastro de lotes");
         URL url = new File("src/main/java/view/cadastroLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
+        Parent root = loader.load();
         Scene cena = new Scene(root);
         cadastroLote.setScene(cena);
-        cadastroLote.show(); 
+        cadastroLote.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
- Stage visuFornecedor = new Stage();
+        Stage visuFornecedor = new Stage();
         visuFornecedor.setMaximized(true);
         visuFornecedor.setTitle("VisualizarFornecedor");
         URL url = new File("src/main/java/view/visualizarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-       Scene cena = new Scene(root);
-       visuFornecedor.setScene(cena);
-       visuFornecedor.show(); 
+        Parent root = loader.load();
+        Scene cena = new Scene(root);
+        visuFornecedor.setScene(cena);
+        visuFornecedor.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -128,11 +136,13 @@ public class CadastrarFornecedorController {
         visuFuncionario.setTitle("VisualizarFuncionario");
         URL url = new File("src/main/java/view/visualizarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
+        Parent root = loader.load();
+
         Scene cena = new Scene(root);
         visuFuncionario.setScene(cena);
         visuFuncionario.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -142,11 +152,13 @@ public class CadastrarFornecedorController {
         visuLotes.setTitle("Visualizar Lotes");
         URL url = new File("src/main/java/view/visualizarLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
+        Parent root = loader.load();
+
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
-        visuLotes.show(); 
+        visuLotes.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -154,14 +166,16 @@ public class CadastrarFornecedorController {
         Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
         visuPonto.setTitle("Visualizar Pontos");
-        
+
         URL url = new File("src/main/java/view/visualizarPonto.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
+        Parent root = loader.load();
+
         Scene cena = new Scene(root);
         visuPonto.setScene(cena);
-        visuPonto.show(); 
+        visuPonto.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -169,14 +183,16 @@ public class CadastrarFornecedorController {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("home");
-        
+
         URL url = new File("src/main/java/view/telaHome.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
+        Parent root = loader.load();
+
         Scene cena = new Scene(root);
         home.setScene(cena);
-        home.show(); 
+        home.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
 }
