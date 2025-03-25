@@ -1,6 +1,8 @@
 package Controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +24,9 @@ public class TelaFuncionarioController {
  Stage cadastroFuncionario = new Stage();
         cadastroFuncionario.setTitle("CadastroFuncionario");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CadastrarFuncionario.fxml"));
-        Parent root= loader.load();
+        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
         
        Scene cena = new Scene(root);
        cadastroFuncionario.setScene(cena);
@@ -35,8 +38,9 @@ public class TelaFuncionarioController {
  Stage visuFuncionario = new Stage();
         visuFuncionario.setTitle("VisualizarFuncionario");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarFuncionario.fxml"));
-        Parent root= loader.load();
+        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
         
        Scene cena = new Scene(root);
        visuFuncionario.setScene(cena);
