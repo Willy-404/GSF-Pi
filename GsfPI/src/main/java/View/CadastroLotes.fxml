@@ -9,90 +9,90 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="945.0" prefWidth="1896.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
+<AnchorPane id="AnchorPane" prefHeight="915.0" prefWidth="1776.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
    <children>
-      <Label layoutX="42.0" layoutY="9.0" text="Cadastro de Lote" textFill="WHITE">
+      <Label layoutX="623.0" layoutY="27.0" text="Cadastro de Lote" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="196.0" layoutY="170.0" text="Referência" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="309.0" layoutY="185.0" text="Referência" textFill="WHITE">
+      <Label layoutX="196.0" layoutY="337.0" text="Quantidade" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="309.0" layoutY="352.0" text="Quantidade" textFill="WHITE">
+      <Label layoutX="196.0" layoutY="524.0" text="Tecido" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="309.0" layoutY="539.0" text="Tecido" textFill="WHITE">
+      <Label layoutX="196.0" layoutY="709.0" prefHeight="35.0" prefWidth="78.0" text="Marca" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="309.0" layoutY="724.0" prefHeight="35.0" prefWidth="78.0" text="Marca" textFill="WHITE">
+      <Label layoutX="977.0" layoutY="171.0" text="Tamanho" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="1204.0" layoutY="185.0" text="Tamanho" textFill="WHITE">
+      <Label layoutX="977.0" layoutY="337.0" text="Coleção" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="1203.0" layoutY="353.0" text="Coleção" textFill="WHITE">
+      <Label layoutX="977.0" layoutY="524.0" text="Preço" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="1203.0" layoutY="540.0" text="Preço" textFill="WHITE">
+      <Label layoutX="978.0" layoutY="709.0" text="Linha" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="1204.0" layoutY="725.0" text="Linha" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtReferencia" layoutX="441.0" layoutY="180.0" prefHeight="46.0" prefWidth="237.0">
+      <TextField fx:id="txtReferencia" layoutX="328.0" layoutY="165.0" prefHeight="46.0" prefWidth="237.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtTecido" layoutX="417.0" layoutY="534.0" prefHeight="46.0" prefWidth="262.0">
+      <TextField fx:id="txtTecido" layoutX="304.0" layoutY="519.0" prefHeight="46.0" prefWidth="262.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtQuantidade" layoutX="459.0" layoutY="348.0" prefHeight="46.0" prefWidth="220.0">
+      <TextField fx:id="txtQuantidade" layoutX="346.0" layoutY="333.0" prefHeight="46.0" prefWidth="220.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtMarca" layoutX="417.0" layoutY="719.0" prefHeight="46.0" prefWidth="262.0">
+      <TextField fx:id="txtMarca" layoutX="304.0" layoutY="704.0" prefHeight="46.0" prefWidth="262.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtTamanho" layoutX="1331.0" layoutY="180.0" prefHeight="46.0" prefWidth="220.0">
+      <TextField fx:id="txtTamanho" layoutX="1103.0" layoutY="165.0" prefHeight="46.0" prefWidth="220.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtColecao" layoutX="1301.0" layoutY="348.0" prefHeight="46.0" prefWidth="250.0">
+      <TextField fx:id="txtColecao" layoutX="1074.0" layoutY="334.0" prefHeight="46.0" prefWidth="250.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtPreco" layoutX="1289.0" layoutY="535.0" prefHeight="46.0" prefWidth="262.0">
+      <TextField fx:id="txtPreco" layoutX="1063.0" layoutY="519.0" prefHeight="46.0" prefWidth="262.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="txtLinha" layoutX="1289.0" layoutY="719.0" prefHeight="46.0" prefWidth="262.0">
+      <TextField fx:id="txtLinha" layoutX="1063.0" layoutY="703.0" prefHeight="46.0" prefWidth="262.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <Button fx:id="btnConfirmarLote" layoutX="1567.0" layoutY="846.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #5496c5;" text="Confirmar" textFill="WHITE">
+      <Button fx:id="btnConfirmarLote" layoutX="1230.0" layoutY="774.0" mnemonicParsing="false" mouseTransparent="true" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #5496c5;" text="Confirmar" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Button>
-      <MenuBar fx:id="MenuBar" layoutX="1655.0" layoutY="64.0" prefHeight="27.0" prefWidth="206.0" style="-fx-background-color: #5496c5;">
+      <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1776.0" style="-fx-background-color: #5496c5;">
          <menus>
             <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
                <items>

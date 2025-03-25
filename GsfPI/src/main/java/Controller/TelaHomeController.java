@@ -20,7 +20,7 @@ public class TelaHomeController {
     private Button btnFornecedor;
 
     @FXML
-    private Button btnFunconario;
+    private Button btnFuncionario;
 
     @FXML
     private Button btnPontoEletronico;

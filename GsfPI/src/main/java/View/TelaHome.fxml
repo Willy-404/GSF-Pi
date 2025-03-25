@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="btnFunconario" layoutX="260.0" layoutY="471.0" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="66.0" prefWidth="268.0" text="Funcionário">
+            <Button fx:id="btnFuncionario" layoutX="260.0" layoutY="471.0" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="66.0" prefWidth="268.0" text="Funcionário">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

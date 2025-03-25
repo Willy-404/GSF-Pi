@@ -13,7 +13,7 @@
 
 <FlowPane alignment="CENTER" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PontoEletronicoController">
    <children>
-<<<<<<< Updated upstream:GsfPI/src/main/java/View/PontoEletronico.fxml
+
       <TextField fx:id="txtCpfPonto" layoutX="213.0" layoutY="206.0" prefHeight="29.0" prefWidth="200.0" promptText="CPF" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -50,7 +50,7 @@
             </Menu>
          </menus>
       </MenuBar>
-=======
+
       <AnchorPane id="AnchorPane" prefHeight="932.0" prefWidth="1588.0" style="-fx-background-color: #386b8f;">
          <children>
             <TextField fx:id="txtCpfPonto" layoutX="704.0" layoutY="535.0" prefHeight="29.0" prefWidth="200.0" promptText="CPF" />
@@ -91,6 +91,6 @@
             </MenuBar>
          </children>
       </AnchorPane>
->>>>>>> Stashed changes:GsfPI/src/main/resources/fxml/PontoEletronico.fxml
+
    </children>
 </FlowPane>
