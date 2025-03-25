@@ -17,23 +17,23 @@
             <Button fx:id="btnCadastrar" layoutX="250.0" layoutY="338.0" mnemonicParsing="false" onAction="#onClickCadastrar" prefHeight="25.0" prefWidth="100.0" text="Cadastrar" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/gsf.png" />
+                  <Image url="@../../resources/imagens/gsf.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="175.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/email.png" />
+                  <Image url="@../../resources/imagens/email.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="175.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/email.png" />
+                  <Image url="@../../resources/imagens/email.png" />
                </image>
             </ImageView>
             <TextField fx:id="txtEmail" layoutX="205.0" layoutY="219.0" prefHeight="29.0" prefWidth="191.0" promptText="Email" />
             <ImageView fitHeight="42.0" fitWidth="30.0" layoutX="175.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imagens/senha.png" />
+                  <Image url="@../../resources/imagens/senha.png" />
                </image>
             </ImageView>
             <PasswordField fx:id="txtSenha" layoutX="205.0" layoutY="273.0" prefHeight="29.0" prefWidth="191.0" promptText="Senha" />

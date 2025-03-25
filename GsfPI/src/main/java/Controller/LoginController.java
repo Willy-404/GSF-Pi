@@ -54,7 +54,8 @@ public class LoginController {
 
         cadastro.setTitle("Cadastro de Usuario");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Cadastro.fxml"));
+        URL url = new File("src/main/java/view/cadastro.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
          

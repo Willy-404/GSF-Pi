@@ -1,6 +1,8 @@
 package Controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,10 +32,9 @@ public class CadastroController {
         
         Stage login = new Stage();
         login.setTitle("Login");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        URL url = new File("src/main/java/view/login.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
-        
        Scene cena = new Scene(root);
        login.setScene(cena);
        login.show(); 

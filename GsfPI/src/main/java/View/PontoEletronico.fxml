@@ -14,12 +14,12 @@
       <TextField fx:id="txtCpfPonto" layoutX="213.0" layoutY="206.0" prefHeight="29.0" prefWidth="200.0" promptText="CPF" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imagens/gsf.png" />
+            <Image url="@../../resources/imagens/gsf.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="38.0" fitWidth="30.0" layoutX="185.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imagens/email.png" />
+            <Image url="@../../resources/imagens/email.png" />
          </image>
       </ImageView>
       <Button fx:id="btnConfirmarPonto" layoutX="258.0" layoutY="304.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Confirmar" />

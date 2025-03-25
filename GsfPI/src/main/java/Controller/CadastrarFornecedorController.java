@@ -1,6 +1,8 @@
 package Controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,10 +72,9 @@ public class CadastrarFornecedorController {
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         Stage cadastroFornecedor = new Stage();
         cadastroFornecedor.setTitle("Cadastro de Fornecedor");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CadastrarFornecedor.fxml"));
+         URL url = new File("src/main/java/view/telaFornecedor.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
-        
        Scene cena = new Scene(root);
        cadastroFornecedor.setScene(cena);
        cadastroFornecedor.show(); 
@@ -83,8 +84,8 @@ public class CadastrarFornecedorController {
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
          Stage cadastroFuncionario = new Stage();
         cadastroFuncionario.setTitle("Cadastro de Funcionario");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CadastrarFuncionario.fxml"));
+         URL url = new File("src/main/java/view/telaFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
@@ -96,8 +97,8 @@ public class CadastrarFornecedorController {
     void OnClickCadLote1(ActionEvent event) throws IOException {
          Stage cadastroLote = new Stage();
         cadastroLote.setTitle("Cadastro de lotes");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CadastroLotes.fxml"));
+         URL url = new File("src/main/java/view/cadastroLotes.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
@@ -109,10 +110,9 @@ public class CadastrarFornecedorController {
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
  Stage visuFornecedor = new Stage();
         visuFornecedor.setTitle("VisualizarFornecedor");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarFornecedor.fxml"));
+         URL url = new File("src/main/java/view/visualizarFornecedor.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
-        
        Scene cena = new Scene(root);
        visuFornecedor.setScene(cena);
        visuFornecedor.show(); 
@@ -122,8 +122,8 @@ public class CadastrarFornecedorController {
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
 Stage visuFuncionario = new Stage();
         visuFuncionario.setTitle("VisualizarFuncionario");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarFuncionario.fxml"));
+        URL url = new File("src/main/java/view/visualizarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
@@ -135,8 +135,8 @@ Stage visuFuncionario = new Stage();
     void OnClickVisuLote1(ActionEvent event) throws IOException {
   Stage visuLotes = new Stage();
         visuLotes.setTitle("Visualizar Lotes");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarLotes.fxml"));
+        URL url = new File("src/main/java/view/visualizarLotes.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
@@ -149,7 +149,8 @@ Stage visuFuncionario = new Stage();
        Stage visuPonto = new Stage();
         visuPonto.setTitle("Visualizar Pontos");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/VisualizarPonto.fxml"));
+        URL url = new File("src/main/java/view/visualizarPonto.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
@@ -162,7 +163,8 @@ Stage visuFuncionario = new Stage();
   Stage home = new Stage();
         home.setTitle("home");
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaHome.fxml"));
+        URL url = new File("src/main/java/view/telaHome.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
         Parent root= loader.load();
         
        Scene cena = new Scene(root);
