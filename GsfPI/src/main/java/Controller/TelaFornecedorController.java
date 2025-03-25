@@ -17,32 +17,33 @@ public class TelaFornecedorController {
     private Button btnCadastrarFornecedor;
 
     @FXML
-    private Button btnVisualizarFornecedor; 
-    
+    private Button btnVisualizarFornecedor;
+
     @FXML
     void OnClickVisuFornecedor(ActionEvent event) throws IOException {
-     Stage visuFornecedor = new Stage();
+        Stage visuFornecedor = new Stage();
+        visuFornecedor.setMaximized(true);
         visuFornecedor.setTitle("VisualizarFornecedor");
-       URL url = new File("src/main/java/view/visualizarFornecedor.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/visualizarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-       Scene cena = new Scene(root);
-       visuFornecedor.setScene(cena);
-       visuFornecedor.show(); 
+        Parent root = loader.load();
+        Scene cena = new Scene(root);
+        visuFornecedor.setScene(cena);
+        visuFornecedor.show();
     }
-    
+
     @FXML
     void OnClickCadastrarFornecedor(ActionEvent event) throws IOException {
-     Stage cadastroFornecedor = new Stage();
+        Stage cadastroFornecedor = new Stage();
+        cadastroFornecedor.setMaximized(true);
         cadastroFornecedor.setTitle("CadastroFornecedor");
         URL url = new File("src/main/java/view/cadastrarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
-       Scene cena = new Scene(root);
-       cadastroFornecedor.setScene(cena);
-       cadastroFornecedor.show(); 
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        cadastroFornecedor.setScene(cena);
+        cadastroFornecedor.show();
     }
 
 }
-

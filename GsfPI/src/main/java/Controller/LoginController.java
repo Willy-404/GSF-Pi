@@ -13,11 +13,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class LoginController {
-    
+
     private Stage stageLogin;
-    
+
     @FXML
     private Button btnConfirmar;
 
@@ -27,44 +26,43 @@ public class LoginController {
     @FXML
     private TextField txtEmail;
 
-     @FXML
+    @FXML
     private PasswordField txtSenha;
 
     @FXML
-    void onClickTelaHome(ActionEvent event) throws IOException{
+    void onClickTelaHome(ActionEvent event) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("home");
-        
+
         URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
-       Scene cena = new Scene(root);
-       home.setScene(cena);
-       home.show(); 
-     
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
     }
 
     @FXML
-    void onClickTelaCadastro (ActionEvent event) throws IOException {
-        
-         Stage cadastro = new Stage();
+    void onClickTelaCadastro(ActionEvent event) throws IOException {
+
+        Stage cadastro = new Stage();
         cadastro.setMaximized(true);
 
         cadastro.setTitle("Cadastro de Usuario");
-        
+
         URL url = new File("src/main/java/view/cadastro.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-        
-         
-       Scene cena = new Scene(root);
-       cadastro.setScene(cena);
-       cadastro.show(); 
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        cadastro.setScene(cena);
+        cadastro.show();
     }
-    
-    public void setStage(Stage stage){
+
+    public void setStage(Stage stage) {
         this.stageLogin = stage;
     }
 }

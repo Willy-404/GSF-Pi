@@ -24,20 +24,21 @@ public class CadastroController {
     @FXML
     private TextField txtNomeCompleto;
 
-     @FXML
+    @FXML
     private PasswordField txtSenha;
 
     @FXML
-    void onClickCadastrar(ActionEvent event)throws IOException{ 
-        
+    void onClickCadastrar(ActionEvent event) throws IOException {
+
         Stage login = new Stage();
+        login.setMaximized(true);
         login.setTitle("Login");
         URL url = new File("src/main/java/view/login.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        Parent root= loader.load();
-       Scene cena = new Scene(root);
-       login.setScene(cena);
-       login.show(); 
+        Parent root = loader.load();
+        Scene cena = new Scene(root);
+        login.setScene(cena);
+        login.show();
     }
 
 }
