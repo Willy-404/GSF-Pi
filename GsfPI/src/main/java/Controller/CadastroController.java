@@ -39,6 +39,8 @@ public class CadastroController {
         Scene cena = new Scene(root);
         login.setScene(cena);
         login.show();
+        
+        ((Stage) btnCadastrar.getScene().getWindow()).close();
     }
 
 }

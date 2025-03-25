@@ -65,6 +65,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         cadastroFornecedor.setScene(cena);
         cadastroFornecedor.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -80,6 +82,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
         cadastroFuncionario.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -95,6 +99,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         cadastroLote.setScene(cena);
         cadastroLote.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -110,6 +116,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         visuFornecedor.setScene(cena);
         visuFornecedor.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -125,6 +133,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         visuFuncionario.setScene(cena);
         visuFuncionario.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -140,6 +150,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
         visuLotes.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -155,6 +167,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         visuPonto.setScene(cena);
         visuPonto.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
     @FXML
@@ -170,6 +184,8 @@ public class VisualizarLotesController {
         Scene cena = new Scene(root);
         home.setScene(cena);
         home.show();
+        
+        ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
 }

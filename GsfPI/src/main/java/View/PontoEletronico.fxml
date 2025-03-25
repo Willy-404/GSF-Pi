@@ -8,8 +8,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 
+<<<<<<< HEAD
 
 <FlowPane alignment="CENTER" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PontoEletronicoController">
    <children>
@@ -69,22 +69,43 @@
                <menus>
                   <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
                      <items>
+=======
+<AnchorPane id="AnchorPane" prefHeight="932.0" prefWidth="1588.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PontoEletronicoController">
+    <children>
+        <TextField fx:id="txtCpfPonto" layoutX="704.0" layoutY="535.0" prefHeight="29.0" prefWidth="200.0" promptText="CPF" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="694.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../imagens/gsf.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="38.0" fitWidth="30.0" layoutX="674.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../imagens/email.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="btnConfirmarPonto" layoutX="752.0" layoutY="605.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Confirmar" />
+        <MenuBar fx:id="MenuBar" layoutX="1378.0" layoutY="1.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
+            <menus>
+                <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+                    <items>
+>>>>>>> origin/main
                         <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
-                     </items>
-                  </Menu>
-                  <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
-                     <items>
+                    </items>
+                </Menu>
+                <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+                    <items>
                         <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
                         <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
                         <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
                         <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Cadastrar">
-                     <items>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Cadastrar">
+                    <items>
                         <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
                         <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
                         <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+<<<<<<< HEAD
                      </items>
                   </Menu>
                </menus>
@@ -94,3 +115,11 @@
 
    </children>
 </FlowPane>
+=======
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>
+>>>>>>> origin/main

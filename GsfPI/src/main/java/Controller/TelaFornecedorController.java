@@ -30,6 +30,8 @@ public class TelaFornecedorController {
         Scene cena = new Scene(root);
         visuFornecedor.setScene(cena);
         visuFornecedor.show();
+        
+        ((Stage) btnVisualizarFornecedor.getScene().getWindow()).close();
     }
 
     @FXML
@@ -44,6 +46,8 @@ public class TelaFornecedorController {
         Scene cena = new Scene(root);
         cadastroFornecedor.setScene(cena);
         cadastroFornecedor.show();
+        
+        ((Stage) btnCadastrarFornecedor.getScene().getWindow()).close();
     }
 
 }

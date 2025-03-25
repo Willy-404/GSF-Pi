@@ -32,6 +32,8 @@ public class TelaFuncionarioController {
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
         cadastroFuncionario.show();
+        
+        ((Stage) btnCadastrarFuncionario.getScene().getWindow()).close();
     }
 
     @FXML
@@ -47,6 +49,8 @@ public class TelaFuncionarioController {
         Scene cena = new Scene(root);
         visuFuncionario.setScene(cena);
         visuFuncionario.show();
+        
+        ((Stage) btnVisualizarFuncionario.getScene().getWindow()).close();
     }
 
 }
