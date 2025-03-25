@@ -5,38 +5,44 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarPontoController">
+
+<FlowPane style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarPontoController">
    <children>
-      <Label fx:id="lblPonto" layoutX="14.0" layoutY="14.0" text="Horas Trabalhadas" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <MenuBar fx:id="MenuBar" layoutX="389.0" layoutY="1.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
-         <menus>
-            <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
-               <items>
-                  <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
-               </items>
-            </Menu>
-            <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
-               <items>
-                  <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
-                  <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
-                  <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
-                  <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Cadastrar">
-               <items>
-                  <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
-                  <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
-                  <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
+      <AnchorPane id="AnchorPane" prefHeight="902.0" prefWidth="1646.0" style="-fx-background-color: #386b8f;">
+         <children>
+            <Label fx:id="lblPonto" layoutX="14.0" layoutY="14.0" text="Horas Trabalhadas" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <MenuBar fx:id="MenuBar" layoutX="1580.0" layoutY="19.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
+               <menus>
+                  <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+                     <items>
+                        <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+                     <items>
+                        <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
+                        <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
+                        <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
+                        <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Cadastrar">
+                     <items>
+                        <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
+                        <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
+                        <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</FlowPane>
