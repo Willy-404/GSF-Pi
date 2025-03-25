@@ -35,6 +35,7 @@ public class TelaHomeController {
     void onClickCadastrarLotes(ActionEvent event)throws IOException{
         
         Stage cadastroLote = new Stage();
+        cadastroLote.setMaximized(true);
         cadastroLote.setTitle("Cadastro de lotes");
         
         URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
@@ -51,6 +52,7 @@ public class TelaHomeController {
     void onClickPontoEletronico(ActionEvent event)throws IOException{
           
         Stage pontoEletro = new Stage();
+        pontoEletro.setMaximized(true);
         pontoEletro.setTitle("Ponto Eletronico");
         
         URL url = new File("src/main/java/view/PontoEletronico.fxml").toURI().toURL();
@@ -66,6 +68,7 @@ public class TelaHomeController {
     void onClickTelaFornecedor(ActionEvent event) throws IOException{
           
         Stage fornecedor = new Stage();
+        fornecedor.setMaximized(true);
         fornecedor.setTitle("Tela Fornecedor");
         
         URL url = new File("src/main/java/view/TelaFornecedor.fxml").toURI().toURL();
@@ -81,6 +84,7 @@ public class TelaHomeController {
     void onClickTelaFuncionario(ActionEvent event) throws IOException{
           
         Stage funcionario = new Stage();
+        funcionario.setMaximized(true);
         funcionario.setTitle("Tela Funcionario");
         
         URL url = new File("src/main/java/view/TelaFuncionario.fxml").toURI().toURL();
@@ -96,6 +100,7 @@ public class TelaHomeController {
     void onClickVisualizarLotes(ActionEvent event) throws IOException{
           
         Stage visuLotes = new Stage();
+        visuLotes.setMaximized(true);
         visuLotes.setTitle("Visualizar Lotes");
         
         URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
@@ -111,6 +116,7 @@ public class TelaHomeController {
     void onClickVisualizarPonto(ActionEvent event) throws IOException{
           
         Stage visuPonto = new Stage();
+        visuPonto.setMaximized(true);
         visuPonto.setTitle("Visualizar Pontos");
         
         URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
