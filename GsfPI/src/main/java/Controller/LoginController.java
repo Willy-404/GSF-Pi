@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 
 
 public class LoginController {
+    
+    private Stage stageLogin;
+    
     @FXML
     private Button btnConfirmar;
 
@@ -55,5 +58,9 @@ public class LoginController {
        Scene cena = new Scene(root);
        cadastro.setScene(cena);
        cadastro.show(); 
+    }
+    
+    public void setStage(Stage stage){
+        this.stageLogin = stage;
     }
 }
