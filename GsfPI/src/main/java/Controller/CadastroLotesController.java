@@ -82,7 +82,7 @@ public class CadastroLotesController {
         Stage cadastroFornecedor = new Stage();
         cadastroFornecedor.setMaximized(true);
         cadastroFornecedor.setTitle("Cadastro de Fornecedor");
-        URL url = new File("src/main/java/view/telaFornecedor.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         Scene cena = new Scene(root);
@@ -97,16 +97,16 @@ public class CadastroLotesController {
         Stage cadastroFuncionario = new Stage();
         cadastroFuncionario.setMaximized(true);
         cadastroFuncionario.setTitle("Cadastro de Funcionario");
-        URL url = new File("src/main/java/view/telaFuncionario.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
         cadastroFuncionario.show();
         
         ((Stage) MenuBar.getScene().getWindow()).close();
     }
-
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
         Stage cadastroLote = new Stage();

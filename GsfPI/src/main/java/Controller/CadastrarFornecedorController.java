@@ -73,7 +73,7 @@ public class CadastrarFornecedorController {
         Stage cadastroFornecedor = new Stage();
         cadastroFornecedor.setMaximized(true);
         cadastroFornecedor.setTitle("Cadastro de Fornecedor");
-        URL url = new File("src/main/java/view/telaFornecedor.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         Scene cena = new Scene(root);
@@ -88,7 +88,7 @@ public class CadastrarFornecedorController {
         Stage cadastroFuncionario = new Stage();
         cadastroFuncionario.setMaximized(true);
         cadastroFuncionario.setTitle("Cadastro de Funcionario");
-        URL url = new File("src/main/java/view/telaFuncionario.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
