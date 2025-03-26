@@ -8,17 +8,16 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-
 <FlowPane style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarLotesController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="902.0" prefWidth="1735.0" style="-fx-background-color: #386b8f;">
          <children>
-            <Label fx:id="lblLotes" layoutX="14.0" layoutY="14.0" text="Lotes em Processo" textFill="WHITE">
+            <Label fx:id="lblLotes" layoutX="14.0" layoutY="26.0" text="Lotes em Processo" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <MenuBar fx:id="MenuBar" layoutX="1609.0" layoutY="19.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
+            <MenuBar fx:id="MenuBar" layoutX="-2.0" prefHeight="26.0" prefWidth="1735.0" style="-fx-background-color: #5496c5;">
                <menus>
                   <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
                      <items>
