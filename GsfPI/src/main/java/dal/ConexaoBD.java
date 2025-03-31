@@ -10,13 +10,13 @@ public class ConexaoBD {
     private static final String USER = "root";
     private static final String PASSWORD = "aluno";
     
- private static Connection conectar(){
+ public static Connection conectar(){
     try {
             Class.forName(DRIVER_CLASS);
             return DriverManager.getConnection(
                     URL_MYSQL, USER, PASSWORD);
         } catch(ClassNotFoundException | SQLException e){
-            e.getMessage();
+            e.getStackTrace();
         }
         return null;
  }
