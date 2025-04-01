@@ -44,6 +44,34 @@ LOCK TABLES `cartaoponto` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `conjuntopecas`
+--
+
+DROP TABLE IF EXISTS `conjuntopecas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `conjuntopecas` (
+  `idConjuntoPecas` int(11) NOT NULL AUTO_INCREMENT,
+  `Quantidade` int(11) NOT NULL,
+  `Tamanho` char(3) NOT NULL,
+  `Cor` varchar(30) NOT NULL,
+  `Referencia` int(11) NOT NULL,
+  PRIMARY KEY (`idConjuntoPecas`,`Referencia`),
+  KEY `Referencia_idx` (`Referencia`),
+  CONSTRAINT `Referencia` FOREIGN KEY (`Referencia`) REFERENCES `lote` (`Referencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `conjuntopecas`
+--
+
+LOCK TABLES `conjuntopecas` WRITE;
+/*!40000 ALTER TABLE `conjuntopecas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `conjuntopecas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `empresa`
 --
 
@@ -69,7 +97,6 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (515,'956','15','hujhuj','2020-10-10',NULL);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,8 +151,36 @@ CREATE TABLE `faccao` (
 
 LOCK TABLES `faccao` WRITE;
 /*!40000 ALTER TABLE `faccao` DISABLE KEYS */;
-INSERT INTO `faccao` VALUES (13945,'Felipe','banana','banana');
+INSERT INTO `faccao` VALUES (23847,'Felipe','banana','banana');
 /*!40000 ALTER TABLE `faccao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fluxos`
+--
+
+DROP TABLE IF EXISTS `fluxos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `fluxos` (
+  `idFluxos` int(11) NOT NULL AUTO_INCREMENT,
+  `EstadoProducao` varchar(20) NOT NULL,
+  `Descricao` varchar(100) DEFAULT NULL,
+  `DataHora` datetime NOT NULL,
+  `Referencia` int(11) NOT NULL,
+  PRIMARY KEY (`idFluxos`,`Referencia`),
+  KEY `Referencia_idx` (`Referencia`),
+  CONSTRAINT `Referencia_fk` FOREIGN KEY (`Referencia`) REFERENCES `lote` (`Referencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fluxos`
+--
+
+LOCK TABLES `fluxos` WRITE;
+/*!40000 ALTER TABLE `fluxos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fluxos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -185,6 +240,66 @@ LOCK TABLES `funcionario` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `linhas`
+--
+
+DROP TABLE IF EXISTS `linhas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `linhas` (
+  `RefLinha` int(11) NOT NULL,
+  `MarcaLinha` varchar(30) DEFAULT NULL,
+  `TipoLinha` varchar(20) NOT NULL,
+  `idConjuntoPecas` int(11) DEFAULT NULL,
+  PRIMARY KEY (`RefLinha`),
+  KEY `idConjuntoPecas_idx` (`idConjuntoPecas`),
+  CONSTRAINT `idConjuntoPecas` FOREIGN KEY (`idConjuntoPecas`) REFERENCES `conjuntopecas` (`idConjuntoPecas`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `linhas`
+--
+
+LOCK TABLES `linhas` WRITE;
+/*!40000 ALTER TABLE `linhas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `linhas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lote`
+--
+
+DROP TABLE IF EXISTS `lote`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `lote` (
+  `Referencia` int(11) NOT NULL,
+  `Prazo` datetime NOT NULL,
+  `Entrada` datetime NOT NULL,
+  `Saida` datetime NOT NULL,
+  `Preco` decimal(3,2) NOT NULL,
+  `Tecido` varchar(30) NOT NULL,
+  `MarcaLote` varchar(30) NOT NULL,
+  `Colecao` varchar(15) NOT NULL,
+  `Modelo` varchar(30) NOT NULL,
+  `CnpjFornecedor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Referencia`),
+  KEY `CnpjFornecedor_idx` (`CnpjFornecedor`),
+  CONSTRAINT `CnpjFornecedor` FOREIGN KEY (`CnpjFornecedor`) REFERENCES `fornecedor` (`CnpjFornecedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lote`
+--
+
+LOCK TABLES `lote` WRITE;
+/*!40000 ALTER TABLE `lote` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lote` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registrohora`
 --
 
@@ -210,92 +325,6 @@ CREATE TABLE `registrohora` (
 LOCK TABLES `registrohora` WRITE;
 /*!40000 ALTER TABLE `registrohora` DISABLE KEYS */;
 /*!40000 ALTER TABLE `registrohora` ENABLE KEYS */;
-
-
-
-
-
-
--- -----------------------------------------------------
--- Table `gsf`.`Lote`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gsf`.`lote` (
-  `Referencia` INT NOT NULL,
-  `Prazo` DATETIME NOT NULL,
-  `Entrada` DATETIME NOT NULL,
-  `Saida` DATETIME NOT NULL,
-  `Preco` DECIMAL(3,2) NOT NULL,
-  `Tecido` VARCHAR(30) NOT NULL,
-  `MarcaLote` VARCHAR(30) NOT NULL,
-  `Colecao` VARCHAR(15) NOT NULL,
-  `Modelo` VARCHAR(30) NOT NULL,
-  `CnpjFornecedor` INT NULL,
-  PRIMARY KEY (`Referencia`),
-  INDEX `CnpjFornecedor_idx` (`CnpjFornecedor` ASC) VISIBLE,
-  CONSTRAINT `CnpjFornecedor`
-    FOREIGN KEY (`CnpjFornecedor`)
-    REFERENCES `gsf`.`Fornecedor` (`CnpjFornecedor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `gsf`.`ConjuntoPecas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gsf`.`conjuntoPecas` (
-  `idConjuntoPecas` INT NOT NULL AUTO_INCREMENT,
-  `Quantidade` INT NOT NULL,
-  `Tamanho` CHAR(3) NOT NULL,
-  `Cor` VARCHAR(30) NOT NULL,
-  `Referencia` INT NOT NULL,
-  PRIMARY KEY (`idConjuntoPecas`, `Referencia`),
-  INDEX `Referencia_idx` (`Referencia` ASC) VISIBLE,
-  CONSTRAINT `Referencia`
-    FOREIGN KEY (`Referencia`)
-    REFERENCES `gsf`.`Lote` (`Referencia`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `gsf`.`Linhas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gsf`.`linhas` (
-  `RefLinha` INT NOT NULL,
-  `MarcaLinha` VARCHAR(30) NULL,
-  `TipoLinha` VARCHAR(20) NOT NULL,
-  `idConjuntoPecas` INT NULL,
-  PRIMARY KEY (`RefLinha`),
-  INDEX `idConjuntoPecas_idx` (`idConjuntoPecas` ASC) VISIBLE,
-  CONSTRAINT `idConjuntoPecas`
-    FOREIGN KEY (`idConjuntoPecas`)
-    REFERENCES `gsf`.`ConjuntoPecas` (`idConjuntoPecas`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `gsf`.`Fluxos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gsf`.`fluxos` (
-  `idFluxos` INT NOT NULL AUTO_INCREMENT,
-  `EstadoProducao` VARCHAR(20) NOT NULL,
-  `Descricao` VARCHAR(100) NULL,
-  `DataHora` DATETIME NOT NULL,
-  `Referencia` INT NOT NULL,
-  PRIMARY KEY (`idFluxos`, `Referencia`),
-  INDEX `Referencia_idx` (`Referencia` ASC) VISIBLE,
-  CONSTRAINT `Referencia`
-    FOREIGN KEY (`Referencia`)
-    REFERENCES `gsf`.`Lote` (`Referencia`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -307,4 +336,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-01  9:56:29
+-- Dump completed on 2025-04-01 11:19:52
