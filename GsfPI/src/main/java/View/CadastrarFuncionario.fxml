@@ -7,91 +7,97 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-
-<FlowPane alignment="CENTER" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastrarFuncionarioController">
-   <children>
-      <AnchorPane id="AnchorPane" prefHeight="952.0" prefWidth="1530.0">
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastrarFuncionarioController">
+   <center>
+      <FlowPane alignment="CENTER" style="-fx-background-color: #386b8f;">
          <children>
-            <MenuBar fx:id="MenuBar" layoutX="1292.0" layoutY="14.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #5496c5;">
-               <menus>
-                  <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
-                     <items>
-                        <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
-                     </items>
-                  </Menu>
-                  <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
-                     <items>
-                        <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
-                        <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
-                        <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
-                        <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Cadastrar">
-                     <items>
-                        <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
-                        <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
-                        <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-            <Button fx:id="btnCadastrarFuncionario" layoutX="1302.0" layoutY="793.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="194.0" style="-fx-background-color: #5496c5;" text="Cadastrar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Button>
-            <TextField fx:id="txtContato" layoutX="1121.0" layoutY="622.0" prefHeight="51.0" prefWidth="286.0" promptText="Telefone" />
-            <TextField fx:id="txtCargo" layoutX="1121.0" layoutY="411.0" prefHeight="51.0" prefWidth="286.0" promptText="Cargo" />
-            <TextField fx:id="txtEndereco" layoutX="1121.0" layoutY="212.0" prefHeight="51.0" prefWidth="286.0" promptText="Endereço" />
-            <Label fx:id="lblEndereco" layoutX="964.0" layoutY="216.0" text="Endereço" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblContato" layoutX="960.0" layoutY="413.0" text="Contato" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblCargo" layoutX="957.0" layoutY="627.0" text="Cargo" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtSalario" layoutX="318.0" layoutY="819.0" prefHeight="51.0" prefWidth="286.0" promptText="Salário" />
-            <TextField fx:id="txtdade" layoutX="318.0" layoutY="411.0" prefHeight="51.0" prefWidth="286.0" promptText="Idade" />
-            <TextField fx:id="txtCpf" layoutX="318.0" layoutY="622.0" prefHeight="51.0" prefWidth="286.0" promptText="Cpf" />
-            <TextField fx:id="txtNome" layoutX="318.0" layoutY="208.0" prefHeight="51.0" prefWidth="286.0" promptText="Nome" />
-            <Label fx:id="lblIdade" layoutX="246.0" layoutY="419.0" text="Idade" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblIdade1" layoutX="239.0" layoutY="827.0" text="Salário" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblCpf" layoutX="243.0" layoutY="630.0" text="CPF" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblNome" layoutX="243.0" layoutY="216.0" text="Nome" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="-123.0" layoutY="23.0" text="Cadastro de Funcionário" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
+            <AnchorPane id="AnchorPane" prefHeight="952.0" prefWidth="1530.0">
+               <children>
+                  <Button fx:id="btnCadastrarFuncionario" layoutX="1247.0" layoutY="730.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="194.0" style="-fx-background-color: #5496c5;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txtContato" layoutX="1066.0" layoutY="559.0" prefHeight="51.0" prefWidth="286.0" promptText="Telefone" />
+                  <TextField fx:id="txtCargo" layoutX="1066.0" layoutY="348.0" prefHeight="51.0" prefWidth="286.0" promptText="Cargo" />
+                  <TextField fx:id="txtEndereco" layoutX="1066.0" layoutY="149.0" prefHeight="51.0" prefWidth="286.0" promptText="Endereço" />
+                  <Label fx:id="lblEndereco" layoutX="909.0" layoutY="153.0" text="Endereço" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblContato" layoutX="905.0" layoutY="350.0" text="Contato" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblCargo" layoutX="902.0" layoutY="564.0" text="Cargo" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtSalario" layoutX="263.0" layoutY="756.0" prefHeight="51.0" prefWidth="286.0" promptText="Salário" />
+                  <TextField fx:id="txtdade" layoutX="263.0" layoutY="348.0" prefHeight="51.0" prefWidth="286.0" promptText="Idade" />
+                  <TextField fx:id="txtCpf" layoutX="263.0" layoutY="559.0" prefHeight="51.0" prefWidth="286.0" promptText="Cpf" />
+                  <TextField fx:id="txtNome" layoutX="263.0" layoutY="145.0" prefHeight="51.0" prefWidth="286.0" promptText="Nome" />
+                  <Label fx:id="lblIdade" layoutX="153.0" layoutY="356.0" text="Idade" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblIdade1" layoutX="153.0" layoutY="764.0" text="Salário" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblCpf" layoutX="153.0" layoutY="567.0" text="CPF" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNome" layoutX="151.0" layoutY="153.0" text="Nome" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="628.0" layoutY="48.0" text="Cadastro de Funcionário" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
-   </children>
-</FlowPane>
+      </FlowPane>
+   </center>
+   <top>
+      <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1964.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+               <items>
+                  <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
+                  <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
+                  <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Cadastrar">
+               <items>
+                  <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
+                  <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
