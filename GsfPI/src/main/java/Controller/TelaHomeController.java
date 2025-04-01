@@ -138,5 +138,21 @@ public class TelaHomeController {
         
         ((Stage) btnVisualizarPonto.getScene().getWindow()).close();
     }
+    
+    public void trocarTelaHome(Button btnTroca)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("home");
+
+            URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) btnTroca.getScene().getWindow()).close();
+    }
 
 }

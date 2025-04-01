@@ -6,13 +6,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -50,21 +49,13 @@ private Connection conexao;
 
     }
         if(r == null){
-            System.out.println("Loin ou senha invalido()");
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Erro");
+        alerta.setHeaderText("Login ou senha inválidos!!!");
+        alerta.showAndWait();
         }else{
-              Stage home = new Stage();
-            home.setMaximized(true);
-            home.setTitle("home");
-
-            URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-
-            Scene cena = new Scene(root);
-            home.setScene(cena);
-            home.show();
-
-            ((Stage) btnConfirmar.getScene().getWindow()).close();
+            TelaHomeController thc = new TelaHomeController();
+            thc.trocarTelaHome(btnConfirmar);
         }
       
 
