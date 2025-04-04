@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 
 public class TelaHomeController {
@@ -154,6 +155,22 @@ public class TelaHomeController {
             home.show();
 
             ((Stage) btnTroca.getScene().getWindow()).close();
+    }
+    //metodo para trocar a tela pro home usando menubar como parametro
+     public void trocarTelaHome(MenuBar menubar)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("home");
+
+            URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) menubar.getScene().getWindow()).close();
     }
 
 }

@@ -199,4 +199,20 @@ public class CadastroLotesController {
         ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
+    //metodo de trocar tela para cadastro lote
+     public void trocarCadLotes(MenuBar menuBar)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Cadastro de Lotes");
+
+            URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) menuBar.getScene().getWindow()).close();
+    }
 }

@@ -194,5 +194,22 @@ public class CadastrarFornecedorController {
         
         ((Stage) MenuBar.getScene().getWindow()).close();
     }
+    
+    //metodo para trocar tela para cadastrar fornecedor
+    public void trocarCadFornecedor(MenuBar menuBar)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Cadastro de Fornecedor");
+
+            URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) menuBar.getScene().getWindow()).close();
+    }
 
 }

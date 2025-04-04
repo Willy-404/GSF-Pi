@@ -98,19 +98,8 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-        Stage cadastroFornecedor = new Stage();
-        cadastroFornecedor.setMaximized(true);
-        cadastroFornecedor.setTitle("Cadastro de Fornecedor");
-
-        URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        cadastroFornecedor.setScene(cena);
-        cadastroFornecedor.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+       CadastrarFornecedorController cf =  new CadastrarFornecedorController();
+        cf.trocarCadFornecedor(MenuBar);
     }
 
     @FXML
@@ -121,53 +110,20 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        Stage cadastroLote = new Stage();
-        cadastroLote.setMaximized(true);
-        cadastroLote.setTitle("Cadastro de lotes");
-
-        URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        cadastroLote.setScene(cena);
-        cadastroLote.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+        CadastroLotesController cl =  new CadastroLotesController();
+        cl.trocarCadLotes(MenuBar);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        Stage visuFornecedor = new Stage();
-        visuFornecedor.setMaximized(true);
-        visuFornecedor.setTitle("VisualizarFornecedor");
-
-        URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuFornecedor.setScene(cena);
-        visuFornecedor.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+        VisualizarFornecedorController vf =  new VisualizarFornecedorController();
+        vf.trocarVizFornecedor(MenuBar);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-        Stage visuFuncionario = new Stage();
-        visuFuncionario.setMaximized(true);
-        visuFuncionario.setTitle("VisualizarFuncionario");
-
-        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuFuncionario.setScene(cena);
-        visuFuncionario.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+         VisualizarFuncionarioController vf =  new VisualizarFuncionarioController();
+        vf.trocarVizFuncionario(MenuBar);
     }
 
     @FXML
@@ -206,19 +162,8 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        Stage home = new Stage();
-        home.setMaximized(true);
-        home.setTitle("home");
-
-        URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        home.setScene(cena);
-        home.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+        TelaHomeController thc = new TelaHomeController();
+        thc.trocarTelaHome(MenuBar);
     }
     
     

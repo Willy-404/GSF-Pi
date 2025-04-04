@@ -175,4 +175,20 @@ public class VisualizarFuncionarioController {
         ((Stage) MenuBar.getScene().getWindow()).close();
     }
 
+    //metodo de trocar para a tela vizu funcionario
+     public void trocarVizFuncionario(MenuBar menuBar)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Visualizar Funcionario");
+
+            URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) menuBar.getScene().getWindow()).close();
+    }
 }

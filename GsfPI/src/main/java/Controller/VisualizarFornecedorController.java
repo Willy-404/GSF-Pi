@@ -173,5 +173,22 @@ public class VisualizarFornecedorController {
         
         ((Stage) MenuBar.getScene().getWindow()).close();
     }
+    
+    //metodo para trocar tela para visualizar fornecedor
+    public void trocarVizFornecedor(MenuBar menuBar)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Visualizar Fornecedor");
+
+            URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) menuBar.getScene().getWindow()).close();
+    }
 
 }
