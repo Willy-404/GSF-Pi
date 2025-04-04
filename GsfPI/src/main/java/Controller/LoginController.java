@@ -63,21 +63,8 @@ private Connection conexao;
 
     @FXML
     void onClickTelaCadastro(ActionEvent event) throws IOException {
-
-        Stage cadastro = new Stage();
-        cadastro.setMaximized(true);
-
-        cadastro.setTitle("Cadastro de Usuario");
-
-        URL url = new File("src/main/java/view/cadastro.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        cadastro.setScene(cena);
-        cadastro.show();
-        
-        ((Stage) btnCadastrar.getScene().getWindow()).close();
+        CadastroController cc = new CadastroController();
+        cc.trocarCadastro(btnCadastrar);
     }
     
     
@@ -111,6 +98,24 @@ private Connection conexao;
     }
     public void setStage(Stage stage) {
         this.stageLogin = stage;
+    }
+    
+    
+    //Metodo para trocar para a tela de login
+    public void trocarLogin(Button btnTroca)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Login");
+
+            URL url = new File("src/main/java/view/Login.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) btnTroca.getScene().getWindow()).close();
     }
 
 }

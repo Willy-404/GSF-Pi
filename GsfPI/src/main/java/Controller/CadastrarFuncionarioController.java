@@ -115,19 +115,8 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        Stage cadastroFuncionario = new Stage();
-        cadastroFuncionario.setMaximized(true);
-        cadastroFuncionario.setTitle("Cadastro de Funcionario");
-
-        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        cadastroFuncionario.setScene(cena);
-        cadastroFuncionario.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+        CadastrarFuncionarioController cf =  new CadastrarFuncionarioController();
+        cf.trocarCadFuncionario(MenuBar);
     }
 
     @FXML
@@ -230,6 +219,24 @@ public class CadastrarFuncionarioController {
         home.show();
         
         ((Stage) MenuBar.getScene().getWindow()).close();
+    }
+    
+    
+    //Metodo para trocar pra tela Cadastrar funcionario
+    public void trocarCadFuncionario(MenuBar menuBar)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Cadastro de Funcionario");
+
+            URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) menuBar.getScene().getWindow()).close();
     }
 
 }

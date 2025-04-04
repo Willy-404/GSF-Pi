@@ -139,6 +139,7 @@ public class TelaHomeController {
         ((Stage) btnVisualizarPonto.getScene().getWindow()).close();
     }
     
+    //metodo para trocar a tela pro home
     public void trocarTelaHome(Button btnTroca)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);

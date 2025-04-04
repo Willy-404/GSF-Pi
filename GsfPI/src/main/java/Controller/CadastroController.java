@@ -29,18 +29,26 @@ public class CadastroController {
 
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
+        LoginController lc = new LoginController();
+        lc.trocarLogin(btnCadastrar);
+    }
+    
+    
+    //metodo para trocar para a tela de Cadasstro de usuario
+    public void trocarCadastro(Button btnTroca)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Cadastro de usuario");
 
-        Stage login = new Stage();
-        login.setMaximized(true);
-        login.setTitle("Login");
-        URL url = new File("src/main/java/view/login.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        Scene cena = new Scene(root);
-        login.setScene(cena);
-        login.show();
-        
-        ((Stage) btnCadastrar.getScene().getWindow()).close();
+            URL url = new File("src/main/java/view/Cadastro.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) btnTroca.getScene().getWindow()).close();
     }
 
 }
