@@ -15,8 +15,11 @@ import javafx.stage.Stage;
 
 public class CadastroController {
 
-    @FXML
+   @FXML
     private Button btnCadastrar;
+
+    @FXML
+    private Button btnSair;
 
     @FXML
     private TextField txtEmail;
@@ -27,6 +30,12 @@ public class CadastroController {
     @FXML
     private PasswordField txtSenha;
 
+    @FXML
+    private PasswordField txtcnpj;
+
+    @FXML
+    private PasswordField txttelefone;
+    
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
         LoginController lc = new LoginController();
@@ -50,5 +59,13 @@ public class CadastroController {
 
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
+    
+       @FXML
+    void onClickSair(ActionEvent event)throws IOException  {
+        LoginController lc = new LoginController();
+        lc.trocarLogin(btnSair);
+            
+    }
+
 
 }
