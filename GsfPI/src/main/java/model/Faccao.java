@@ -1,13 +1,13 @@
 package model;
 
 public class Faccao {
-    private int CNPJFaccao;
+    private long CNPJFaccao;
     private String NomeRepreFaccao;
     private String EmailAcesso;
     private String Senha;
 
     
-    public Faccao(int CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
+    public Faccao(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
         this.CNPJFaccao = CNPJFaccao;
         this.NomeRepreFaccao = NomeRepreFaccao;
         this.EmailAcesso = EmailAcesso;
@@ -25,11 +25,11 @@ public class Faccao {
         this.Senha = Senha;
     }
     
-    public int getCNPJFaccao() {
+    public long getCNPJFaccao() {
         return CNPJFaccao;
     }
 
-    public void setCNPJFaccao(int CNPJFaccao) {
+    public void setCNPJFaccao(long CNPJFaccao) {
         this.CNPJFaccao = CNPJFaccao;
     }
 

@@ -1,12 +1,12 @@
 package model;
 
 public class Fornecedor {
-   private int CNPJFornecedor;
+   private long CNPJFornecedor;
    private String NomeRepreFornecedor;
    private String EmailAcesso;
    private String Senha;
 
-    public Fornecedor(int CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
+    public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
         this.CNPJFornecedor = CNPJFornecedor;
         this.NomeRepreFornecedor = NomeRepreFornecedor;
         this.EmailAcesso = EmailAcesso;
@@ -24,11 +24,11 @@ public class Fornecedor {
         this.Senha = Senha;
     }
    
-    public int getCNPJFornecedor() {
+    public long getCNPJFornecedor() {
         return CNPJFornecedor;
     }
 
-    public void setCNPJFornecedor(int CNPJFornecedor) {
+    public void setCNPJFornecedor(long CNPJFornecedor) {
         this.CNPJFornecedor = CNPJFornecedor;
     }
 
