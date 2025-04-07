@@ -128,36 +128,14 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        Stage visuLotes = new Stage();
-        visuLotes.setMaximized(true);
-        visuLotes.setTitle("Visualizar Lotes");
-
-        URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuLotes.setScene(cena);
-        visuLotes.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+        VisualizarLotesController vl =  new VisualizarLotesController();
+        vl.trocarVizLotes(MenuBar);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        Stage visuPonto = new Stage();
-        visuPonto.setMaximized(true);
-        visuPonto.setTitle("Visualizar Pontos");
-
-        URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuPonto.setScene(cena);
-        visuPonto.show();
-        
-        ((Stage) MenuBar.getScene().getWindow()).close();
+        VisualizarPontoController vp =  new VisualizarPontoController();
+        vp.trocarVizPonto(MenuBar);
     }
 
     @FXML
