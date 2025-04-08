@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Faccao;
+import model.FaccaoDAO;
 import model.LoginDAO;
 
 public class LoginController {
@@ -41,7 +41,7 @@ private Connection conexao;
     void onClickTelaHome(ActionEvent event) throws IOException {
         
         
-        Faccao r = null;
+        FaccaoDAO r = null;
     try {
         r = processarLogin();
     } catch (SQLException ex) {
@@ -68,7 +68,7 @@ private Connection conexao;
     }
     
     
-        public Faccao processarLogin() throws IOException, SQLException {
+        public FaccaoDAO processarLogin() throws IOException, SQLException {
         if (!dao.bancoOnline()) {
             System.out.println("Banco de dados desconectado!");
         } else if (txtEmail.getText() != null && !txtEmail.getText().isEmpty() && txtSenha.getText() != null && !txtSenha.getText().isEmpty()) {
@@ -76,7 +76,7 @@ private Connection conexao;
             String Senha = txtSenha.getText();
             
             LoginDAO loginDAO = new LoginDAO();
-            Faccao f = loginDAO.autenticar(Email, Senha);
+            FaccaoDAO f = loginDAO.autenticar(Email, Senha);
             
             return f;
         } else {

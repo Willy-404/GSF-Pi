@@ -8,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.FaccaoDAO;
 
 public class CadastroController {
 
@@ -20,6 +22,9 @@ public class CadastroController {
 
     @FXML
     private Button btnSair;
+
+    @FXML
+    private TextField txtCnpj;
 
     @FXML
     private TextField txtEmail;
@@ -31,17 +36,46 @@ public class CadastroController {
     private PasswordField txtSenha;
 
     @FXML
-    private PasswordField txtcnpj;
-
-    @FXML
-    private PasswordField txttelefone;
+    private TextField txtTelefone;
     
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
-        LoginController lc = new LoginController();
-        lc.trocarLogin(btnCadastrar);
+      //  
+        if(txtEmail.getText().isEmpty()||txtNomeCompleto.getText().isEmpty()||txtSenha.getText().isEmpty()||txtCnpj.getText().isEmpty()||txtTelefone.getText().isEmpty()){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campos não preenchidos");
+            alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
+            alerta.showAndWait();
+        }else if(!txtCnpj.getText().matches("[z0-9]+")){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campo Cnpj");
+            alerta.setHeaderText("Campo cnpj não deve ter letras!!!");
+            alerta.showAndWait();
+        }
+        
+       boolean retorno = cadastroDeFaccao();
+        if (retorno != true){
+            Alert alerta = new Alert( Alert.AlertType.ERROR);
+            alerta.setTitle("Erro ao cadastrar ");
+            alerta.setHeaderText("Erro ao cadastrar seu perfil ");
+            alerta.showAndWait();
+        }else{
+            Alert alerta = new Alert( Alert.AlertType.INFORMATION );
+            alerta.setTitle("Cadastro realizado com sucesso" );
+            alerta.setHeaderText( "Seu perfil foi cadastrado com sucesso");
+            alerta.showAndWait();
+            
+            LoginController lc = new LoginController();
+            lc.trocarLogin(btnCadastrar);
+        }
     }
     
+        @FXML
+    void onClickSair(ActionEvent event)throws IOException  {
+        LoginController lc = new LoginController();
+        lc.trocarLogin(btnSair);
+       
+    }
     
     //metodo para trocar para a tela de Cadasstro de usuario
     public void trocarCadastro(Button btnTroca)throws IOException {
@@ -60,12 +94,19 @@ public class CadastroController {
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
     
-       @FXML
-    void onClickSair(ActionEvent event)throws IOException  {
-        LoginController lc = new LoginController();
-        lc.trocarLogin(btnSair);
-            
+    private boolean cadastroDeFaccao(){
+        long CnpjFaccao = Long.getLong(txtCnpj.getText());
+        String NomeRepreFaccao = txtNomeCompleto.getText();
+        String EmailAcesso = txtEmail.getText();
+        String Senha = txtSenha.getText();
+    
+        
+        boolean sucesso = FaccaoDAO.cadastroFaccao(CnpjFaccao,NomeRepreFaccao, EmailAcesso, Senha );
+        return sucesso;
+        
     }
+    
+   
 
 
 }

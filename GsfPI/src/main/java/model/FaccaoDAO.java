@@ -1,26 +1,48 @@
 package model;
 
-public class Faccao {
+import dal.ConexaoBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class FaccaoDAO extends GenericDAO {
     private long CNPJFaccao;
     private String NomeRepreFaccao;
     private String EmailAcesso;
     private String Senha;
 
-    
-    public Faccao(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
+    public static boolean cadastroFaccao(long CnpjFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha){
+        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha) VALUES (?,?,?,?)";
+         try (Connection conn = ConexaoBD.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, CnpjFaccao );
+            stmt.setString(2, NomeRepreFaccao);
+            stmt.setString(3, EmailAcesso);  
+            stmt.setString(4, Senha); 
+           
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public FaccaoDAO(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
         this.CNPJFaccao = CNPJFaccao;
         this.NomeRepreFaccao = NomeRepreFaccao;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }
     
-     public Faccao(String NomeRepreFaccao, String EmailAcesso, String Senha) {
+     public FaccaoDAO(String NomeRepreFaccao, String EmailAcesso, String Senha) {
         this.NomeRepreFaccao = NomeRepreFaccao;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }
 
-    public Faccao(String EmailAcesso, String Senha) {
+    public FaccaoDAO(String EmailAcesso, String Senha) {
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }

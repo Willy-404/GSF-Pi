@@ -1,25 +1,25 @@
 package model;
 
-public class Fornecedor {
+public class FornecedorDAO {
    private long CNPJFornecedor;
    private String NomeRepreFornecedor;
    private String EmailAcesso;
    private String Senha;
 
-    public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
+    public FornecedorDAO(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
         this.CNPJFornecedor = CNPJFornecedor;
         this.NomeRepreFornecedor = NomeRepreFornecedor;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }
    
-   public Fornecedor(String NomeRepreFornecedor, String EmailAcesso, String Senha) {
+   public FornecedorDAO(String NomeRepreFornecedor, String EmailAcesso, String Senha) {
         this.NomeRepreFornecedor = NomeRepreFornecedor;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
    }
 
-    public Fornecedor(String EmailAcesso, String Senha) {
+    public FornecedorDAO(String EmailAcesso, String Senha) {
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }
