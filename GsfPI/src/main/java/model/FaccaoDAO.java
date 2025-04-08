@@ -23,6 +23,7 @@ public class FaccaoDAO extends GenericDAO {
            
 
             int linhasAfetadas = stmt.executeUpdate();
+             System.out.println("Foi ate o cadastroFaccao");
             return linhasAfetadas > 0;
         } catch (SQLException e) {
             e.printStackTrace();

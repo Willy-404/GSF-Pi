@@ -40,7 +40,7 @@ public class CadastroController {
     
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
-      //  
+     
         if(txtEmail.getText().isEmpty()||txtNomeCompleto.getText().isEmpty()||txtSenha.getText().isEmpty()||txtCnpj.getText().isEmpty()||txtTelefone.getText().isEmpty()){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campos não preenchidos");
@@ -53,21 +53,8 @@ public class CadastroController {
             alerta.showAndWait();
         }
         
-       boolean retorno = cadastroDeFaccao();
-        if (retorno != true){
-            Alert alerta = new Alert( Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao cadastrar ");
-            alerta.setHeaderText("Erro ao cadastrar seu perfil ");
-            alerta.showAndWait();
-        }else{
-            Alert alerta = new Alert( Alert.AlertType.INFORMATION );
-            alerta.setTitle("Cadastro realizado com sucesso" );
-            alerta.setHeaderText( "Seu perfil foi cadastrado com sucesso");
-            alerta.showAndWait();
-            
-            LoginController lc = new LoginController();
-            lc.trocarLogin(btnCadastrar);
-        }
+       cadastroDeFaccao(btnCadastrar);
+       
     }
     
         @FXML
@@ -94,15 +81,34 @@ public class CadastroController {
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
     
-    private boolean cadastroDeFaccao(){
+    private void cadastroDeFaccao(Button btnCadastrar) throws IOException{
         long CnpjFaccao = Long.getLong(txtCnpj.getText());
         String NomeRepreFaccao = txtNomeCompleto.getText();
         String EmailAcesso = txtEmail.getText();
         String Senha = txtSenha.getText();
     
         
-        boolean sucesso = FaccaoDAO.cadastroFaccao(CnpjFaccao,NomeRepreFaccao, EmailAcesso, Senha );
-        return sucesso;
+        boolean sucesso = FaccaoDAO.cadastroFaccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha );
+        if(sucesso){ 
+            System.out.println("Passou pelo sucesso");
+               
+        }else{
+             System.out.println("Passou mas fracasou");
+        }
+         if (sucesso != true){
+            Alert alerta = new Alert( Alert.AlertType.ERROR);
+            alerta.setTitle("Erro ao cadastrar ");
+            alerta.setHeaderText("Erro ao cadastrar seu perfil ");
+            alerta.showAndWait();
+        }else{
+            Alert alerta = new Alert( Alert.AlertType.INFORMATION );
+            alerta.setTitle("Cadastro realizado com sucesso" );
+            alerta.setHeaderText( "Seu perfil foi cadastrado com sucesso");
+            alerta.showAndWait();
+            
+            LoginController lc = new LoginController();
+            lc.trocarLogin(btnCadastrar);
+        }
         
     }
     
