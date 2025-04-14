@@ -84,7 +84,7 @@
                      <children>
                         <FlowPane alignment="TOP_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Referência" textFill="WHITE">
+                              <Label text="CNPJ" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -96,7 +96,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtReferencia" prefHeight="46.0" prefWidth="237.0">
+                              <TextField fx:id="txtCnpj" prefHeight="46.0" prefWidth="237.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -118,7 +118,7 @@
                      <children>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Quantidade" textFill="WHITE">
+                              <Label text="Inscrição Estadual" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -128,9 +128,9 @@
                               <Insets right="10.0" />
                            </padding>
                         </FlowPane>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <FlowPane fx:id="txtNome" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtQuantidade" prefHeight="46.0" prefWidth="220.0">
+                              <TextField fx:id="txtInscricaoEstadual" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -163,7 +163,7 @@
                      <children>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Tecido" textFill="WHITE">
+                              <Label text="Contato" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -175,7 +175,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtTecido" prefHeight="46.0" prefWidth="262.0">
+                              <TextField fx:id="txtContato" prefHeight="46.0" prefWidth="262.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -197,7 +197,7 @@
                      <children>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="35.0" prefWidth="78.0" text="Marca" textFill="WHITE">
+                              <Label prefHeight="35.0" prefWidth="78.0" text="Nome" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -209,7 +209,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtMarca" prefHeight="46.0" prefWidth="262.0">
+                              <TextField fx:id="txtNome" prefHeight="46.0" prefWidth="262.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -242,7 +242,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtTamanho" prefHeight="46.0" prefWidth="220.0">
+                              <TextField fx:id="txtEndereco" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -251,7 +251,7 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Tamanho" textFill="WHITE">
+                              <Label text="Endereço" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -274,23 +274,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="txtColecao" prefHeight="46.0" prefWidth="250.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Coleção" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
                            <padding>
                               <Insets right="10.0" />
                            </padding>
@@ -319,23 +304,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="txtPreco" prefHeight="46.0" prefWidth="262.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Preço" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
                            <padding>
                               <Insets right="10.0" />
                            </padding>
@@ -354,26 +324,11 @@
                     </rowConstraints>
                      <children>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Linha" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
                            <padding>
                               <Insets right="10.0" />
                            </padding>
                         </FlowPane>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="txtLinha" prefHeight="46.0" prefWidth="262.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>
