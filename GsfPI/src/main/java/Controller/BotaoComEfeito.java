@@ -9,7 +9,7 @@ public class BotaoComEfeito {
 
     public static void aplicarEfeito(Button botao) {
         // Estilo inicial
-        botao.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5px; -fx-cursor: hand;");
+        botao.setStyle("-fx-background-color:  #5496c5; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 100px; -fx-cursor: hand;");
         DropShadow sombraNormal = new DropShadow(6, Color.rgb(0, 0, 0, 0.3));
         sombraNormal.setOffsetY(2);
         botao.setEffect(sombraNormal);

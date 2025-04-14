@@ -13,9 +13,9 @@
       <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386b8f;">
          <children>
       
-            <TextField fx:id="txtEmail" layoutX="203.0" layoutY="195.0" prefHeight="36.0" prefWidth="195.0" promptText="Email" />
-            <Button fx:id="btnConfirmar" layoutX="244.0" layoutY="304.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar" />
-            <ImageView fitHeight="154.0" fitWidth="242.0" layoutX="179.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="txtEmail" layoutX="202.0" layoutY="195.0" prefHeight="36.0" prefWidth="195.0" promptText="Email" />
+            <Button fx:id="btnConfirmar" layoutX="235.0" layoutY="303.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar" />
+            <ImageView fitHeight="154.0" fitWidth="242.0" layoutX="170.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/imagens/gsf.png" />
                </image>
@@ -31,7 +31,7 @@
                </image>
             </ImageView>
       
-            <Button fx:id="btnCadastrar" layoutX="267.0" layoutY="347.0" mnemonicParsing="false" onAction="#onClickTelaCadastro" text="Cadastrar" />
+            <Button fx:id="btnCadastrar" layoutX="258.0" layoutY="347.0" mnemonicParsing="false" onAction="#onClickTelaCadastro" text="Cadastrar" />
             <PasswordField fx:id="txtSenha" layoutX="203.0" layoutY="251.0" prefHeight="36.0" prefWidth="195.0" promptText="Senha" />
       
          </children>
