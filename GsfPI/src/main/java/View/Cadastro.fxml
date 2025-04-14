@@ -15,11 +15,11 @@
       <AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="600.0" style="-fx-background-color: #386b8f;">
          <children>
             <TextField fx:id="txtNomeCompleto" layoutX="210.0" layoutY="127.0" prefHeight="29.0" prefWidth="191.0" promptText="Nome Completo" />
-            <Button fx:id="btnCadastrar" layoutX="250.0" layoutY="357.0" mnemonicParsing="false" onAction="#onClickCadastrar" prefHeight="25.0" prefWidth="100.0" text="Cadastrar">
+            <Button fx:id="btnCadastrar" layoutX="256.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickCadastrar" prefHeight="25.0" prefWidth="100.0" text="Cadastrar">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <ImageView fitHeight="127.0" fitWidth="204.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="194.0" fitWidth="240.0" layoutX="186.0" layoutY="-44.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/imagens/gsf.png" />
                </image>
@@ -46,7 +46,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Button fx:id="btnSair" layoutX="250.0" layoutY="398.0" mnemonicParsing="false" onAction="#onClickSair" prefHeight="30.0" prefWidth="100.0" text="Sair">
+            <Button fx:id="btnSair" layoutX="256.0" layoutY="399.0" mnemonicParsing="false" onAction="#onClickSair" prefHeight="30.0" prefWidth="100.0" text="Sair">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>

@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,12 +25,12 @@ private Connection conexao;
     private final LoginDAO dao = new LoginDAO();
 
     private Stage stageLogin;
-
+    
+    @FXML
+    private Hyperlink LinkCadastrar;
+ 
     @FXML
     private Button btnConfirmar;
-
-    @FXML
-    private Button btnCadastrar;
 
     @FXML
     private TextField txtEmail;
@@ -59,12 +60,6 @@ private Connection conexao;
         }
       
 
-    }
-
-    @FXML
-    void onClickTelaCadastro(ActionEvent event) throws IOException {
-        CadastroController cc = new CadastroController();
-        cc.trocarCadastro(btnCadastrar);
     }
     
     
@@ -117,5 +112,22 @@ private Connection conexao;
 
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
+    
+      @FXML
+    void OnClickLinkCadastro(ActionEvent event) throws IOException {
+ Stage cadatrar = new Stage();
+        cadatrar.setMaximized(true);
+        cadatrar.setTitle("Cadastro");
+
+        URL url = new File("src/main/java/view/Cadastro.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        cadatrar.setScene(cena);
+        cadatrar.show();
+    }
+     
+
 
 }
