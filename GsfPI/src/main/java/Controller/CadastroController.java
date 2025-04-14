@@ -48,9 +48,15 @@ public class CadastroController {
             alerta.showAndWait();
         }else if(!txtCnpj.getText().matches("[z0-9]+")){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campo Cnpj");
-            alerta.setHeaderText("Campo cnpj não deve ter letras!!!");
+            alerta.setTitle("Campo CNPJ");
+            alerta.setHeaderText("Campo CNPJ não deve ter letras!!!");
             alerta.showAndWait();
+        }else if(txtCnpj.getText().length() != 14){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("CNPJ");
+            alerta.setHeaderText("Campo CNPJ inválido!!!");
+            alerta.showAndWait();
+            
         }
         
        boolean retorno = cadastroDeFaccao();
