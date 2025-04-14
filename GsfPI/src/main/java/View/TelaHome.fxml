@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane alignment="CENTER" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaHomeController">
+<FlowPane alignment="CENTER" prefWidth="1545.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaHomeController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="941.0" prefWidth="1436.0" style="-fx-background-color: #386b8f;">
          <children>
@@ -41,7 +41,8 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="198.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+
+                  <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="198.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/imagens/fornecedor.png" />
                </image>
@@ -71,6 +72,16 @@
                   <Image url="@../../resources/imagens/lote.png" />
                </image>
             </ImageView>
+               <Button fx:id="btnPerfil" layoutX="-60.0" layoutY="74.0" onAction="#onClickVisualizarPerfil" prefHeight="76.0" prefWidth="39.0" style="-fx-background-radius: 100; -fx-background-color: #5496c5;" styleClass="botao-redondo">
+               <graphic>
+                  <ImageView fitHeight="76.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/imagens/perfil.png.png" />
+                     </image>
+                  </ImageView>
+          
+                                                         </graphic>
+      </Button>
          </children>
       </AnchorPane>
    </children>

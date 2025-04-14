@@ -22,6 +22,9 @@ public class TelaHomeController {
 
     @FXML
     private Button btnFuncionario;
+    
+    @FXML
+    private Button btnPerfil;
 
     @FXML
     private Button btnPontoEletronico;
@@ -139,6 +142,26 @@ public class TelaHomeController {
         
         ((Stage) btnVisualizarPonto.getScene().getWindow()).close();
     }
+    @FXML
+    void onClickVisualizarPerfil(ActionEvent event) throws IOException {
+Stage visuPerfil = new Stage();
+        visuPerfil.setMaximized(true);
+        visuPerfil.setTitle("Visualizar Perfil");
+
+        URL url = new File("src/main/java/view/VisualizarPerfil.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        visuPerfil.setScene(cena);
+        visuPerfil.show();
+        
+    }
+    
+    @FXML
+public void initialize() {
+    BotaoComEfeito.aplicarEfeito(btnPerfil);
+}
     
     //metodo para trocar a tela pro home
     public void trocarTelaHome(Button btnTroca)throws IOException {
