@@ -49,7 +49,7 @@ private Connection conexao;
 
     }
         if(r == null){
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("Erro");
         alerta.setHeaderText("Login ou senha inválidos!!!");
         alerta.showAndWait();
@@ -103,7 +103,7 @@ private Connection conexao;
     
     //Metodo para trocar para a tela de login
     public void trocarLogin(Button btnTroca)throws IOException {
-          Stage home = new Stage();
+            Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Login");
 

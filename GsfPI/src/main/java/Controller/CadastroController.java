@@ -40,7 +40,7 @@ public class CadastroController {
     
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
-      //  
+       
         if(txtEmail.getText().isEmpty()||txtNomeCompleto.getText().isEmpty()||txtSenha.getText().isEmpty()||txtCnpj.getText().isEmpty()||txtTelefone.getText().isEmpty()){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campos não preenchidos");
@@ -95,7 +95,7 @@ public class CadastroController {
     }
     
     private boolean cadastroDeFaccao(){
-        long CnpjFaccao = Long.getLong(txtCnpj.getText());
+        long CnpjFaccao = Long.parseLong(txtCnpj.getText());
         String NomeRepreFaccao = txtNomeCompleto.getText();
         String EmailAcesso = txtEmail.getText();
         String Senha = txtSenha.getText();
