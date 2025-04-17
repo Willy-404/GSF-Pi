@@ -158,10 +158,8 @@ Stage visuPerfil = new Stage();
         
     }
     
-    @FXML
-public void initialize() {
-    BotaoComEfeito.aplicarEfeito(btnPerfil);
-}
+ 
+
     
     //metodo para trocar a tela pro home
     public void trocarTelaHome(Button btnTroca)throws IOException {

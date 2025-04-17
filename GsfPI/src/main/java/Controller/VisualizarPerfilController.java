@@ -105,4 +105,9 @@ public class VisualizarPerfilController {
         
     }
     
+     @FXML
+    void OnClickSair(ActionEvent event) {
+
+    }
+    
 }
