@@ -126,6 +126,8 @@ private Connection conexao;
         Scene cena = new Scene(root);
         cadatrar.setScene(cena);
         cadatrar.show();
+        
+        ((Stage) LinkCadastrar.getScene().getWindow()).close();
     }
      
 
