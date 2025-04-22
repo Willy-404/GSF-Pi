@@ -3,6 +3,8 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.LotesDAO;
 
 public class CadastroLotesController {
 
@@ -76,6 +79,9 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtTecido;
+    
+    @FXML
+    private TextField txtPrazo;
 
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -140,5 +146,24 @@ public class CadastroLotesController {
             home.show();
 
             ((Stage) menuBar.getScene().getWindow()).close();
+            
+      /*     private boolean cadastroDeLotes(){
+           
+           int Referencia = Integer.parseInt(txtReferencia.getText()); 
+           DateTimeFormatter formatacao  = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+           LocalDateTime Prazo = LocalDateTime.parse(txtPrazo.getText()formatacao);
+          // LocalDateTime Entrada = LocalDateTime.parse(txtEntrada.getText()formatacao);
+          // 
+           Double Preco = Double.parseDouble(txtPreco.getText());
+           String Tecido = txtTecido.getText();
+           String MarcaLote = txtMarca.getText();
+           String Colecao = txtColecao.getText();
+        //   String Modelo = txtModelo.getText();
+        // Linha ?
+        //mudar o nome marcalote 
+           
+        boolean sucesso = LotesDAO.cadastroLotes(Referencia, Prazo, Entrada, Saida, Preco, Tecido, MarcaLote, Colecao );
+        return sucesso;
+        */
     }
 }
