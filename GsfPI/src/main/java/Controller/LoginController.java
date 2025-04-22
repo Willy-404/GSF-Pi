@@ -46,7 +46,7 @@ private Connection conexao;
     try {
         r = processarLogin();
     } catch (SQLException ex) {
-                   System.out.println("Erro de conexao com o banco de dados()");
+                   System.out.println("Erro de conexao com o banco de dados");
 
     }
         if(r == null){
