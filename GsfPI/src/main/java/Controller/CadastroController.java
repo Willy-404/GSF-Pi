@@ -41,23 +41,25 @@ public class CadastroController {
     
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
-       
+      
         if(txtEmail.getText().isEmpty()||txtNomeCompleto.getText().isEmpty()||txtSenha.getText().isEmpty()||txtCnpj.getText().isEmpty()||txtTelefone.getText().isEmpty()){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campos não preenchidos");
             alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
             alerta.showAndWait();
+            return;
         }else if(!txtCnpj.getText().matches("[z0-9]+")){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campo CNPJ");
             alerta.setHeaderText("Campo CNPJ não deve ter letras!!!");
             alerta.showAndWait();
+            return;
         }else if(txtCnpj.getText().length() != 14){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("CNPJ");
             alerta.setHeaderText("Campo CNPJ inválido!!!");
             alerta.showAndWait();
-            
+            return;
         }
         
        boolean retorno = cadastroDeFaccao();

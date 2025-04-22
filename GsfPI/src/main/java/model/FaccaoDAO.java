@@ -15,7 +15,7 @@ public class FaccaoDAO extends GenericDAO {
         String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha) VALUES (?,?,?,?)";
          try (Connection conn = ConexaoBD.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+             System.out.println(stmt);
             stmt.setLong(1, CnpjFaccao );
             stmt.setString(2, NomeRepreFaccao);
             stmt.setString(3, EmailAcesso);  
