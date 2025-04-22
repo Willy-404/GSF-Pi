@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -15,6 +16,10 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class VisualizarFuncionarioController {
+    
+    
+    @FXML
+    private Button btnNovoFuncionario;
 
     @FXML
     private MenuBar MenuBar;
@@ -115,5 +120,23 @@ public class VisualizarFuncionarioController {
             home.show();
 
             ((Stage) menuBar.getScene().getWindow()).close();
+    }
+     
+     
+    @FXML
+    void OnClickNovoFuncionario(ActionEvent event) throws IOException {
+        Stage cadastroFuncionario = new Stage();
+        cadastroFuncionario.setMaximized(true);
+        cadastroFuncionario.setTitle("CadastroFuncionario");
+
+        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        cadastroFuncionario.setScene(cena);
+        cadastroFuncionario.show();
+        
+        ((Stage) btnNovoFuncionario.getScene().getWindow()).close();
     }
 }

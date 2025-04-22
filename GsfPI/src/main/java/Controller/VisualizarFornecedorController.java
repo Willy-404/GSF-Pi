@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -15,6 +16,9 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class VisualizarFornecedorController {
+    
+        @FXML
+    private Button btnNovoFornecedor;
 
     @FXML
     private MenuBar MenuBar;
@@ -114,6 +118,22 @@ public class VisualizarFornecedorController {
             home.show();
 
             ((Stage) menuBar.getScene().getWindow()).close();
+    }
+    
+     @FXML
+    void OnClickNovoFornecedor(ActionEvent event) throws IOException {
+        Stage cadastroFornecedor = new Stage();
+        cadastroFornecedor.setMaximized(true);
+        cadastroFornecedor.setTitle("CadastroFornecedor");
+        URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        cadastroFornecedor.setScene(cena);
+        cadastroFornecedor.show();
+        
+        ((Stage) btnNovoFornecedor.getScene().getWindow()).close();
     }
 
 }

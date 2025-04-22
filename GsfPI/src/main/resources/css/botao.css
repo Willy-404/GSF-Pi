@@ -21,3 +21,26 @@
     -fx-scale-y: 0.78;
 }
 
+#btnNovoFuncionario {
+    -fx-pref-width: 90px;
+    -fx-pref-height: 90px;
+    -fx-background-color:  #5496c5;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 0px;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.4, 0, 2);
+    -fx-alignment: center;
+    -fx-graphic-text-gap: 0;
+    -fx-cursor: hand;
+
+}
+
+#btnNovoFuncionario:pressed {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.4), 8, 0.4, 0, 2);
+    -fx-translate-y: 1;
+    -fx-scale-x: 0.78;
+    -fx-scale-y: 0.78;
+}
+

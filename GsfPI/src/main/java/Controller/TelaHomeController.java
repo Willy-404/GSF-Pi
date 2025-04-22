@@ -78,7 +78,7 @@ public class TelaHomeController {
         fornecedor.setMaximized(true);
         fornecedor.setTitle("Tela Fornecedor");
 
-        URL url = new File("src/main/java/view/TelaFornecedor.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
@@ -96,7 +96,7 @@ public class TelaHomeController {
         funcionario.setMaximized(true);
         funcionario.setTitle("Tela Funcionario");
 
-        URL url = new File("src/main/java/view/TelaFuncionario.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
