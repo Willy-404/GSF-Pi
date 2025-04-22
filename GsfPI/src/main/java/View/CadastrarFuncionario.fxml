@@ -375,7 +375,7 @@
                   <FlowPane prefHeight="200.0" prefWidth="200.0" />
                   <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="btnConfirmarLote" mnemonicParsing="false" mouseTransparent="true" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #5496c5;" text="Confirmar" textFill="WHITE" wrapText="true">
+                        <Button fx:id="btnCadastrarFuncionario" mnemonicParsing="false" mouseTransparent="true" onAction="#btnCadastrarClick" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #5496c5;" text="Confirmar" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
