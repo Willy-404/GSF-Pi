@@ -88,12 +88,9 @@
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;">
          <children>
-               <Button fx:id="btnPerfil"  prefWidth="90" prefHeight="90" 
-                       onAction="#onClickVisualizarPerfil"  
-                       style="-fx-background-radius: 100; -fx-background-color: #5496c5;" styleClass="botao-redondo"
-                      >
+               <Button fx:id="btnPerfil" onAction="#onClickVisualizarPerfil" prefHeight="90" prefWidth="90" style="-fx-background-border-radius: 100; -fx-background-color: #5496c5; -fx-border-radius: 100;" styleClass="botao-redondo">
                <graphic>
-                  <ImageView fx:id="imagemPerfil" fitWidth="75" fitHeight="75"  preserveRatio="false">
+                  <ImageView fx:id="imagemPerfil" fitHeight="75" fitWidth="75" preserveRatio="false">
                      <image>
                         <Image url="@../../resources/imagens/perfil.png.png" />
                      </image>
