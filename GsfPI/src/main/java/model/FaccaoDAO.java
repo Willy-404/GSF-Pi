@@ -14,10 +14,11 @@ public class FaccaoDAO extends GenericDAO {
 
     public boolean cadastroFaccao(Faccao f) {
         String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha) VALUES (?,?,?,?)";
-        try (save(sql, f))  || (Connection conn = ConexaoBD.conectar();
-            PreparedStatement stmt = conn.prepareStatement(sql)
+      
+        try (save(sql, f);
+            Connection conn = ConexaoBD.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
             
-                ) {
              System.out.println(stmt);
                 stmt.setLong(1, CnpjFaccao);
                 stmt.setString(2, NomeRepreFaccao);
@@ -33,30 +34,14 @@ public class FaccaoDAO extends GenericDAO {
         }
     
 
-    public FaccaoDAO(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
-        this.CNPJFaccao = CNPJFaccao;
-        this.NomeRepreFaccao = NomeRepreFaccao;
-        this.EmailAcesso = EmailAcesso;
-        this.Senha = Senha;
-    }
-
-    public FaccaoDAO(String NomeRepreFaccao, String EmailAcesso, String Senha) {
-        this.NomeRepreFaccao = NomeRepreFaccao;
-        this.EmailAcesso = EmailAcesso;
-        this.Senha = Senha;
-    }
-
-    public FaccaoDAO(String EmailAcesso, String Senha) {
-        this.EmailAcesso = EmailAcesso;
-        this.Senha = Senha;
-    }
+   
 
     public long getCNPJFaccao() {
-        return CNPJFaccao;
+        return CnpjFaccao;
     }
 
     public void setCNPJFaccao(long CNPJFaccao) {
-        this.CNPJFaccao = CNPJFaccao;
+        this.CnpjFaccao = CNPJFaccao;
     }
 
     public String getNomeRepreFaccao() {

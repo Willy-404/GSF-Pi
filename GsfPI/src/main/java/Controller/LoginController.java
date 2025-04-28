@@ -17,6 +17,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Faccao;
 import model.FaccaoDAO;
 import model.LoginDAO;
 
@@ -63,7 +64,7 @@ private Connection conexao;
     }
     
     
-        public FaccaoDAO processarLogin() throws IOException, SQLException {
+        public Faccao processarLogin() throws IOException, SQLException {
         if (!dao.bancoOnline()) {
             System.out.println("Banco de dados desconectado!");
         } else if (txtEmail.getText() != null && !txtEmail.getText().isEmpty() && txtSenha.getText() != null && !txtSenha.getText().isEmpty()) {
@@ -71,7 +72,7 @@ private Connection conexao;
             String Senha = txtSenha.getText();
             
             LoginDAO loginDAO = new LoginDAO();
-            FaccaoDAO f = loginDAO.autenticar(Email, Senha);
+            Faccao f = loginDAO.autenticar(Email, Senha);
             
             return f;
         } else {

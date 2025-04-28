@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.FaccaoDAO;
 
 public class CadastroController {
 
@@ -110,8 +111,8 @@ public class CadastroController {
         String Senha = txtSenha.getText();
 
         Faccao f = new Faccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha);
-        boolean sucesso = cadastroFaccao(f);
-        return sucesso;
+        FaccaoDAO fmetodo = new FaccaoDAO(); 
+        return fmetodo.cadastroFaccao(f);
 
     }
 

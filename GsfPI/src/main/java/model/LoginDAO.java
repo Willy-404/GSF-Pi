@@ -21,9 +21,9 @@ public class LoginDAO extends GenericDAO{
 	}
     
  //	 Método para autenticar usuários
-	public FaccaoDAO autenticar(String login, String senha) throws SQLException {
+	public Faccao autenticar(String login, String senha) throws SQLException {
 		String sql = "SELECT * FROM faccao WHERE EmailAcesso=? AND Senha=?";
-		FaccaoDAO faccao = null;
+		Faccao faccao = null;
 		Connection con = conectarDAO();
 		if (con != null) {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class LoginDAO extends GenericDAO{
                             String NomeRepreFaccao = rs.getString("NomeRepreFaccao");
                             String EmailAcesso = rs.getString("EmailAcesso");
                             String Senha = rs.getString("Senha");
-				faccao = new FaccaoDAO(CNPJFaccao, NomeRepreFaccao, EmailAcesso, Senha);
+				faccao = new Faccao(CNPJFaccao, NomeRepreFaccao, EmailAcesso, Senha);
   
 			}
 
