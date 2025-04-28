@@ -103,7 +103,7 @@ public class VisualizarPontoController {
      public void trocarVizPonto(MenuBar menuBar)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
-        visuPonto.setTitle("Visualizar Pontos");
+        visuPonto.setTitle("Visualizar os Pontos");
 
         URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
