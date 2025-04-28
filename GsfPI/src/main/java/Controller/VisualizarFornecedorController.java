@@ -107,7 +107,7 @@ public class VisualizarFornecedorController {
     public void trocarVizFornecedor(MenuBar menuBar)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
-            home.setTitle("Visualizar Fornecedor");
+            home.setTitle("Visualizar o Fornecedor");
 
             URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
