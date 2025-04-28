@@ -6,37 +6,41 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class FaccaoDAO extends GenericDAO {
-    private long CNPJFaccao;
+
+    private long CnpjFaccao;
     private String NomeRepreFaccao;
     private String EmailAcesso;
     private String Senha;
 
-    public static boolean cadastroFaccao(long CnpjFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha){
+    public boolean cadastroFaccao(Faccao f) {
         String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha) VALUES (?,?,?,?)";
-         try (Connection conn = ConexaoBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (save(sql, f))  || (Connection conn = ConexaoBD.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql)
+            
+                ) {
              System.out.println(stmt);
-            stmt.setLong(1, CnpjFaccao );
-            stmt.setString(2, NomeRepreFaccao);
-            stmt.setString(3, EmailAcesso);  
-            stmt.setString(4, Senha); 
-           
+                stmt.setLong(1, CnpjFaccao);
+                stmt.setString(2, NomeRepreFaccao);
+                stmt.setString(3, EmailAcesso);
+                stmt.setString(4, Senha);
 
-            int linhasAfetadas = stmt.executeUpdate();
-            return linhasAfetadas > 0;
-        } catch (SQLException e) {
+                int linhasAfetadas = stmt.executeUpdate();
+                return linhasAfetadas > 0;
+            }catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-    }
+        }
+    
+
     public FaccaoDAO(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
         this.CNPJFaccao = CNPJFaccao;
         this.NomeRepreFaccao = NomeRepreFaccao;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }
-    
-     public FaccaoDAO(String NomeRepreFaccao, String EmailAcesso, String Senha) {
+
+    public FaccaoDAO(String NomeRepreFaccao, String EmailAcesso, String Senha) {
         this.NomeRepreFaccao = NomeRepreFaccao;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
@@ -46,7 +50,7 @@ public class FaccaoDAO extends GenericDAO {
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
     }
-    
+
     public long getCNPJFaccao() {
         return CNPJFaccao;
     }

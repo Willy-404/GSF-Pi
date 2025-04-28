@@ -14,6 +14,8 @@ public class FuncionarioDAO extends GenericDAO{
     private String Cargo;
     
     public static boolean cadastroFuncionario(long CPF, String NomeFuncionario, String DataNascimento, String Telefone, String ValorHora, String Cargo){
+        
+        
         String sql = "INSERT INTO funcionario (CPF, NomeFuncionario, Telefone, Email, ValorHora, Cargo) VALUES (?,?,?,?,?,?)";
          try (Connection conn = ConexaoBD.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
