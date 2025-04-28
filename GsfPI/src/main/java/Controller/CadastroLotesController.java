@@ -3,20 +3,18 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.LotesDAO;
 
 public class CadastroLotesController {
 
@@ -25,6 +23,18 @@ public class CadastroLotesController {
 
     @FXML
     private Button btnConfirmarLote;
+
+    @FXML
+    private ComboBox<?> cbLinha;
+
+    @FXML
+    private ComboBox<?> cbColecao;
+
+    @FXML
+    private ComboBox<?> cbModelo;
+
+    @FXML
+    private ComboBox<?> cbTamanho;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -57,13 +67,13 @@ public class CadastroLotesController {
     private Menu menuVisualizar;
 
     @FXML
-    private TextField txtColecao;
-
-    @FXML
-    private TextField txtLinha;
+    private TextField txtEntrada;
 
     @FXML
     private TextField txtMarca;
+
+    @FXML
+    private TextField txtPrazo;
 
     @FXML
     private TextField txtPreco;
@@ -75,13 +85,7 @@ public class CadastroLotesController {
     private TextField txtReferencia;
 
     @FXML
-    private TextField txtTamanho;
-
-    @FXML
     private TextField txtTecido;
-    
-    @FXML
-    private TextField txtPrazo;
 
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
