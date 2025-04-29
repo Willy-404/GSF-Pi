@@ -33,11 +33,13 @@ public class LoginDAO extends GenericDAO{
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-                            long CNPJFaccao = rs.getInt("CnpjFaccao");
+                            long CNPJFaccao = rs.getLong("CnpjFaccao");
                             String NomeRepreFaccao = rs.getString("NomeRepreFaccao");
                             String EmailAcesso = rs.getString("EmailAcesso");
                             String Senha = rs.getString("Senha");
-				faccao = new Faccao(CNPJFaccao, NomeRepreFaccao, EmailAcesso, Senha);
+                            String Telefone = rs.getString("Telefone");
+                            Perfil perfil = Perfil.getPerfil(rs.getString("Perfil"));
+				faccao = new Faccao(CNPJFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, perfil);
   
 			}
 

@@ -11,22 +11,29 @@ public class FaccaoDAO extends GenericDAO {
     private String NomeRepreFaccao;
     private String EmailAcesso;
     private String Senha;
+    private String Telefone;
+    private String Perfil;
 
     public boolean cadastroFaccao(Faccao f) {
-        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, Perfil) VALUES (?,?,?,?,?,Faccao)";
       
-        try (save(sql, f);
-            Connection conn = ConexaoBD.conectar();
-            PreparedStatement stmt = conn.prepareStatement(sql)){
-            
-             System.out.println(stmt);
+        try 
+             
+            //Connection conn = ConexaoBD.conectar();
+            //PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+            save(sql, f);
+             /*System.out.println(stmt);
                 stmt.setLong(1, CnpjFaccao);
                 stmt.setString(2, NomeRepreFaccao);
                 stmt.setString(3, EmailAcesso);
                 stmt.setString(4, Senha);
+                stmt.setString(5, Telefone);
+                stmt.setString(6, Perfil);
 
                 int linhasAfetadas = stmt.executeUpdate();
-                return linhasAfetadas > 0;
+                return linhasAfetadas > 0;*/
+             return true;
             }catch (SQLException e) {
             e.printStackTrace();
             return false;

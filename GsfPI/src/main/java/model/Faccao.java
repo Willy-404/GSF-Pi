@@ -8,12 +8,32 @@ public class Faccao implements Serializable {
     private String NomeRepreFaccao;
     private String EmailAcesso;
     private String Senha;
+    private String Telefone;
+    private Perfil perfil;
 
-    public Faccao(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha) {
+    public Faccao(long CNPJFaccao, String NomeRepreFaccao, String EmailAcesso, String Senha, String Telefone, Perfil perfil) {
         this.CNPJFaccao = CNPJFaccao;
         this.NomeRepreFaccao = NomeRepreFaccao;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
+        this.Telefone = Telefone;
+        this.perfil = perfil;
+    }
+
+    public String getTelefone() {
+        return Telefone;
+    }
+
+    public void setTelefone(String Telefone) {
+        this.Telefone = Telefone;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public long getCNPJFaccao() {

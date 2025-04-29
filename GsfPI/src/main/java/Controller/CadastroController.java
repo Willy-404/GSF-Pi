@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
+import model.Perfil;
 
 public class CadastroController {
 
@@ -109,8 +110,9 @@ public class CadastroController {
         String NomeRepreFaccao = txtNomeCompleto.getText();
         String EmailAcesso = txtEmail.getText();
         String Senha = txtSenha.getText();
-
-        Faccao f = new Faccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha);
+        String Telefone = txtTelefone.getText();
+        Perfil perfil = Perfil.FACCAO;
+        Faccao f = new Faccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha,Telefone,  perfil);
         FaccaoDAO fmetodo = new FaccaoDAO(); 
         return fmetodo.cadastroFaccao(f);
 

@@ -18,7 +18,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
-import model.FaccaoDAO;
 import model.LoginDAO;
 
 public class LoginController {
@@ -43,7 +42,7 @@ private Connection conexao;
     void onClickTelaHome(ActionEvent event) throws IOException {
         
         
-        FaccaoDAO r = null;
+        Faccao r = null;
     try {
         r = processarLogin();
     } catch (SQLException ex) {
