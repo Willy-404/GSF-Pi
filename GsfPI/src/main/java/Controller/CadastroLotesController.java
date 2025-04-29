@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Lotes;
+import model.LotesDAO;
 
 public class CadastroLotesController {
 
@@ -25,16 +28,16 @@ public class CadastroLotesController {
     private Button btnConfirmarLote;
 
     @FXML
-    private ComboBox<?> cbLinha;
+    private ComboBox<String> cbLinha;
 
     @FXML
-    private ComboBox<?> cbColecao;
+    private ComboBox<String> cbColecao;
 
     @FXML
-    private ComboBox<?> cbModelo;
+    private ComboBox<String> cbModelo;
 
     @FXML
-    private ComboBox<?> cbTamanho;
+    private ComboBox<String> cbTamanho;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -150,24 +153,25 @@ public class CadastroLotesController {
             home.show();
 
             ((Stage) menuBar.getScene().getWindow()).close();
-            
-      /*     private boolean cadastroDeLotes(){
+             
+}
+      private boolean cadastroDeLotes(){
            
            int Referencia = Integer.parseInt(txtReferencia.getText()); 
-           DateTimeFormatter formatacao  = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-           LocalDateTime Prazo = LocalDateTime.parse(txtPrazo.getText()formatacao);
-          // LocalDateTime Entrada = LocalDateTime.parse(txtEntrada.getText()formatacao);
-          // 
+           LocalDateTime Prazo = LocalDateTime.parse(txtPrazo.getText().formatted("dd/MM/yyyy"));
+           LocalDateTime Entrada = LocalDateTime.parse(txtEntrada.getText().formatted("dd/MM/yyyy"));
            Double Preco = Double.parseDouble(txtPreco.getText());
            String Tecido = txtTecido.getText();
-           String MarcaLote = txtMarca.getText();
-           String Colecao = txtColecao.getText();
-        //   String Modelo = txtModelo.getText();
-        // Linha ?
-        //mudar o nome marcalote 
+           String Marca = txtMarca.getText();
+           String Colecao = cbColecao.getValue();
+           String Modelo = cbModelo.getValue();
+           String Tamanho = cbTamanho.getValue();
+           int Quantidade = Integer.parseInt(txtQuantidade.getText());
+           String Linha = cbLinha.getValue();
            
-        boolean sucesso = LotesDAO.cadastroLotes(Referencia, Prazo, Entrada, Saida, Preco, Tecido, MarcaLote, Colecao );
-        return sucesso;
-        */
+           Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha);
+           LotesDAO LDmetodo = new LotesDAO();
+           return LDmetodo.cadastroLotes(l);
+       
     }
 }

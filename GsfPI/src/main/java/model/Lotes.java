@@ -1,14 +1,9 @@
 package model;
 
-import dal.ConexaoBD;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class LotesDAO extends GenericDAO {
-    private int Referencia;
+public class Lotes {
+     private int Referencia;
     private LocalDateTime Prazo;
     private LocalDateTime Entrada;
     private Double Preco;
@@ -19,17 +14,19 @@ public class LotesDAO extends GenericDAO {
     private String Tamanho;
     private int Quantidade;
     private String Linha;
-  
-    public boolean cadastroLotes(Lotes l){
-    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) "
-            + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-    try  {
-            save(sql, l);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+
+    public Lotes(int Referencia, LocalDateTime Prazo, LocalDateTime Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, String Tamanho, int Quantidade, String Linha) {
+        this.Referencia = Referencia;
+        this.Prazo = Prazo;
+        this.Entrada = Entrada;
+        this.Preco = Preco;
+        this.Tecido = Tecido;
+        this.Marca = Marca;
+        this.Colecao = Colecao;
+        this.Modelo = Modelo;
+        this.Tamanho = Tamanho;
+        this.Quantidade = Quantidade;
+        this.Linha = Linha;
     }
 
     public int getReferencia() {
@@ -56,7 +53,7 @@ public class LotesDAO extends GenericDAO {
         this.Entrada = Entrada;
     }
 
-    public double getPreco() {
+    public Double getPreco() {
         return Preco;
     }
 
@@ -72,12 +69,12 @@ public class LotesDAO extends GenericDAO {
         this.Tecido = Tecido;
     }
 
-    public String getMarcaLote() {
+    public String getMarca() {
         return Marca;
     }
 
-    public void setMarcaLote(String MarcaLote) {
-        this.Marca = MarcaLote;
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
     }
 
     public String getColecao() {
@@ -95,7 +92,7 @@ public class LotesDAO extends GenericDAO {
     public void setModelo(String Modelo) {
         this.Modelo = Modelo;
     }
-    
+
     public String getTamanho() {
         return Tamanho;
     }
@@ -119,7 +116,6 @@ public class LotesDAO extends GenericDAO {
     public void setLinha(String Linha) {
         this.Linha = Linha;
     }
-    
     
     
 }
