@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class VisualizarFornecedorController {
     
-        @FXML
+    @FXML
     private Button btnNovoFornecedor;
 
     @FXML
@@ -124,7 +124,7 @@ public class VisualizarFornecedorController {
     void OnClickNovoFornecedor(ActionEvent event) throws IOException {
         Stage cadastroFornecedor = new Stage();
         cadastroFornecedor.setMaximized(true);
-        cadastroFornecedor.setTitle("CadastroFornecedor");
+        cadastroFornecedor.setTitle("Cadastrar Fornecedor");
         URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();

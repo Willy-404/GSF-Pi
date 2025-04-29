@@ -63,7 +63,7 @@ public class CadastrarFornecedorController {
     private TextField txtEndereco;
 
     @FXML
-    private TextField txtInscricaoEstadual;
+    private TextField txtEmail;
 
     @FXML
     private TextField txtNome;

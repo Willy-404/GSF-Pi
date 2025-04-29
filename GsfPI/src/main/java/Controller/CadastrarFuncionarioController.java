@@ -58,7 +58,7 @@ public class CadastrarFuncionarioController {
     private Label lblCpf;
 
     @FXML
-    private Label lblEndereco;
+    private Label lblEmail;
 
     @FXML
     private Label lblIdade;
@@ -85,7 +85,7 @@ public class CadastrarFuncionarioController {
     private TextField txtCpf;
 
     @FXML
-    private TextField txtEndereco;
+    private TextField txtEmail;
 
     @FXML
     private TextField txtNome;
@@ -94,7 +94,7 @@ public class CadastrarFuncionarioController {
     private TextField txtSalario;
 
     @FXML
-    private TextField txtdade;
+    private TextField txtNascimento;
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
