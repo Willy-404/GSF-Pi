@@ -1,11 +1,11 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Lotes {
      private int Referencia;
-    private LocalDateTime Prazo;
-    private LocalDateTime Entrada;
+    private LocalDate Prazo;
+    private LocalDate Entrada;
     private Double Preco;
     private String Tecido; 
     private String Marca;
@@ -15,7 +15,7 @@ public class Lotes {
     private int Quantidade;
     private String Linha;
 
-    public Lotes(int Referencia, LocalDateTime Prazo, LocalDateTime Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, String Tamanho, int Quantidade, String Linha) {
+    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, String Tamanho, int Quantidade, String Linha) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
         this.Entrada = Entrada;
@@ -37,19 +37,19 @@ public class Lotes {
         this.Referencia = Referencia;
     }
 
-    public LocalDateTime getPrazo() {
+    public LocalDate getPrazo() {
         return Prazo;
     }
 
-    public void setPrazo(LocalDateTime Prazo) {
+    public void setPrazo(LocalDate Prazo) {
         this.Prazo = Prazo;
     }
 
-    public LocalDateTime getEntrada() {
+    public LocalDate getEntrada() {
         return Entrada;
     }
 
-    public void setEntrada(LocalDateTime Entrada) {
+    public void setEntrada(LocalDate Entrada) {
         this.Entrada = Entrada;
     }
 

@@ -1,16 +1,12 @@
 package model;
 
-import dal.ConexaoBD;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class LotesDAO extends GenericDAO {
     private int Referencia;
-    private LocalDateTime Prazo;
-    private LocalDateTime Entrada;
+    private LocalDate Prazo;
+    private LocalDate Entrada;
     private Double Preco;
     private String Tecido; 
     private String Marca;
@@ -40,23 +36,23 @@ public class LotesDAO extends GenericDAO {
         this.Referencia = Referencia;
     }
 
-    public LocalDateTime getPrazo() {
+    public LocalDate getPrazo() {
         return Prazo;
     }
 
-    public void setPrazo(LocalDateTime Prazo) {
+    public void setPrazo(LocalDate Prazo) {
         this.Prazo = Prazo;
     }
 
-    public LocalDateTime getEntrada() {
+    public LocalDate getEntrada() {
         return Entrada;
     }
 
-    public void setEntrada(LocalDateTime Entrada) {
+    public void setEntrada(LocalDate Entrada) {
         this.Entrada = Entrada;
     }
 
-    public double getPreco() {
+    public Double getPreco() {
         return Preco;
     }
 
@@ -72,12 +68,12 @@ public class LotesDAO extends GenericDAO {
         this.Tecido = Tecido;
     }
 
-    public String getMarcaLote() {
+    public String getMarca() {
         return Marca;
     }
 
-    public void setMarcaLote(String MarcaLote) {
-        this.Marca = MarcaLote;
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
     }
 
     public String getColecao() {
@@ -95,7 +91,7 @@ public class LotesDAO extends GenericDAO {
     public void setModelo(String Modelo) {
         this.Modelo = Modelo;
     }
-    
+
     public String getTamanho() {
         return Tamanho;
     }
@@ -121,5 +117,8 @@ public class LotesDAO extends GenericDAO {
     }
     
     
-    
 }
+   
+        
+    
+

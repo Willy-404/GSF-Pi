@@ -3,7 +3,8 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -158,8 +159,9 @@ public class CadastroLotesController {
       private boolean cadastroDeLotes(){
            
            int Referencia = Integer.parseInt(txtReferencia.getText()); 
-           LocalDateTime Prazo = LocalDateTime.parse(txtPrazo.getText().formatted("dd/MM/yyyy"));
-           LocalDateTime Entrada = LocalDateTime.parse(txtEntrada.getText().formatted("dd/MM/yyyy"));
+           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+           LocalDate Prazo = LocalDate.parse(txtPrazo.getText(),formatter);
+           LocalDate Entrada = LocalDate.parse(txtEntrada.getText(),formatter);
            Double Preco = Double.parseDouble(txtPreco.getText());
            String Tecido = txtTecido.getText();
            String Marca = txtMarca.getText();
