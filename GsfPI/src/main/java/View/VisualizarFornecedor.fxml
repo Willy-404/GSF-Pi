@@ -25,7 +25,7 @@
                      </font>
                   </Label>
                   <Button fx:id="btnNovoFornecedor" layoutX="394.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" />
-                  <TableView layoutX="187.0" layoutY="96.0" prefHeight="794.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;">
+                  <TableView layoutX="187.0" layoutY="96.0" prefHeight="794.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.1999999999998181">
                     <columns>
                       <TableColumn prefWidth="309.0" style="-fx-backgorund-color: #386b8f;" text="Nome" />
                       <TableColumn minWidth="0.0" prefWidth="300.0" text="Email" />
