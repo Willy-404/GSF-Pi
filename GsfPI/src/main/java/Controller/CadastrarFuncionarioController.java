@@ -148,21 +148,8 @@ public class CadastrarFuncionarioController {
         thc.trocarTelaHome(MenuBar);
     }
 
-    Boolean btnCadastrarClick() {
-
-        String Cpf = txtCpf.getText();
-        String NomeFuncionario = txtNome.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate DataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
-        String Telefone = txtContato.getText();
-        String Email = txtEmail.getText();
-        Float ValorHora = Float.parseFloat(txtSalario.getText());
-        String Cargo = txtCargo.getText();
-
-        Funcionario l = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
-        FuncionarioDAO LDmetodo = new FuncionarioDAO();
-        return LDmetodo.cadastroFuncionario(l);
-
+    @FXML
+    void btnCadastrarClick() {
     }
 
 //Metodo para trocar pra tela Cadastrar funcionario
@@ -180,6 +167,23 @@ public class CadastrarFuncionarioController {
         home.show();
 
         ((Stage) menuBar.getScene().getWindow()).close();
+    }
+
+    Boolean CadastroDeFuncionario() {
+
+        String Cpf = txtCpf.getText();
+        String NomeFuncionario = txtNome.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate DataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
+        String Telefone = txtContato.getText();
+        String Email = txtEmail.getText();
+        Float ValorHora = Float.parseFloat(txtSalario.getText());
+        String Cargo = txtCargo.getText();
+
+        Funcionario l = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
+        FuncionarioDAO LDmetodo = new FuncionarioDAO();
+        return LDmetodo.cadastroFuncionario(l);
+
     }
 
 }

@@ -23,17 +23,7 @@ public class FuncionarioDAO extends GenericDAO{
             return false;
         }
     }
-
-    public FuncionarioDAO(String Cpf, String NomeFuncionario, LocalDate DataNascimento, String Telefone, String Email, Float ValorHora, String Cargo) {
-        this.Cpf = Cpf;
-        this.NomeFuncionario = NomeFuncionario;
-        this.DataNascimento = DataNascimento;
-        this.Telefone = Telefone;
-        this.Email = Email;
-        this.ValorHora = ValorHora;
-        this.Cargo = Cargo;
-    }
-
+    
     public String getCpf() {
         return Cpf;
     }
