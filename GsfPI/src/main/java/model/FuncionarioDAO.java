@@ -6,21 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class FuncionarioDAO extends GenericDAO{
-    private long CPF;
+    private long Cpf;
     private String NomeFuncionario;
     private String DataNascimento;
     private String Telefone;
     private Float ValorHora;
     private String Cargo;
     
-    public static boolean cadastroFuncionario(long CPF, String NomeFuncionario, String DataNascimento, String Telefone, String ValorHora, String Cargo){
+    public static boolean cadastroFuncionario(long Cpf, String NomeFuncionario, String DataNascimento, String Telefone, String ValorHora, String Cargo){
         
         
-        String sql = "INSERT INTO funcionario (CPF, NomeFuncionario, Telefone, Email, ValorHora, Cargo) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO funcionario (Cpf, NomeFuncionario, Telefone, Email, ValorHora, Cargo) VALUES (?,?,?,?,?,?)";
          try (Connection conn = ConexaoBD.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setLong(1, CPF );
+            stmt.setLong(1, Cpf );
             stmt.setString(2, NomeFuncionario);
             stmt.setString(3, DataNascimento);  
             stmt.setString(4, Telefone); 
@@ -36,8 +36,8 @@ public class FuncionarioDAO extends GenericDAO{
         }
     }
 
-    public FuncionarioDAO(long CPF, String NomeFuncionario, String DataNascimento, String Telefone, Float ValorHora, String Cargo) {
-        this.CPF = CPF;
+    public FuncionarioDAO(long Cpf, String NomeFuncionario, String DataNascimento, String Telefone, Float ValorHora, String Cargo) {
+        this.Cpf = Cpf;
         this.NomeFuncionario = NomeFuncionario;
         this.DataNascimento = DataNascimento;
         this.Telefone = Telefone;
@@ -46,11 +46,11 @@ public class FuncionarioDAO extends GenericDAO{
     }
 
     public long getCPF() {
-        return CPF;
+        return Cpf;
     }
 
     public void setCPF(long CPF) {
-        this.CPF = CPF;
+        this.Cpf = Cpf;
     }
 
     public String getNomeFuncionario() {
