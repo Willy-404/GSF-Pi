@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,16 @@ import model.LoginDAO;
 public class LoginController {
 private Connection conexao;
     private final LoginDAO dao = new LoginDAO();
+    private ArrayList<Faccao> userInfo = new ArrayList<>();
 
+    public ArrayList<Faccao> getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(ArrayList<Faccao> userInfo) {
+        this.userInfo = userInfo;
+    }
+    
     private Stage stageLogin;
     
     @FXML
@@ -45,6 +55,8 @@ private Connection conexao;
         Faccao r = null;
     try {
         r = processarLogin();
+       
+        userInfo.add(r);
     } catch (SQLException ex) {
                    System.out.println("Erro de conexao com o banco de dados");
 

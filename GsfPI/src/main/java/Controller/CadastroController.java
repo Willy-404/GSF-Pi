@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,10 +75,11 @@ public class CadastroController {
             alerta.setTitle("Cadastro realizado com sucesso");
             alerta.setHeaderText("Seu perfil foi cadastrado com sucesso");
             alerta.showAndWait();
-
+            
             LoginController lc = new LoginController();
             lc.trocarLogin(btnCadastrar);
         }
+       
     }
 
     @FXML

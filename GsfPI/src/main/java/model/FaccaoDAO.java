@@ -1,9 +1,8 @@
 package model;
 
-import dal.ConexaoBD;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import Controller.LoginController;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class FaccaoDAO extends GenericDAO {
 
@@ -13,12 +12,14 @@ public class FaccaoDAO extends GenericDAO {
     private String Senha;
     private String Telefone;
     private String Perfil;
-
+    LoginController lc = new LoginController();
     public boolean cadastroFaccao(Faccao f) {
         String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, Perfil) VALUES (?,?,?,?,?,Faccao)";
       
         try{
             save(sql, f);
+            
+           
              return true;
             }catch (SQLException e) {
             e.printStackTrace();
@@ -26,17 +27,17 @@ public class FaccaoDAO extends GenericDAO {
         }
         }
     
-    /* Pensando em como fazer
-    public void ListaFaccao(Faccao f, String Email){
-        String sql = "Select* faccao WHEN (EmailAcesso) VALUE (Email)";
+   
+    public Faccao ListaFaccao(){
+        Faccao f = lc.getUserInfo().get(0);
         CnpjFaccao = f.getCNPJFaccao();
         NomeRepreFaccao = f.getNomeRepreFaccao();
         EmailAcesso = f.getEmailAcesso();
         Telefone = f.getTelefone();
-        System.out.println(f);
+        return f;
         
         
-    }*/
+    }
 
    
 

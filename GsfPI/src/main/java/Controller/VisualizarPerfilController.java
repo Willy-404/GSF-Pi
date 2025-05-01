@@ -14,8 +14,10 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import model.Faccao;
+import model.FaccaoDAO;
 
-public class VisualizarPerfilController extends LoginController{
+public class VisualizarPerfilController {
 
     @FXML
     private MenuBar MenuBar;
@@ -56,6 +58,12 @@ public class VisualizarPerfilController extends LoginController{
     @FXML
     private FlowPane txtEndereco;
   
+    
+    void Vizualizar(){
+        FaccaoDAO fd = new FaccaoDAO();
+        Faccao f = fd.ListaFaccao();
+        
+    }
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController cf =  new CadastrarFornecedorController();
