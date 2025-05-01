@@ -77,5 +77,7 @@ public class Funcionario implements Serializable{
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
     }
+
+    
     
 }
