@@ -64,8 +64,7 @@ public class CadastroController {
             return;
         }
 
-        boolean retorno = cadastroDeFaccao();
-        if (retorno != true) {
+        if (cadastroDeFaccao() != true) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
             alerta.setHeaderText("Erro ao cadastrar seu perfil ");

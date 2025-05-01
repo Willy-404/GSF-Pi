@@ -15,7 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-public class VisualizarPerfilController {
+public class VisualizarPerfilController extends LoginController{
 
     @FXML
     private MenuBar MenuBar;
@@ -55,7 +55,7 @@ public class VisualizarPerfilController {
 
     @FXML
     private FlowPane txtEndereco;
-
+  
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController cf =  new CadastrarFornecedorController();
@@ -109,5 +109,22 @@ public class VisualizarPerfilController {
     void OnClickSair(ActionEvent event) {
 
     }
+   public void TrocarVisualizarPerfil(Button btnPerfil) throws IOException {
+        Stage visuPerfil = new Stage();
+        visuPerfil.setMaximized(true);
+        visuPerfil.setTitle("Visualizar Perfil");
+
+        URL url = new File("src/main/java/view/VisualizarPerfil.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        visuPerfil.setScene(cena);
+        visuPerfil.show();
+        ((Stage) btnPerfil.getScene().getWindow()).close();
+        
+    }
+   
+   
     
 }

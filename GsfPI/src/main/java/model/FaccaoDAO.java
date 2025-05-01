@@ -17,22 +17,8 @@ public class FaccaoDAO extends GenericDAO {
     public boolean cadastroFaccao(Faccao f) {
         String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, Perfil) VALUES (?,?,?,?,?,Faccao)";
       
-        try 
-             
-            //Connection conn = ConexaoBD.conectar();
-            //PreparedStatement stmt = conn.prepareStatement(sql))
-                {
+        try{
             save(sql, f);
-             /*System.out.println(stmt);
-                stmt.setLong(1, CnpjFaccao);
-                stmt.setString(2, NomeRepreFaccao);
-                stmt.setString(3, EmailAcesso);
-                stmt.setString(4, Senha);
-                stmt.setString(5, Telefone);
-                stmt.setString(6, Perfil);
-
-                int linhasAfetadas = stmt.executeUpdate();
-                return linhasAfetadas > 0;*/
              return true;
             }catch (SQLException e) {
             e.printStackTrace();
@@ -40,6 +26,17 @@ public class FaccaoDAO extends GenericDAO {
         }
         }
     
+    /* Pensando em como fazer
+    public void ListaFaccao(Faccao f, String Email){
+        String sql = "Select* faccao WHEN (EmailAcesso) VALUE (Email)";
+        CnpjFaccao = f.getCNPJFaccao();
+        NomeRepreFaccao = f.getNomeRepreFaccao();
+        EmailAcesso = f.getEmailAcesso();
+        Telefone = f.getTelefone();
+        System.out.println(f);
+        
+        
+    }*/
 
    
 

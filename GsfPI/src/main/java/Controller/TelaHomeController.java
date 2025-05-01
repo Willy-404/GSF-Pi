@@ -144,18 +144,8 @@ public class TelaHomeController {
     }
     @FXML
     void onClickVisualizarPerfil(ActionEvent event) throws IOException {
-Stage visuPerfil = new Stage();
-        visuPerfil.setMaximized(true);
-        visuPerfil.setTitle("Visualizar Perfil");
-
-        URL url = new File("src/main/java/view/VisualizarPerfil.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuPerfil.setScene(cena);
-        visuPerfil.show();
-        
+        VisualizarPerfilController vpc = new VisualizarPerfilController();
+        vpc.TrocarVisualizarPerfil(btnPerfil);
     }
     
  
