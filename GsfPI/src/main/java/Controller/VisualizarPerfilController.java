@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
@@ -21,6 +21,16 @@ public class VisualizarPerfilController {
 
     @FXML
     private MenuBar MenuBar;
+    
+    @FXML
+    private Button btnEditar;
+
+    @FXML
+    private Button btnSairDoPerfil;
+
+    @FXML
+    private Button btnVoltar;
+
 
     @FXML
     private Button btnConfirmarLote;
@@ -55,8 +65,21 @@ public class VisualizarPerfilController {
     @FXML
     private Menu menuVisualizar;
 
+    
     @FXML
-    private FlowPane txtEndereco;
+    private TextField txtCnpj;
+
+    @FXML
+    private TextField txtContato;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtEndereco;
+
+    @FXML
+    private TextField txtNome;
   
     
     void Vizualizar(){

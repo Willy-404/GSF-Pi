@@ -21,9 +21,6 @@ public class CadastrarFornecedorController {
     private MenuBar MenuBar;
 
     @FXML
-    private Button btnCadastrarFornecedor;
-
-    @FXML
     private MenuItem itemCadFornecedor;
 
     @FXML
