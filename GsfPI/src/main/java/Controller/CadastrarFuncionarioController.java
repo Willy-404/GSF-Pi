@@ -169,7 +169,7 @@ public class CadastrarFuncionarioController {
         ((Stage) menuBar.getScene().getWindow()).close();
     }
 
-    Boolean CadastroDeFuncionario() {
+    public boolean CadastroDeFuncionario() {
 
         String Cpf = txtCpf.getText();
         String NomeFuncionario = txtNome.getText();

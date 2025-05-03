@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -80,11 +82,16 @@ public class VisualizarPerfilController {
 
     @FXML
     private TextField txtNome;
-  
+    
+    //Retorno dos valores da faccao Logada no sistema 
+    FaccaoDAO fd = new FaccaoDAO();
+    Faccao f = fd.ListaFaccao();
     
     void Vizualizar(){
-        FaccaoDAO fd = new FaccaoDAO();
-        Faccao f = fd.ListaFaccao();
+        
+        txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
+        txtContato.setText(f.getTelefone());
+        txtEmail.setText(f.getEmailAcesso());
         
     }
     @FXML
@@ -136,10 +143,50 @@ public class VisualizarPerfilController {
         
     }
     
-     @FXML
-    void OnClickSair(ActionEvent event) {
-
+    @FXML
+    void OnClickSair(ActionEvent event) throws IOException  {
+        LoginController lc = new LoginController();
+        lc.trocarLogin(btnSairDoPerfil);
     }
+    
+      @FXML
+    void onClickVoltar(ActionEvent event) throws IOException {
+        TelaHomeController thc = new TelaHomeController();
+        thc.trocarTelaHome(btnVoltar);
+    }
+    
+     @FXML
+    void OnClickEditar(ActionEvent event) throws IOException {
+        long id = (f.getCNPJFaccao());
+        FaccaoDAO fmetodo = new FaccaoDAO();
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Editar?");
+        alerta.setHeaderText("Deseja fazer a edição das informações?");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                if(fmetodo.editarFaccao(f, id) != true){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Edição Concluida");
+                    alert.setHeaderText("A edição ocoreu com sucesso!!");
+                    alerta.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Problema na Edição");
+                    alert.setHeaderText("Ocorreu um problema na edição!!");
+                    alerta.showAndWait();
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Edição Cancelada");
+                    alert.setHeaderText("A edição foi cancelada com sucesso!!");
+                    alerta.showAndWait();
+            }
+        });
+        
+            
+    }
+    
+    
    public void TrocarVisualizarPerfil(Button btnPerfil) throws IOException {
         Stage visuPerfil = new Stage();
         visuPerfil.setMaximized(true);

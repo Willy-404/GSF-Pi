@@ -296,7 +296,7 @@
                               <Insets top="35.0" />
                            </padding>
                            <children>
-                              <Button fx:id="btnSairDoPerfil" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Sair do Perfil">
+                              <Button fx:id="btnSairDoPerfil" mnemonicParsing="false" onAction="#OnClickSair" prefHeight="30.0" prefWidth="140.0" text="Sair do Perfil">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -305,7 +305,7 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" text="Editar">
+                              <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#OnClickEditar" prefHeight="30.0" prefWidth="125.0" text="Editar">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -317,7 +317,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                              <Button fx:id="btnVoltar" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" text="Voltar">
+                              <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#onClickVoltar" prefHeight="30.0" prefWidth="125.0" text="Voltar">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

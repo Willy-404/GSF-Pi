@@ -39,7 +39,17 @@ public class FaccaoDAO extends GenericDAO {
         
     }
 
-   
+    public boolean editarFaccao(Faccao f, long id){
+        String sql = "UPDATE INTO faccao SET (NomeRepreFaccao, EmailAcesso, Senha, Telefone) WHERE (CnpjFaccao = id) ";
+        try{
+            update(sql,id,f);
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        
+         }
+    }
 
     public long getCNPJFaccao() {
         return CnpjFaccao;
