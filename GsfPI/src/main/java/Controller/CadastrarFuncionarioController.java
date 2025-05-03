@@ -3,6 +3,8 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Funcionario;
+import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
 
@@ -98,43 +102,43 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController cf =  new CadastrarFornecedorController();
+        CadastrarFornecedorController cf = new CadastrarFornecedorController();
         cf.trocarCadFornecedor(MenuBar);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController cf =  new CadastrarFuncionarioController();
+        CadastrarFuncionarioController cf = new CadastrarFuncionarioController();
         cf.trocarCadFuncionario(MenuBar);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController cl =  new CadastroLotesController();
+        CadastroLotesController cl = new CadastroLotesController();
         cl.trocarCadLotes(MenuBar);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController vf =  new VisualizarFornecedorController();
+        VisualizarFornecedorController vf = new VisualizarFornecedorController();
         vf.trocarVizFornecedor(MenuBar);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController vf =  new VisualizarFuncionarioController();
+        VisualizarFuncionarioController vf = new VisualizarFuncionarioController();
         vf.trocarVizFuncionario(MenuBar);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController vl =  new VisualizarLotesController();
+        VisualizarLotesController vl = new VisualizarLotesController();
         vl.trocarVizLotes(MenuBar);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController vp =  new VisualizarPontoController();
+        VisualizarPontoController vp = new VisualizarPontoController();
         vp.trocarVizPonto(MenuBar);
     }
 
@@ -143,23 +147,43 @@ public class CadastrarFuncionarioController {
         TelaHomeController thc = new TelaHomeController();
         thc.trocarTelaHome(MenuBar);
     }
-    
-    
-    //Metodo para trocar pra tela Cadastrar funcionario
-    public void trocarCadFuncionario(MenuBar menuBar)throws IOException {
-          Stage home = new Stage();
-            home.setMaximized(true);
-            home.setTitle("Cadastro de Funcionario");
 
-            URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+    @FXML
+    void btnCadastrarClick() {
+    }
 
-            Scene cena = new Scene(root);
-            home.setScene(cena);
-            home.show();
+//Metodo para trocar pra tela Cadastrar funcionario
+    public void trocarCadFuncionario(MenuBar menuBar) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Cadastro de Funcionario");
 
-            ((Stage) menuBar.getScene().getWindow()).close();
+        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) menuBar.getScene().getWindow()).close();
+    }
+
+    Boolean CadastroDeFuncionario() {
+
+        String Cpf = txtCpf.getText();
+        String NomeFuncionario = txtNome.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate DataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
+        String Telefone = txtContato.getText();
+        String Email = txtEmail.getText();
+        Float ValorHora = Float.parseFloat(txtSalario.getText());
+        String Cargo = txtCargo.getText();
+
+        Funcionario l = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
+        FuncionarioDAO LDmetodo = new FuncionarioDAO();
+        return LDmetodo.cadastroFuncionario(l);
+
     }
 
 }

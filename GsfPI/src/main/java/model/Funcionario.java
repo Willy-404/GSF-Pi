@@ -1,9 +1,9 @@
 package model;
 
-import java.sql.SQLException;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class FuncionarioDAO extends GenericDAO{
+public class Funcionario implements Serializable{
     private String Cpf;
     private String NomeFuncionario;
     private LocalDate DataNascimento;
@@ -11,19 +11,17 @@ public class FuncionarioDAO extends GenericDAO{
     private String Email;
     private Float ValorHora;
     private String Cargo;
-    
-    public boolean cadastroFuncionario(Funcionario l){
-    String sql = "INSERT INTO funcionario (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) "
-            + "VALUES (?,?,?,?,?,?,?)";
-    try  {
-            save(sql, l);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+
+    public Funcionario(String Cpf, String NomeFuncionario, LocalDate DataNascimento, String Telefone, String Email, Float ValorHora, String Cargo) {
+        this.Cpf = Cpf;
+        this.NomeFuncionario = NomeFuncionario;
+        this.DataNascimento = DataNascimento;
+        this.Telefone = Telefone;
+        this.Email = Email;
+        this.ValorHora = ValorHora;
+        this.Cargo = Cargo;
     }
-    
+
     public String getCpf() {
         return Cpf;
     }
@@ -79,6 +77,7 @@ public class FuncionarioDAO extends GenericDAO{
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
     }
+
     
     
 }

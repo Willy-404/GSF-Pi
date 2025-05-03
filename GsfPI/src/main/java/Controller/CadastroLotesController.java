@@ -90,52 +90,52 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtTecido;
-    
+
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
         cbColecao.getItems().addAll("Verão", "Inverno");
     }
 
-     @FXML
+    @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController cf =  new CadastrarFornecedorController();
+        CadastrarFornecedorController cf = new CadastrarFornecedorController();
         cf.trocarCadFornecedor(MenuBar);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController cf =  new CadastrarFuncionarioController();
+        CadastrarFuncionarioController cf = new CadastrarFuncionarioController();
         cf.trocarCadFuncionario(MenuBar);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController cl =  new CadastroLotesController();
+        CadastroLotesController cl = new CadastroLotesController();
         cl.trocarCadLotes(MenuBar);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController vf =  new VisualizarFornecedorController();
+        VisualizarFornecedorController vf = new VisualizarFornecedorController();
         vf.trocarVizFornecedor(MenuBar);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController vf =  new VisualizarFuncionarioController();
+        VisualizarFuncionarioController vf = new VisualizarFuncionarioController();
         vf.trocarVizFuncionario(MenuBar);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController vl =  new VisualizarLotesController();
+        VisualizarLotesController vl = new VisualizarLotesController();
         vl.trocarVizLotes(MenuBar);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController vp =  new VisualizarPontoController();
+        VisualizarPontoController vp = new VisualizarPontoController();
         vp.trocarVizPonto(MenuBar);
     }
 
@@ -146,40 +146,41 @@ public class CadastroLotesController {
     }
 
     //metodo de trocar tela para cadastro lote
-     public void trocarCadLotes(MenuBar menuBar)throws IOException {
-          Stage home = new Stage();
-            home.setMaximized(true);
-            home.setTitle("Cadastro de Lotes");
+    public void trocarCadLotes(MenuBar menuBar) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Cadastro de Lotes");
 
-            URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+        URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
 
-            Scene cena = new Scene(root);
-            home.setScene(cena);
-            home.show();
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
 
-            ((Stage) menuBar.getScene().getWindow()).close();
-             
-}
-      private boolean cadastroDeLotes(){
-           
-           int Referencia = Integer.parseInt(txtReferencia.getText()); 
-           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-           LocalDate Prazo = LocalDate.parse(txtPrazo.getText(),formatter);
-           LocalDate Entrada = LocalDate.parse(txtEntrada.getText(),formatter);
-           Double Preco = Double.parseDouble(txtPreco.getText());
-           String Tecido = txtTecido.getText();
-           String Marca = txtMarca.getText();
-           String Colecao = cbColecao.getValue();
-           String Modelo = cbModelo.getValue();
-           String Tamanho = cbTamanho.getValue();
-           int Quantidade = Integer.parseInt(txtQuantidade.getText());
-           String Linha = cbLinha.getValue();
-           
-           Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha);
-           LotesDAO LDmetodo = new LotesDAO();
-           return LDmetodo.cadastroLotes(l);
-       
+        ((Stage) menuBar.getScene().getWindow()).close();
+
+    }
+
+    private boolean cadastroDeLotes() {
+
+        int Referencia = Integer.parseInt(txtReferencia.getText());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate Prazo = LocalDate.parse(txtPrazo.getText(), formatter);
+        LocalDate Entrada = LocalDate.parse(txtEntrada.getText(), formatter);
+        Double Preco = Double.parseDouble(txtPreco.getText());
+        String Tecido = txtTecido.getText();
+        String Marca = txtMarca.getText();
+        String Colecao = cbColecao.getValue();
+        String Modelo = cbModelo.getValue();
+        String Tamanho = cbTamanho.getValue();
+        int Quantidade = Integer.parseInt(txtQuantidade.getText());
+        String Linha = cbLinha.getValue();
+
+        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha);
+        LotesDAO LDmetodo = new LotesDAO();
+        return LDmetodo.cadastroLotes(l);
+
     }
 }
