@@ -2,6 +2,9 @@ package model;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class LotesDAO extends GenericDAO {
     private int Referencia;
@@ -15,6 +18,11 @@ public class LotesDAO extends GenericDAO {
     private String Tamanho;
     private int Quantidade;
     private String Linha;
+    
+    private TableView<Lotes> tabelaLotes;
+    private TableColumn<Lotes, Integer> colRef;
+    private TableColumn<Lotes, Integer> colQuanti;
+    private TableColumn<Lotes, LocalDate> colPrazo;
   
     public boolean cadastroLotes(Lotes l){
     String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) "
@@ -26,6 +34,23 @@ public class LotesDAO extends GenericDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    public Lotes listarLotes(Lotes l, Integer ref){
+        String sql ="Select* FROM lote WHERE (Referencia = ref) ";
+        /*Pegar a lista com o metodo list (quando for feito), Mas preciso retornar os valores entao tem que retornar um Lote
+        try {
+            list(sql, l);
+            
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        */
+        
+        
+        return l;
     }
 
     public int getReferencia() {

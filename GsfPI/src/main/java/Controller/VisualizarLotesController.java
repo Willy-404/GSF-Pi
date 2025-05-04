@@ -3,6 +3,9 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import model.Lotes;
+import model.LotesDAO;
 
 public class VisualizarLotesController {
 
@@ -51,6 +56,10 @@ public class VisualizarLotesController {
 
     @FXML
     private Menu menuVisualizar;
+    
+    private ArrayList<Lotes> lotesList = new ArrayList<>(); 
+    private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
+    private LotesDAO lmetodos;
 
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -115,4 +124,17 @@ public class VisualizarLotesController {
         
         ((Stage) menuBar.getScene().getWindow()).close();
     }
+    
+    /* fazer o metodo para quando clicar em um item da tableview puxar as informações 
+    
+    void ??? {
+        Tem como retornar a referencia do item ao clicar nele?
+        Lotes lValores = lmetodo.ListarLotes(l, ref);
+    
+    exemplo: 
+        txtReferencia.setText(String.valueOf(l.getReferencia()));
+    }
+    
+    
+    */
 }
