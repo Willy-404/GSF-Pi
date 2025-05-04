@@ -15,6 +15,12 @@ public class Lotes {
     private int Quantidade;
     private String Linha;
 
+    public Lotes(int Referencia, LocalDate Prazo, int Quantidade) {
+        this.Referencia = Referencia;
+        this.Prazo = Prazo;
+        this.Quantidade = Quantidade;
+    }
+
     public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, String Tamanho, int Quantidade, String Linha) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;

@@ -4,6 +4,7 @@ import dal.ConexaoBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 //Classe abstrata não pode ser instanciada, é um modelo para as classes que irão herdar seu comportamento
 //Esta classe facilita para que não precisemos em todas as Classes DAO executar todo este código, 
@@ -62,5 +63,20 @@ public abstract class GenericDAO {
         pstmt.close();
         conexao.close();
     }
+    
+    /* Pensar em um metodo que faça isso, Mas não sabemos fazer essas modificações. Retornar o Lotes ou outro objeto é possivel? 
+    protected Object list(String listSql, Object... parametros) throws SQLException{
+        PreparedStatement pstmt = conectarDAO().prepareStatement(listSql);
 
+        for (int i = 0; i < parametros.length; i++) {
+            pstmt.setObject(i + 1, parametros[i]);
+        }
+        
+        Object x = pstmt;
+        
+        pstmt.execute();
+        pstmt.close();
+        conexao.close();
+        return x;
+    } */
 }

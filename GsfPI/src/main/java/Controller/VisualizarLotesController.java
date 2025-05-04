@@ -11,11 +11,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import model.FaccaoDAO;
 import model.Lotes;
 import model.LotesDAO;
 
@@ -59,7 +62,8 @@ public class VisualizarLotesController {
     
     private ArrayList<Lotes> lotesList = new ArrayList<>(); 
     private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
-    private LotesDAO lmetodos;
+    LotesDAO lmetodos = new LotesDAO();
+    Lotes l; 
 
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -137,4 +141,32 @@ public class VisualizarLotesController {
     
     
     */
+    
+     void OnClickEditar(ActionEvent event) throws IOException {
+        int id = (l.getReferencia());
+        LotesDAO lmetodo = new LotesDAO();
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Editar?");
+        alerta.setHeaderText("Deseja fazer a edição das informações?");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                if(lmetodo.editarLotes(l, id) != true){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Edição Concluida");
+                    alert.setHeaderText("A edição ocoreu com sucesso!!");
+                    alerta.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Problema na Edição");
+                    alert.setHeaderText("Ocorreu um problema na edição!!");
+                    alerta.showAndWait();
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Edição Cancelada");
+                    alert.setHeaderText("A edição foi cancelada com sucesso!!");
+                    alerta.showAndWait();
+            }
+        });
+     }
 }

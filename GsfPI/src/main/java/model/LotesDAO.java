@@ -36,8 +36,9 @@ public class LotesDAO extends GenericDAO {
         }
     }
     
-    public Lotes listarLotes(Lotes l, Integer ref){
-        String sql ="Select* FROM lote WHERE (Referencia = ref) ";
+    //int ref tem que ser pego quando clicado no tableView isso é possivel?
+    public Lotes listarLotes(Lotes l, int ref){
+        String sql ="Select* INTO lote WHERE (Referencia = ref) ";
         /*Pegar a lista com o metodo list (quando for feito), Mas preciso retornar os valores entao tem que retornar um Lote
         try {
             list(sql, l);
@@ -51,6 +52,33 @@ public class LotesDAO extends GenericDAO {
         
         
         return l;
+    }
+    
+    //Perguntar se funciona
+    public boolean deletarLotes(Lotes l, int ref){
+    String sql = "DELETE* INTO lote WHERE (Referencia = ref) ";
+           
+    try  {
+            delete(sql, l);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
+    public boolean editarLotes(Lotes l, int id){
+        //COmo atualiza no banco de dados?
+    String sql = "UPDATE INTO lotes SET (Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) WHERE (Referencia = id)";
+    try  {
+            
+            update(sql, id, l );
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public int getReferencia() {
