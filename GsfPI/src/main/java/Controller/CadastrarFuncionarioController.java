@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -150,9 +151,19 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void btnCadastrarClick() {
+        if (CadastroDeFuncionario() != true) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro ao cadastrar ");
+            alerta.setHeaderText("Erro ao cadastrar funcionário ");
+            alerta.showAndWait();
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Cadastro realizado com sucesso");
+            alerta.setHeaderText("O funcionário foi cadastrado com sucesso");
+            alerta.showAndWait();
+        }
     }
-
-//Metodo para trocar pra tela Cadastrar funcionario
+        //Metodo para trocar pra tela Cadastrar funcionario
     public void trocarCadFuncionario(MenuBar menuBar) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
