@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
+<BorderPane style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastrarFuncionarioController">
    <top>
       <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1776.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
          <menus>
@@ -31,7 +31,7 @@
                   <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Cadastrar">
+            <Menu fx:id="menuCadastrar" mnemonicParsing="false" text="Cadastrar">
                <items>
                   <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
                   <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
@@ -279,7 +279,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtNacimento" prefHeight="46.0" prefWidth="220.0">
+                              <TextField fx:id="txtNascimento" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

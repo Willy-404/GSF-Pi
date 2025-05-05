@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -113,7 +114,8 @@ public class VisualizarFuncionarioController {
 
             URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+           
+                Parent root = loader.load();
 
             Scene cena = new Scene(root);
             home.setScene(cena);

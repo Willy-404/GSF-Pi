@@ -23,7 +23,7 @@ public class VisualizarPerfilController {
 
     @FXML
     private MenuBar MenuBar;
-    
+
     @FXML
     private Button btnEditar;
 
@@ -32,10 +32,6 @@ public class VisualizarPerfilController {
 
     @FXML
     private Button btnVoltar;
-
-
-    @FXML
-    private Button btnConfirmarLote;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -66,8 +62,10 @@ public class VisualizarPerfilController {
 
     @FXML
     private Menu menuVisualizar;
-
     
+     @FXML
+    private Menu menuCadastar;
+
     @FXML
     private TextField txtCnpj;
 
@@ -87,13 +85,14 @@ public class VisualizarPerfilController {
     FaccaoDAO fd = new FaccaoDAO();
     Faccao f = fd.ListaFaccao();
     
-    void Vizualizar(){
-        
+    @FXML
+    public void initialize() {
+        // Adiciona opções ao ComboBox
         txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
         txtContato.setText(f.getTelefone());
         txtEmail.setText(f.getEmailAcesso());
-        
     }
+    
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController cf =  new CadastrarFornecedorController();
@@ -146,7 +145,23 @@ public class VisualizarPerfilController {
     @FXML
     void OnClickSair(ActionEvent event) throws IOException  {
         LoginController lc = new LoginController();
-        lc.trocarLogin(btnSairDoPerfil);
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Logoff");
+        alerta.setHeaderText("Deseja fazer a saida do sistema?");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try{
+                lc.trocarLogin(btnSairDoPerfil);
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Logoff Cancelada");
+                    alert.setHeaderText("O logoff foi cancelado com sucesso!!");
+                    alerta.showAndWait();
+            }
+        });  
     }
     
       @FXML
@@ -181,12 +196,9 @@ public class VisualizarPerfilController {
                     alert.setHeaderText("A edição foi cancelada com sucesso!!");
                     alerta.showAndWait();
             }
-        });
-        
-            
+        });     
     }
-    
-    
+
    public void TrocarVisualizarPerfil(Button btnPerfil) throws IOException {
         Stage visuPerfil = new Stage();
         visuPerfil.setMaximized(true);
@@ -202,7 +214,4 @@ public class VisualizarPerfilController {
         ((Stage) btnPerfil.getScene().getWindow()).close();
         
     }
-   
-   
-    
 }

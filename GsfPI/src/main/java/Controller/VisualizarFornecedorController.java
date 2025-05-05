@@ -55,6 +55,10 @@ public class VisualizarFornecedorController {
 
     @FXML
     private Menu menuVisualizar;
+    
+    @FXML
+    private Menu menuCadastrar; 
+    
  @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController cf =  new CadastrarFornecedorController();

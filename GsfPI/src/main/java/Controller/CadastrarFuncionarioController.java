@@ -12,18 +12,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import model.Funcionario;
 import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
-
-    @FXML
+    
+   @FXML
     private MenuBar MenuBar;
 
     @FXML
@@ -54,25 +54,7 @@ public class CadastrarFuncionarioController {
     private MenuItem itemVisuPonto;
 
     @FXML
-    private Label lblCargo;
-
-    @FXML
-    private Label lblContato;
-
-    @FXML
-    private Label lblCpf;
-
-    @FXML
-    private Label lblEmail;
-
-    @FXML
-    private Label lblIdade;
-
-    @FXML
-    private Label lblIdade1;
-
-    @FXML
-    private Label lblNome;
+    private Menu menuCadastrar;
 
     @FXML
     private Menu menuHome;
@@ -93,13 +75,16 @@ public class CadastrarFuncionarioController {
     private TextField txtEmail;
 
     @FXML
+    private FlowPane txtEndereco;
+
+    @FXML
+    private TextField txtNascimento;
+
+    @FXML
     private TextField txtNome;
 
     @FXML
     private TextField txtSalario;
-
-    @FXML
-    private TextField txtNascimento;
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -150,7 +135,7 @@ public class CadastrarFuncionarioController {
     }
 
     @FXML
-    void btnCadastrarClick() {
+    void btnCadastrarClick(ActionEvent event) throws IOException {
         if (CadastroDeFuncionario() != true) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
