@@ -90,12 +90,17 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtTecido;
-
-    @FXML
+    
+     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
-        cbColecao.getItems().addAll("Verão", "Inverno");
+        cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
+        cbModelo.getItems().addAll("Calça","Short","legging","Blusa","Regata","Casaco");
+        cbColecao.getItems().addAll("Primavera","verão","Outono","Inverno");
+        cbLinha.getItems().addAll("Azul","Branca","Vermelha");
     }
+    
+
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
