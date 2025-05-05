@@ -28,8 +28,8 @@ public class FaccaoDAO extends GenericDAO {
         }
     
    
-    public Faccao ListaFaccao(){
-        Faccao f = lc.getUserInfo().get(0);
+    public Faccao ListaFaccao(ArrayList<Faccao> user){
+        Faccao f = user.get(0);
         CnpjFaccao = f.getCNPJFaccao();
         NomeRepreFaccao = f.getNomeRepreFaccao();
         EmailAcesso = f.getEmailAcesso();

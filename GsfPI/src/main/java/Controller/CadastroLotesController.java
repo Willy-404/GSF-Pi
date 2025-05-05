@@ -17,6 +17,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Faccao;
 import model.Lotes;
 import model.LotesDAO;
 
@@ -90,63 +91,63 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtTecido;
+     Faccao f;
+      public Stage stage;
 
+    public void setFaccao(Faccao f) {
+        this.f=f;
+    }
+
+    
+    
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
         cbColecao.getItems().addAll("Verão", "Inverno");
     }
 
-    @FXML
+     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-        CadastrarFornecedorController cf = new CadastrarFornecedorController();
-        cf.trocarCadFornecedor(MenuBar);
+       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController cf = new CadastrarFuncionarioController();
-        cf.trocarCadFuncionario(MenuBar);
+        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController cl = new CadastroLotesController();
-        cl.trocarCadLotes(MenuBar);
+        CadastroLotesController.trocarCadLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController vf = new VisualizarFornecedorController();
-        vf.trocarVizFornecedor(MenuBar);
+        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-        VisualizarFuncionarioController vf = new VisualizarFuncionarioController();
-        vf.trocarVizFuncionario(MenuBar);
+         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController vl = new VisualizarLotesController();
-        vl.trocarVizLotes(MenuBar);
+        VisualizarLotesController.trocarVizLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController vp = new VisualizarPontoController();
-        vp.trocarVizPonto(MenuBar);
+        VisualizarPontoController.trocarVizPonto(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController thc = new TelaHomeController();
-        thc.trocarTelaHome(MenuBar);
+        TelaHomeController.trocarTelaHome(MenuBar, f);
     }
 
     //metodo de trocar tela para cadastro lote
-    public void trocarCadLotes(MenuBar menuBar) throws IOException {
+    public static void trocarCadLotes(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Cadastro de Lotes");
@@ -154,6 +155,10 @@ public class CadastroLotesController {
         URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+        CadastroLotesController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(home);
 
         Scene cena = new Scene(root);
         home.setScene(cena);
@@ -182,5 +187,9 @@ public class CadastroLotesController {
         LotesDAO LDmetodo = new LotesDAO();
         return LDmetodo.cadastroLotes(l);
 
+    }
+
+    public void setStage(Stage home) {
+      this.stage = home;  
     }
 }

@@ -14,6 +14,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Faccao;
 
 public class CadastrarFornecedorController {
 
@@ -64,57 +65,55 @@ public class CadastrarFornecedorController {
 
     @FXML
     private TextField txtNome;
+    Faccao f;
+     public Stage stage;
+     
+    public void setFaccao(Faccao f) {
+        this.f=f;
+    }
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController cf =  new CadastrarFornecedorController();
-        cf.trocarCadFornecedor(MenuBar);
+       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController cf =  new CadastrarFuncionarioController();
-        cf.trocarCadFuncionario(MenuBar);
+        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController cl =  new CadastroLotesController();
-        cl.trocarCadLotes(MenuBar);
+        CadastroLotesController.trocarCadLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController vf =  new VisualizarFornecedorController();
-        vf.trocarVizFornecedor(MenuBar);
+        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController vf =  new VisualizarFuncionarioController();
-        vf.trocarVizFuncionario(MenuBar);
+         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController vl =  new VisualizarLotesController();
-        vl.trocarVizLotes(MenuBar);
+        VisualizarLotesController.trocarVizLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController vp =  new VisualizarPontoController();
-        vp.trocarVizPonto(MenuBar);
+        VisualizarPontoController.trocarVizPonto(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController thc = new TelaHomeController();
-        thc.trocarTelaHome(MenuBar);
+        TelaHomeController.trocarTelaHome(MenuBar, f);
     }
     
     //metodo para trocar tela para cadastrar fornecedor
-    public void trocarCadFornecedor(MenuBar menuBar)throws IOException {
+    public static void trocarCadFornecedor(MenuBar menuBar, Faccao f)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Cadastro de Fornecedor");
@@ -123,11 +122,20 @@ public class CadastrarFornecedorController {
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 
+            CadastrarFornecedorController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(home);
+            
+           
             Scene cena = new Scene(root);
             home.setScene(cena);
             home.show();
 
             ((Stage) menuBar.getScene().getWindow()).close();
+    }
+
+    public void setStage(Stage home) {
+        this.stage = home;
     }
 
 }

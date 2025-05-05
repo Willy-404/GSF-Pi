@@ -18,11 +18,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
-    
+
    @FXML
     private MenuBar MenuBar;
 
@@ -85,53 +86,51 @@ public class CadastrarFuncionarioController {
 
     @FXML
     private TextField txtSalario;
+  Faccao f;
+    public Stage stage;
 
-    @FXML
+    public void setFaccao(Faccao r) {
+        this.f = r;
+    }
+
+     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-        CadastrarFornecedorController cf = new CadastrarFornecedorController();
-        cf.trocarCadFornecedor(MenuBar);
+       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController cf = new CadastrarFuncionarioController();
-        cf.trocarCadFuncionario(MenuBar);
+        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController cl = new CadastroLotesController();
-        cl.trocarCadLotes(MenuBar);
+        CadastroLotesController.trocarCadLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController vf = new VisualizarFornecedorController();
-        vf.trocarVizFornecedor(MenuBar);
+        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-        VisualizarFuncionarioController vf = new VisualizarFuncionarioController();
-        vf.trocarVizFuncionario(MenuBar);
+         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController vl = new VisualizarLotesController();
-        vl.trocarVizLotes(MenuBar);
+        VisualizarLotesController.trocarVizLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController vp = new VisualizarPontoController();
-        vp.trocarVizPonto(MenuBar);
+        VisualizarPontoController.trocarVizPonto(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController thc = new TelaHomeController();
-        thc.trocarTelaHome(MenuBar);
+        TelaHomeController.trocarTelaHome(MenuBar, f);
     }
 
     @FXML
@@ -149,7 +148,7 @@ public class CadastrarFuncionarioController {
         }
     }
         //Metodo para trocar pra tela Cadastrar funcionario
-    public void trocarCadFuncionario(MenuBar menuBar) throws IOException {
+    public static void trocarCadFuncionario(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Cadastro de Funcionario");
@@ -157,6 +156,10 @@ public class CadastrarFuncionarioController {
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+        CadastrarFuncionarioController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(home);
 
         Scene cena = new Scene(root);
         home.setScene(cena);
@@ -180,6 +183,10 @@ public class CadastrarFuncionarioController {
         FuncionarioDAO LDmetodo = new FuncionarioDAO();
         return LDmetodo.cadastroFuncionario(l);
 
+    }
+
+    public void setStage(Stage home) {
+      this.stage = home;  
     }
 
 }

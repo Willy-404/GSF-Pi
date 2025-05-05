@@ -13,6 +13,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import model.Faccao;
 
 public class VisualizarPontoController {
 
@@ -51,56 +52,54 @@ public class VisualizarPontoController {
 
     @FXML
     private Menu menuVisualizar;
+    Faccao f;
 
+    public void setFaccao(Faccao f) {
+        this.f=f;
+    }
+
+    public Stage stage;
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController cf =  new CadastrarFornecedorController();
-        cf.trocarCadFornecedor(MenuBar);
+       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController cf =  new CadastrarFuncionarioController();
-        cf.trocarCadFuncionario(MenuBar);
+        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController cl =  new CadastroLotesController();
-        cl.trocarCadLotes(MenuBar);
+        CadastroLotesController.trocarCadLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController vf =  new VisualizarFornecedorController();
-        vf.trocarVizFornecedor(MenuBar);
+        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController vf =  new VisualizarFuncionarioController();
-        vf.trocarVizFuncionario(MenuBar);
+         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController vl =  new VisualizarLotesController();
-        vl.trocarVizLotes(MenuBar);
+        VisualizarLotesController.trocarVizLotes(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController vp =  new VisualizarPontoController();
-        vp.trocarVizPonto(MenuBar);
+        VisualizarPontoController.trocarVizPonto(MenuBar, f);
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController thc = new TelaHomeController();
-        thc.trocarTelaHome(MenuBar);
+        TelaHomeController.trocarTelaHome(MenuBar, f);
     }
     
-     public void trocarVizPonto(MenuBar menuBar)throws IOException {
+     public static void trocarVizPonto(MenuBar menuBar, Faccao f)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
         visuPonto.setTitle("Visualizar os Pontos");
@@ -108,12 +107,20 @@ public class VisualizarPontoController {
         URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+        VisualizarPontoController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(visuPonto);
 
         Scene cena = new Scene(root);
         visuPonto.setScene(cena);
         visuPonto.show();
         
         ((Stage) menuBar.getScene().getWindow()).close();
+    }
+
+    public void setStage(Stage visuPonto) {
+        this.stage = visuPonto;
     }
 
 }

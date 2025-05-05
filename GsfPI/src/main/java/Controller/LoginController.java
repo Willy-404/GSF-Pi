@@ -24,15 +24,6 @@ import model.LoginDAO;
 public class LoginController {
 private Connection conexao;
     private final LoginDAO dao = new LoginDAO();
-    private ArrayList<Faccao> userInfo = new ArrayList<>();
-
-    public ArrayList<Faccao> getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(ArrayList<Faccao> userInfo) {
-        this.userInfo = userInfo;
-    }
     
     private Stage stageLogin;
     
@@ -55,8 +46,6 @@ private Connection conexao;
         Faccao r = null;
     try {
         r = processarLogin();
-       
-        userInfo.add(r);
     } catch (SQLException ex) {
                    System.out.println("Erro de conexao com o banco de dados");
 
@@ -67,8 +56,7 @@ private Connection conexao;
         alerta.setHeaderText("Login ou senha inválidos!!!");
         alerta.showAndWait();
         }else{
-            TelaHomeController thc = new TelaHomeController();
-            thc.trocarTelaHome(btnConfirmar);
+            TelaHomeController.trocarTelaHome(btnConfirmar, r);
         }
       
 

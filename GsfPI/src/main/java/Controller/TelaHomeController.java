@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
+import model.Faccao;
 
 public class TelaHomeController {
 
+    private Stage stage;
     @FXML
     private Button btnCadastrarLote;
 
@@ -34,6 +37,15 @@ public class TelaHomeController {
 
     @FXML
     private Button btnVisualizarPonto;
+    
+    Faccao f;
+
+    
+    
+    public void setFaccao(Faccao r) {
+        this.f = r;
+    }
+
 
     @FXML
     void onClickCadastrarLotes(ActionEvent event) throws IOException {
@@ -46,6 +58,11 @@ public class TelaHomeController {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
+        
+        CadastroLotesController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(cadastroLote);
+            
         Scene cena = new Scene(root);
         cadastroLote.setScene(cena);
         cadastroLote.show();
@@ -81,6 +98,11 @@ public class TelaHomeController {
         URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+        
+            VisualizarFornecedorController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(fornecedor);
 
         Scene cena = new Scene(root);
         fornecedor.setScene(cena);
@@ -99,6 +121,10 @@ public class TelaHomeController {
         URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+        VisualizarFuncionarioController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(funcionario);
 
         Scene cena = new Scene(root);
         funcionario.setScene(cena);
@@ -152,7 +178,7 @@ public class TelaHomeController {
 
     
     //metodo para trocar a tela pro home
-    public void trocarTelaHome(Button btnTroca)throws IOException {
+    public static void trocarTelaHome(Button btnTroca, Faccao r)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("home");
@@ -160,15 +186,19 @@ public class TelaHomeController {
             URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
-
+            
+            TelaHomeController thc = loader.getController();
+            thc.setFaccao(r);
+            thc.setStage(home);
+            
             Scene cena = new Scene(root);
             home.setScene(cena);
             home.show();
-
+            
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
     //metodo para trocar a tela pro home usando menubar como parametro
-     public void trocarTelaHome(MenuBar menubar)throws IOException {
+     public static void trocarTelaHome(MenuBar menubar, Faccao f)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("home");
@@ -176,12 +206,19 @@ public class TelaHomeController {
             URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
+             TelaHomeController thc = loader.getController();
+            thc.setFaccao(r);
+            thc.setStage(home);
 
             Scene cena = new Scene(root);
             home.setScene(cena);
             home.show();
 
             ((Stage) menubar.getScene().getWindow()).close();
+    }
+
+    private void setStage(Stage home) {
+        this.stage = home;
     }
 
 }
