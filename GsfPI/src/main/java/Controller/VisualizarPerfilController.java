@@ -94,6 +94,7 @@ public class VisualizarPerfilController {
         txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
         txtContato.setText(f.getTelefone());
         txtEmail.setText(f.getEmailAcesso());
+        txtNome.setText(f.getNomeRepreFaccao());
     }
         
     @FXML
@@ -192,7 +193,7 @@ public class VisualizarPerfilController {
         });     
     }
 
-   public void TrocarVisualizarPerfil(Button btnPerfil) throws IOException {
+   public static void TrocarVisualizarPerfil(Button btnPerfil, Faccao f) throws IOException {
         Stage visuPerfil = new Stage();
         visuPerfil.setMaximized(true);
         visuPerfil.setTitle("Visualizar Perfil");
@@ -202,7 +203,7 @@ public class VisualizarPerfilController {
         Parent root = loader.load();
         
           VisualizarPerfilController thc = loader.getController();
-           // thc.setFaccao(f);
+            thc.setFaccao(f);
             thc.setStage(visuPerfil);
 
         Scene cena = new Scene(root);

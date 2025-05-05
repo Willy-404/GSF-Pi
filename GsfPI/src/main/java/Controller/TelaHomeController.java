@@ -60,8 +60,8 @@ public class TelaHomeController {
 
         
         CadastroLotesController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(cadastroLote);
+        thc.setFaccao(f);
+        thc.setStage(cadastroLote);
             
         Scene cena = new Scene(root);
         cadastroLote.setScene(cena);
@@ -170,8 +170,7 @@ public class TelaHomeController {
     }
     @FXML
     void onClickVisualizarPerfil(ActionEvent event) throws IOException {
-        VisualizarPerfilController vpc = new VisualizarPerfilController();
-        vpc.TrocarVisualizarPerfil(btnPerfil);
+        VisualizarPerfilController.TrocarVisualizarPerfil(btnPerfil, f);
     }
     
  
@@ -198,7 +197,7 @@ public class TelaHomeController {
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
     //metodo para trocar a tela pro home usando menubar como parametro
-     public static void trocarTelaHome(MenuBar menubar, Faccao f)throws IOException {
+     public static void trocarTelaHome(MenuBar menubar, Faccao r)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("home");
@@ -206,8 +205,9 @@ public class TelaHomeController {
             URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
-             TelaHomeController thc = loader.getController();
-          // thc.setFaccao(r);
+            
+            TelaHomeController thc = loader.getController();
+            thc.setFaccao(r);
             thc.setStage(home);
 
             Scene cena = new Scene(root);
