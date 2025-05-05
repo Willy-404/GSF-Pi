@@ -27,7 +27,7 @@ public class CadastrarFuncionarioController {
     private MenuBar MenuBar;
 
     @FXML
-    private Button btnCadastrarFuncionario;
+    private Button btnCadastroFunca;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -135,8 +135,8 @@ public class CadastrarFuncionarioController {
     }
 
     @FXML
-    void btnCadastrarClick(ActionEvent event) throws IOException {
-        if (CadastroDeFuncionario() != true) {
+    void onClickCadastroFunca(ActionEvent event)  {
+        if (CadastroDeFuncionario() != true) { 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
             alerta.setHeaderText("Erro ao cadastrar funcionário ");
@@ -176,9 +176,9 @@ public class CadastrarFuncionarioController {
         Float ValorHora = Float.parseFloat(txtSalario.getText());
         String Cargo = txtCargo.getText();
 
-        Funcionario l = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
-        FuncionarioDAO LDmetodo = new FuncionarioDAO();
-        return LDmetodo.cadastroFuncionario(l);
+        Funcionario f = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
+        FuncionarioDAO FuncaMetodo = new FuncionarioDAO();
+        return FuncaMetodo.cadastroFuncionario(f);
 
     }
 

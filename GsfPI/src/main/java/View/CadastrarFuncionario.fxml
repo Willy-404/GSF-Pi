@@ -386,7 +386,7 @@
                      <children>
                         <FlowPane prefHeight="51.0" prefWidth="487.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="btnCadastrarFuncionario" mnemonicParsing="false" mouseTransparent="true" onAction="#btnCadastrarClick" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #5496c5;" text="Confirmar" textFill="WHITE" wrapText="true">
+                              <Button fx:id="btnCadastroFunca" mnemonicParsing="false" onAction="#onClickCadastroFunca" prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #5496c5;" text="Cadastrar" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>

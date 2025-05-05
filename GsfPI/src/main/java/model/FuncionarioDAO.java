@@ -12,17 +12,19 @@ public class FuncionarioDAO extends GenericDAO{
     private Float ValorHora;
     private String Cargo;
     
-    public boolean cadastroFuncionario(Funcionario l){
+    public boolean cadastroFuncionario(Funcionario f){
     String sql = "INSERT INTO funcionario (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) "
             + "VALUES (?,?,?,?,?,?,?)";
-    try  {
-            save(sql, l);
-            return true;
-        } catch (SQLException e) {
+    try{
+            save(sql,f.getCpf(),f.getNomeFuncionario(), f.getDataNascimento(), f.getTelefone(), f.getEmail(), f.getValorHora(), f.getCargo());
+            
+           
+             return true;
+            }catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-    }
+        }
     
     public String getCpf() {
         return Cpf;
