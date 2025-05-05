@@ -27,3 +27,15 @@
     -fx-border-radius: 100px;
 }
 
+
+#btnCadastroFunca:pressed {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.4), 8, 0.4, 0, 2);
+    -fx-translate-y: 1;
+    -fx-scale-x: 0.78;
+  -fx-scale-y: 0.78;
+}
+#btnCadastroFunca:hover {
+    -fx-background-color: #45A049;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 100px;
+}
