@@ -141,6 +141,29 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void onClickCadastroFunca(ActionEvent event)  {
+        if (txtCpf.getText().isEmpty() || txtNome.getText().isEmpty() || 
+            txtNascimento.getText().isEmpty() || txtContato.getText().isEmpty()
+            ||txtEmail.getText().isEmpty()||txtSalario.getText().isEmpty()
+            ||txtCargo.getText().isEmpty()){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campos não preenchidos");
+            alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
+            alerta.showAndWait();
+            return;
+        } else if (!txtCpf.getText().matches("[z0-9]+")) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campo CPF");
+            alerta.setHeaderText("Campo CPF deve conter apenas numeros!!!");
+            alerta.showAndWait();
+            return;
+        } else if (txtCpf.getText().length() != 11) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("CPF");
+            alerta.setHeaderText("Campo CPF inválido!!!");
+            alerta.showAndWait();
+            return;
+        }
+        
         if (CadastroDeFuncionario() != true) { 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
