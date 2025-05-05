@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,11 +24,15 @@ import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
     
+    private ArrayList<Funcionario> userInfo = new ArrayList<>();
+    public ArrayList<Funcionario> getUserInfo() {
+        return userInfo;
+    }    
    @FXML
     private MenuBar MenuBar;
 
     @FXML
-    private Button btnCadastrarFuncionario;
+    private Button btnCadastroFunca;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -135,8 +140,31 @@ public class CadastrarFuncionarioController {
     }
 
     @FXML
-    void btnCadastrarClick(ActionEvent event) throws IOException {
-        if (CadastroDeFuncionario() != true) {
+    void onClickCadastroFunca(ActionEvent event)  {
+        if (txtCpf.getText().isEmpty() || txtNome.getText().isEmpty() || 
+            txtNascimento.getText().isEmpty() || txtContato.getText().isEmpty()
+            ||txtEmail.getText().isEmpty()||txtSalario.getText().isEmpty()
+            ||txtCargo.getText().isEmpty()){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campos não preenchidos");
+            alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
+            alerta.showAndWait();
+            return;
+        } else if (!txtCpf.getText().matches("[z0-9]+")) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campo CPF");
+            alerta.setHeaderText("Campo CPF deve conter apenas numeros!!!");
+            alerta.showAndWait();
+            return;
+        } else if (txtCpf.getText().length() != 11) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("CPF");
+            alerta.setHeaderText("Campo CPF inválido!!!");
+            alerta.showAndWait();
+            return;
+        }
+        
+        if (CadastroDeFuncionario() != true) { 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
             alerta.setHeaderText("Erro ao cadastrar funcionário ");
@@ -176,9 +204,9 @@ public class CadastrarFuncionarioController {
         Float ValorHora = Float.parseFloat(txtSalario.getText());
         String Cargo = txtCargo.getText();
 
-        Funcionario l = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
-        FuncionarioDAO LDmetodo = new FuncionarioDAO();
-        return LDmetodo.cadastroFuncionario(l);
+        Funcionario f = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
+        FuncionarioDAO FuncaMetodo = new FuncionarioDAO();
+        return FuncaMetodo.cadastroFuncionario(f);
 
     }
 
