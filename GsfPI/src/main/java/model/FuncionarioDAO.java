@@ -1,5 +1,6 @@
 package model;
 
+import Controller.CadastrarFuncionarioController;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -11,6 +12,7 @@ public class FuncionarioDAO extends GenericDAO{
     private String Email;
     private Float ValorHora;
     private String Cargo;
+    CadastrarFuncionarioController fc = new CadastrarFuncionarioController();
     
     public boolean cadastroFuncionario(Funcionario f){
     String sql = "INSERT INTO funcionario (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) "
@@ -25,6 +27,30 @@ public class FuncionarioDAO extends GenericDAO{
             return false;
         }
         }
+    
+    public Funcionario ListarFuncionario(){
+        Funcionario f = fc.getUserInfo().get(0);
+        Cpf = f.getCpf();
+        NomeFuncionario = f.getNomeFuncionario();
+        DataNascimento = f.getDataNascimento();
+        Telefone = f.getTelefone();
+        Email = f.getEmail();
+        ValorHora = f.getValorHora();
+        Cargo = f.getCargo();
+        return f;
+    }
+    
+    public boolean editarFuncionario(Funcionario f, long id){
+        String sql = "UPDATE INTO funcionario SET (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) WHERE (Cpf = id) ";
+        try{
+            update(sql,id,f);
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        
+         }
+    }
     
     public String getCpf() {
         return Cpf;

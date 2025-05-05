@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,10 @@ import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
     
+    private ArrayList<Funcionario> userInfo = new ArrayList<>();
+    public ArrayList<Funcionario> getUserInfo() {
+        return userInfo;
+    }    
    @FXML
     private MenuBar MenuBar;
 
