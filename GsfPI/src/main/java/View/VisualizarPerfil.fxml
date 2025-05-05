@@ -68,8 +68,8 @@
                 </FlowPane>
                 <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="944.0" minWidth="10.0" prefWidth="758.4000366210937" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1029.5999877929687" minWidth="10.0" prefWidth="1019.1999633789062" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="944.0" minWidth="10.0" prefWidth="674.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1107.0" minWidth="10.0" prefWidth="1107.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -141,8 +141,8 @@
                 </GridPane>
                 <GridPane GridPane.rowIndex="2">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="962.0" minWidth="10.0" prefWidth="759.399951171875" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1019.4000488281251" minWidth="10.0" prefWidth="1019.4000488281251" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="962.0" minWidth="10.0" prefWidth="673.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1109.0" minWidth="10.0" prefWidth="1108.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -217,8 +217,8 @@
                 </GridPane>
                 <GridPane GridPane.rowIndex="3">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="959.0" minWidth="10.0" prefWidth="760.2" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1021.8000244140624" minWidth="10.0" prefWidth="1019.3999999999999" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="959.0" minWidth="10.0" prefWidth="674.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1107.0" minWidth="10.0" prefWidth="1107.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

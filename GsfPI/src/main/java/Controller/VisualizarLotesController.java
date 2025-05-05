@@ -12,13 +12,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.FaccaoDAO;
 import model.Lotes;
 import model.LotesDAO;
 
@@ -26,6 +28,27 @@ public class VisualizarLotesController {
 
     @FXML
     private MenuBar MenuBar;
+    
+        @FXML
+    private Button btnEditar;
+
+    @FXML
+    private Button btnSalvar;
+
+    @FXML
+    private Button btnVoltar;
+
+    @FXML
+    private TextField cbColecao;
+
+    @FXML
+    private TextField cbLinha;
+
+    @FXML
+    private TextField cbModelo;
+
+    @FXML
+    private TextField cbTamanho;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -64,6 +87,28 @@ public class VisualizarLotesController {
     private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
     LotesDAO lmetodos = new LotesDAO();
     Lotes l; 
+    
+    
+    @FXML
+    private TextField txtEntrada;
+
+    @FXML
+    private TextField txtMarca;
+
+    @FXML
+    private TableColumn<?, ?> txtPrazo;
+
+    @FXML
+    private TextField txtPreco;
+
+    @FXML
+    private TableColumn<?, ?> txtQuantidade;
+
+    @FXML
+    private TableColumn<?, ?> txtReferencia;
+
+    @FXML
+    private TextField txtTecido;
 
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
