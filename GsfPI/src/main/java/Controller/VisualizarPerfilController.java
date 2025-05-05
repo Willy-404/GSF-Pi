@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
+import model.Perfil;
 
 public class VisualizarPerfilController {
 
@@ -82,6 +83,9 @@ public class VisualizarPerfilController {
     @FXML
     private TextField txtNome;
     
+    @FXML
+    private TextField txtSenha;
+    
     //Retorno dos valores da faccao Logada no sistema 
     FaccaoDAO fd = new FaccaoDAO();
     Faccao f;
@@ -95,6 +99,7 @@ public class VisualizarPerfilController {
         txtContato.setText(f.getTelefone());
         txtEmail.setText(f.getEmailAcesso());
         txtNome.setText(f.getNomeRepreFaccao());
+        txtSenha.setText(f.getSenha());
     }
         
     @FXML
@@ -166,22 +171,33 @@ public class VisualizarPerfilController {
     
      @FXML
     void OnClickEditar(ActionEvent event) throws IOException {
+        //seleciona o id da faccao que será modificada
         long id = (f.getCNPJFaccao());
+        
+        //Pegando as informações da Faccao atual
+        long cnpjT = Long.parseLong(txtCnpj.getText());
+        String NomeRepreFaccaoT = txtNome.getText();
+        String EmailAcessoT = txtEmail.getText();
+        String SenhaT = txtSenha.getText();
+        String TelefoneT = txtContato.getText();
+        Perfil perfilT = Perfil.FACCAO;
+        
+        Faccao fTroca = new Faccao(cnpjT,NomeRepreFaccaoT,EmailAcessoT,SenhaT,TelefoneT, perfilT);
         FaccaoDAO fmetodo = new FaccaoDAO();
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");
         alerta.setHeaderText("Deseja fazer a edição das informações?");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                if(fmetodo.editarFaccao(f, id) != true){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Edição Concluida");
-                    alert.setHeaderText("A edição ocoreu com sucesso!!");
-                    alerta.showAndWait();
-                }else{
+                if(fmetodo.editarFaccao(fTroca, id) != true){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Problema na Edição");
                     alert.setHeaderText("Ocorreu um problema na edição!!");
+                    alerta.showAndWait();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Edição Concluida");
+                    alert.setHeaderText("A edição ocoreu com sucesso!!");
                     alerta.showAndWait();
                 }
             }else{
