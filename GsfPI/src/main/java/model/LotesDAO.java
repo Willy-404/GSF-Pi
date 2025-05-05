@@ -20,17 +20,18 @@ public class LotesDAO extends GenericDAO {
     private String Linha;
     
     private TableView<Lotes> tabelaLotes;
-    private TableColumn<Lotes, Integer> colRef;
-    private TableColumn<Lotes, Integer> colQuanti;
+    private TableColumn<Lotes, Integer> colReferefercia;
+    private TableColumn<Lotes, Integer> colQuantidade;
     private TableColumn<Lotes, LocalDate> colPrazo;
   
     public boolean cadastroLotes(Lotes l){
     String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) "
             + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     try  {
-            save(sql, l);
+            save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
+                    l.getTamanho(), l.getQuantidade(), l.getLinha());
             return true;
-        } catch (SQLException e) {
+        } catch (SQLException e) {  
             e.printStackTrace();
             return false;
         }
