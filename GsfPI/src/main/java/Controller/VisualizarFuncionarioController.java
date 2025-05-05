@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 
@@ -51,6 +52,9 @@ public class VisualizarFuncionarioController {
 
     @FXML
     private Label lblFuncionarios;
+    
+        @FXML
+    private TextField txtPesquisaFuncionario;
 
     @FXML
     private Menu menuHome;

@@ -42,12 +42,12 @@
    <center>
       <AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="1542.0" style="-fx-background-color: #386b8f;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblFornecedores" layoutX="187.0" layoutY="26.0" prefHeight="37.0" prefWidth="187.0" text="FORNECEDORES" textFill="WHITE">
+            <Label fx:id="lblFornecedores" layoutX="206.0" layoutY="26.0" prefHeight="37.0" prefWidth="187.0" text="Fornecedores" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnNovoFornecedor" layoutX="394.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" />
+            <Button fx:id="btnNovoFornecedor" layoutX="393.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" />
             <TableView layoutX="187.0" layoutY="96.0" prefHeight="794.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
               <columns>
                 <TableColumn prefWidth="309.0" style="-fx-backgorund-color: #386b8f;" text="Nome" />

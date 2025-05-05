@@ -5,28 +5,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarFuncionarioController">
-   <center>
-      <FlowPane style="-fx-background-color: #386b8f;">
-         <children>
-            <AnchorPane id="AnchorPane" prefHeight="883.0" prefWidth="1560.0" style="-fx-background-color: #386b8f;">
-               <children>
-                  <Label fx:id="lblFuncionarios" layoutX="14.0" layoutY="26.0" text="Funcionários" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnNovoFuncionario" layoutX="181.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickNovoFuncionario" text="Novo" />
-               </children>
-            </AnchorPane>
-         </children>
-      </FlowPane>
-   </center>
    <top>
       <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1560.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
          <menus>
@@ -53,4 +39,28 @@
          </menus>
       </MenuBar>
    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="200.0" layoutY="26.0" text="Funcionários" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnNovoFuncionario" layoutX="373.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickNovoFuncionario" text="Novo" />
+            <TextField fx:id="txtPesquisaFuncionario" layoutX="448.0" layoutY="31.0" prefHeight="25.0" prefWidth="552.0" />
+            <TableView layoutY="60.0" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
+              <columns>
+                <TableColumn prefWidth="196.00000303983688" text="Nome" />
+                <TableColumn minWidth="0.0" prefWidth="187.1999969482422" text="Cargo" />
+                  <TableColumn prefWidth="212.79998779296875" text="Contato" />
+                  <TableColumn prefWidth="223.1998291015625" text="Cpf" />
+                  <TableColumn prefWidth="237.60015869140625" text="Email" />
+                  <TableColumn prefWidth="258.39990234375" text="Data de Nascimento" />
+                  <TableColumn prefWidth="255.2000732421875" text="Salário" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

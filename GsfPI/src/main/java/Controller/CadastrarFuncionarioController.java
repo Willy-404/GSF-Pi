@@ -24,15 +24,14 @@ import model.Funcionario;
 import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
-<<<<<<< HEAD
 
-=======
-    
+
+
+  
     private ArrayList<Funcionario> userInfo = new ArrayList<>();
     public ArrayList<Funcionario> getUserInfo() {
         return userInfo;
     }    
->>>>>>> 0612ef7868e3a73010ac5080d0cb26b6fd8a7550
    @FXML
     private MenuBar MenuBar;
 

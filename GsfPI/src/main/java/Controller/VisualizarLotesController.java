@@ -21,11 +21,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-<<<<<<< HEAD
+
 import model.Faccao;
 import model.FaccaoDAO;
-=======
->>>>>>> 0612ef7868e3a73010ac5080d0cb26b6fd8a7550
+
+
 import model.Lotes;
 import model.LotesDAO;
 
@@ -92,16 +92,14 @@ public class VisualizarLotesController {
     private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
     LotesDAO lmetodos = new LotesDAO();
     Lotes l; 
-<<<<<<< HEAD
+
      Faccao f;
       public Stage stage;
     public void setFaccao(Faccao f) {
         this.f=f;
     }
- @FXML
-=======
-    
-    
+
+      
     @FXML
     private TextField txtEntrada;
 
@@ -124,7 +122,7 @@ public class VisualizarLotesController {
     private TextField txtTecido;
 
      @FXML
->>>>>>> 0612ef7868e3a73010ac5080d0cb26b6fd8a7550
+
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }

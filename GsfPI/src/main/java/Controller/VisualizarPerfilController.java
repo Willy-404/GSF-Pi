@@ -202,7 +202,7 @@ public class VisualizarPerfilController {
         Parent root = loader.load();
         
           VisualizarPerfilController thc = loader.getController();
-            thc.setFaccao(f);
+           // thc.setFaccao(f);
             thc.setStage(visuPerfil);
 
         Scene cena = new Scene(root);

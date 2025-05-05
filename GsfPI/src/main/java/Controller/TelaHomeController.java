@@ -207,7 +207,7 @@ public class TelaHomeController {
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
              TelaHomeController thc = loader.getController();
-            thc.setFaccao(r);
+          // thc.setFaccao(r);
             thc.setStage(home);
 
             Scene cena = new Scene(root);
