@@ -14,10 +14,10 @@ public class FaccaoDAO extends GenericDAO {
     private String Perfil;
     LoginController lc = new LoginController();
     public boolean cadastroFaccao(Faccao f) {
-        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, Perfil) VALUES (?,?,?,?,?,Faccao)";
+        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, Perfil) VALUES (?,?,?,?,?,?)";
       
         try{
-            save(sql, f);
+            save(sql, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone(), f.getPerfil().getNome());
             
            
              return true;

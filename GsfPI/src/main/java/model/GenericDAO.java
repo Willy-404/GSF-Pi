@@ -28,8 +28,6 @@ public abstract class GenericDAO {
     protected void save(String insertSql, Object... parametros ) throws SQLException {
         PreparedStatement pstmt = conectarDAO().prepareStatement(insertSql);
 
-       
-
         for (int i = 0; i < parametros.length; i++) {
             pstmt.setObject(i + 1, parametros[i]);
         }
