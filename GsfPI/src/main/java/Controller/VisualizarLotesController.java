@@ -3,7 +3,13 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+<<<<<<< Updated upstream
 import java.util.ArrayList;
+=======
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+>>>>>>> Stashed changes
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -43,17 +50,17 @@ public class VisualizarLotesController {
     @FXML
     private Button btnVoltar;
 
-    @FXML
-    private TextField cbColecao;
+   @FXML
+    private ComboBox<String> cbLinha;
 
     @FXML
-    private TextField cbLinha;
+    private ComboBox<String> cbColecao;
 
     @FXML
-    private TextField cbModelo;
+    private ComboBox<String> cbModelo;
 
     @FXML
-    private TextField cbTamanho;
+    private ComboBox<String> cbTamanho;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -88,18 +95,55 @@ public class VisualizarLotesController {
     @FXML
     private Menu menuVisualizar;
     
+<<<<<<< Updated upstream
     private ArrayList<Lotes> lotesList = new ArrayList<>(); 
     private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
     LotesDAO lmetodos = new LotesDAO();
     Lotes l; 
+=======
+     @FXML
+    private TextField txtEntrada;
+     
+<<<<<<< Updated upstream
+=======
+     @FXML
+    private TextField txtReferencia;
+     
+     @FXML
+    private TextField txtPrazo;
+     
+     @FXML
+    private TextField txtQuantidade;
+
+    @FXML
+    private TextField txtMarca;
+    
+>>>>>>> Stashed changes
+     @FXML
+    private TextField txtReferencia;
+     
+     @FXML
+    private TextField txtPrazo;
+     
+     @FXML
+    private TextField txtQuantidade;
+>>>>>>> Stashed changes
 
      Faccao f;
       public Stage stage;
     public void setFaccao(Faccao f) {
         this.f=f;
     }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
       
+=======
+=======
+>>>>>>> Stashed changes
+    LotesDAO lmetodo = new LotesDAO();
+ 
+>>>>>>> Stashed changes
     @FXML
     private TextField txtEntrada;
 
@@ -120,6 +164,18 @@ public class VisualizarLotesController {
 
     @FXML
     private TextField txtTecido;
+<<<<<<< Updated upstream
+=======
+    
+    private void carregarLotes(){
+        List<Lotes> lotesList = lmetodo.listarLotes(l, l.getReferencia()); 
+        ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
+            TabelaLotes.setItems(listaObLotes);  
+            colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+            colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+    }
+>>>>>>> Stashed changes
 
      @FXML
 
@@ -218,12 +274,28 @@ public class VisualizarLotesController {
      void OnClickEditar(ActionEvent event) throws IOException {
         int id = (l.getReferencia());
         LotesDAO lmetodo = new LotesDAO();
+        
+         int ReferenciaT = Integer.parseInt(txtReferencia.getText());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate PrazoT = LocalDate.parse(txtPrazo.getText(), formatter);
+        LocalDate EntradaT = LocalDate.parse(txtEntrada.getText(), formatter);
+        Double PrecoT = Double.parseDouble(txtPreco.getText());
+        String TecidoT = txtTecido.getText();
+        String MarcaT = txtMarca.getText();
+        String ColecaoT = cbColecao.getValue();
+        String ModeloT = cbModelo.getValue();
+        String TamanhoT = cbTamanho.getValue();
+        int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
+        String LinhaT = cbLinha.getValue();
+        
+         Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, TamanhoT, QuantidadeT, LinhaT);
+        
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");
         alerta.setHeaderText("Deseja fazer a edição das informações?");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                if(lmetodo.editarLotes(l, id) != true){
+                if(lmetodo.editarLotes(lTroca, id) != true){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Edição Concluida");
                     alert.setHeaderText("A edição ocoreu com sucesso!!");

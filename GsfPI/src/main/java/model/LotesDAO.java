@@ -37,6 +37,8 @@ public class LotesDAO extends GenericDAO {
         }
     }
     
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /*int ref tem que ser pego quando clicado no tableView isso é possivel?
     public Lotes listarLotes(Lotes l, int ref){
         String sql ="Select* INTO lote WHERE (Referencia = ref) ";
@@ -62,6 +64,44 @@ public class LotesDAO extends GenericDAO {
         }
 
         return lista;
+=======
+=======
+>>>>>>> Stashed changes
+    //int ref tem que ser pego quando clicado no tableView isso é possivel?
+    public List<Lotes> listarLotes(Lotes l, int ref){
+        String sql ="Select* FROM lote ";
+        List<Lotes> resultList = new ArrayList<Lotes>();
+
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            // Set parameters for the prepared statement if needed
+             preparedStatement.setInt(1, ref);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Create a new object for each row
+                    LocalDate data;
+                    data = LocalDate.parse(resultSet.getString("Prazo"));
+                            
+                    Lotes object = new Lotes(resultSet.getInt("ref"), data, resultSet.getInt("Quantidade") );
+
+                    // Add the object to the list
+                    resultList.add(object);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+
+        
+        
+        return resultList;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     }
     
     //Perguntar se funciona
@@ -80,10 +120,11 @@ public class LotesDAO extends GenericDAO {
     
     public boolean editarLotes(Lotes l, int id){
         //COmo atualiza no banco de dados?
-    String sql = "UPDATE INTO lotes SET (Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) WHERE (Referencia = id)";
+    String sql = "UPDATE lotes SET (Prazo= '?', Entrada= '?', Preco= '?', Tecido= '?', Marca= '?', Colecao= '?', Modelo= '?', Tamanho= '?', Quantidade= '?', Linha= '?') WHERE (Referencia = ?)";
     try  {
             
-            update(sql, id, l );
+            update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
+                    l.getTamanho(), l.getQuantidade(), l.getLinha() );
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

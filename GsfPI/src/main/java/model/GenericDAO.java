@@ -3,6 +3,7 @@ package model;
 import dal.ConexaoBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -62,6 +63,8 @@ public abstract class GenericDAO {
         conexao.close();
     }
     
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /* Pensar em um metodo que faça isso, Mas não sabemos fazer essas modificações. Retornar o Lotes ou outro objeto é possivel? 
     protected ArrayList<?> list(String listSql, Object... parametros) throws SQLException{
         PreparedStatement pstmt = conectarDAO().prepareStatement(listSql);
@@ -78,4 +81,10 @@ public abstract class GenericDAO {
         conexao.close();
         return x;
     } */
+=======
+   
+>>>>>>> Stashed changes
+=======
+   
+>>>>>>> Stashed changes
 }

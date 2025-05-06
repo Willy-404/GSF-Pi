@@ -40,10 +40,17 @@ public class FuncionarioDAO extends GenericDAO{
         return f;
     }
     
-    public boolean editarFuncionario(Funcionario f, long id){
-        String sql = "UPDATE INTO funcionario SET (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) WHERE (Cpf = id) ";
+    public boolean editarFuncionario(Funcionario f, String Cpf){
+        String CpfE = f.getCpf();
+        String NomeFuncionarioE = f.getNomeFuncionario();
+        LocalDate DataNascimentoE = f.getDataNascimento();
+        String TelefoneE = f.getTelefone();
+        String EmailE = f.getEmail();
+        Float ValorHoraE = f.getValorHora();
+        String CargoE = f.getCargo();
+        String sql = "UPDATE funcionario SET Cpf = ?, NomeFuncionario =  ?, DataNascimento = ?, Telefone = ?, Email = ?, ValorHora = ?, Cargo = ? WHERE Cpf = ? ";
         try{
-            update(sql,id,f);
+            update(sql,Cpf, f.getNomeFuncionario(), f.getDataNascimento(), f.getTelefone(), f.getEmail(), f.getValorHora(),f.getCargo());
             return true;
         }catch (SQLException e) {
             e.printStackTrace();
