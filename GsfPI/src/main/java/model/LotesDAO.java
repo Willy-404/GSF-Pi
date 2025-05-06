@@ -38,6 +38,7 @@ public class LotesDAO extends GenericDAO {
     }
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /*int ref tem que ser pego quando clicado no tableView isso é possivel?
     public Lotes listarLotes(Lotes l, int ref){
         String sql ="Select* INTO lote WHERE (Referencia = ref) ";
@@ -64,6 +65,8 @@ public class LotesDAO extends GenericDAO {
 
         return lista;
 =======
+=======
+>>>>>>> Stashed changes
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
     public List<Lotes> listarLotes(Lotes l, int ref){
         String sql ="Select* FROM lote ";
@@ -95,6 +98,9 @@ public class LotesDAO extends GenericDAO {
         
         
         return resultList;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
     

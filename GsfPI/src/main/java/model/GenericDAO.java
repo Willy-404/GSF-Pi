@@ -64,6 +64,7 @@ public abstract class GenericDAO {
     }
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /* Pensar em um metodo que faça isso, Mas não sabemos fazer essas modificações. Retornar o Lotes ou outro objeto é possivel? 
     protected ArrayList<?> list(String listSql, Object... parametros) throws SQLException{
         PreparedStatement pstmt = conectarDAO().prepareStatement(listSql);
@@ -80,6 +81,9 @@ public abstract class GenericDAO {
         conexao.close();
         return x;
     } */
+=======
+   
+>>>>>>> Stashed changes
 =======
    
 >>>>>>> Stashed changes

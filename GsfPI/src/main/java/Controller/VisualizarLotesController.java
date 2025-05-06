@@ -104,6 +104,21 @@ public class VisualizarLotesController {
      @FXML
     private TextField txtEntrada;
      
+<<<<<<< Updated upstream
+=======
+     @FXML
+    private TextField txtReferencia;
+     
+     @FXML
+    private TextField txtPrazo;
+     
+     @FXML
+    private TextField txtQuantidade;
+
+    @FXML
+    private TextField txtMarca;
+    
+>>>>>>> Stashed changes
      @FXML
     private TextField txtReferencia;
      
@@ -120,9 +135,12 @@ public class VisualizarLotesController {
         this.f=f;
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
       
 =======
+=======
+>>>>>>> Stashed changes
     LotesDAO lmetodo = new LotesDAO();
  
 >>>>>>> Stashed changes
