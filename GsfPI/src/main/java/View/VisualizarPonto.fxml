@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarPontoController">
-   <center>
-      <FlowPane style="-fx-background-color: #386b8f;">
-         <children>
-            <AnchorPane id="AnchorPane" prefHeight="902.0" prefWidth="1646.0" style="-fx-background-color: #386b8f;">
-               <children>
-                  <Label fx:id="lblPonto" layoutX="14.0" layoutY="14.0" text="Horas Trabalhadas" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </children>
-      </FlowPane>
-   </center>
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.VisualizarPontoController">
    <top>
-      <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1646.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
+      <MenuBar fx:id="MenuBar" style="-fx-background-color: #5496c5;">
          <menus>
-            <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+            <Menu fx:id="menuHome" text="Home">
                <items>
-                  <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
+                  <MenuItem fx:id="itemTelaInicial" onAction="#OnClickVisuTelaHome" text="Tela Inicial"/>
                </items>
             </Menu>
-            <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+            <Menu fx:id="menuVisualizar" text="Visualizar">
                <items>
-                  <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
-                  <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
-                  <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
-                  <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
+                  <MenuItem fx:id="itemVisuFuncionario" onAction="#OnClickVisuFuncionario1" text="Funcionario"/>
+                  <MenuItem fx:id="itemVisuFornecedor" onAction="#OnClickVisuFornecedor1" text="Fornecedor"/>
+                  <MenuItem fx:id="itemVisuLote" onAction="#OnClickVisuLote1" text="Lote"/>
+                  <MenuItem fx:id="itemVisuPonto" onAction="#OnClickVisuPonto1" text="Ponto"/>
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Cadastrar">
+            <Menu text="Cadastrar">
                <items>
-                  <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
-                  <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
-                  <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+                  <MenuItem fx:id="itemCadFuncionario" onAction="#OnClickCadFuncionario1" text="Funcionario"/>
+                  <MenuItem fx:id="itemCadFornecedor" onAction="#OnClickCadFornecedor1" text="Fornecedor"/>
+                  <MenuItem fx:id="itemCadLote" onAction="#OnClickCadLote1" text="Lote"/>
                </items>
             </Menu>
          </menus>
       </MenuBar>
    </top>
+
+   <center>
+      <VBox spacing="10" style="-fx-background-color: #386b8f; -fx-padding: 20;">
+         <Label text="Registros de Ponto" textFill="WHITE">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+
+         <TableView fx:id="tablePonto" prefHeight="700" prefWidth="1600">
+            <columns>
+               <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+               <TableColumn fx:id="colNome" text="Funcionário" prefWidth="200"/>
+               <TableColumn fx:id="colData" text="Data" prefWidth="150"/>
+               <TableColumn fx:id="colEntrada" text="Entrada" prefWidth="100"/>
+               <TableColumn fx:id="colSaida" text="Saída" prefWidth="100"/>
+               <TableColumn fx:id="colHorasTrabalhadas" text="Horas Trabalhadas" prefWidth="150"/>
+            </columns>
+         </TableView>
+      </VBox>
+   </center>
 </BorderPane>
