@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -45,17 +47,17 @@ public class VisualizarLotesController {
     @FXML
     private Button btnVoltar;
 
-    @FXML
-    private TextField cbColecao;
+   @FXML
+    private ComboBox<String> cbLinha;
 
     @FXML
-    private TextField cbLinha;
+    private ComboBox<String> cbColecao;
 
     @FXML
-    private TextField cbModelo;
+    private ComboBox<String> cbModelo;
 
     @FXML
-    private TextField cbTamanho;
+    private ComboBox<String> cbTamanho;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -90,48 +92,65 @@ public class VisualizarLotesController {
     @FXML
     private Menu menuVisualizar;
     
+
+    Lotes l; 
+
      @FXML
     private TextField txtEntrada;
 
+     @FXML
+    private TextField txtReferencia;
+     
+     @FXML
+    private TextField txtPrazo;
+     
+     @FXML
+    private TextField txtQuantidade;
+
     @FXML
     private TextField txtMarca;
-    
-     @FXML
-    private TextField txtPreco;
 
-     Lotes l;
      Faccao f;
       public Stage stage;
     public void setFaccao(Faccao f) {
         this.f=f;
     }
-    
- 
-    @FXML
+
+
+   
+    LotesDAO lmetodo = new LotesDAO();
+
+    @FXML 
     private TableView<Lotes> TabelaLotes;
     
     @FXML
-    private TableColumn<Lotes, LocalDate> colPrazo;
+    private TableColumn<Lotes, LocalDate> tbPrazo;
 
     @FXML
-    private TableColumn<Lotes, Integer> colQuantidade;
+    private TextField txtPreco;
 
     @FXML
-    private TableColumn<Lotes, Integer> colReferencia;
+    private TableColumn<Lotes, Integer> tbQuantidade;
+
+    @FXML
+    private TableColumn<Lotes, Integer> tbReferencia;
 
     @FXML
     private TextField txtTecido;
+
     
     private void carregarLotes(){
-        List<Lotes> lotesList = LotesDAO.listarLotes(); 
+        List<Lotes> lotesList = lmetodo.listarLotes(l, l.getReferencia()); 
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
-            colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
-            colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
-            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
             TabelaLotes.setItems(listaObLotes);  
+            tbPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+            tbReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+            tbQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
 
+
      @FXML
+
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
@@ -181,9 +200,8 @@ public class VisualizarLotesController {
         Parent root = loader.load();
         
         VisualizarLotesController thc = loader.getController();
-        thc.setFaccao(f);
-        thc.setStage(visuLotes);
-        thc.carregarLotes();
+            thc.setFaccao(f);
+            thc.setStage(visuLotes);
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
@@ -191,7 +209,8 @@ public class VisualizarLotesController {
         
         ((Stage) menuBar.getScene().getWindow()).close();
     }
-    public static void trocarVizLotes(Button btn, Faccao f)throws IOException {
+    
+     public static void trocarVizLotes(Button btn, Faccao f)throws IOException {
           Stage visuLotes = new Stage();
         visuLotes.setMaximized(true);
         visuLotes.setTitle("Visualizar Lotes");
@@ -201,9 +220,8 @@ public class VisualizarLotesController {
         Parent root = loader.load();
         
         VisualizarLotesController thc = loader.getController();
-        thc.setFaccao(f);
-        thc.setStage(visuLotes);
-        thc.carregarLotes();
+            thc.setFaccao(f);
+            thc.setStage(visuLotes);
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
@@ -228,12 +246,28 @@ public class VisualizarLotesController {
      void OnClickEditar(ActionEvent event) throws IOException {
         int id = (l.getReferencia());
         LotesDAO lmetodo = new LotesDAO();
+        
+         int ReferenciaT = Integer.parseInt(txtReferencia.getText());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate PrazoT = LocalDate.parse(txtPrazo.getText(), formatter);
+        LocalDate EntradaT = LocalDate.parse(txtEntrada.getText(), formatter);
+        Double PrecoT = Double.parseDouble(txtPreco.getText());
+        String TecidoT = txtTecido.getText();
+        String MarcaT = txtMarca.getText();
+        String ColecaoT = cbColecao.getValue();
+        String ModeloT = cbModelo.getValue();
+        String TamanhoT = cbTamanho.getValue();
+        int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
+        String LinhaT = cbLinha.getValue();
+        
+         Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, TamanhoT, QuantidadeT, LinhaT);
+        
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");
         alerta.setHeaderText("Deseja fazer a edição das informações?");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                if(lmetodo.editarLotes(l, id) != true){
+                if(lmetodo.editarLotes(lTroca, id) != true){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Edição Concluida");
                     alert.setHeaderText("A edição ocoreu com sucesso!!");

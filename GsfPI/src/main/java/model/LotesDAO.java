@@ -1,8 +1,13 @@
 package model;
 
+import dal.ConexaoBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -36,23 +41,39 @@ public class LotesDAO extends GenericDAO {
             return false;
         }
     }
-    
+
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
-    public Lotes listarLotes(Lotes l, int ref){
-        String sql ="Select* INTO lote WHERE (Referencia = ref) ";
-        /*Pegar a lista com o metodo list (quando for feito), Mas preciso retornar os valores entao tem que retornar um Lote
-        try {
-            list(sql, l);
-            
-            return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+    public List<Lotes> listarLotes(Lotes l, int ref){
+        String sql ="Select* FROM lote ";
+        List<Lotes> resultList = new ArrayList<Lotes>();
+
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            // Set parameters for the prepared statement if needed
+             preparedStatement.setInt(1, ref);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Create a new object for each row
+                    LocalDate data;
+                    data = LocalDate.parse(resultSet.getString("Prazo"));
+                            
+                    Lotes object = new Lotes(resultSet.getInt("ref"), data, resultSet.getInt("Quantidade") );
+
+                    // Add the object to the list
+                    resultList.add(object);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
         }
-        */
+
         
         
-        return l;
+        return resultList;
+
     }
     
     //Perguntar se funciona

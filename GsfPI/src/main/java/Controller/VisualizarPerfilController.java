@@ -184,6 +184,7 @@ public class VisualizarPerfilController {
         
         Faccao fTroca = new Faccao(cnpjT,NomeRepreFaccaoT,EmailAcessoT,SenhaT,TelefoneT, perfilT);
         FaccaoDAO fmetodo = new FaccaoDAO();
+        
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");
         alerta.setHeaderText("Deseja fazer a edição das informações?");
