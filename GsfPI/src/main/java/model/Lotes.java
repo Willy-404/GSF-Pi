@@ -1,6 +1,10 @@
 package model;
 
 import java.time.LocalDate;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 public class Lotes {
      private int Referencia;
@@ -14,11 +18,27 @@ public class Lotes {
     private String Tamanho;
     private int Quantidade;
     private String Linha;
+    
+    private final IntegerProperty refP = new SimpleIntegerProperty();
+    private final ObjectProperty <LocalDate> prazop = new SimpleObjectProperty<>();
+    private final IntegerProperty quantidadeP = new SimpleIntegerProperty();
+    
+    public Lotes(int ref, LocalDate prazo, int quantidade) {
+        this.refP.set(ref);
+        this.prazop.set(prazo);
+        this.quantidadeP.set(quantidade);
+    }
 
-    public Lotes(int Referencia, LocalDate Prazo, int Quantidade) {
-        this.Referencia = Referencia;
-        this.Prazo = Prazo;
-        this.Quantidade = Quantidade;
+    public IntegerProperty getRefP() {
+        return refP;
+    }
+
+    public ObjectProperty<LocalDate> getPrazop() {
+        return prazop;
+    }
+
+    public IntegerProperty getQuantidadeP() {
+        return quantidadeP;
     }
 
     public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, String Tamanho, int Quantidade, String Linha) {
@@ -122,6 +142,7 @@ public class Lotes {
     public void setLinha(String Linha) {
         this.Linha = Linha;
     }
-    
+
+   
     
 }

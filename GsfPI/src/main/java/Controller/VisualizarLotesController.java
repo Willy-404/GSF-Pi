@@ -3,7 +3,8 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,11 +20,12 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import model.Faccao;
-import model.FaccaoDAO;
 
 
 import model.Lotes;
@@ -88,41 +90,48 @@ public class VisualizarLotesController {
     @FXML
     private Menu menuVisualizar;
     
-    private ArrayList<Lotes> lotesList = new ArrayList<>(); 
-    private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
-    LotesDAO lmetodos = new LotesDAO();
-    Lotes l; 
+     @FXML
+    private TextField txtEntrada;
 
+    @FXML
+    private TextField txtMarca;
+    
+     @FXML
+    private TextField txtPreco;
+
+     Lotes l;
      Faccao f;
       public Stage stage;
     public void setFaccao(Faccao f) {
         this.f=f;
     }
-
-      
+    
+ 
     @FXML
-    private TextField txtEntrada;
-
+    private TableView<Lotes> TabelaLotes;
+    
     @FXML
-    private TextField txtMarca;
-
-    @FXML
-    private TableColumn<?, ?> txtPrazo;
+    private TableColumn<Lotes, LocalDate> colPrazo;
 
     @FXML
-    private TextField txtPreco;
+    private TableColumn<Lotes, Integer> colQuantidade;
 
     @FXML
-    private TableColumn<?, ?> txtQuantidade;
-
-    @FXML
-    private TableColumn<?, ?> txtReferencia;
+    private TableColumn<Lotes, Integer> colReferencia;
 
     @FXML
     private TextField txtTecido;
+    
+    private void carregarLotes(){
+        List<Lotes> lotesList = LotesDAO.listarLotes(); 
+        ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
+            colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+            colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+            TabelaLotes.setItems(listaObLotes);  
+    }
 
      @FXML
-
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
@@ -172,14 +181,35 @@ public class VisualizarLotesController {
         Parent root = loader.load();
         
         VisualizarLotesController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(visuLotes);
+        thc.setFaccao(f);
+        thc.setStage(visuLotes);
+        thc.carregarLotes();
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
         visuLotes.show();
         
         ((Stage) menuBar.getScene().getWindow()).close();
+    }
+    public static void trocarVizLotes(Button btn, Faccao f)throws IOException {
+          Stage visuLotes = new Stage();
+        visuLotes.setMaximized(true);
+        visuLotes.setTitle("Visualizar Lotes");
+
+        URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        VisualizarLotesController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.setStage(visuLotes);
+        thc.carregarLotes();
+
+        Scene cena = new Scene(root);
+        visuLotes.setScene(cena);
+        visuLotes.show();
+        
+        ((Stage) btn.getScene().getWindow()).close();
     }
     
     /* fazer o metodo para quando clicar em um item da tableview puxar as informações 
