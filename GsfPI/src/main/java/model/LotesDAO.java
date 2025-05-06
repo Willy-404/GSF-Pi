@@ -36,37 +36,7 @@ public class LotesDAO extends GenericDAO {
             return false;
         }
     }
-    
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    /*int ref tem que ser pego quando clicado no tableView isso é possivel?
-    public Lotes listarLotes(Lotes l, int ref){
-        String sql ="Select* INTO lote WHERE (Referencia = ref) ";
-        return l;
-    }*/
-    public static List<Lotes> listarLotes() {
-        List<Lotes> lista = new ArrayList<>();
-        String sql = "SELECT Referencia, Quantidade, Prazo FROM lote";
 
-        try (Connection conn = ConexaoBD.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Lotes  l = new Lotes(
-                        rs.getInt("Referencia"),
-                        LocalDate.parse(rs.getString("Prazo")),
-                        rs.getInt("Quantidade"));
-                lista.add(l);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return lista;
-=======
-=======
->>>>>>> Stashed changes
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
     public List<Lotes> listarLotes(Lotes l, int ref){
         String sql ="Select* FROM lote ";
@@ -98,10 +68,6 @@ public class LotesDAO extends GenericDAO {
         
         
         return resultList;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
     
     //Perguntar se funciona

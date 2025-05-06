@@ -3,13 +3,9 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-<<<<<<< Updated upstream
-import java.util.ArrayList;
-=======
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
->>>>>>> Stashed changes
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,11 +22,12 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import model.Faccao;
-import model.FaccaoDAO;
 
 
 import model.Lotes;
@@ -95,17 +92,10 @@ public class VisualizarLotesController {
     @FXML
     private Menu menuVisualizar;
     
-<<<<<<< Updated upstream
-    private ArrayList<Lotes> lotesList = new ArrayList<>(); 
-    private ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList();
-    LotesDAO lmetodos = new LotesDAO();
-    Lotes l; 
-=======
+    Lotes l;
      @FXML
     private TextField txtEntrada;
      
-<<<<<<< Updated upstream
-=======
      @FXML
     private TextField txtReferencia;
      
@@ -118,64 +108,45 @@ public class VisualizarLotesController {
     @FXML
     private TextField txtMarca;
     
->>>>>>> Stashed changes
-     @FXML
-    private TextField txtReferencia;
-     
-     @FXML
-    private TextField txtPrazo;
-     
-     @FXML
-    private TextField txtQuantidade;
->>>>>>> Stashed changes
+
 
      Faccao f;
       public Stage stage;
     public void setFaccao(Faccao f) {
         this.f=f;
     }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-      
-=======
-=======
->>>>>>> Stashed changes
+ 
+    
     LotesDAO lmetodo = new LotesDAO();
  
->>>>>>> Stashed changes
-    @FXML
-    private TextField txtEntrada;
 
     @FXML
-    private TextField txtMarca;
-
-    @FXML
-    private TableColumn<?, ?> txtPrazo;
-
+    private TableView<Lotes> TabelaLotes;
     @FXML
     private TextField txtPreco;
 
     @FXML
-    private TableColumn<?, ?> txtQuantidade;
+    private TableColumn<Lotes, LocalDate> tbPrazo;
+    
+    @FXML
+    private TableColumn<Lotes, Integer> tbQuantidade;
 
     @FXML
-    private TableColumn<?, ?> txtReferencia;
+    private TableColumn<Lotes, Integer> tbReferencia;
 
     @FXML
     private TextField txtTecido;
-<<<<<<< Updated upstream
-=======
     
     private void carregarLotes(){
         List<Lotes> lotesList = lmetodo.listarLotes(l, l.getReferencia()); 
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
             TabelaLotes.setItems(listaObLotes);  
-            colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
-            colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
-            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+            tbPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+            tbReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+            tbQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
->>>>>>> Stashed changes
+
 
      @FXML
 
@@ -258,19 +229,6 @@ public class VisualizarLotesController {
         ((Stage) btn.getScene().getWindow()).close();
     }
     
-    /* fazer o metodo para quando clicar em um item da tableview puxar as informações 
-    
-    void ??? {
-        Tem como retornar a referencia do item ao clicar nele?
-        Lotes lValores = lmetodo.ListarLotes(l, ref);
-    
-    exemplo: 
-        txtReferencia.setText(String.valueOf(l.getReferencia()));
-    }
-    
-    
-    */
-    
      void OnClickEditar(ActionEvent event) throws IOException {
         int id = (l.getReferencia());
         LotesDAO lmetodo = new LotesDAO();
@@ -288,7 +246,7 @@ public class VisualizarLotesController {
         int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
         String LinhaT = cbLinha.getValue();
         
-         Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, TamanhoT, QuantidadeT, LinhaT);
+        Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, TamanhoT, QuantidadeT, LinhaT);
         
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");
