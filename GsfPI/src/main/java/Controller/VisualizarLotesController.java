@@ -182,6 +182,26 @@ public class VisualizarLotesController {
         ((Stage) menuBar.getScene().getWindow()).close();
     }
     
+     public static void trocarVizLotes(Button btn, Faccao f)throws IOException {
+          Stage visuLotes = new Stage();
+        visuLotes.setMaximized(true);
+        visuLotes.setTitle("Visualizar Lotes");
+
+        URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        VisualizarLotesController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(visuLotes);
+
+        Scene cena = new Scene(root);
+        visuLotes.setScene(cena);
+        visuLotes.show();
+        
+        ((Stage) btn.getScene().getWindow()).close();
+    }
+    
     /* fazer o metodo para quando clicar em um item da tableview puxar as informações 
     
     void ??? {
