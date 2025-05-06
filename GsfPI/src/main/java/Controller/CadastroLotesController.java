@@ -149,18 +149,18 @@ public class CadastroLotesController {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
 
-    @FXML
+     @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
        //Fazer as verificações
        if (cadastroDeLotes() != true) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
-            alerta.setHeaderText("Erro ao cadastrar seu perfil ");
+            alerta.setHeaderText("Erro ao cadastrar seu lote ");
             alerta.showAndWait();
         } else {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Cadastro realizado com sucesso");
-            alerta.setHeaderText("Seu perfil foi cadastrado com sucesso");
+            alerta.setHeaderText("Seu lote foi cadastrado com sucesso");
             alerta.showAndWait();
             
            VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);

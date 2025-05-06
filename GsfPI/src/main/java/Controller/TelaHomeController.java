@@ -57,7 +57,6 @@ public class TelaHomeController {
         URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-
         
         CadastroLotesController thc = loader.getController();
         thc.setFaccao(f);
@@ -122,8 +121,8 @@ public class TelaHomeController {
         Parent root = loader.load();
         
         VisualizarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(funcionario);
+        thc.setFaccao(f);
+        thc.setStage(funcionario);
 
         Scene cena = new Scene(root);
         funcionario.setScene(cena);
