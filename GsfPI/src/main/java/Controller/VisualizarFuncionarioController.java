@@ -139,6 +139,10 @@ public class VisualizarFuncionarioController {
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+        CadastrarFuncionarioController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(cadastroFuncionario);
 
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);

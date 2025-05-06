@@ -134,6 +134,10 @@ public class VisualizarFornecedorController {
         URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+        
+         CadastrarFornecedorController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(cadastroFornecedor);
 
         Scene cena = new Scene(root);
         cadastroFornecedor.setScene(cena);

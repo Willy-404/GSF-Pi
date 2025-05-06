@@ -128,22 +128,22 @@ public class VisualizarLotesController {
     private TextField txtPreco;
 
     @FXML
-    private TableColumn<Lotes, LocalDate> tbPrazo;
+    private TableColumn<Lotes, LocalDate> colPrazo;
     @FXML
-    private TableColumn<Lotes, Integer> tbQuantidade;
+    private TableColumn<Lotes, Integer> colQuantidade;
 
     @FXML
-    private TableColumn<Lotes, Integer> tbReferencia;
+    private TableColumn<Lotes, Integer> colReferencia;
 
     @FXML
     private TextField txtTecido;
     private void carregarLotes(){
-        List<Lotes> lotesList = lmetodo.listarLotes(l, l.getReferencia()); 
+        List<Lotes> lotesList = lmetodo.listarLotes(); 
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
             TabelaLotes.setItems(listaObLotes);  
-            tbPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
-            tbReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
-            tbQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+            colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+            colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
      @FXML
 
@@ -196,8 +196,10 @@ public class VisualizarLotesController {
         Parent root = loader.load();
         
         VisualizarLotesController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(visuLotes);
+        thc.setFaccao(f);
+        thc.setStage(visuLotes);
+        thc.carregarLotes();
+        
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
@@ -218,6 +220,7 @@ public class VisualizarLotesController {
         VisualizarLotesController thc = loader.getController();
             thc.setFaccao(f);
             thc.setStage(visuLotes);
+            thc.carregarLotes();
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);

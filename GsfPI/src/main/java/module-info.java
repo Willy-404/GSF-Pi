@@ -6,4 +6,6 @@ module principal {
 
     opens Controller to javafx.fxml;
     exports principal;
+    exports model;
+    
 }
