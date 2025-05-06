@@ -3,7 +3,8 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Funcionario implements Serializable{
+public class Funcionario implements Serializable {
+
     private String Cpf;
     private String NomeFuncionario;
     private LocalDate DataNascimento;
@@ -77,8 +78,5 @@ public class Funcionario implements Serializable{
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
     }
-    
 
-    
-    
 }

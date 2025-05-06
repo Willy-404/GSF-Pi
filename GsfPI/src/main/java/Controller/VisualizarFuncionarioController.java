@@ -2,8 +2,8 @@ package Controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,14 +14,37 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Funcionario;
 
 public class VisualizarFuncionarioController {
-    
+
     @FXML
     private Button btnNovoFuncionario;
+    
+    @FXML
+    private TableColumn<Funcionario, Float> tableSalario;
+    
+    @FXML
+    private TableColumn<Funcionario, String> tableCpf;
+
+    @FXML
+    private TableColumn<Funcionario, String> tableEmail;
+
+    @FXML
+    private TableColumn<Funcionario, String> tableCargo;
+
+    @FXML
+    private TableColumn<Funcionario, String> tableNome;
+    
+    @FXML
+    private TableColumn<Funcionario, String> tableContato;
+
+    @FXML
+    private TableColumn<Funcionario, LocalDate> tableNascimento;
 
     @FXML
     private MenuBar MenuBar;
@@ -52,8 +75,8 @@ public class VisualizarFuncionarioController {
 
     @FXML
     private Label lblFuncionarios;
-    
-        @FXML
+
+    @FXML
     private TextField txtPesquisaFuncionario;
 
     @FXML
@@ -63,14 +86,14 @@ public class VisualizarFuncionarioController {
     private Menu menuVisualizar;
     Faccao f;
     public Stage stage;
-    
+
     public void setFaccao(Faccao f) {
-        this.f=f;
+        this.f = f;
     }
-     
+
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
@@ -90,7 +113,7 @@ public class VisualizarFuncionarioController {
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
@@ -107,29 +130,37 @@ public class VisualizarFuncionarioController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
+    
+    @FXML
+    public void initialize(){
+        carregarUsuariosTabela();
+    }
+    
+    private void carregarUsuariosTabela() {
+        
+    }
 
     //metodo de trocar para a tela vizu funcionario
-     public static void trocarVizFuncionario(MenuBar menuBar, Faccao f)throws IOException {
-          Stage home = new Stage();
-            home.setMaximized(true);
-            home.setTitle("Visualizar Funcionario");
+    public static void trocarVizFuncionario(MenuBar menuBar, Faccao f) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Visualizar Funcionario");
 
-            URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-            
-            VisualizarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(home);
+        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
 
-            Scene cena = new Scene(root);
-            home.setScene(cena);
-            home.show();
+        VisualizarFuncionarioController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.setStage(home);
 
-            ((Stage) menuBar.getScene().getWindow()).close();
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) menuBar.getScene().getWindow()).close();
     }
-     
-     
+
     @FXML
     void OnClickNovoFuncionario(ActionEvent event) throws IOException {
         Stage cadastroFuncionario = new Stage();
@@ -143,11 +174,11 @@ public class VisualizarFuncionarioController {
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
         cadastroFuncionario.show();
-        
+
         ((Stage) btnNovoFuncionario.getScene().getWindow()).close();
     }
 
     public void setStage(Stage home) {
-      this.stage = home;
+        this.stage = home;
     }
 }

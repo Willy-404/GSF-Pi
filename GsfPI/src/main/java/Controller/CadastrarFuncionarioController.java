@@ -25,14 +25,12 @@ import model.FuncionarioDAO;
 
 public class CadastrarFuncionarioController {
 
-
-
-  
     private ArrayList<Funcionario> userInfo = new ArrayList<>();
+
     public ArrayList<Funcionario> getUserInfo() {
         return userInfo;
-    }    
-   @FXML
+    }
+    @FXML
     private MenuBar MenuBar;
 
     @FXML
@@ -94,16 +92,16 @@ public class CadastrarFuncionarioController {
 
     @FXML
     private TextField txtSalario;
-  Faccao f;
+    Faccao f;
     public Stage stage;
 
     public void setFaccao(Faccao r) {
         this.f = r;
     }
 
-     @FXML
+    @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
@@ -123,7 +121,7 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
@@ -142,11 +140,11 @@ public class CadastrarFuncionarioController {
     }
 
     @FXML
-    void onClickCadastroFunca(ActionEvent event)  {
-        if (txtCpf.getText().isEmpty() || txtNome.getText().isEmpty() || 
-            txtNascimento.getText().isEmpty() || txtContato.getText().isEmpty()
-            ||txtEmail.getText().isEmpty()||txtSalario.getText().isEmpty()
-            ||txtCargo.getText().isEmpty()){
+    void onClickCadastroFunca(ActionEvent event) {
+        if (txtCpf.getText().isEmpty() || txtNome.getText().isEmpty()
+                || txtNascimento.getText().isEmpty() || txtContato.getText().isEmpty()
+                || txtEmail.getText().isEmpty() || txtSalario.getText().isEmpty()
+                || txtCargo.getText().isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campos não preenchidos");
             alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
@@ -165,8 +163,8 @@ public class CadastrarFuncionarioController {
             alerta.showAndWait();
             return;
         }
-        
-        if (CadastroDeFuncionario() != true) { 
+
+        if (CadastroDeFuncionario() != true) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao cadastrar ");
             alerta.setHeaderText("Erro ao cadastrar funcionário ");
@@ -178,7 +176,8 @@ public class CadastrarFuncionarioController {
             alerta.showAndWait();
         }
     }
-        //Metodo para trocar pra tela Cadastrar funcionario
+    //Metodo para trocar pra tela Cadastrar funcionario
+
     public static void trocarCadFuncionario(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
@@ -187,10 +186,10 @@ public class CadastrarFuncionarioController {
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        
+
         CadastrarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(home);
+        thc.setFaccao(f);
+        thc.setStage(home);
 
         Scene cena = new Scene(root);
         home.setScene(cena);
@@ -217,7 +216,7 @@ public class CadastrarFuncionarioController {
     }
 
     public void setStage(Stage home) {
-      this.stage = home;  
+        this.stage = home;
     }
 
 }
