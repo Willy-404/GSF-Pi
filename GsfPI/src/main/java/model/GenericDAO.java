@@ -44,7 +44,7 @@ public abstract class GenericDAO {
             pstmt.setObject(i + 1, parametros[i]);
         }
         pstmt.setObject(parametros.length + 1, id);
-        pstmt.execute();
+        pstmt.executeUpdate();
         pstmt.close();
         conexao.close();
     }
@@ -63,14 +63,15 @@ public abstract class GenericDAO {
     }
     
     /* Pensar em um metodo que faça isso, Mas não sabemos fazer essas modificações. Retornar o Lotes ou outro objeto é possivel? 
-    protected Object list(String listSql, Object... parametros) throws SQLException{
+    protected ArrayList<?> list(String listSql, Object... parametros) throws SQLException{
         PreparedStatement pstmt = conectarDAO().prepareStatement(listSql);
 
         for (int i = 0; i < parametros.length; i++) {
             pstmt.setObject(i + 1, parametros[i]);
         }
         
-        Object x = pstmt;
+        ArrayList<?> x;
+        x.add();
         
         pstmt.execute();
         pstmt.close();

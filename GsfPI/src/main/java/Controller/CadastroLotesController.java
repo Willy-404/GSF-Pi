@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
@@ -99,11 +100,7 @@ public class CadastroLotesController {
         this.f=f;
     }
 
-    
-    
-
-    
-     @FXML
+    @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
         cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
@@ -111,8 +108,6 @@ public class CadastroLotesController {
         cbColecao.getItems().addAll("Primavera","verão","Outono","Inverno");
         cbLinha.getItems().addAll("Azul","Branca","Vermelha");
     }
-    
-
 
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -154,6 +149,23 @@ public class CadastroLotesController {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
 
+    @FXML
+    void onClickbtnConfirmar(ActionEvent event) throws IOException {
+       //Fazer as verificações
+       if (cadastroDeLotes() != true) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro ao cadastrar ");
+            alerta.setHeaderText("Erro ao cadastrar seu perfil ");
+            alerta.showAndWait();
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Cadastro realizado com sucesso");
+            alerta.setHeaderText("Seu perfil foi cadastrado com sucesso");
+            alerta.showAndWait();
+            
+           VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);
+        }
+    }
     //metodo de trocar tela para cadastro lote
     public static void trocarCadLotes(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
@@ -165,8 +177,8 @@ public class CadastroLotesController {
         Parent root = loader.load();
         
         CadastroLotesController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(home);
+        thc.setFaccao(f);
+        thc.setStage(home);
 
         Scene cena = new Scene(root);
         home.setScene(cena);

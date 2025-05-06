@@ -50,11 +50,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutX="79.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="TabelaLotes" layoutX="79.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="161.0" text="REFERÊNCIA" />
-                      <TableColumn minWidth="0.0" prefWidth="206.0" text="QUANTIDADE" />
-                        <TableColumn prefWidth="157.0" text="PRAZO" />
+                      <TableColumn fx:id="colReferencia" prefWidth="161.0" text="REFERÊNCIA" />
+                      <TableColumn fx:id="colQuantidade" minWidth="0.0" prefWidth="206.0" text="QUANTIDADE" />
+                        <TableColumn fx:id="colPrazo" prefWidth="157.0" text="PRAZO" />
                     </columns>
                   </TableView>
                </children>

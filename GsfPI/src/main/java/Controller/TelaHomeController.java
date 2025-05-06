@@ -99,10 +99,9 @@ public class TelaHomeController {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         
-        
-            VisualizarFornecedorController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(fornecedor);
+        VisualizarFornecedorController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.setStage(fornecedor);
 
         Scene cena = new Scene(root);
         fornecedor.setScene(cena);
@@ -136,19 +135,7 @@ public class TelaHomeController {
     @FXML
     void onClickVisualizarLotes(ActionEvent event) throws IOException {
 
-        Stage visuLotes = new Stage();
-        visuLotes.setMaximized(true);
-        visuLotes.setTitle("Visualizar Lotes");
-
-        URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuLotes.setScene(cena);
-        visuLotes.show();
-        
-        ((Stage) btnVisualizarLotes.getScene().getWindow()).close();
+        VisualizarLotesController.trocarVizLotes(btnVisualizarLotes, f);
     }
 
     @FXML

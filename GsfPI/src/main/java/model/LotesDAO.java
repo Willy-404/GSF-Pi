@@ -1,8 +1,13 @@
 package model;
 
+import dal.ConexaoBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -18,11 +23,6 @@ public class LotesDAO extends GenericDAO {
     private String Tamanho;
     private int Quantidade;
     private String Linha;
-    
-    private TableView<Lotes> tabelaLotes;
-    private TableColumn<Lotes, Integer> colReferefercia;
-    private TableColumn<Lotes, Integer> colQuantidade;
-    private TableColumn<Lotes, LocalDate> colPrazo;
   
     public boolean cadastroLotes(Lotes l){
     String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) "
@@ -37,22 +37,31 @@ public class LotesDAO extends GenericDAO {
         }
     }
     
-    //int ref tem que ser pego quando clicado no tableView isso é possivel?
+    /*int ref tem que ser pego quando clicado no tableView isso é possivel?
     public Lotes listarLotes(Lotes l, int ref){
         String sql ="Select* INTO lote WHERE (Referencia = ref) ";
-        /*Pegar a lista com o metodo list (quando for feito), Mas preciso retornar os valores entao tem que retornar um Lote
-        try {
-            list(sql, l);
-            
-            return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        */
-        
-        
         return l;
+    }*/
+    public static List<Lotes> listarLotes() {
+        List<Lotes> lista = new ArrayList<>();
+        String sql = "SELECT Referencia, Quantidade, Prazo FROM lote";
+
+        try (Connection conn = ConexaoBD.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Lotes  l = new Lotes(
+                        rs.getInt("Referencia"),
+                        LocalDate.parse(rs.getString("Prazo")),
+                        rs.getInt("Quantidade"));
+                lista.add(l);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lista;
     }
     
     //Perguntar se funciona
