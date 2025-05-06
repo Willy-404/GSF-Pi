@@ -20,6 +20,12 @@ public class CadastrarFornecedorController {
 
     @FXML
     private MenuBar MenuBar;
+    
+    @FXML
+    private Button btnCadastrarForn;
+
+    @FXML
+    private Button btnVoltar;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -65,6 +71,8 @@ public class CadastrarFornecedorController {
 
     @FXML
     private TextField txtNome;
+    
+    
     Faccao f;
      public Stage stage;
      
@@ -110,6 +118,16 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
+    }
+    
+      @FXML
+    void OnClickVoltar(ActionEvent event) throws IOException {
+        TelaHomeController.trocarTelaHome(btnVoltar, f);
+    }
+    
+    @FXML
+    void OnClickCadastrarForn(ActionEvent event) {
+
     }
     
     //metodo para trocar tela para cadastrar fornecedor

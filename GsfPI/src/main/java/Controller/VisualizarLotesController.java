@@ -123,12 +123,12 @@ public class VisualizarLotesController {
 
     @FXML
     private TableView<Lotes> TabelaLotes;
+
     @FXML
     private TextField txtPreco;
 
     @FXML
     private TableColumn<Lotes, LocalDate> tbPrazo;
-    
     @FXML
     private TableColumn<Lotes, Integer> tbQuantidade;
 
@@ -137,7 +137,6 @@ public class VisualizarLotesController {
 
     @FXML
     private TextField txtTecido;
-    
     private void carregarLotes(){
         List<Lotes> lotesList = lmetodo.listarLotes(l, l.getReferencia()); 
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
@@ -146,8 +145,6 @@ public class VisualizarLotesController {
             tbReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
             tbQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
-
-
      @FXML
 
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {

@@ -39,6 +39,9 @@ public class CadastrarFuncionarioController {
     private Button btnCadastroFunca;
 
     @FXML
+    private Button btnVoltar;
+    
+    @FXML
     private MenuItem itemCadFornecedor;
 
     @FXML
@@ -139,6 +142,11 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
+    }
+    
+        @FXML
+    void onClickVoltar(ActionEvent event) throws IOException {
+        TelaHomeController.trocarTelaHome(btnVoltar, f);
     }
 
     @FXML

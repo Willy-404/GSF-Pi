@@ -29,6 +29,9 @@ public class CadastroLotesController {
 
     @FXML
     private Button btnConfirmarLote;
+    
+    @FXML
+    private Button btnVoltar;
 
     @FXML
     private ComboBox<String> cbLinha;
@@ -148,7 +151,12 @@ public class CadastroLotesController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
-
+    
+      @FXML
+    void onClickVoltar(ActionEvent event) throws IOException {
+        TelaHomeController.trocarTelaHome(btnVoltar, f);
+    }
+    
      @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
        //Fazer as verificações
