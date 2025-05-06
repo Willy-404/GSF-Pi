@@ -47,7 +47,7 @@ public class FaccaoDAO extends GenericDAO {
         String SenhaT = f.getSenha();
         String TelefoneT = f.getTelefone();
         Perfil perfil = f.getPerfil();
-        String sql = "UPDATE faccao SET (NomeRepreFaccao = '?', EmailAcesso = '?', Senha = '?', Telefone = '?', perfil = '?') WHERE (CnpjFaccao = ?) ";
+        String sql = "UPDATE faccao SET CnpjFaccao = ?, NomeRepreFaccao =  ?, EmailAcesso = ?, Senha = ?, Telefone = ?, perfil = ? WHERE CnpjFaccao = ? ";
         try{
             update(sql,id, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone(), f.getPerfil().getNome());
             return true;

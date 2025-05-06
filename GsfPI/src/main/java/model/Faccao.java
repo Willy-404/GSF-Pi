@@ -20,6 +20,7 @@ public class Faccao implements Serializable {
         this.perfil = perfil;
     }
 
+
     public String getTelefone() {
         return Telefone;
     }
