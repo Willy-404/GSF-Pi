@@ -14,7 +14,7 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="600.0" style="-fx-background-color: #386b8f;">
          <children>
-            <TextField fx:id="txtNomeCompleto" layoutX="210.0" layoutY="127.0" prefHeight="29.0" prefWidth="191.0" promptText="Nome Completo" />
+            <TextField fx:id="txtNomeCompleto" layoutX="210.0" layoutY="127.0" prefHeight="29.0" prefWidth="191.0" promptText="Nome do Representante" />
             <Button fx:id="btnCadastrar" layoutX="256.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickCadastrar" prefHeight="25.0" prefWidth="100.0" text="Cadastrar">
                <font>
                   <Font name="System Bold" size="14.0" />

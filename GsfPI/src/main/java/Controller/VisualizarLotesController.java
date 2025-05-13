@@ -36,9 +36,6 @@ import model.LotesDAO;
 public class VisualizarLotesController {
 
     @FXML
-    private MenuBar MenuBar;
-    
-        @FXML
     private Button btnEditar;
 
     @FXML
@@ -46,6 +43,9 @@ public class VisualizarLotesController {
 
     @FXML
     private Button btnVoltar;
+
+    @FXML
+    private MenuBar MenuBar;
 
    @FXML
     private ComboBox<String> cbLinha;
@@ -185,6 +185,36 @@ public class VisualizarLotesController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
+       @FXML
+    void onClickSalvar(ActionEvent event) {
+        
+    }
+
+    @FXML
+    void onClickVoltar(ActionEvent event) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair da tela?");
+        alerta.setHeaderText("Ao sair perderá qualquer alteração!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Saida Confirmada");
+                alert.setHeaderText("Saida confirmada!!");
+                alert.showAndWait();
+               try{ 
+                 TelaHomeController.trocarTelaHome(btnVoltar, f);
+               }catch(IOException e){
+                   e.printStackTrace();
+               }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Saida Cancelada");
+                alert.setHeaderText("A saida foi cancelada com sucesso!!");
+                alert.showAndWait();
+            }
+        });
+    }
+    
 
     public static void trocarVizLotes(MenuBar menuBar, Faccao f)throws IOException {
           Stage visuLotes = new Stage();
@@ -257,22 +287,25 @@ public class VisualizarLotesController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Edição Concluida");
                     alert.setHeaderText("A edição ocoreu com sucesso!!");
-                    alerta.showAndWait();
+                    alert.showAndWait();
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Problema na Edição");
                     alert.setHeaderText("Ocorreu um problema na edição!!");
-                    alerta.showAndWait();
+                    alert.showAndWait();
                 }
             }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Edição Cancelada");
                     alert.setHeaderText("A edição foi cancelada com sucesso!!");
-                    alerta.showAndWait();
+                    alert.showAndWait();
             }
         });
      }
-
+     
+     
+     
+   
     public void setStage(Stage visuLotes) {
         this.stage = visuLotes;
     }
