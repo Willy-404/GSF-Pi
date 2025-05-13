@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -84,10 +87,30 @@ public class CadastroController {
 
     @FXML
     void onClickSair(ActionEvent event) throws IOException {
-        LoginController lc = new LoginController();
-        lc.trocarLogin(btnSair);
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                LoginController lc = new LoginController();
+                try {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Saida Confirmada");
+                    alert.setHeaderText("Saida confirmada com sucesso!!");
+                    alert.showAndWait();
+                    lc.trocarLogin(btnSair);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }else{
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                 alert.setTitle("Saida Cancelada");
+                 alert.setHeaderText("A saida foi cancelada com sucesso!!");
+                 alert.showAndWait();
+            }
 
-    }
+            });
+          }
 
     //metodo para trocar para a tela de Cadasstro de usuario
     public void trocarCadastro(Hyperlink btnTroca) throws IOException {
