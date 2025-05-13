@@ -90,9 +90,8 @@ public class VisualizarPerfilController {
     FaccaoDAO fd = new FaccaoDAO();
     Faccao f;
    public Stage stage;
-
-
-    
+   
+   
     public void setFaccao(Faccao f) {
         this.f=f;
         txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
@@ -159,7 +158,7 @@ public class VisualizarPerfilController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Logoff Cancelada");
                     alert.setHeaderText("O logoff foi cancelado com sucesso!!");
-                    alerta.showAndWait();
+                    alert.showAndWait();
             }
         });  
     }
@@ -193,18 +192,19 @@ public class VisualizarPerfilController {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Problema na Edição");
                     alert.setHeaderText("Ocorreu um problema na edição!!");
-                    alerta.showAndWait();
+                    alert.showAndWait(); 
                 }else{
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Edição Concluida");
                     alert.setHeaderText("A edição ocoreu com sucesso!!");
-                    alerta.showAndWait();
+                    alert.showAndWait();
+                    setFaccao(fTroca);
                 }
             }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Edição Cancelada");
                     alert.setHeaderText("A edição foi cancelada com sucesso!!");
-                    alerta.showAndWait();
+                    alert.showAndWait();
             }
         });     
     }
@@ -233,4 +233,6 @@ public class VisualizarPerfilController {
     public void setStage(Stage visuPerfil) {
         this.stage = visuPerfil;
     }
+
+   
 }

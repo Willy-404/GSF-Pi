@@ -498,7 +498,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="btnVoltar" alignment="TOP_CENTER" mnemonicParsing="false" mouseTransparent="true" onAction="#onClickVoltar" prefHeight="40.0" prefWidth="140.0" text="Voltar" textFill="#4d7794" wrapText="true">
+                              <Button fx:id="btnVoltar" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onClickVoltar" prefHeight="40.0" prefWidth="140.0" text="Voltar" textFill="#4d7794" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -507,7 +507,7 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnConfirmarLote" alignment="TOP_CENTER" mnemonicParsing="false" mouseTransparent="true" onAction="#onClickbtnConfirmar" prefHeight="40.0" prefWidth="140.0" text="Cadastrar" textFill="#4d7794" wrapText="true">
+                              <Button fx:id="btnConfirmarLote" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onClickbtnConfirmar" prefHeight="40.0" prefWidth="140.0" text="Cadastrar" textFill="#4d7794" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
