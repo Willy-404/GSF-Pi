@@ -1,15 +1,15 @@
-CREATE DATABASE  IF NOT EXISTS `gsf` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+CREATE DATABASE  IF NOT EXISTS `gsf` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gsf`;
--- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gsf
 -- ------------------------------------------------------
--- Server version	8.0.15
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,9 +23,9 @@ USE `gsf`;
 
 DROP TABLE IF EXISTS `cartaoponto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cartaoponto` (
-  `idCartaoPonto` int(11) NOT NULL AUTO_INCREMENT,
+  `idCartaoPonto` int NOT NULL AUTO_INCREMENT,
   `Mes` varchar(15) NOT NULL,
   `Cpf` char(14) NOT NULL,
   PRIMARY KEY (`idCartaoPonto`,`Cpf`),
@@ -49,13 +49,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `conjuntopecas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `conjuntopecas` (
-  `idConjuntoPecas` int(11) NOT NULL AUTO_INCREMENT,
-  `Quantidade` int(11) NOT NULL,
+  `idConjuntoPecas` int NOT NULL AUTO_INCREMENT,
+  `Quantidade` int NOT NULL,
   `Tamanho` char(3) NOT NULL,
   `Cor` varchar(30) NOT NULL,
-  `Referencia` int(11) NOT NULL,
+  `Referencia` int NOT NULL,
   PRIMARY KEY (`idConjuntoPecas`,`Referencia`),
   KEY `Referencia_idx` (`Referencia`),
   CONSTRAINT `Referencia` FOREIGN KEY (`Referencia`) REFERENCES `lote` (`Referencia`)
@@ -77,14 +77,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `empresa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empresa` (
-  `Cnpj` bigint(14) NOT NULL,
+  `Cnpj` bigint NOT NULL,
   `NomeEmpresa` varchar(45) NOT NULL,
   `Telefone` varchar(45) NOT NULL,
   `EmailContato` varchar(45) NOT NULL,
   `DataFundacao` varchar(45) NOT NULL,
-  `idEndereco` int(11) DEFAULT NULL,
+  `idEndereco` int DEFAULT NULL,
   PRIMARY KEY (`Cnpj`),
   KEY `idEndereco_idx` (`idEndereco`),
   CONSTRAINT `idEndereco` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`idEndereco`)
@@ -106,14 +106,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `endereco` (
-  `idEndereco` int(11) NOT NULL,
+  `idEndereco` int NOT NULL,
   `Cep` char(9) NOT NULL,
   `Rua` varchar(40) DEFAULT NULL,
   `Complemento` varchar(30) DEFAULT NULL,
   `Bairro` varchar(30) DEFAULT NULL,
-  `Numero` int(11) NOT NULL,
+  `Numero` int NOT NULL,
   `Cidade` varchar(30) NOT NULL,
   `Estado` varchar(20) NOT NULL,
   PRIMARY KEY (`idEndereco`)
@@ -135,9 +135,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `faccao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `faccao` (
-  `CnpjFaccao` bigint(14) NOT NULL,
+  `CnpjFaccao` bigint NOT NULL,
   `NomeRepreFaccao` varchar(30) NOT NULL,
   `EmailAcesso` varchar(30) NOT NULL,
   `Senha` varchar(10) NOT NULL,
@@ -153,7 +153,7 @@ CREATE TABLE `faccao` (
 
 LOCK TABLES `faccao` WRITE;
 /*!40000 ALTER TABLE `faccao` DISABLE KEYS */;
-INSERT INTO `faccao` VALUES (12345678901234,'Felipe','banana','banana',NULL,'Faccao');
+INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123','Faccao'),(12345678901234,'Felipe','banana','banana',NULL,'Faccao');
 /*!40000 ALTER TABLE `faccao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,13 +163,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fluxos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fluxos` (
-  `idFluxos` int(11) NOT NULL AUTO_INCREMENT,
+  `idFluxos` int NOT NULL AUTO_INCREMENT,
   `EstadoProducao` varchar(20) NOT NULL,
   `Descricao` varchar(100) DEFAULT NULL,
   `DataHora` datetime NOT NULL,
-  `Referencia` int(11) NOT NULL,
+  `Referencia` int NOT NULL,
   PRIMARY KEY (`idFluxos`,`Referencia`),
   KEY `Referencia_idx` (`Referencia`),
   CONSTRAINT `Referencia_fk` FOREIGN KEY (`Referencia`) REFERENCES `lote` (`Referencia`)
@@ -191,9 +191,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fornecedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fornecedor` (
-  `CnpjFornecedor` bigint(14) NOT NULL,
+  `CnpjFornecedor` bigint NOT NULL,
   `NomeRepreFornecedor` varchar(45) NOT NULL,
   `UsuarioFornecedor` varchar(30) NOT NULL,
   `Senha` varchar(10) NOT NULL,
@@ -207,6 +207,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
+INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff');
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +217,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `funcionario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `funcionario` (
   `Cpf` char(14) NOT NULL,
   `NomeFuncionario` varchar(30) NOT NULL,
@@ -225,7 +226,7 @@ CREATE TABLE `funcionario` (
   `Email` varchar(40) NOT NULL,
   `ValorHora` decimal(4,2) NOT NULL,
   `Cargo` varchar(30) NOT NULL,
-  `CnpjFaccao` bigint(14) DEFAULT NULL,
+  `CnpjFaccao` bigint DEFAULT NULL,
   PRIMARY KEY (`Cpf`),
   KEY `CnpjFaccao_idx` (`CnpjFaccao`),
   CONSTRAINT `CnpjFaccao` FOREIGN KEY (`CnpjFaccao`) REFERENCES `faccao` (`CnpjFaccao`)
@@ -247,10 +248,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `itemlote`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `itemlote` (
-  `referenciaLote` int(11) NOT NULL,
-  `Quantidade` int(11) NOT NULL,
+  `referenciaLote` int NOT NULL,
+  `Quantidade` int NOT NULL,
   `Tamanho` char(3) NOT NULL,
   PRIMARY KEY (`referenciaLote`),
   CONSTRAINT `referenciaLote` FOREIGN KEY (`referenciaLote`) REFERENCES `lote` (`Referencia`)
@@ -272,10 +273,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `linhas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `linhas` (
-  `RefLinha` int(11) NOT NULL,
-  `idConjuntoPecas` int(11) DEFAULT NULL,
+  `RefLinha` int NOT NULL,
+  `idConjuntoPecas` int DEFAULT NULL,
   `NomeCor` varchar(45) NOT NULL,
   PRIMARY KEY (`RefLinha`),
   KEY `idConjuntoPecas_idx` (`idConjuntoPecas`),
@@ -298,18 +299,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `lote`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lote` (
-  `Referencia` int(11) NOT NULL,
-  `Prazo` datetime NOT NULL,
-  `Entrada` datetime NOT NULL,
+  `Referencia` int NOT NULL,
+  `Prazo` date NOT NULL,
+  `Entrada` date NOT NULL,
   `Preco` decimal(3,2) NOT NULL,
   `Tecido` varchar(30) NOT NULL,
   `Marca` varchar(30) NOT NULL,
   `Colecao` varchar(15) NOT NULL,
   `Modelo` varchar(30) NOT NULL,
-  `CnpjFornecedor` bigint(14) DEFAULT NULL,
-  `QuantidadeT` int(11) NOT NULL,
+  `CnpjFornecedor` bigint DEFAULT NULL,
+  `QuantidadeT` int NOT NULL,
   PRIMARY KEY (`Referencia`),
   KEY `CnpjFornecedor_idx` (`CnpjFornecedor`),
   CONSTRAINT `CnpjFornecedor` FOREIGN KEY (`CnpjFornecedor`) REFERENCES `fornecedor` (`CnpjFornecedor`)
@@ -322,6 +323,7 @@ CREATE TABLE `lote` (
 
 LOCK TABLES `lote` WRITE;
 /*!40000 ALTER TABLE `lote` DISABLE KEYS */;
+INSERT INTO `lote` VALUES (12312313,'2222-12-22','2222-12-22',5.00,'oi','oi','oi','oi',12321,1230);
 /*!40000 ALTER TABLE `lote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,13 +333,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `registrohora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `registrohora` (
-  `idRegistroHora` int(11) NOT NULL,
+  `idRegistroHora` int NOT NULL,
   `Data` date NOT NULL,
   `HorarioEntrada` time NOT NULL,
   `HorarioSaida` time NOT NULL,
-  `idCartaoPonto` int(11) DEFAULT NULL,
+  `idCartaoPonto` int DEFAULT NULL,
   PRIMARY KEY (`idRegistroHora`),
   KEY `idCartaoPonto_idx` (`idCartaoPonto`),
   CONSTRAINT `idCartaoPonto` FOREIGN KEY (`idCartaoPonto`) REFERENCES `cartaoponto` (`idCartaoPonto`)
@@ -362,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-19 11:30:44
+-- Dump completed on 2025-05-19 18:24:45
