@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -37,6 +39,18 @@ public class LotesDAO extends GenericDAO {
         }
     }
 
+    public Lotes loteSelecionado(Lotes l, int ref){
+        String sql ="Select FROM lote WHERE Referencia = ?";
+        try {
+            select(sql, ref, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
+                    l.getTamanho(), l.getQuantidade(), l.getLinha() );
+           return l;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
     public List<Lotes> listarLotes(){
         String sql ="Select* FROM lote ";
@@ -69,7 +83,7 @@ public class LotesDAO extends GenericDAO {
     
     //Perguntar se funciona
     public boolean deletarLotes(Lotes l, int ref){
-    String sql = "DELETE* INTO lote WHERE (Referencia = ref) ";
+    String sql = "DELETE FROM lote WHERE Referencia = ? ";
            
     try  {
             delete(sql, l);
@@ -95,6 +109,9 @@ public class LotesDAO extends GenericDAO {
         }
     }
 
+    
+    
+    
     public int getReferencia() {
         return Referencia;
     }

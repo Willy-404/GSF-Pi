@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import model.Faccao;
@@ -37,9 +38,6 @@ public class VisualizarLotesController {
 
     @FXML
     private Button btnEditar;
-
-    @FXML
-    private Button btnSalvar;
 
     @FXML
     private Button btnVoltar;
@@ -117,7 +115,7 @@ public class VisualizarLotesController {
     }
 
  
-    
+    Lotes itemLote;
     LotesDAO lmetodo = new LotesDAO();
  
 
@@ -185,10 +183,36 @@ public class VisualizarLotesController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
-       @FXML
-    void onClickSalvar(ActionEvent event) {
-        
+      
+    
+      @FXML
+    void onSelecionaItem(MouseEvent event) {
+        if(event.getClickCount() == 1){
+            itemLote = TabelaLotes.getSelectionModel().getSelectedItem();
+            int id = itemLote.getReferencia();
+            lmetodo.loteSelecionado(itemLote, id);
+            if(itemLote != null){
+                txtReferencia.setText(String.valueOf(itemLote.getReferencia()));
+                txtPrazo.setText(String.valueOf(itemLote.getPrazo()));
+                txtEntrada.setText(String.valueOf(itemLote.getEntrada()));
+                txtPreco.setText(String.valueOf(itemLote.getPreco()));
+                txtTecido.setText(String.valueOf(itemLote.getTecido()));
+                txtMarca.setText(String.valueOf(itemLote.getMarca()));
+                cbColecao.setValue(itemLote.getColecao());       
+                cbModelo.setValue(itemLote.getModelo());
+                cbTamanho.setValue(itemLote.getTamanho());
+                txtQuantidade.setText(String.valueOf(itemLote.getQuantidade()));
+                cbLinha.setValue(itemLote.getLinha());
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Item selecionado");
+                alert.setHeaderText("O item selecionado gera problemas ao sistema !");
+                alert.showAndWait();
+            }
+        }
+
     }
+
 
     @FXML
     void onClickVoltar(ActionEvent event) {

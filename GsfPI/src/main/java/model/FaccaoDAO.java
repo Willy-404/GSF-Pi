@@ -35,7 +35,7 @@ public class FaccaoDAO extends GenericDAO {
         Senha = f.getSenha();
         EmailAcesso = f.getEmailAcesso();
         Telefone = f.getTelefone();
-        return f;
+        return f;   
         
         
     }
