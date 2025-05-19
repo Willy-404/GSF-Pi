@@ -47,8 +47,11 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnNovoFuncionario" layoutX="373.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickNovoFuncionario" text="Novo" />
-            <TextField fx:id="txtPesquisaFuncionario" layoutX="448.0" layoutY="31.0" prefHeight="25.0" prefWidth="552.0" />
+            <Button fx:id="btnNovoFuncionario" layoutX="373.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickNovoFuncionario" text="Novo" textFill="#4d7794">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <TextField fx:id="txtPesquisaFuncionario" layoutX="448.0" layoutY="31.0" prefHeight="25.0" prefWidth="552.0" promptText="Digite o nome do Funcionário" />
             <TableView layoutY="60.0" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
               <columns>
                 <TableColumn prefWidth="196.00000303983688" text="Nome" />

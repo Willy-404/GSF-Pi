@@ -1,6 +1,5 @@
 package Controller;
 
-import static Controller.CadastrarFornecedorController.trocarCadFornecedor;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -9,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 
@@ -20,6 +21,24 @@ public class VisualizarPontoController {
 
     @FXML
     private MenuBar MenuBar;
+
+    @FXML
+    private TableColumn<?, ?> colData;
+
+    @FXML
+    private TableColumn<?, ?> colEntrada;
+
+    @FXML
+    private TableColumn<?, ?> colHorasTrabalhadas;
+
+    @FXML
+    private TableColumn<?, ?> colId;
+
+    @FXML
+    private TableColumn<?, ?> colNome;
+
+    @FXML
+    private TableColumn<?, ?> colSaida;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -46,11 +65,13 @@ public class VisualizarPontoController {
     private MenuItem itemVisuPonto;
 
     @FXML
-    private Label lblPonto;
+    private Menu menuHome;
+    
+    @FXML
+    private TextField txtPesquisarFuncionario;
 
     @FXML
-    private Menu menuHome;
-
+    private TableView<?> tablePonto;
     @FXML
     private Menu menuVisualizar;
     Faccao f;

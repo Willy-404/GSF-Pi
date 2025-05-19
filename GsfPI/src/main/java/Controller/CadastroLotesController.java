@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
@@ -30,9 +31,14 @@ public class CadastroLotesController {
     @FXML
     private MenuBar MenuBar;
 
+       @FXML
+    private Button btnAdicionar;
+
     @FXML
     private Button btnConfirmarLote;
-    
+
+    @FXML
+    private Button btnExcluir;
     @FXML
     private Button btnVoltar;
 
@@ -98,6 +104,9 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtTecido;
+    
+    @FXML
+    private TableView<?> tbSubGrupo;
 
      Faccao f;
       public Stage stage;
@@ -242,5 +251,15 @@ public class CadastroLotesController {
 
     public void setStage(Stage home) {
       this.stage = home;  
+    }
+    
+        @FXML
+    void onClickAdicionar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickExcluir(ActionEvent event) {
+
     }
 }
