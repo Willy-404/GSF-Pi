@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `gsf` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `gsf`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gsf
@@ -242,6 +240,31 @@ LOCK TABLES `funcionario` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `itemlote`
+--
+
+DROP TABLE IF EXISTS `itemlote`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `itemlote` (
+  `referenciaLote` int(11) NOT NULL,
+  `Quantidade` int(11) NOT NULL,
+  `Tamanho` char(3) NOT NULL,
+  PRIMARY KEY (`referenciaLote`),
+  CONSTRAINT `referenciaLote` FOREIGN KEY (`referenciaLote`) REFERENCES `lote` (`Referencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `itemlote`
+--
+
+LOCK TABLES `itemlote` WRITE;
+/*!40000 ALTER TABLE `itemlote` DISABLE KEYS */;
+/*!40000 ALTER TABLE `itemlote` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `linhas`
 --
 
@@ -250,9 +273,8 @@ DROP TABLE IF EXISTS `linhas`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `linhas` (
   `RefLinha` int(11) NOT NULL,
-  `MarcaLinha` varchar(30) DEFAULT NULL,
-  `TipoLinha` varchar(20) NOT NULL,
   `idConjuntoPecas` int(11) DEFAULT NULL,
+  `NomeCor` varchar(45) NOT NULL,
   PRIMARY KEY (`RefLinha`),
   KEY `idConjuntoPecas_idx` (`idConjuntoPecas`),
   CONSTRAINT `idConjuntoPecas` FOREIGN KEY (`idConjuntoPecas`) REFERENCES `conjuntopecas` (`idConjuntoPecas`)
@@ -285,8 +307,7 @@ CREATE TABLE `lote` (
   `Colecao` varchar(15) NOT NULL,
   `Modelo` varchar(30) NOT NULL,
   `CnpjFornecedor` bigint(14) DEFAULT NULL,
-  `Tamanho` varchar(5) NOT NULL,
-  `Quantidade` int(11) NOT NULL,
+  `QuantidadeT` int(11) NOT NULL,
   PRIMARY KEY (`Referencia`),
   KEY `CnpjFornecedor_idx` (`CnpjFornecedor`),
   CONSTRAINT `CnpjFornecedor` FOREIGN KEY (`CnpjFornecedor`) REFERENCES `fornecedor` (`CnpjFornecedor`)
@@ -339,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-29 11:30:18
+-- Dump completed on 2025-05-19 11:30:44
