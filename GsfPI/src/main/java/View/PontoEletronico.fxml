@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
-
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PontoEletronicoController">
    <center>
@@ -29,7 +29,10 @@
                             <Image url="@../../resources/imagens/email.png" />
                         </image>
                     </ImageView>
-                    <Button fx:id="btnConfirmarPonto" layoutX="752.0" layoutY="605.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Confirmar" />
+                    <Button fx:id="btnConfirmarPonto" layoutX="745.0" layoutY="583.0" mnemonicParsing="false" onAction="#OnClickConfirmarPonto" prefHeight="30.0" prefWidth="99.0" text="Confirmar">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                 </children>
             </AnchorPane>
          </children>

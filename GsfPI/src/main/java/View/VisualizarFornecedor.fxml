@@ -47,7 +47,10 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnNovoFornecedor" layoutX="393.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" />
+            <Button fx:id="btnNovoFornecedor" layoutX="393.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" textFill="#4d7794">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
             <TableView layoutX="187.0" layoutY="96.0" prefHeight="794.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
               <columns>
                 <TableColumn prefWidth="309.0" style="-fx-backgorund-color: #386b8f;" text="Nome" />
