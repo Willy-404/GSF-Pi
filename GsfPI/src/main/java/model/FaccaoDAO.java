@@ -59,23 +59,7 @@ public class FaccaoDAO extends GenericDAO {
          }
     }
     
-    public Faccao selecionarFaccao(Faccao f, long id){
-        long CnpjT = f.getCNPJFaccao();
-        String NomeRepreFaccaoT = f.getNomeRepreFaccao();
-        String EmailAcessoT = f.getEmailAcesso();
-        String SenhaT = f.getSenha();
-        String TelefoneT = f.getTelefone();
-        Perfil perfil = f.getPerfil(); 
-        String sql = "SELECT* FROM faccao WHERE CnpjFaccao = ?";
-        
-        try{
-            select(sql,id, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone(), f.getPerfil().getNome());
-        }catch (SQLException e) {
-            e.printStackTrace();
-            
-         }
-        return f;
-    }
+   
 
     public long getCNPJFaccao() {
         return CnpjFaccao;

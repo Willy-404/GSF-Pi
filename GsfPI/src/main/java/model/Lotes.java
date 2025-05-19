@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Lotes {
-     private int Referencia;
+    private int Referencia;
     private LocalDate Prazo;
     private LocalDate Entrada;
     private Double Preco;
@@ -11,7 +11,6 @@ public class Lotes {
     private String Marca;
     private String Colecao;
     private String Modelo;
-    private String Tamanho;
     private int Quantidade;
     private String Linha;
 
@@ -21,7 +20,7 @@ public class Lotes {
         this.Quantidade = Quantidade;
     }
 
-    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, String Tamanho, int Quantidade, String Linha) {
+    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade, String Linha) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
         this.Entrada = Entrada;
@@ -30,7 +29,6 @@ public class Lotes {
         this.Marca = Marca;
         this.Colecao = Colecao;
         this.Modelo = Modelo;
-        this.Tamanho = Tamanho;
         this.Quantidade = Quantidade;
         this.Linha = Linha;
     }
@@ -97,14 +95,6 @@ public class Lotes {
 
     public void setModelo(String Modelo) {
         this.Modelo = Modelo;
-    }
-
-    public String getTamanho() {
-        return Tamanho;
-    }
-
-    public void setTamanho(String Tamanho) {
-        this.Tamanho = Tamanho;
     }
 
     public int getQuantidade() {

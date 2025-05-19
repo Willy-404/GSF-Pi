@@ -239,11 +239,10 @@ public class CadastroLotesController {
         String Marca = txtMarca.getText();
         String Colecao = cbColecao.getValue();
         String Modelo = cbModelo.getValue();
-        String Tamanho = cbTamanho.getValue();
         int Quantidade = Integer.parseInt(txtQuantidade.getText());
         String Linha = cbLinha.getValue();
 
-        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha);
+        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade, Linha);
         LotesDAO LDmetodo = new LotesDAO();
         return LDmetodo.cadastroLotes(l);
 

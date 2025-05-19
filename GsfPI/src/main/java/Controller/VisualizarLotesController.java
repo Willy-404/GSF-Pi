@@ -190,7 +190,7 @@ public class VisualizarLotesController {
         if(event.getClickCount() == 1){
             itemLote = TabelaLotes.getSelectionModel().getSelectedItem();
             int id = itemLote.getReferencia();
-            lmetodo.loteSelecionado(itemLote, id);
+            itemLote=lmetodo.loteSelecionado(id);
             if(itemLote != null){
                 txtReferencia.setText(String.valueOf(itemLote.getReferencia()));
                 txtPrazo.setText(String.valueOf(itemLote.getPrazo()));
@@ -200,7 +200,6 @@ public class VisualizarLotesController {
                 txtMarca.setText(String.valueOf(itemLote.getMarca()));
                 cbColecao.setValue(itemLote.getColecao());       
                 cbModelo.setValue(itemLote.getModelo());
-                cbTamanho.setValue(itemLote.getTamanho());
                 txtQuantidade.setText(String.valueOf(itemLote.getQuantidade()));
                 cbLinha.setValue(itemLote.getLinha());
             }else{
@@ -296,11 +295,10 @@ public class VisualizarLotesController {
         String MarcaT = txtMarca.getText();
         String ColecaoT = cbColecao.getValue();
         String ModeloT = cbModelo.getValue();
-        String TamanhoT = cbTamanho.getValue();
         int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
         String LinhaT = cbLinha.getValue();
         
-        Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, TamanhoT, QuantidadeT, LinhaT);
+        Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT, LinhaT);
         
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");

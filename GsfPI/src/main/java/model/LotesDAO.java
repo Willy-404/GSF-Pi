@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ public class LotesDAO extends GenericDAO {
     private String Marca;
     private String Colecao;
     private String Modelo;
-    private String Tamanho;
+   
     private int Quantidade;
     private String Linha;
   
@@ -31,7 +32,7 @@ public class LotesDAO extends GenericDAO {
             + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     try  {
             save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                    l.getTamanho(), l.getQuantidade(), l.getLinha());
+                     l.getQuantidade(), l.getLinha());
             return true;
         } catch (SQLException e) {  
             e.printStackTrace();
@@ -39,16 +40,47 @@ public class LotesDAO extends GenericDAO {
         }
     }
 
-    public Lotes loteSelecionado(Lotes l, int ref){
-        String sql ="Select FROM lote WHERE Referencia = ?";
+    public Lotes loteSelecionado(int ref){
+        Lotes l;
+        String sql ="Select* FROM lote WHERE Referencia = ?";
         try {
-            select(sql, ref, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                    l.getTamanho(), l.getQuantidade(), l.getLinha() );
+            l=select(sql, ref );
            return l;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public Lotes select(String insertSql, Object... parametros ) throws SQLException {
+         String sql ="Select* FROM lote WHERE Referencia = ? ";
+        Lotes l = null;
+
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                
+                    LocalDate dataPrazo = LocalDate.parse(resultSet.getString("Prazo"));
+                    LocalDate dataEntrada = LocalDate.parse(resultSet.getString("Entrada"));
+                            
+                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, dataEntrada, resultSet.getDouble("Preco"),
+                        resultSet.getString("Tecido"), resultSet.getString("Marca"),resultSet.getString("Colecao"), resultSet.getString("Modelo"), 
+                        resultSet.getInt("Quantidade"), resultSet.getString("Linha"));
+
+                    // Add the object to the list
+                    l = object;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+
+        
+        return l;
+        
     }
     
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
@@ -62,10 +94,10 @@ public class LotesDAO extends GenericDAO {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     // Create a new object for each row
-                    LocalDate data;
-                    data = LocalDate.parse(resultSet.getString("Prazo"));
+                    
+                    LocalDate dataPrazo = LocalDate.parse(resultSet.getString("Prazo"));
                             
-                    Lotes object = new Lotes(resultSet.getInt("Referencia"), data, resultSet.getInt("Quantidade") );
+                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, resultSet.getInt("Quantidade") );
 
                     // Add the object to the list
                     resultList.add(object);
@@ -101,16 +133,13 @@ public class LotesDAO extends GenericDAO {
     try  {
             
             update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                    l.getTamanho(), l.getQuantidade(), l.getLinha() );
+                     l.getQuantidade(), l.getLinha() );
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-    }
-
-    
-    
+    }    
     
     public int getReferencia() {
         return Referencia;
@@ -176,14 +205,7 @@ public class LotesDAO extends GenericDAO {
         this.Modelo = Modelo;
     }
 
-    public String getTamanho() {
-        return Tamanho;
-    }
-
-    public void setTamanho(String Tamanho) {
-        this.Tamanho = Tamanho;
-    }
-
+   
     public int getQuantidade() {
         return Quantidade;
     }
@@ -199,10 +221,7 @@ public class LotesDAO extends GenericDAO {
     public void setLinha(String Linha) {
         this.Linha = Linha;
     }
-    
-    
 }
-   
-        
+  
     
 
