@@ -115,6 +115,9 @@
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
+                                 <FlowPane.margin>
+                                    <Insets top="50.0" />
+                                 </FlowPane.margin>
                               </Label>
                            </children>
                         </FlowPane>
@@ -177,8 +180,22 @@
                                        <padding>
                                           <Insets right="80.0" />
                                        </padding>
+                                       <children>
+                                          <Label prefHeight="35.0" prefWidth="78.0" text="Marca" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
                                     </FlowPane>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <TextField fx:id="txtMarca" prefHeight="46.0" prefWidth="212.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children></FlowPane>
                                  </children>
                               </GridPane>
                            </children>
@@ -238,24 +255,20 @@
                                 </rowConstraints>
                                  <children>
                                     <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
+                                       <padding>
+                                          <Insets right="80.0" />
+                                       </padding>
                                        <children>
-                                          <Label prefHeight="35.0" prefWidth="78.0" text="Marca" textFill="WHITE">
+                                          <Label text="Coleção" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
                                           </Label>
                                        </children>
-                                       <padding>
-                                          <Insets right="80.0" />
-                                       </padding>
                                     </FlowPane>
                                     <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <TextField fx:id="txtMarca" prefHeight="46.0" prefWidth="212.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </TextField>
+                                          <ComboBox fx:id="cbColecao" prefHeight="45.0" prefWidth="150.0" />
                                        </children>
                                     </FlowPane>
                                  </children>
@@ -318,20 +331,27 @@
                                  <children>
                                     <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <ComboBox fx:id="cbColecao" prefHeight="45.0" prefWidth="150.0" />
+                                          <TextField fx:id="txtEntrada" prefHeight="46.0" prefWidth="211.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
                                        </children>
                                     </FlowPane>
                                     <FlowPane alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="459.0">
-                                       <children>
-                                          <Label text="Coleção" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
                                        <padding>
                                           <Insets right="80.0" />
                                        </padding>
+                                       <children>
+                                          <Label text="            Entrada" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets right="80.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
                                     </FlowPane>
                                  </children>
                               </GridPane>
@@ -395,8 +415,18 @@
                                        <padding>
                                           <Insets right="80.0" />
                                        </padding>
+                                       <children>
+                                          <Label text="Modelo" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
                                     </FlowPane>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ComboBox fx:id="cbModelo" prefHeight="45.0" prefWidth="150.0" />
+                                       </children></FlowPane>
                                  </children>
                               </GridPane>
                            </children>
@@ -420,29 +450,11 @@
                                  </rowConstraints>
                                  <children>
                                     <FlowPane prefHeight="46.0" prefWidth="480.0" GridPane.columnIndex="1">
-                                       <children>
-                                          <TextField fx:id="txtEntrada" prefHeight="46.0" prefWidth="211.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
                                        <padding>
                                           <Insets right="33.0" />
                                        </padding>
                                     </FlowPane>
-                                    <FlowPane alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="293.0">
-                                       <children>
-                                          <Label text="Entrada" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets right="80.0" />
-                                             </padding>
-                                          </Label>
-                                       </children>
-                                    </FlowPane>
+                                    <FlowPane alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="293.0" />
                                  </children>
                               </GridPane>
                               <GridPane>
@@ -483,22 +495,11 @@
                                 </rowConstraints>
                                  <children>
                                     <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <Label text="Modelo" textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
                                        <GridPane.margin>
                                           <Insets right="80.0" />
                                        </GridPane.margin>
                                     </FlowPane>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                       <children>
-                                          <ComboBox fx:id="cbModelo" prefHeight="45.0" prefWidth="150.0" />
-                                       </children>
-                                    </FlowPane>
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane GridPane.columnIndex="1">
