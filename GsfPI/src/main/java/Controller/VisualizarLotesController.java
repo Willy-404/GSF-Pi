@@ -141,7 +141,7 @@ public class VisualizarLotesController {
             TabelaLotes.setItems(listaObLotes);  
             colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
             colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
-            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
     }
      @FXML
 
@@ -189,9 +189,9 @@ public class VisualizarLotesController {
     void onSelecionaItem(MouseEvent event) {
         if(event.getClickCount() == 1){
             itemLote = TabelaLotes.getSelectionModel().getSelectedItem();
-            int id = itemLote.getReferencia();
-            itemLote=lmetodo.loteSelecionado(id);
             if(itemLote != null){
+                int id = itemLote.getReferencia();
+                itemLote=lmetodo.loteSelecionado(id);
                 txtReferencia.setText(String.valueOf(itemLote.getReferencia()));
                 txtPrazo.setText(String.valueOf(itemLote.getPrazo()));
                 txtEntrada.setText(String.valueOf(itemLote.getEntrada()));
@@ -201,7 +201,6 @@ public class VisualizarLotesController {
                 cbColecao.setValue(itemLote.getColecao());       
                 cbModelo.setValue(itemLote.getModelo());
                 txtQuantidade.setText(String.valueOf(itemLote.getQuantidade()));
-                cbLinha.setValue(itemLote.getLinha());
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Item selecionado");
@@ -296,9 +295,8 @@ public class VisualizarLotesController {
         String ColecaoT = cbColecao.getValue();
         String ModeloT = cbModelo.getValue();
         int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
-        String LinhaT = cbLinha.getValue();
         
-        Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT, LinhaT);
+        Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT);
         
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");

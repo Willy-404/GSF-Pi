@@ -20,7 +20,7 @@ public class Lotes {
         this.Quantidade = Quantidade;
     }
 
-    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade, String Linha) {
+    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
         this.Entrada = Entrada;
@@ -30,7 +30,6 @@ public class Lotes {
         this.Colecao = Colecao;
         this.Modelo = Modelo;
         this.Quantidade = Quantidade;
-        this.Linha = Linha;
     }
 
     public int getReferencia() {

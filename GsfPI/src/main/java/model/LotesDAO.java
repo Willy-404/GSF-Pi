@@ -23,12 +23,11 @@ public class LotesDAO extends GenericDAO {
     private String Marca;
     private String Colecao;
     private String Modelo;
-   
     private int Quantidade;
     private String Linha;
   
     public boolean cadastroLotes(Lotes l){
-    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, Quantidade, Linha) "
+    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, QuantidadeT, Linha) "
             + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     try  {
             save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
@@ -58,6 +57,10 @@ public class LotesDAO extends GenericDAO {
 
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            
+            for (int i = 0; i < parametros.length; i++) {
+            preparedStatement.setObject(i + 1, parametros[i]);
+        }
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -67,7 +70,7 @@ public class LotesDAO extends GenericDAO {
                             
                     Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, dataEntrada, resultSet.getDouble("Preco"),
                         resultSet.getString("Tecido"), resultSet.getString("Marca"),resultSet.getString("Colecao"), resultSet.getString("Modelo"), 
-                        resultSet.getInt("Quantidade"), resultSet.getString("Linha"));
+                        resultSet.getInt("QuantidadeT"));
 
                     // Add the object to the list
                     l = object;
@@ -97,7 +100,7 @@ public class LotesDAO extends GenericDAO {
                     
                     LocalDate dataPrazo = LocalDate.parse(resultSet.getString("Prazo"));
                             
-                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, resultSet.getInt("Quantidade") );
+                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, resultSet.getInt("QuantidadeT") );
 
                     // Add the object to the list
                     resultList.add(object);
@@ -129,7 +132,7 @@ public class LotesDAO extends GenericDAO {
     
     public boolean editarLotes(Lotes l, int id){
         //COmo atualiza no banco de dados?
-    String sql = "UPDATE lotes SET (Prazo= '?', Entrada= '?', Preco= '?', Tecido= '?', Marca= '?', Colecao= '?', Modelo= '?', Tamanho= '?', Quantidade= '?', Linha= '?') WHERE (Referencia = ?)";
+    String sql = "UPDATE lotes SET Referencia= ?, Prazo= ?, Entrada= ?, Preco= ?, Tecido= ?, Marca= ?, Colecao= ?, Modelo= ?, Tamanho= ?, QuantidadeT= ?, Linha= ? WHERE Referencia = ?";
     try  {
             
             update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
