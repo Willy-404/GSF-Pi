@@ -49,7 +49,7 @@
                   <TableColumn fx:id="colData" prefWidth="179.0" text="Data" />
                   <TableColumn fx:id="colEntrada" prefWidth="136.0" text="Entrada" />
                   <TableColumn fx:id="colSaida" prefWidth="133.0" text="Saída" />
-                  <TableColumn fx:id="colHorasTrabalhadas" prefWidth="281.0" text="Horas Trabalhadas" />
+                  <TableColumn fx:id="colHorasTrabalhadas" prefWidth="301.0" text="Horas Trabalhadas" />
                </columns>
             </TableView>
             <Label layoutX="152.0" layoutY="34.0" text="Registros de Ponto" textFill="WHITE">
