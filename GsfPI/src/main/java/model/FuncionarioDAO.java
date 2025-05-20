@@ -1,10 +1,15 @@
 package model;
 
 import Controller.CadastrarFuncionarioController;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-public class FuncionarioDAO extends GenericDAO{
+public class FuncionarioDAO extends GenericDAO {
+
     private String Cpf;
     private String NomeFuncionario;
     private LocalDate DataNascimento;
@@ -13,34 +18,47 @@ public class FuncionarioDAO extends GenericDAO{
     private Float ValorHora;
     private String Cargo;
     CadastrarFuncionarioController fc = new CadastrarFuncionarioController();
-    
-    public boolean cadastroFuncionario(Funcionario f){
-    String sql = "INSERT INTO funcionario (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) "
-            + "VALUES (?,?,?,?,?,?,?)";
-    try{
-            save(sql,f.getCpf(),f.getNomeFuncionario(), f.getDataNascimento(), f.getTelefone(), f.getEmail(), f.getValorHora(), f.getCargo());
-            
-           
-             return true;
-            }catch (SQLException e) {
+
+    public boolean cadastroFuncionario(Funcionario f) {
+        String sql = "INSERT INTO funcionario (Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo) "
+                + "VALUES (?,?,?,?,?,?,?)";
+        try {
+            save(sql, f.getCpf(), f.getNomeFuncionario(), f.getDataNascimento(), f.getTelefone(), f.getEmail(), f.getValorHora(), f.getCargo());
+
+            return true;
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-        }
-    
-    public Funcionario ListarFuncionario(){
-        Funcionario f = fc.getUserInfo().get(0);
-        Cpf = f.getCpf();
-        NomeFuncionario = f.getNomeFuncionario();
-        DataNascimento = f.getDataNascimento();
-        Telefone = f.getTelefone();
-        Email = f.getEmail();
-        ValorHora = f.getValorHora();
-        Cargo = f.getCargo();
-        return f;
     }
-    
-    public boolean editarFuncionario(Funcionario f, String Cpf){
+
+    public Funcionario ListarFuncionario() throws SQLException {
+        ObservableList<Funcionario> lista = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM funcionario";
+        PreparedStatement pstm = conectarDAO().prepareStatement(sql);
+
+        ResultSet f = pstm.executeQuery();
+
+        while (f.next) {
+            Funcionario funcionario = new Funcionario();
+            funcionario.setCpf(f.getString("Cpf"));
+            funcionario.setNomeFuncionario(f.getString("NomeFuncionario"));
+            funcionario.setDataNascimento(f.getDate("DataNascimento"));
+            funcionario.setTelefone(f.getString("Telefone"));
+            funcionario.setEmail(f.getString("Email"));
+            funcionario.setValorHora(f.getFloat("ValorHora"));
+            funcionario.setCargo(f.getString("Cargo"));
+
+            lista.add(funcionario);
+        }
+        f.close();
+        pstm.close();
+        conectarDAO().close();
+
+        return lista;
+    }
+
+    public boolean editarFuncionario(Funcionario f, String Cpf) {
         String CpfE = f.getCpf();
         String NomeFuncionarioE = f.getNomeFuncionario();
         LocalDate DataNascimentoE = f.getDataNascimento();
@@ -49,16 +67,16 @@ public class FuncionarioDAO extends GenericDAO{
         Float ValorHoraE = f.getValorHora();
         String CargoE = f.getCargo();
         String sql = "UPDATE funcionario SET Cpf = ?, NomeFuncionario =  ?, DataNascimento = ?, Telefone = ?, Email = ?, ValorHora = ?, Cargo = ? WHERE Cpf = ? ";
-        try{
-            update(sql,Cpf, f.getNomeFuncionario(), f.getDataNascimento(), f.getTelefone(), f.getEmail(), f.getValorHora(),f.getCargo());
+        try {
+            update(sql, Cpf, f.getNomeFuncionario(), f.getDataNascimento(), f.getTelefone(), f.getEmail(), f.getValorHora(), f.getCargo());
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        
-         }
+
+        }
     }
-    
+
     public String getCpf() {
         return Cpf;
     }
@@ -114,6 +132,5 @@ public class FuncionarioDAO extends GenericDAO{
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
     }
-    
-    
+
 }

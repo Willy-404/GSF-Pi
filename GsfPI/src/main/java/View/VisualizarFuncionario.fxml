@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -52,17 +51,7 @@
                   <Font name="System Bold" size="14.0" />
                </font></Button>
             <TextField fx:id="txtPesquisaFuncionario" layoutX="448.0" layoutY="31.0" prefHeight="25.0" prefWidth="552.0" promptText="Digite o nome do Funcionário" />
-            <TableView layoutY="60.0" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
-              <columns>
-                <TableColumn prefWidth="196.00000303983688" text="Nome" />
-                <TableColumn minWidth="0.0" prefWidth="187.1999969482422" text="Cargo" />
-                  <TableColumn prefWidth="212.79998779296875" text="Contato" />
-                  <TableColumn prefWidth="223.1998291015625" text="Cpf" />
-                  <TableColumn prefWidth="237.60015869140625" text="Email" />
-                  <TableColumn prefWidth="258.39990234375" text="Data de Nascimento" />
-                  <TableColumn prefWidth="255.2000732421875" text="Salário" />
-              </columns>
-            </TableView>
+            <TableView fx:id="tabelaFuncionario" layoutY="60.0" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0" />
          </children>
       </AnchorPane>
    </center>

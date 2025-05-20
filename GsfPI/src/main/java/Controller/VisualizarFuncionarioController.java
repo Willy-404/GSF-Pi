@@ -2,8 +2,9 @@ package Controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.SQLException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,14 +15,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Funcionario;
+import model.FuncionarioDAO;
 
 public class VisualizarFuncionarioController {
-    
+
     @FXML
     private Button btnNovoFuncionario;
+
+    @FXML
+    private TableView<?> tabelaFuncionario;
 
     @FXML
     private MenuBar MenuBar;
@@ -52,8 +59,8 @@ public class VisualizarFuncionarioController {
 
     @FXML
     private Label lblFuncionarios;
-    
-        @FXML
+
+    @FXML
     private TextField txtPesquisaFuncionario;
 
     @FXML
@@ -63,14 +70,14 @@ public class VisualizarFuncionarioController {
     private Menu menuVisualizar;
     Faccao f;
     public Stage stage;
-    
+
     public void setFaccao(Faccao f) {
-        this.f=f;
+    this.f = f;
     }
-     
+
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
@@ -90,7 +97,7 @@ public class VisualizarFuncionarioController {
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
@@ -109,27 +116,26 @@ public class VisualizarFuncionarioController {
     }
 
     //metodo de trocar para a tela vizu funcionario
-     public static void trocarVizFuncionario(MenuBar menuBar, Faccao f)throws IOException {
-          Stage home = new Stage();
-            home.setMaximized(true);
-            home.setTitle("Visualizar Funcionario");
+    public static void trocarVizFuncionario(MenuBar menuBar, Faccao f) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Visualizar Funcionario");
 
-            URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-            
-            VisualizarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(home);
+        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
 
-            Scene cena = new Scene(root);
-            home.setScene(cena);
-            home.show();
+        VisualizarFuncionarioController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.setStage(home);
 
-            ((Stage) menuBar.getScene().getWindow()).close();
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) menuBar.getScene().getWindow()).close();
     }
-     
-     
+
     @FXML
     void OnClickNovoFuncionario(ActionEvent event) throws IOException {
         Stage cadastroFuncionario = new Stage();
@@ -139,19 +145,25 @@ public class VisualizarFuncionarioController {
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        
+
         CadastrarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(cadastroFuncionario);
+        thc.setFaccao(f);
+        thc.setStage(cadastroFuncionario);
 
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
         cadastroFuncionario.show();
-        
+
         ((Stage) btnNovoFuncionario.getScene().getWindow()).close();
     }
 
     public void setStage(Stage home) {
-      this.stage = home;
+        this.stage = home;
+    }
+    
+    //Método para buscar do banco de dados
+    private ObservableList<Funcionario> listarFuncionario() throws SQLException {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        return dao.ListarFuncionario();
     }
 }
