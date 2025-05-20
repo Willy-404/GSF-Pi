@@ -121,7 +121,6 @@ public class CadastroLotesController {
         cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
         cbModelo.getItems().addAll("Calça","Short","legging","Blusa","Regata","Casaco");
         cbColecao.getItems().addAll("Primavera","verão","Outono","Inverno");
-        cbLinha.getItems().addAll("Azul","Branca","Vermelha");
     }
 
      @FXML
@@ -240,9 +239,8 @@ public class CadastroLotesController {
         String Colecao = cbColecao.getValue();
         String Modelo = cbModelo.getValue();
         int Quantidade = Integer.parseInt(txtQuantidade.getText());
-        String Linha = cbLinha.getValue();
 
-        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade, Linha);
+        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade);
         LotesDAO LDmetodo = new LotesDAO();
         return LDmetodo.cadastroLotes(l);
 

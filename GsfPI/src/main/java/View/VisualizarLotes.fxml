@@ -105,7 +105,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField />
+                              <TextField fx:id="txtEntrada" />
                            </children>
                         </FlowPane>
                      </children>
@@ -130,7 +130,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField />
+                              <TextField fx:id="txtPreco" />
                            </children>
                         </FlowPane>
                      </children>
@@ -155,7 +155,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField />
+                              <TextField fx:id="txtTecido" />
                            </children>
                         </FlowPane>
                      </children>
@@ -180,7 +180,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField />
+                              <TextField fx:id="txtMarca" />
                            </children>
                         </FlowPane>
                      </children>
