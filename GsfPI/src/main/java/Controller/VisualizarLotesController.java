@@ -33,6 +33,7 @@ import model.Faccao;
 
 import model.Lotes;
 import model.LotesDAO;
+import util.Alertas;
 
 public class VisualizarLotesController {
 
@@ -135,6 +136,7 @@ public class VisualizarLotesController {
 
     @FXML
     private TextField txtTecido;
+    Alertas alertas = new Alertas();
     private void carregarLotes(){
         List<Lotes> lotesList = lmetodo.listarLotes(); 
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
@@ -202,10 +204,7 @@ public class VisualizarLotesController {
                 cbModelo.setValue(itemLote.getModelo());
                 txtQuantidade.setText(String.valueOf(itemLote.getQuantidade()));
             }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Item selecionado");
-                alert.setHeaderText("O item selecionado gera problemas ao sistema !");
-                alert.showAndWait();
+               alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
             }
         }
 
@@ -219,20 +218,14 @@ public class VisualizarLotesController {
         alerta.setHeaderText("Ao sair perderá qualquer alteração!");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Saida Confirmada");
-                alert.setHeaderText("Saida confirmada!!");
-                alert.showAndWait();
-               try{ 
+                try{   
+                 alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
                  TelaHomeController.trocarTelaHome(btnVoltar, f);
                }catch(IOException e){
                    e.printStackTrace();
                }
             }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Saida Cancelada");
-                alert.setHeaderText("A saida foi cancelada com sucesso!!");
-                alert.showAndWait();
+                 alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
             }
         });
     }
@@ -304,28 +297,16 @@ public class VisualizarLotesController {
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 if(lmetodo.editarLotes(lTroca, id) != true){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Edição Concluida");
-                    alert.setHeaderText("A edição ocoreu com sucesso!!");
-                    alert.showAndWait();
+                    alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                 }else{
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Problema na Edição");
-                    alert.setHeaderText("Ocorreu um problema na edição!!");
-                    alert.showAndWait();
+                    alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
                 }
             }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Edição Cancelada");
-                    alert.setHeaderText("A edição foi cancelada com sucesso!!");
-                    alert.showAndWait();
+                alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
             }
         });
      }
-     
-     
-     
-   
+
     public void setStage(Stage visuLotes) {
         this.stage = visuLotes;
     }

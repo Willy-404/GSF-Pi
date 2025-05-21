@@ -3,9 +3,6 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +18,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
 import model.Perfil;
+import util.Alertas;
 
 public class CadastroController {
 
@@ -45,6 +43,7 @@ public class CadastroController {
     @FXML
     private TextField txtTelefone;
 
+    Alertas alertas = new Alertas();
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
 
@@ -69,15 +68,9 @@ public class CadastroController {
         }
 
         if (cadastroDeFaccao() != true) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao cadastrar ");
-            alerta.setHeaderText("Erro ao cadastrar seu perfil ");
-            alerta.showAndWait();
+            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar seu Perfil!");
         } else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Cadastro realizado com sucesso");
-            alerta.setHeaderText("Seu perfil foi cadastrado com sucesso");
-            alerta.showAndWait();
+            alertas.alertaInformation("Cadastro realizado com sucesso", "Seu perfil foi cadastrado com sucesso!");
             
             LoginController lc = new LoginController();
             lc.trocarLogin(btnCadastrar);
@@ -94,19 +87,13 @@ public class CadastroController {
             if (response == ButtonType.OK) {
                 LoginController lc = new LoginController();
                 try {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Saida Confirmada");
-                    alert.setHeaderText("Saida confirmada com sucesso!!");
-                    alert.showAndWait();
+                    alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
                     lc.trocarLogin(btnSair);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }else{
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("Saida Cancelada");
-                 alert.setHeaderText("A saida foi cancelada com sucesso!!");
-                 alert.showAndWait();
+                 alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
             }
 
             });

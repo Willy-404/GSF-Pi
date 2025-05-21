@@ -16,8 +16,8 @@ public class validacao {
     Alertas alertas = new Alertas();
     
     //metodo para validar o tamanho de um texto
-    public boolean ValidaTamanhoText(int tamanhoMax, String texto, String componente){
-        if(texto.length() > tamanhoMax ){
+    public boolean ValidaTamanhoText(int tamanho, String texto){
+        if(texto.length() != tamanho){
             alertas.alertaError("Tamanho Incompativel!","Tamanho do texto digitado maior do que o permitido!");
            return false;
         }
@@ -93,11 +93,13 @@ public class validacao {
         if(!Pattern.compile(tellFormat).matcher(tell).matches()){
              alertas.alertaError("Formato do CPF incorreto", "O padrão esperado é XXX.XXX.XXX-XX");
             return false;
-            //como faremos o armazenamento dos numeros sem o padrão escrito, quando voltar pro sistema tem como usar replaceAll(format, "$1 $2")
-            //sendo o  1 e 2 os grupos do format.
+            /*como faremos o armazenamento dos numeros sem o padrão escrito, quando voltar pro sistema tem como usar replaceAll(format, "$1 $2")
+            sendo o  1 e 2 os grupos do format.*/
         }
         return true;
     }
     
-    //Será que precisa formatar a data já que o datapicker ja faz a data padrão local (Brasil no nosso caso)
+    /*Será que precisa formatar a data já que o datapicker ja faz a data padrão local (Brasil no nosso caso)
+    Será que precisa de validação por tamanho max de componente, exemplo: Nome max 30 caracteres, então uma 
+    mensagem de error se for maior doq isso */
 }

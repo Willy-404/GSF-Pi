@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
+import util.Alertas;
 
 public class CadastrarFuncionarioController {
 
@@ -103,7 +104,8 @@ public class CadastrarFuncionarioController {
     public void setFaccao(Faccao r) {
         this.f = r;
     }
-
+    Alertas alertas = new Alertas();
+    
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
@@ -175,15 +177,9 @@ public class CadastrarFuncionarioController {
         }
         
         if (CadastroDeFuncionario() != true) { 
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao cadastrar ");
-            alerta.setHeaderText("Erro ao cadastrar funcionário ");
-            alerta.showAndWait();
+            alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionario");
         } else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Cadastro realizado com sucesso");
-            alerta.setHeaderText("O funcionário foi cadastrado com sucesso");
-            alerta.showAndWait();
+            alertas.alertaInformation("Cadastro realizado com sucesso", "O Funcionario foi cadastrado com sucesso");
         }
     }
         //Metodo para trocar pra tela Cadastrar funcionario

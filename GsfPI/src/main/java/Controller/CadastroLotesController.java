@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +23,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Lotes;
 import model.LotesDAO;
+import util.Alertas;
 
 public class CadastroLotesController {
 
@@ -114,7 +113,7 @@ public class CadastroLotesController {
     public void setFaccao(Faccao f) {
         this.f=f;
     }
-
+    Alertas alertas = new Alertas();
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
@@ -171,19 +170,13 @@ public class CadastroLotesController {
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Saida Confirmada");
-                    alert.setHeaderText("Saida confirmada com sucesso!!");
-                    alert.showAndWait();
+                   alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
                     TelaHomeController.trocarTelaHome(btnVoltar, f);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }else{
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("Saida Cancelada");
-                 alert.setHeaderText("A saida foi cancelada com sucesso!!");
-                 alert.showAndWait();
+                  alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
             }
         });
     }
@@ -192,15 +185,9 @@ public class CadastroLotesController {
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
        //Fazer as verificações
        if (cadastroDeLotes() != true) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao cadastrar ");
-            alerta.setHeaderText("Erro ao cadastrar seu lote ");
-            alerta.showAndWait();
+            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
         } else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Cadastro realizado com sucesso");
-            alerta.setHeaderText("Seu lote foi cadastrado com sucesso");
-            alerta.showAndWait();
+            alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
             
            VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);
         }

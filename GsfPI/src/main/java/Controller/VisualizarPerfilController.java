@@ -3,7 +3,6 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +19,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
 import model.Perfil;
+import util.Alertas;
 
 public class VisualizarPerfilController {
 
@@ -85,6 +85,7 @@ public class VisualizarPerfilController {
     
     @FXML
     private TextField txtSenha;
+    Alertas alertas = new Alertas();
     
     //Retorno dos valores da faccao Logada no sistema 
     FaccaoDAO fd = new FaccaoDAO();
@@ -155,10 +156,7 @@ public class VisualizarPerfilController {
                     e.printStackTrace();
                 }
             }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Logoff Cancelada");
-                    alert.setHeaderText("O logoff foi cancelado com sucesso!!");
-                    alert.showAndWait();
+                  alertas.alertaInformation("Logoff Cancelado", "O logoff foi cancelado com sucesso!");
             }
         });  
     }
@@ -189,23 +187,13 @@ public class VisualizarPerfilController {
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 if(fmetodo.editarFaccao(fTroca, id) != true){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Problema na Edição");
-                    alert.setHeaderText("Ocorreu um problema na edição!!");
-                    alert.showAndWait(); 
-
+                    alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                 }else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Edição Concluida");
-                    alert.setHeaderText("A edição ocoreu com sucesso!!");
-                    alert.showAndWait();
+                    alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
                     setFaccao(fTroca);
                 }
             }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Edição Cancelada");
-                    alert.setHeaderText("A edição foi cancelada com sucesso!!");
-                    alert.showAndWait();
+                alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
             }
         });     
     }

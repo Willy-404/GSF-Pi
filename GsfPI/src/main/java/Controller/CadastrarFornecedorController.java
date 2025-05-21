@@ -3,8 +3,6 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +19,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Fornecedor;
 import model.FornecedorDAO;
-import model.Funcionario;
-import model.FuncionarioDAO;
+import util.Alertas;
 
 public class CadastrarFornecedorController {
     
@@ -92,6 +89,7 @@ public class CadastrarFornecedorController {
     public void setFaccao(Faccao f) {
         this.f=f;
     }
+    Alertas alertas = new Alertas();
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -163,15 +161,9 @@ public class CadastrarFornecedorController {
         }
         
         if (CadastroDeFornecedor() != true) { 
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao cadastrar ");
-            alerta.setHeaderText("Erro ao cadastrar funcionário ");
-            alerta.showAndWait();
+            alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Fornecedor");
         } else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Cadastro realizado com sucesso");
-            alerta.setHeaderText("O funcionário foi cadastrado com sucesso");
-            alerta.showAndWait();
+            alertas.alertaInformation("Cadastro realizado com sucesso", "O Fornecedor foi cadastrado com sucesso");
         }
     }
     

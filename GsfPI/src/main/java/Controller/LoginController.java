@@ -6,13 +6,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -20,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.LoginDAO;
+import util.Alertas;
 
 public class LoginController {
 private Connection conexao;
@@ -39,6 +38,7 @@ private Connection conexao;
     @FXML
     private PasswordField txtSenha;
 
+    Alertas alertas = new Alertas();
     @FXML
     void onClickTelaHome(ActionEvent event) throws IOException {
         
@@ -51,10 +51,8 @@ private Connection conexao;
 
     }
         if(r == null){
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Erro");
-        alerta.setHeaderText("Login ou senha inválidos!!!");
-        alerta.showAndWait();
+            alertas.alertaError("Informações incorretas", "Login ou senha inválidos!");
+       
         }else{
             TelaHomeController.trocarTelaHome(btnConfirmar, r);
         }
