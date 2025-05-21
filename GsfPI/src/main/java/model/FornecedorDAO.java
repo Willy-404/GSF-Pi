@@ -30,15 +30,15 @@ public class FornecedorDAO extends GenericDAO {
         }
         }
     
-   //  public Fornecedor ListarFornecedor(){
-    //    Fornecedor f = fc.getUserInfo().get(0);
-    //   CNPJFornecedor = f.getCNPJFornecedor();
- ///     NomeRepreFornecedor = f.getNomeRepreFornecedor();
-    //    EmailAcesso = f.getEmailAcesso();
-     //  Senha = f.getSenha();
+   /*  public Fornecedor ListarFornecedor(){
+        Fornecedor f = fc.getUserInfo().get(0);
+        CNPJFornecedor = f.getCNPJFornecedor();
+        NomeRepreFornecedor = f.getNomeRepreFornecedor();
+        EmailAcesso = f.getEmailAcesso();
+       Senha = f.getSenha();
        
-     //   return f;
-  //  }
+        return f;
+    } */
 
  
     public long getCNPJFornecedor() {

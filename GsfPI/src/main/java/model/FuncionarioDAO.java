@@ -32,30 +32,30 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
 
-  //  public Funcionario ListarFuncionario() throws SQLException {
-    //    ObservableList<Funcionario> lista = FXCollections.observableArrayList();
-      //  String sql = "SELECT * FROM funcionario";
-     //   PreparedStatement pstm = conectarDAO().prepareStatement(sql);
-//
-      //  ResultSet f = pstm.executeQuery();
+  /*  public Funcionario ListarFuncionario() throws SQLException {
+        ObservableList<Funcionario> lista = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM funcionario";
+        PreparedStatement pstm = conectarDAO().prepareStatement(sql);
 
-     //   while (f.next) {
-         //   Funcionario funcionario = new Funcionario();
-        //    funcionario.setCpf(f.getString("Cpf"));
-     //       funcionario.setNomeFuncionario(f.getString("NomeFuncionario"));
-     //       funcionario.setDataNascimento(f.getDate("DataNascimento"));
-     //       funcionario.setTelefone(f.getString("Telefone"));
-    //        funcionario.setEmail(f.getString("Email"));
-      //      funcionario.setValorHora(f.getFloat("ValorHora"));
-     //       funcionario.setCargo(f.getString("Cargo"));
+        ResultSet f = pstm.executeQuery();
 
-      //      lista.add(funcionario);
-     //  }
-      //  f.close();
-     //   pstm.close();
-      //  conectarDAO().close();
+        while (f.next) {
+            Funcionario funcionario = new Funcionario();
+            funcionario.setCpf(f.getString("Cpf"));
+            funcionario.setNomeFuncionario(f.getString("NomeFuncionario"));
+            funcionario.setDataNascimento(f.getDate("DataNascimento"));
+            funcionario.setTelefone(f.getString("Telefone"));
+            funcionario.setEmail(f.getString("Email"));
+            funcionario.setValorHora(f.getFloat("ValorHora"));
+            funcionario.setCargo(f.getString("Cargo"));
 
-//        return lista;
+            lista.add(funcionario);
+       }
+        f.close();
+        pstm.close();
+        conectarDAO().close();
+
+        return lista; */
     
 
     public boolean editarFuncionario(Funcionario f, String Cpf) {
