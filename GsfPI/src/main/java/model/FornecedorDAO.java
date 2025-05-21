@@ -11,6 +11,10 @@ public class FornecedorDAO extends GenericDAO {
    private String EmailAcesso;
    private String Senha;
     CadastrarFornecedorController fc = new CadastrarFornecedorController();
+
+    public FornecedorDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public boolean cadastroFornecedor(Fornecedor f){
     String sql = "INSERT INTO funcionario (CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha) "
@@ -26,36 +30,17 @@ public class FornecedorDAO extends GenericDAO {
         }
         }
     
-     public Fornecedor ListarFornecedor(){
-        Fornecedor f = fc.getUserInfo().get(0);
-        Cpf = f.getCpf();
-        NomeFuncionario = f.getNomeFuncionario();
-        DataNascimento = f.getDataNascimento();
-        Telefone = f.getTelefone();
-        Email = f.getEmail();
-        ValorHora = f.getValorHora();
-        Cargo = f.getCargo();
-        return f;
-    }
+   //  public Fornecedor ListarFornecedor(){
+    //    Fornecedor f = fc.getUserInfo().get(0);
+    //   CNPJFornecedor = f.getCNPJFornecedor();
+ ///     NomeRepreFornecedor = f.getNomeRepreFornecedor();
+    //    EmailAcesso = f.getEmailAcesso();
+     //  Senha = f.getSenha();
+       
+     //   return f;
+  //  }
 
-    public FornecedorDAO(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
-        this.CNPJFornecedor = CNPJFornecedor;
-        this.NomeRepreFornecedor = NomeRepreFornecedor;
-        this.EmailAcesso = EmailAcesso;
-        this.Senha = Senha;
-    }
-   
-   public FornecedorDAO(String NomeRepreFornecedor, String EmailAcesso, String Senha) {
-        this.NomeRepreFornecedor = NomeRepreFornecedor;
-        this.EmailAcesso = EmailAcesso;
-        this.Senha = Senha;
-   }
-
-    public FornecedorDAO(String EmailAcesso, String Senha) {
-        this.EmailAcesso = EmailAcesso;
-        this.Senha = Senha;
-    }
-   
+ 
     public long getCNPJFornecedor() {
         return CNPJFornecedor;
     }

@@ -162,8 +162,8 @@ public class VisualizarFuncionarioController {
     }
     
     //Método para buscar do banco de dados
-    private ObservableList<Funcionario> listarFuncionario() throws SQLException {
-        FuncionarioDAO dao = new FuncionarioDAO();
-        return dao.ListarFuncionario();
-    }
+    //private ObservableList<Funcionario> listarFuncionario() throws SQLException {
+     //   FuncionarioDAO dao = new FuncionarioDAO();
+      //  return dao.ListarFuncionario();
+   // }
 }
