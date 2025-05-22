@@ -48,6 +48,7 @@ public class CadastroController {
     Validacao validacao = new Validacao();
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
+        int cnpjnum = Integer.valueOf(txtCnpj.getText()); 
         if (validacao.itemisEmpty(txtNomeCompleto.getText(),"Nome")) {
             return;
             
@@ -62,6 +63,8 @@ public class CadastroController {
         } else if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
             return;
         } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText())) {
+            return;
+        }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "faccao", "CnpjFaccao", cnpjnum)){
             return;
             
         }else if(validacao.itemisEmpty(txtTelefone.getText(),"Telefone")){

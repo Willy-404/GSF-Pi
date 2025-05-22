@@ -1,5 +1,10 @@
 package util;
 
+import dal.ConexaoBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class Validacao {
@@ -54,9 +59,27 @@ public class Validacao {
     }
     
     //metodo para validar se existe o CNPJ no sistema
-    public boolean ValidaCNPJSistema(){
-        
-        return false;
+    public boolean ItemCNPJnoSistema(String cnpj, String nomeTabelaSQL, String nomeElemento, Object... parametros){
+        int cnpjNum = Integer.valueOf(cnpj);
+        String sql = "Select* FROM "+ nomeTabelaSQL +" WHERE "+nomeElemento+ "= ?";
+        int validar = 0;
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+             for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                validar++;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        if(validar != 0){
+            alertas.alertaError("CNPJ no sistema","O CNPJ digitado já esta no sistema! \n Digite outro CNPJ válido para realizar o cadastro!");
+            return true;
+        }else {
+            return false;
+        }
     }
     
     //metodo para validar o padrão de CPF 
@@ -70,9 +93,29 @@ public class Validacao {
     }
     
     //metodo para validar se existe o CPF no sistema
-    public boolean ValidaCPFSistema(){
-        
-        return false;
+    public boolean ValidaCPFSistema(String cpf,String nomeTabelaSQL, Object... parametros){
+         int cpfNum = Integer.valueOf(cpf);
+        String sql = "Select* FROM funcionario WHERE Cpf = ?";
+        int validar = 0;
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+           
+            for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                validar++;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        if(validar != 0){
+            alertas.alertaError("CPF no sistema","O CPF digitado já esta no sistema! \n Digite outro CPF válido para realizar o cadastro!");
+            return true;
+        }else {
+            return false;
+        }
+
     }
     
     //metodo para validar o padrão de CPF 
