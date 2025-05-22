@@ -89,7 +89,7 @@ public class VisualizarFornecedorController {
     FornecedorDAO lmetodo = new FornecedorDAO();
 
     //Método para buscar do banco de dados
-    public void visuFornecedor() {
+   /* public void visuFornecedor() {
         //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Fornecedor> fornecedorList = lmetodo.ListarFornecedor();
         ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorList);
@@ -97,7 +97,7 @@ public class VisualizarFornecedorController {
         colCnpj.setCellValueFactory(new PropertyValueFactory<>("CnpjFornecedor"));
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
         colSenha.setCellValueFactory(new PropertyValueFactory<>("Senha"));
-    }
+    }*/
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -184,9 +184,9 @@ public class VisualizarFornecedorController {
         this.stage = home;
     }
 
-    @FXML
+  /*  @FXML
     public void initialize() {
         visuFornecedor();
-    }
+    }*/
 
 }

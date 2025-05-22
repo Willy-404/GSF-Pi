@@ -222,7 +222,7 @@ public class CadastroLotesController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate Prazo = LocalDate.parse(txtPrazo.getText(), formatter);
         LocalDate Entrada = LocalDate.parse(txtEntrada.getText(), formatter);
-        Double Preco = Double.parseDouble(txtPreco.getText());
+        double Preco = Double.parseDouble(txtPreco.getText());
         String Tecido = txtTecido.getText();
         String Marca = txtMarca.getText();
         String Colecao = cbColecao.getValue();

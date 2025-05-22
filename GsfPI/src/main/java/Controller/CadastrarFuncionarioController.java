@@ -213,7 +213,7 @@ public class CadastrarFuncionarioController {
         LocalDate DataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
         String Telefone = txtContato.getText();
         String Email = txtEmail.getText();
-        Float ValorHora = Float.parseFloat(txtSalario.getText());
+        float ValorHora = Float.parseFloat(txtSalario.getText());
         String Cargo = txtCargo.getText();
 
         Funcionario f = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);

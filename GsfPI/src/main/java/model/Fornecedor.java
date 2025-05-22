@@ -1,8 +1,5 @@
 package model;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-
 public class Fornecedor {
 
     private long CNPJFornecedor;

@@ -73,8 +73,8 @@ public class CadastrarFornecedorController {
     @FXML
     private TextField txtContato;
 
-    @FXML
-    private TextField txtEndereco;
+  /*  @FXML
+    private TextField txtEndereco;*/
 
     @FXML
     private TextField txtEmail;
@@ -150,14 +150,14 @@ public class CadastrarFornecedorController {
             return;
         } else if (!txtCnpj.getText().matches("[z0-9]+")) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campo CPF");
-            alerta.setHeaderText("Campo CPF deve conter apenas numeros!!!");
+            alerta.setTitle("Campo CNPJ");
+            alerta.setHeaderText("Campo CNPJ deve conter apenas numeros!!!");
             alerta.showAndWait();
             return;
-        } else if (txtCnpj.getText().length() != 11) {
+        } else if (txtCnpj.getText().length() != 14) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("CPF");
-            alerta.setHeaderText("Campo CPF inválido!!!");
+            alerta.setTitle("CNPJ");
+            alerta.setHeaderText("Campo CNPJ inválido!!!");
             alerta.showAndWait();
             return;
         }
@@ -193,12 +193,12 @@ public class CadastrarFornecedorController {
     
      public boolean CadastroDeFornecedor() {
 
-        Long CNPJFornecedor = Long.parseLong(txtCnpj.getText());
-        String NomeFuncionario = txtNome.getText();
-        String Telefone = txtContato.getText();
-        String Email = txtEmail.getText();
+        long CNPJFornecedor = Long.parseLong(txtCnpj.getText());
+        String NomeRepreFornecedor = txtNome.getText();
+        String Senha = txtContato.getText();
+        String EmailAcesso = txtEmail.getText();
        
-        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeFuncionario, Telefone, Email);
+        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, Senha, EmailAcesso);
         FornecedorDAO FornecMetodo = new FornecedorDAO();
         return FornecMetodo.cadastroFornecedor(f);
 
