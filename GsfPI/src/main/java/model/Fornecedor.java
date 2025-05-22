@@ -1,16 +1,15 @@
-
 package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Fornecedor implements Serializable {
-    
-       private long CNPJFornecedor;
-   private String NomeRepreFornecedor;
-   private String EmailAcesso;
-   private String Senha;
-   
+public class Fornecedor {
+
+    private long CNPJFornecedor;
+    private String NomeRepreFornecedor;
+    private String EmailAcesso;
+    private String Senha;
+
     public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
         this.CNPJFornecedor = CNPJFornecedor;
         this.NomeRepreFornecedor = NomeRepreFornecedor;
@@ -49,7 +48,5 @@ public class Fornecedor implements Serializable {
     public void setSenha(String Senha) {
         this.Senha = Senha;
     }
-    
-    
-    
+
 }
