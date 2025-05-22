@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 
 import model.Faccao;
 
-
 import model.Lotes;
 import model.LotesDAO;
 import util.Alertas;
@@ -46,7 +45,7 @@ public class VisualizarLotesController {
     @FXML
     private MenuBar MenuBar;
 
-   @FXML
+    @FXML
     private ComboBox<String> cbLinha;
 
     @FXML
@@ -90,35 +89,32 @@ public class VisualizarLotesController {
 
     @FXML
     private Menu menuVisualizar;
-    
+
     Lotes l;
-     @FXML
+    @FXML
     private TextField txtEntrada;
-     
-     @FXML
+
+    @FXML
     private TextField txtReferencia;
-     
-     @FXML
+
+    @FXML
     private TextField txtPrazo;
-     
-     @FXML
+
+    @FXML
     private TextField txtQuantidade;
 
     @FXML
     private TextField txtMarca;
-    
 
+    Faccao f;
+    public Stage stage;
 
-     Faccao f;
-      public Stage stage;
     public void setFaccao(Faccao f) {
-        this.f=f;
+        this.f = f;
     }
 
- 
     Lotes itemLote;
     LotesDAO lmetodo = new LotesDAO();
- 
 
     @FXML
     private TableView<Lotes> TabelaLotes;
@@ -137,19 +133,19 @@ public class VisualizarLotesController {
     @FXML
     private TextField txtTecido;
     Alertas alertas = new Alertas();
-    
-    private void carregarLotes(){
-        List<Lotes> lotesList = lmetodo.listarLotes(); 
+
+    private void carregarLotes() {
+        List<Lotes> lotesList = lmetodo.listarLotes();
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
-            TabelaLotes.setItems(listaObLotes);  
-            colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
-            colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
-            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
+        TabelaLotes.setItems(listaObLotes);
+        colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+        colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
     }
-    
-     @FXML
+
+    @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
@@ -169,7 +165,7 @@ public class VisualizarLotesController {
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
@@ -186,31 +182,29 @@ public class VisualizarLotesController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
-      
-    
-      @FXML
+
+    @FXML
     void onSelecionaItem(MouseEvent event) {
-        if(event.getClickCount() == 1){
+        if (event.getClickCount() == 1) {
             itemLote = TabelaLotes.getSelectionModel().getSelectedItem();
-            if(itemLote != null){
+            if (itemLote != null) {
                 int id = itemLote.getReferencia();
-                itemLote=lmetodo.loteSelecionado(id);
+                itemLote = lmetodo.loteSelecionado(id);
                 txtReferencia.setText(String.valueOf(itemLote.getReferencia()));
                 txtPrazo.setText(String.valueOf(itemLote.getPrazo()));
                 txtEntrada.setText(String.valueOf(itemLote.getEntrada()));
                 txtPreco.setText(String.valueOf(itemLote.getPreco()));
                 txtTecido.setText(String.valueOf(itemLote.getTecido()));
                 txtMarca.setText(String.valueOf(itemLote.getMarca()));
-                cbColecao.setValue(itemLote.getColecao());       
+                cbColecao.setValue(itemLote.getColecao());
                 cbModelo.setValue(itemLote.getModelo());
                 txtQuantidade.setText(String.valueOf(itemLote.getQuantidade()));
-            }else{
-               alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
+            } else {
+                alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
             }
         }
 
     }
-
 
     @FXML
     void onClickVoltar(ActionEvent event) {
@@ -219,67 +213,65 @@ public class VisualizarLotesController {
         alerta.setHeaderText("Ao sair perderá qualquer alteração!");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                try{   
-                 alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
-                 TelaHomeController.trocarTelaHome(btnVoltar, f);
-               }catch(IOException e){
-                   e.printStackTrace();
-               }
-            }else{
-                 alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
+                try {
+                    alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
+                    TelaHomeController.trocarTelaHome(btnVoltar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
             }
         });
     }
-    
 
-    public static void trocarVizLotes(MenuBar menuBar, Faccao f)throws IOException {
-          Stage visuLotes = new Stage();
+    public static void trocarVizLotes(MenuBar menuBar, Faccao f) throws IOException {
+        Stage visuLotes = new Stage();
         visuLotes.setMaximized(true);
         visuLotes.setTitle("Visualizar Lotes");
 
         URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        
+
         VisualizarLotesController thc = loader.getController();
         thc.setFaccao(f);
         thc.setStage(visuLotes);
         thc.carregarLotes();
-        
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
         visuLotes.show();
-        
+
         ((Stage) menuBar.getScene().getWindow()).close();
     }
-    
-     public static void trocarVizLotes(Button btn, Faccao f)throws IOException {
-          Stage visuLotes = new Stage();
+
+    public static void trocarVizLotes(Button btn, Faccao f) throws IOException {
+        Stage visuLotes = new Stage();
         visuLotes.setMaximized(true);
         visuLotes.setTitle("Visualizar Lotes");
 
         URL url = new File("src/main/java/view/VisualizarLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        
+
         VisualizarLotesController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(visuLotes);
-            thc.carregarLotes();
+        thc.setFaccao(f);
+        thc.setStage(visuLotes);
+        thc.carregarLotes();
 
         Scene cena = new Scene(root);
         visuLotes.setScene(cena);
         visuLotes.show();
-        
+
         ((Stage) btn.getScene().getWindow()).close();
     }
-    
-     void OnClickEditar(ActionEvent event) throws IOException {
+
+    void OnClickEditar(ActionEvent event) throws IOException {
         int id = (l.getReferencia());
         LotesDAO lmetodo = new LotesDAO();
-        
-         int ReferenciaT = Integer.parseInt(txtReferencia.getText());
+
+        int ReferenciaT = Integer.parseInt(txtReferencia.getText());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate PrazoT = LocalDate.parse(txtPrazo.getText(), formatter);
         LocalDate EntradaT = LocalDate.parse(txtEntrada.getText(), formatter);
@@ -289,24 +281,24 @@ public class VisualizarLotesController {
         String ColecaoT = cbColecao.getValue();
         String ModeloT = cbModelo.getValue();
         int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
-        
+
         Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT);
-        
+
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Editar?");
         alerta.setHeaderText("Deseja fazer a edição das informações?");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                if(lmetodo.editarLotes(lTroca, id) != true){
+                if (lmetodo.editarLotes(lTroca, id) != true) {
                     alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
-                }else{
+                } else {
                     alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
                 }
-            }else{
+            } else {
                 alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
             }
         });
-     }
+    }
 
     public void setStage(Stage visuLotes) {
         this.stage = visuLotes;

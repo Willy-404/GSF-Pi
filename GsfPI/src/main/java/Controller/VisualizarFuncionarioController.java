@@ -3,6 +3,10 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +20,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Funcionario;
+import model.FuncionarioDAO;
 
 public class VisualizarFuncionarioController {
 
@@ -25,28 +32,28 @@ public class VisualizarFuncionarioController {
     private Button btnNovoFuncionario;
 
     @FXML
-    private TableView<?> tabelaFuncionario;
+    private TableView<Funcionario> tabelaFuncionario;
 
     @FXML
-    private TableColumn<?, ?> colTelefone;
+    private TableColumn<Funcionario, String> colTelefone;
 
     @FXML
-    private TableColumn<?, ?> colNascimento;
-    
-    @FXML
-    private TableColumn<?, ?> colCPF;
+    private TableColumn<Funcionario, LocalDate> colNascimento;
 
     @FXML
-    private TableColumn<?, ?> colSalario;
-    
-    @FXML
-    private TableColumn<?, ?> colCargo;
+    private TableColumn<Funcionario, String> colCPF;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
-    
+    private TableColumn<Funcionario, Float> colSalario;
+
     @FXML
-    private TableColumn<?, ?> colNome;
+    private TableColumn<Funcionario, String> colCargo;
+
+    @FXML
+    private TableColumn<Funcionario, String> colEmail;
+
+    @FXML
+    private TableColumn<Funcionario, String> colNome;
 
     @FXML
     private MenuBar MenuBar;
@@ -91,6 +98,21 @@ public class VisualizarFuncionarioController {
 
     public void setFaccao(Faccao f) {
         this.f = f;
+    }
+    FuncionarioDAO lmetodo = new FuncionarioDAO();
+
+    //Método para buscar do banco de dados
+    public void carregarFuncionarios() {
+        List<Funcionario> funcionarioList = lmetodo.ListarFuncionario();
+        ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioList);
+        tabelaFuncionario.setItems(listaFuncionario);
+        colCPF.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+        colNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
+        colNascimento.setCellValueFactory(new PropertyValueFactory<>("DataNascimento"));
+        colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        colSalario.setCellValueFactory(new PropertyValueFactory<>("ValorHora"));
+        colCargo.setCellValueFactory(new PropertyValueFactory<>("Cargo"));
     }
 
     @FXML
@@ -175,13 +197,13 @@ public class VisualizarFuncionarioController {
         ((Stage) btnNovoFuncionario.getScene().getWindow()).close();
     }
 
-    public void setStage(Stage home) {
-        this.stage = home;
+    public void setStage(Stage visuFuncionario) {
+        this.stage = visuFuncionario;
     }
 
-    //Método para buscar do banco de dados
-    //private ObservableList<Funcionario> listarFuncionario() throws SQLException {
-    //   FuncionarioDAO dao = new FuncionarioDAO();
-    //  return dao.ListarFuncionario();
-    // }
+    @FXML
+    public void initialize() {
+        carregarFuncionarios();
+    }
+
 }
