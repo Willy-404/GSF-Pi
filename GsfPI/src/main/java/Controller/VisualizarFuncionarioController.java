@@ -3,8 +3,6 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
-import model.Funcionario;
-import model.FuncionarioDAO;
 
 public class VisualizarFuncionarioController {
 
@@ -29,6 +26,27 @@ public class VisualizarFuncionarioController {
 
     @FXML
     private TableView<?> tabelaFuncionario;
+
+    @FXML
+    private TableColumn<?, ?> colTelefone;
+
+    @FXML
+    private TableColumn<?, ?> colNascimento;
+    
+    @FXML
+    private TableColumn<?, ?> colCPF;
+
+    @FXML
+    private TableColumn<?, ?> colSalario;
+    
+    @FXML
+    private TableColumn<?, ?> colCargo;
+
+    @FXML
+    private TableColumn<?, ?> colEmail;
+    
+    @FXML
+    private TableColumn<?, ?> colNome;
 
     @FXML
     private MenuBar MenuBar;
@@ -72,7 +90,7 @@ public class VisualizarFuncionarioController {
     public Stage stage;
 
     public void setFaccao(Faccao f) {
-    this.f = f;
+        this.f = f;
     }
 
     @FXML
@@ -160,10 +178,10 @@ public class VisualizarFuncionarioController {
     public void setStage(Stage home) {
         this.stage = home;
     }
-    
+
     //Método para buscar do banco de dados
     //private ObservableList<Funcionario> listarFuncionario() throws SQLException {
-     //   FuncionarioDAO dao = new FuncionarioDAO();
-      //  return dao.ListarFuncionario();
-   // }
+    //   FuncionarioDAO dao = new FuncionarioDAO();
+    //  return dao.ListarFuncionario();
+    // }
 }

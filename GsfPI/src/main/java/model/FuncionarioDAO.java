@@ -1,10 +1,14 @@
 package model;
 
 import Controller.CadastrarFuncionarioController;
+import dal.ConexaoBD;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -32,31 +36,32 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
 
-  /*  public Funcionario ListarFuncionario() throws SQLException {
+    public List<Funcionario> ListarFuncionario() {
         ObservableList<Funcionario> lista = FXCollections.observableArrayList();
         String sql = "SELECT * FROM funcionario";
-        PreparedStatement pstm = conectarDAO().prepareStatement(sql);
+        List<Funcionario> resultList = new ArrayList<Funcionario>();
 
-        ResultSet f = pstm.executeQuery();
+        try (Connection connection = ConexaoBD.conectar(); PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
-        while (f.next) {
-            Funcionario funcionario = new Funcionario();
-            funcionario.setCpf(f.getString("Cpf"));
-            funcionario.setNomeFuncionario(f.getString("NomeFuncionario"));
-            funcionario.setDataNascimento(f.getDate("DataNascimento"));
-            funcionario.setTelefone(f.getString("Telefone"));
-            funcionario.setEmail(f.getString("Email"));
-            funcionario.setValorHora(f.getFloat("ValorHora"));
-            funcionario.setCargo(f.getString("Cargo"));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Create a new object for each row
+                    LocalDate dataNascimento = LocalDate.parse(resultSet.getString("DataNascimento"));
+                    
+                    Funcionario object = new Funcionario(resultSet.getString("Cpf"), resultSet.getString("NomeFuncionario"),
+                        dataNascimento, resultSet.getString("Telefone"), resultSet.getString("Email"),
+                        resultSet.getFloat("ValorHora"),resultSet.getString("Cargo"));
+                    // Add the object to the list
+                    resultList.add(object);
+                }
+            }
 
-            lista.add(funcionario);
-       }
-        f.close();
-        pstm.close();
-        conectarDAO().close();
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
 
-        return lista; */
-    
+        return resultList;
+    }
 
     public boolean editarFuncionario(Funcionario f, String Cpf) {
         String CpfE = f.getCpf();

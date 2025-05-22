@@ -1,9 +1,8 @@
 package model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Funcionario implements Serializable{
+public class Funcionario {
     private String Cpf;
     private String NomeFuncionario;
     private LocalDate DataNascimento;

@@ -137,6 +137,7 @@ public class VisualizarLotesController {
     @FXML
     private TextField txtTecido;
     Alertas alertas = new Alertas();
+    
     private void carregarLotes(){
         List<Lotes> lotesList = lmetodo.listarLotes(); 
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
@@ -145,8 +146,8 @@ public class VisualizarLotesController {
             colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
             colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
     }
+    
      @FXML
-
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
