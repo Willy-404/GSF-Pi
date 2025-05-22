@@ -90,6 +90,7 @@ public class VisualizarFornecedorController {
 
     //Método para buscar do banco de dados
     public void visuFornecedor() {
+        //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Fornecedor> fornecedorList = lmetodo.ListarFornecedor();
         ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorList);
         tabelaFornecedor.setItems(listaFornecedor);

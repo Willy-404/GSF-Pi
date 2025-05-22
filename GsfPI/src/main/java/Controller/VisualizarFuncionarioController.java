@@ -103,6 +103,7 @@ public class VisualizarFuncionarioController {
 
     //Método para buscar do banco de dados
     public void carregarFuncionarios() {
+         //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Funcionario> funcionarioList = lmetodo.ListarFuncionario();
         ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioList);
         tabelaFuncionario.setItems(listaFuncionario);

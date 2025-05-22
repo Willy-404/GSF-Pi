@@ -135,6 +135,7 @@ public class VisualizarLotesController {
     Alertas alertas = new Alertas();
 
     private void carregarLotes() {
+         //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Lotes> lotesList = lmetodo.listarLotes();
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
         TabelaLotes.setItems(listaObLotes);
@@ -208,6 +209,7 @@ public class VisualizarLotesController {
 
     @FXML
     void onClickVoltar(ActionEvent event) {
+        //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Sair da tela?");
         alerta.setHeaderText("Ao sair perderá qualquer alteração!");

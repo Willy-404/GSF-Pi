@@ -164,6 +164,7 @@ public class CadastroLotesController {
     
       @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
+       //Validação de saída
        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Sair?");
         alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
@@ -192,6 +193,7 @@ public class CadastroLotesController {
            VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);
         }
     }
+    
     //metodo de trocar tela para cadastro lote
     public static void trocarCadLotes(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();

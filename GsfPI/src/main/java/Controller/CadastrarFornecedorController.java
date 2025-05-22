@@ -133,11 +133,13 @@ public class CadastrarFornecedorController {
     
       @FXML
     void OnClickVoltar(ActionEvent event) throws IOException {
+        //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
         TelaHomeController.trocarTelaHome(btnVoltar, f);
     }
     
     @FXML
     void OnClickCadastrarForn(ActionEvent event) {
+        //Alterar as validações e fazer mais expecificas como foi feito no cadastroController
         if (txtCnpj.getText().isEmpty() || txtNome.getText().isEmpty() || 
              txtContato.getText().isEmpty()
             ||txtEmail.getText().isEmpty()){

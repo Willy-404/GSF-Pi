@@ -148,11 +148,13 @@ public class CadastrarFuncionarioController {
     
         @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
+        //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
         TelaHomeController.trocarTelaHome(btnVoltar, f);
     }
 
     @FXML
     void onClickCadastroFunca(ActionEvent event)  {
+        //Alterar as validações e fazer mais expecificas como foi feito no cadastroController
         if (txtCpf.getText().isEmpty() || txtNome.getText().isEmpty() || 
             txtNascimento.getText().isEmpty() || txtContato.getText().isEmpty()
             ||txtEmail.getText().isEmpty()||txtSalario.getText().isEmpty()

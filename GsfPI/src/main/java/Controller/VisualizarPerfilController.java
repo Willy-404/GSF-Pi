@@ -20,6 +20,7 @@ import model.Faccao;
 import model.FaccaoDAO;
 import model.Perfil;
 import util.Alertas;
+import util.Validacao;
 
 public class VisualizarPerfilController {
 
@@ -86,6 +87,7 @@ public class VisualizarPerfilController {
     @FXML
     private TextField txtSenha;
     Alertas alertas = new Alertas();
+    Validacao validacao = new Validacao();
     
     //Retorno dos valores da faccao Logada no sistema 
     FaccaoDAO fd = new FaccaoDAO();
@@ -163,6 +165,7 @@ public class VisualizarPerfilController {
     
       @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
+        //Fazer validação para ver se algum dado foi alterado para mostrar o alert CONFIRMATION
         TelaHomeController.trocarTelaHome(btnVoltar, f);
     }
     

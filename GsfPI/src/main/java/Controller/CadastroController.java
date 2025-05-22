@@ -19,6 +19,7 @@ import model.Faccao;
 import model.FaccaoDAO;
 import model.Perfil;
 import util.Alertas;
+import util.Validacao;
 
 public class CadastroController {
 
@@ -44,26 +45,31 @@ public class CadastroController {
     private TextField txtTelefone;
 
     Alertas alertas = new Alertas();
+    Validacao validacao = new Validacao();
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
-
-        if (txtEmail.getText().isEmpty() || txtNomeCompleto.getText().isEmpty() || txtSenha.getText().isEmpty() || txtCnpj.getText().isEmpty() || txtTelefone.getText().isEmpty()) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campos não preenchidos");
-            alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
-            alerta.showAndWait();
+        if (validacao.itemisEmpty(txtNomeCompleto.getText(),"Nome")) {
             return;
-        } else if (!txtCnpj.getText().matches("[z0-9]+")) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campo CNPJ");
-            alerta.setHeaderText("Campo CNPJ deve conter apenas numeros!!!");
-            alerta.showAndWait();
+            
+        }else if(validacao.itemisEmpty(txtEmail.getText(),"Email")){
             return;
-        } else if (txtCnpj.getText().length() != 14) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("CNPJ");
-            alerta.setHeaderText("Campo CNPJ inválido!!!");
-            alerta.showAndWait();
+        }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtCnpj.getText(),"CNPJ")){
+            return;
+            //Validar se o cnpj já está no sistema
+        } else if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
+            return;
+        } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText())) {
+            return;
+            
+        }else if(validacao.itemisEmpty(txtTelefone.getText(),"Telefone")){
+            return;
+        }else if(validacao.ValidaFormatTell(txtTelefone.getText())){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
             return;
         }
 
@@ -80,24 +86,29 @@ public class CadastroController {
 
     @FXML
     void onClickSair(ActionEvent event) throws IOException {
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Sair?");
-        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-        alerta.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                LoginController lc = new LoginController();
-                try {
-                    alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
-                    lc.trocarLogin(btnSair);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+        LoginController lc = new LoginController();
+        if(txtNomeCompleto.getText().isEmpty() && txtEmail.getText().isEmpty() &&  txtCnpj.getText().isEmpty() && 
+           txtTelefone.getText().isEmpty() &&  txtSenha.getText().isEmpty()){
+           lc.trocarLogin(btnSair);
+        }else{
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
+                        lc.trocarLogin(btnSair);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }else{
+                     alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
                 }
-            }else{
-                 alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
-            }
 
             });
-          }
+        }
+    }
 
     //metodo para trocar para a tela de Cadasstro de usuario
     public void trocarCadastro(Hyperlink btnTroca) throws IOException {
