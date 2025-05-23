@@ -23,6 +23,7 @@ import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
 import util.Alertas;
+import util.Validacao;
 
 public class CadastrarFuncionarioController {
 
@@ -105,6 +106,7 @@ public class CadastrarFuncionarioController {
         this.f = r;
     }
     Alertas alertas = new Alertas();
+    Validacao validacao = new Validacao(); 
     
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -154,29 +156,45 @@ public class CadastrarFuncionarioController {
 
     @FXML
     void onClickCadastroFunca(ActionEvent event)  {
-        //Alterar as validações e fazer mais expecificas como foi feito no cadastroController
-        if (txtCpf.getText().isEmpty() || txtNome.getText().isEmpty() || 
-            txtNascimento.getText().isEmpty() || txtContato.getText().isEmpty()
-            ||txtEmail.getText().isEmpty()||txtSalario.getText().isEmpty()
-            ||txtCargo.getText().isEmpty()){
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campos não preenchidos");
-            alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
-            alerta.showAndWait();
+        long cpfnum;
+        //Nome, Cpf, Contato(telefone), Data de nascimento (trocar para datapicker). e no direito com, Email, Cargo, Salario.
+        if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
             return;
-        } else if (!txtCpf.getText().matches("[z0-9]+")) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campo CPF");
-            alerta.setHeaderText("Campo CPF deve conter apenas numeros!!!");
-            alerta.showAndWait();
+            
+        }else if(validacao.itemisEmpty(txtEmail.getText(),"Email")){
             return;
-        } else if (txtCpf.getText().length() != 11) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("CPF");
-            alerta.setHeaderText("Campo CPF inválido!!!");
-            alerta.showAndWait();
+        }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtCpf.getText(),"CPF")){
+            return;
+        } else { 
+            String cpfSemPontos = txtCpf.getText().replaceAll("[.-]", "");
+            cpfnum = Long.parseLong(cpfSemPontos);
+        }
+        if (validacao.ValidaFormatoCpf(txtCpf.getText())) {
+            return;
+        } else if (validacao.ValidaTamanhoText(14,txtCpf.getText(), "CPF")) {
+            return;
+        }else if(validacao.ItemCNPJnoSistema(txtCpf.getText(), "fornecedor", "CnpjFornecedor", cpfnum)){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtCargo.getText(),"Cargo")){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
+            return;
+        }else if(validacao.ValidaFormatTell(txtContato.getText())){
+            return;
+        }else if (validacao.ValidaTamanhoText(15,txtContato.getText(), "Telefone")) {
+            return;
+               
+        }else if(validacao.itemisEmpty(txtSalario.getText(),"Salario")){
+             return;
+        }else if(validacao.ValidarFormat("^\\d+,\\d{2}$", txtSalario.getText(), "Formato do Salário incorreto", "O padrão esperado é XXXXX,XX!")){
             return;
         }
+        //Validar data?
         
         if (CadastroDeFuncionario() != true) { 
             alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionario");
@@ -206,8 +224,8 @@ public class CadastrarFuncionarioController {
     }
 
     public boolean CadastroDeFuncionario() {
-
-        String Cpf = txtCpf.getText();
+        String cpfSemPontos = txtCpf.getText().replaceAll("[.-]", "");
+        long Cpf = Long.parseLong(cpfSemPontos);
         String NomeFuncionario = txtNome.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate DataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);

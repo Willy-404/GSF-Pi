@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 
 public class FuncionarioDAO extends GenericDAO {
 
-    private String Cpf;
+    private long Cpf;
     private String NomeFuncionario;
     private LocalDate DataNascimento;
     private String Telefone;
@@ -48,7 +48,7 @@ public class FuncionarioDAO extends GenericDAO {
                     // Create a new object for each row
                     LocalDate dataNascimento = LocalDate.parse(resultSet.getString("DataNascimento"));
                     
-                    Funcionario object = new Funcionario(resultSet.getString("Cpf"), resultSet.getString("NomeFuncionario"),
+                    Funcionario object = new Funcionario(resultSet.getLong("Cpf"), resultSet.getString("NomeFuncionario"),
                         dataNascimento, resultSet.getString("Telefone"), resultSet.getString("Email"),
                         resultSet.getFloat("ValorHora"),resultSet.getString("Cargo"));
                     // Add the object to the list
@@ -64,7 +64,7 @@ public class FuncionarioDAO extends GenericDAO {
     }
 
     public boolean editarFuncionario(Funcionario f, String Cpf) {
-        String CpfE = f.getCpf();
+        long CpfE = f.getCpf();
         String NomeFuncionarioE = f.getNomeFuncionario();
         LocalDate DataNascimentoE = f.getDataNascimento();
         String TelefoneE = f.getTelefone();
@@ -82,11 +82,11 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
 
-    public String getCpf() {
+    public long getCpf() {
         return Cpf;
     }
 
-    public void setCpf(String Cpf) {
+    public void setCpf(long Cpf) {
         this.Cpf = Cpf;
     }
 

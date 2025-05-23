@@ -48,7 +48,8 @@ public class CadastroController {
     Validacao validacao = new Validacao();
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
-        int cnpjnum = Integer.valueOf(txtCnpj.getText()); 
+        long cnpjnum;
+        
         if (validacao.itemisEmpty(txtNomeCompleto.getText(),"Nome")) {
             return;
             
@@ -59,10 +60,13 @@ public class CadastroController {
             
         }else if(validacao.itemisEmpty(txtCnpj.getText(),"CNPJ")){
             return;
-            //Validar se o cnpj já está no sistema
-        } else if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
+        } else { 
+            String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+            cnpjnum = Long.parseLong(cnpjSemPontos);
+        }
+        if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
             return;
-        } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText())) {
+        } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText(), "CNPJ")) {
             return;
         }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "faccao", "CnpjFaccao", cnpjnum)){
             return;
@@ -71,6 +75,9 @@ public class CadastroController {
             return;
         }else if(validacao.ValidaFormatTell(txtTelefone.getText())){
             return;
+        }else if (validacao.ValidaTamanhoText(15,txtTelefone.getText(), "Telefone")) {
+            return;
+        
             
         }else if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
             return;
@@ -131,7 +138,8 @@ public class CadastroController {
     }
 
     private boolean cadastroDeFaccao() {
-        long CnpjFaccao = Long.parseLong(txtCnpj.getText());
+        String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+        long CnpjFaccao = Long.parseLong(cnpjSemPontos);
         String NomeRepreFaccao = txtNomeCompleto.getText();
         String EmailAcesso = txtEmail.getText();
         String Senha = txtSenha.getText();

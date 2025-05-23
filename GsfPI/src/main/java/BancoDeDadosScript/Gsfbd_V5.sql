@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `cartaoponto`;
 CREATE TABLE `cartaoponto` (
   `idCartaoPonto` int NOT NULL AUTO_INCREMENT,
   `Mes` varchar(15) NOT NULL,
-  `Cpf` char(14) NOT NULL,
+  `Cpf` bigint NOT NULL,
   PRIMARY KEY (`idCartaoPonto`,`Cpf`),
   KEY `Cpf_idx` (`Cpf`),
   CONSTRAINT `Cpf` FOREIGN KEY (`Cpf`) REFERENCES `funcionario` (`Cpf`)
@@ -153,7 +153,7 @@ CREATE TABLE `faccao` (
 
 LOCK TABLES `faccao` WRITE;
 /*!40000 ALTER TABLE `faccao` DISABLE KEYS */;
-INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123','Faccao'),(12345678901234,'Felipe','banana','banana',NULL,'Faccao');
+INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123','Faccao'),(11111111111112,'f','f@gmail.com','f','(47) 99999-9999','Faccao'),(12345678901234,'Felipe','banana','banana',NULL,'Faccao');
 /*!40000 ALTER TABLE `faccao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +219,7 @@ DROP TABLE IF EXISTS `funcionario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `funcionario` (
-  `Cpf` char(14) NOT NULL,
+  `Cpf` bigint NOT NULL,
   `NomeFuncionario` varchar(30) NOT NULL,
   `DataNascimento` date NOT NULL,
   `Telefone` char(12) NOT NULL,
@@ -364,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-19 18:24:45
+-- Dump completed on 2025-05-22 21:41:04

@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Funcionario {
-    private String Cpf;
+    private long Cpf;
     private String NomeFuncionario;
     private LocalDate DataNascimento;
     private String Telefone;
@@ -11,7 +11,7 @@ public class Funcionario {
     private Float ValorHora;
     private String Cargo;
 
-    public Funcionario(String Cpf, String NomeFuncionario, LocalDate DataNascimento, String Telefone, String Email, Float ValorHora, String Cargo) {
+    public Funcionario(long Cpf, String NomeFuncionario, LocalDate DataNascimento, String Telefone, String Email, Float ValorHora, String Cargo) {
         this.Cpf = Cpf;
         this.NomeFuncionario = NomeFuncionario;
         this.DataNascimento = DataNascimento;
@@ -21,11 +21,11 @@ public class Funcionario {
         this.Cargo = Cargo;
     }
 
-    public String getCpf() {
+    public long getCpf() {
         return Cpf;
     }
 
-    public void setCpf(String Cpf) {
+    public void setCpf(long Cpf) {
         this.Cpf = Cpf;
     }
 

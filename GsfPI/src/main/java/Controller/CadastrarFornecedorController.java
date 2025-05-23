@@ -20,6 +20,7 @@ import model.Faccao;
 import model.Fornecedor;
 import model.FornecedorDAO;
 import util.Alertas;
+import util.Validacao;
 
 public class CadastrarFornecedorController {
     
@@ -90,6 +91,7 @@ public class CadastrarFornecedorController {
         this.f=f;
     }
     Alertas alertas = new Alertas();
+    Validacao validacao = new Validacao();
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -139,27 +141,36 @@ public class CadastrarFornecedorController {
     
     @FXML
     void OnClickCadastrarForn(ActionEvent event) {
-        //Alterar as validações e fazer mais expecificas como foi feito no cadastroController
-        if (txtCnpj.getText().isEmpty() || txtNome.getText().isEmpty() || 
-             txtContato.getText().isEmpty()
-            ||txtEmail.getText().isEmpty()){
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campos não preenchidos");
-            alerta.setHeaderText("Todos os campos devem ser preenchidos!!!");
-            alerta.showAndWait();
+        long cnpjnum;
+        
+        if(validacao.itemisEmpty(txtCnpj.getText(),"CNPJ")){
             return;
-        } else if (!txtCnpj.getText().matches("[z0-9]+")) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Campo CNPJ");
-            alerta.setHeaderText("Campo CNPJ deve conter apenas numeros!!!");
-            alerta.showAndWait();
+        } else { 
+            String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+            cnpjnum = Long.parseLong(cnpjSemPontos);
+        }
+        if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
             return;
-        } else if (txtCnpj.getText().length() != 14) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("CNPJ");
-            alerta.setHeaderText("Campo CNPJ inválido!!!");
-            alerta.showAndWait();
+        } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText(), "CNPJ")) {
             return;
+        }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "fornecedor", "CnpjFornecedor", cnpjnum)){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtEmail.getText(),"Email")){
+            return;
+        }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
+            return;
+        }else if(validacao.ValidaFormatTell(txtContato.getText())){
+            return;
+        }else if (validacao.ValidaTamanhoText(15,txtContato.getText(), "Telefone")) {
+            return;
+            
+        }else if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
+            return;
+            
         }
         
         if (CadastroDeFornecedor() != true) { 
@@ -192,8 +203,9 @@ public class CadastrarFornecedorController {
     }
     
      public boolean CadastroDeFornecedor() {
-
-        long CNPJFornecedor = Long.parseLong(txtCnpj.getText());
+         //Perfil?
+         String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+        long CNPJFornecedor = Long.parseLong(cnpjSemPontos);
         String NomeRepreFornecedor = txtNome.getText();
         String Senha = txtContato.getText();
         String EmailAcesso = txtEmail.getText();
