@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
@@ -72,7 +73,7 @@ public class CadastrarFornecedorController {
     private TextField txtCnpj;
 
     @FXML
-    private TextField txtContato;
+    private PasswordField txtSenha;
 
   /*  @FXML
     private TextField txtEndereco;*/
@@ -161,13 +162,13 @@ public class CadastrarFornecedorController {
         }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
             return;
             
-        }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
+       /* }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
             return;
         }else if(validacao.ValidaFormatTell(txtContato.getText())){
             return;
         }else if (validacao.ValidaTamanhoText(15,txtContato.getText(), "Telefone")) {
             return;
-            
+         */   
         }else if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
             return;
             
@@ -207,10 +208,10 @@ public class CadastrarFornecedorController {
          String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
         long CNPJFornecedor = Long.parseLong(cnpjSemPontos);
         String NomeRepreFornecedor = txtNome.getText();
-        String Senha = txtContato.getText();
+        String Senha = txtSenha.getText();
         String EmailAcesso = txtEmail.getText();
        
-        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, Senha, EmailAcesso);
+        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor,EmailAcesso, Senha);
         FornecedorDAO FornecMetodo = new FornecedorDAO();
         return FornecMetodo.cadastroFornecedor(f);
 

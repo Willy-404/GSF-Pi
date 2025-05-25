@@ -48,6 +48,36 @@ public class Validacao {
         }
         return false;
     }
+    
+    public boolean ItemEmailnoSistema(String email, String nomeTabelaSQL, String nomeElemento, Object... parametros){
+        int validar = 0;
+        String sql = "Select "+nomeElemento+ " FROM "+ nomeTabelaSQL +" WHERE "+nomeElemento+ " = ?", rs = null;
+        System.out.println(sql);
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+             for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    rs = resultSet.getString(nomeElemento);
+                    System.out.println(rs);
+                    System.out.println(email);
+                }
+                if(rs.equals(email)){
+                    validar++;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        if(validar != 0){
+            alertas.alertaError("Email no sistema","O Email digitado já esta no sistema! \n Digite outro Email válido para realizar o cadastro!");
+            return true;
+        }else {
+            return false;
+        }
+    }
       
     //metodo para validar o padrão de CNPJ 
     public boolean ValidaFormatoCnpj(String cnpj){

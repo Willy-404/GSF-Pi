@@ -57,6 +57,8 @@ public class CadastroController {
             return;
         }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
             return;
+        }else if(validacao.ItemEmailnoSistema(txtEmail.getText(), "faccao", "EmailAcesso", txtEmail.getText())){
+            return;
             
         }else if(validacao.itemisEmpty(txtCnpj.getText(),"CNPJ")){
             return;
