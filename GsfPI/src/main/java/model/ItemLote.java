@@ -4,30 +4,25 @@ package model;
 
 public class ItemLote {
     
-    private int Referencia;
-    private String Linha;
+    
     private int Quantidade;
+    private String Tamanho;
+    private String Linha;
 
-    public ItemLote(int Referencia, String Linha, int Quantidade) {
-        this.Referencia = Referencia;
-        this.Linha = Linha;
+    public ItemLote(String Tamanho, int Quantidade, String Linha) {
+        this.Tamanho = Tamanho;
         this.Quantidade = Quantidade;
-    }
-
-    public int getReferencia() {
-        return Referencia;
-    }
-
-    public void setReferencia(int Referencia) {
-        this.Referencia = Referencia;
-    }
-
-    public String getLinha() {
-        return Linha;
-    }
-
-    public void setLinha(String Linha) {
         this.Linha = Linha;
+    }
+
+    
+
+    public String getTamanho() {
+        return Tamanho;
+    }
+
+    public void setTamanho(String Tamanho) {
+        this.Tamanho = Tamanho;
     }
 
     public int getQuantidade() {
@@ -37,7 +32,13 @@ public class ItemLote {
     public void setQuantidade(int Quantidade) {
         this.Quantidade = Quantidade;
     }
-    
-    
+
+    public String getLinha() {
+        return Linha;
+    }
+
+    public void setLinha(String Linha) {
+        this.Linha = Linha;
+    }
     
 }

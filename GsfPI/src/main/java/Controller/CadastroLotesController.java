@@ -31,7 +31,7 @@ public class CadastroLotesController {
     @FXML
     private MenuBar MenuBar;
 
-       @FXML
+    @FXML
     private Button btnAdicionar;
 
     @FXML
@@ -43,7 +43,7 @@ public class CadastroLotesController {
     private Button btnVoltar;
 
     @FXML
-    private ComboBox<String> cbLinha;
+    private TextField txtLinha;
 
     @FXML
     private ComboBox<String> cbColecao;
@@ -104,29 +104,30 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtTecido;
-    
+
     @FXML
     private TableView<?> tbSubGrupo;
 
-     Faccao f;
-      public Stage stage;
+    Faccao f;
+    public Stage stage;
 
     public void setFaccao(Faccao f) {
-        this.f=f;
+        this.f = f;
     }
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
+
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
-        cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
-        cbModelo.getItems().addAll("Calça","Short","Legging","Blusa","Regata","Casaco");
-        cbColecao.getItems().addAll("Primavera","Verão","Outono","Inverno");
+        cbTamanho.getItems().addAll("PP", "P", "M", "G", "GG", "1", "2", "3", "4", "6", "8", "10", "12", "16", "18");
+        cbModelo.getItems().addAll("Calça", "Short", "Legging", "Blusa", "Regata", "Casaco");
+        cbColecao.getItems().addAll("Primavera", "Verão", "Outono", "Inverno");
     }
 
-     @FXML
+    @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
     }
 
     @FXML
@@ -146,7 +147,7 @@ public class CadastroLotesController {
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
     }
 
     @FXML
@@ -163,89 +164,90 @@ public class CadastroLotesController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
-    
-      @FXML
+
+    @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
-    //Validação de saída
-        if(txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() &&  txtTecido.getText().isEmpty() && 
-           cbColecao.getSelectionModel().isEmpty() &&  txtPrazo.getValue() == null && txtEntrada.getValue() == null && 
-           txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty()){
-           TelaHomeController.trocarTelaHome(btnVoltar, f);
-       }else{
+        //Validação de saída
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty()) {
+            TelaHomeController.trocarTelaHome(btnVoltar, f);
+        } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-             alerta.setTitle("Sair?");
-             alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-             alerta.showAndWait().ifPresent(response -> {
-                 if (response == ButtonType.OK) {
-                     try {
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
                         alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
-                         TelaHomeController.trocarTelaHome(btnVoltar, f);
-                     } catch (IOException ex) {
-                         ex.printStackTrace();
-                     }
-                 }else{
-                       alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
-                 }
-             });
+                        TelaHomeController.trocarTelaHome(btnVoltar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
+                    alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
+                }
+            });
         }
     }
-    
-     @FXML
+
+    @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
-       String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());
-         System.out.println(dataPrazo+"\n"+dataEntrada);
-               
-       int RefInt = 0;
-       if(validacao.itemisEmpty(txtReferencia.getText(), "Referencia")){
-           return;
-           //formato?
-       }else{
-           RefInt = Integer.parseInt(txtReferencia.getText());
-       }if(validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)){
-           return;
-           
-       }else if(validacao.itemisEmpty(txtMarca.getText(), "Marca")){
-           return;
-           //Nome de Fornecedores no sistema?
-           
-       }else if(validacao.itemisEmpty(txtTecido.getText(), "Tecido")){
-           return;
-       
-       }else if(validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")){
-           return;
-       
-       }else if(validacao.itemNull(dataPrazo, "Prazo")){
-           return;
-      /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataPrazo, "Formato da Data Prazo incorreta",
+        String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());
+        System.out.println(dataPrazo + "\n" + dataEntrada);
+
+        int RefInt = 0;
+        if (validacao.itemisEmpty(txtReferencia.getText(), "Referencia")) {
+            return;
+            //formato?
+        } else {
+            RefInt = Integer.parseInt(txtReferencia.getText());
+        }
+        if (validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)) {
+            return;
+
+        } else if (validacao.itemisEmpty(txtMarca.getText(), "Marca")) {
+            return;
+            //Nome de Fornecedores no sistema?
+
+        } else if (validacao.itemisEmpty(txtTecido.getText(), "Tecido")) {
+            return;
+
+        } else if (validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")) {
+            return;
+
+        } else if (validacao.itemNull(dataPrazo, "Prazo")) {
+            return;
+            /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataPrazo, "Formato da Data Prazo incorreta",
              "O padrão esperado é DD/MM/YYYY!")){
            return; 
-        *///validar o dia e o mes digitado exemplo 30/02, os numeros já estão bloqueados como colocar isso na mensagem de erro? me ajudem 
-           
-       }else if(validacao.itemNull(dataEntrada, "Entrada")){
-           return;
-      /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataEntrada, "Formato da Data Entrada incorreta",
+             *///validar o dia e o mes digitado exemplo 30/02, os numeros já estão bloqueados como colocar isso na mensagem de erro? me ajudem 
+
+        } else if (validacao.itemNull(dataEntrada, "Entrada")) {
+            return;
+            /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataEntrada, "Formato da Data Entrada incorreta",
              "O padrão esperado é DD/MM/YYYY!")){
            return; 
-        *///O mesmo dos dia e mes de cima (da de fazer um padrão na class Validacao 
-       }else if(validacao.itemisEmpty(txtPreco.getText(), "Preço")){
-           return;
-       }else if(validacao.ValidarFormat("^\\d+,\\d{2}$", txtPreco.getText(), "Formato do Preço incorreto",
-             "O padrão esperado é XXXXX,XX!")){
-           return;
-           
-       }else if(validacao.itemNull(cbModelo.getSelectionModel().getSelectedItem(), "Modelo")){
-           return;
-       }
-       
-       if (cadastroDeLotes() != true) {
+             *///O mesmo dos dia e mes de cima (da de fazer um padrão na class Validacao 
+        } else if (validacao.itemisEmpty(txtPreco.getText(), "Preço")) {
+            return;
+        } else if (validacao.ValidarFormat("^\\d+,\\d{2}$", txtPreco.getText(), "Formato do Preço incorreto",
+                "O padrão esperado é XXXXX,XX!")) {
+            return;
+
+        } else if (validacao.itemNull(cbModelo.getSelectionModel().getSelectedItem(), "Modelo")) {
+            return;
+        }
+
+        if (cadastroDeLotes() != true) {
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
         } else {
             alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
-            
-           VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);
+
+            VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);
         }
     }
-    
+
     //metodo de trocar tela para cadastro lote
     public static void trocarCadLotes(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
@@ -255,7 +257,7 @@ public class CadastroLotesController {
         URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        
+
         CadastroLotesController thc = loader.getController();
         thc.setFaccao(f);
         thc.setStage(home);
@@ -267,11 +269,11 @@ public class CadastroLotesController {
         ((Stage) menuBar.getScene().getWindow()).close();
 
     }
-    
+
     public void setStage(Stage home) {
-         this.stage = home;  
+        this.stage = home;
     }
-    
+
     private boolean cadastroDeLotes() {
 
         int Referencia = Integer.parseInt(txtReferencia.getText());
@@ -290,9 +292,7 @@ public class CadastroLotesController {
 
     }
 
-   
-    
-        @FXML
+    @FXML
     void onClickAdicionar(ActionEvent event) {
 
     }
