@@ -42,34 +42,6 @@ LOCK TABLES `cartaoponto` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `conjuntopecas`
---
-
-DROP TABLE IF EXISTS `conjuntopecas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `conjuntopecas` (
-  `idConjuntoPecas` int(11) NOT NULL AUTO_INCREMENT,
-  `Quantidade` int(11) NOT NULL,
-  `Tamanho` char(3) NOT NULL,
-  `Cor` varchar(30) NOT NULL,
-  `Referencia` int(11) NOT NULL,
-  PRIMARY KEY (`idConjuntoPecas`,`Referencia`),
-  KEY `Referencia_idx` (`Referencia`),
-  CONSTRAINT `Referencia` FOREIGN KEY (`Referencia`) REFERENCES `lote` (`Referencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conjuntopecas`
---
-
-LOCK TABLES `conjuntopecas` WRITE;
-/*!40000 ALTER TABLE `conjuntopecas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conjuntopecas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `empresa`
 --
 
@@ -252,6 +224,7 @@ CREATE TABLE `itemlote` (
   `referenciaLote` int(11) NOT NULL,
   `Quantidade` int(11) NOT NULL,
   `Tamanho` char(3) NOT NULL,
+  `Linha` varchar(45) NOT NULL,
   PRIMARY KEY (`referenciaLote`),
   CONSTRAINT `referenciaLote` FOREIGN KEY (`referenciaLote`) REFERENCES `lote` (`Referencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -264,32 +237,6 @@ CREATE TABLE `itemlote` (
 LOCK TABLES `itemlote` WRITE;
 /*!40000 ALTER TABLE `itemlote` DISABLE KEYS */;
 /*!40000 ALTER TABLE `itemlote` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `linhas`
---
-
-DROP TABLE IF EXISTS `linhas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `linhas` (
-  `RefLinha` int(11) NOT NULL,
-  `idConjuntoPecas` int(11) DEFAULT NULL,
-  `NomeCor` varchar(45) NOT NULL,
-  PRIMARY KEY (`RefLinha`),
-  KEY `idConjuntoPecas_idx` (`idConjuntoPecas`),
-  CONSTRAINT `idConjuntoPecas` FOREIGN KEY (`idConjuntoPecas`) REFERENCES `conjuntopecas` (`idConjuntoPecas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `linhas`
---
-
-LOCK TABLES `linhas` WRITE;
-/*!40000 ALTER TABLE `linhas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `linhas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -363,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-26  8:01:50
+-- Dump completed on 2025-05-26 10:58:26
