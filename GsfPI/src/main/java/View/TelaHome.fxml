@@ -34,7 +34,7 @@
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="btnCadastrarLote" mnemonicParsing="false" onAction="#onClickCadastrarLotes" prefHeight="66.0" prefWidth="268.0" text="Cadastrar Lotes">
+            <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="66.0" prefWidth="268.0" text="Funcionário">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -52,7 +52,7 @@
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="3" GridPane.rowIndex="5">
          <children>
-            <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#onClickTelaFuncionario" prefHeight="66.0" prefWidth="268.0" text="Funcionário">
+            <Button fx:id="btnPontoEletronico" mnemonicParsing="false" onAction="#onClickPontoEletronico" prefHeight="66.0" prefWidth="268.0" text="Ponto Eletrônico">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -70,7 +70,7 @@
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="btnPontoEletronico" mnemonicParsing="false" onAction="#onClickPontoEletronico" prefHeight="66.0" prefWidth="268.0" text="Ponto Eletrônico">
+            <Button fx:id="btnCadastrarLote" mnemonicParsing="false" onAction="#onClickCadastrarLotes" prefHeight="66.0" prefWidth="268.0" text="Cadastrar Lotes">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -105,9 +105,9 @@
       </FlowPane>
       <FlowPane alignment="TOP_RIGHT" columnHalignment="CENTER" prefHeight="77.0" prefWidth="366.0" style="-fx-background-color: #386b8f;" GridPane.rowIndex="3">
          <children>
-            <ImageView fitHeight="78.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="76.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/imagens/pontoEltronico.png" />
+                  <Image url="@../../resources/imagens/lote.png" />
                </image>
             </ImageView>
          </children>
@@ -124,9 +124,10 @@
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="2" />
       <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <ImageView fitHeight="76.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+
+                              <ImageView fitHeight="59.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/imagens/lote.png" />
+                  <Image url="@../../resources/imagens/fornecedor.png" />
                </image>
             </ImageView>
          </children>
@@ -142,10 +143,9 @@
       </FlowPane>
       <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <children>
-
-                        <ImageView fitHeight="59.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="78.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/imagens/fornecedor.png" />
+                  <Image url="@../../resources/imagens/pontoEltronico.png" />
                </image>
             </ImageView>
          </children>

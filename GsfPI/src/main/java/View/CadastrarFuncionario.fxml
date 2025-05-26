@@ -88,7 +88,7 @@
                      <children>
                         <FlowPane alignment="TOP_RIGHT" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Cargo" textFill="WHITE">
+                              <Label text="Nome" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -100,7 +100,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtCargo" prefHeight="46.0" prefWidth="219.0">
+                              <TextField fx:id="txtNome" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -116,13 +116,11 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="Nome" textFill="WHITE">
+                              <Label text="Email" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -134,7 +132,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtNome" prefHeight="46.0" prefWidth="220.0">
+                              <TextField fx:id="txtEmail" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -161,25 +159,23 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
                            <children>
-                              <Label text="Contato" textFill="WHITE">
+                              <Label text="CPF" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
                         </FlowPane>
                         <FlowPane fx:id="txtEndereco" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtContato" prefHeight="46.0" prefWidth="220.0">
+                              <TextField fx:id="txtCpf" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -240,13 +236,11 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtCpf" prefHeight="46.0" prefWidth="220.0">
+                              <TextField fx:id="txtContato" prefHeight="46.0" prefWidth="220.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -254,16 +248,16 @@
                            </children>
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
                            <children>
-                              <Label text="CPF" textFill="WHITE">
+                              <Label text="Telefone" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
                         </FlowPane>
                      </children>
                   </GridPane>
@@ -274,26 +268,28 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <DatePicker fx:id="txtNascimento" prefHeight="46.0" prefWidth="220.0" />
+                              <TextField fx:id="txtCargo" prefHeight="46.0" prefWidth="219.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
                            </children>
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
                            <children>
-                              <Label text="Data de Nascimento" textFill="WHITE">
+                              <Label text="Cargo" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
                         </FlowPane>
                      </children>
                   </GridPane>
@@ -315,30 +311,24 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtEmail" prefHeight="46.0" prefWidth="220.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
+                              <DatePicker fx:id="txtNascimento" prefHeight="46.0" prefWidth="220.0" />
                            </children>
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
                            <children>
-                              <Label text="Email" textFill="WHITE">
+                              <Label text="Data de Nascimento" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                            </children>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
                         </FlowPane>
                      </children>
                   </GridPane>

@@ -280,7 +280,7 @@
                      <children>
                         <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label text="TAMANHO" textFill="WHITE">
+                              <Label text="PRAZO" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -289,7 +289,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <ComboBox fx:id="cbTamanho" prefWidth="150.0" />
+                              <TextField fx:id="txtPrazo" />
                            </children>
                         </FlowPane>
                      </children>
@@ -303,20 +303,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="LINHA" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </FlowPane>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <ComboBox fx:id="cbLinha" prefWidth="150.0" />
-                           </children>
-                        </FlowPane>
+                        <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" />
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -387,20 +375,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="PRAZO" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </FlowPane>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="txtPrazo" />
-                           </children>
-                        </FlowPane>
+                        <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" />
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="6">
