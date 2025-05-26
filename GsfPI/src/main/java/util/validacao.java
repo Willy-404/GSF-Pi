@@ -129,8 +129,8 @@ public class Validacao {
         return false;
     }
     
-    //metodo para validar se existe o CPF no sistema
-    public boolean ValidaCPFSistema(String cpf,String nomeTabelaSQL, Object... parametros){
+    //metodo para validar se existe o CPF no banco de dados 
+    public boolean ValidaCPFSistema(String cpf, Object... parametros){
         String cpfSemPontos = cpf.replaceAll("[.-]", ""), sql = "Select Cpf FROM funcionario WHERE Cpf = ?" ;
         long cpfNum = Long.parseLong(cpfSemPontos), rs = 0;
         int validar = 0;
@@ -160,7 +160,37 @@ public class Validacao {
 
     }
     
-    //metodo para validar o padrão de CPF 
+    //Valida se existe a referencia no banco de dados
+    public boolean ValidaRefSistema(String ref, Object... parametros){
+        String sql = "Select Referencia FROM lote WHERE Referencia = ?" ;
+        int refInt = Integer.parseInt(ref), rs = 0;
+        int validar = 0;
+       
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+             for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    rs = resultSet.getInt("Referencia");
+                }
+                if(rs == refInt){
+                    validar++;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        if(validar != 0){
+            alertas.alertaError("Referenccia no sistema","A Referencia digitada já esta no sistema! \n Digite outra Referencia válida para realizar o cadastro!");
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+    //metodo para validar o padrão de Telefone 
     public boolean ValidaFormatTell(String tell){
         String tellFormat = "^\\(\\d{2}\\) \\d{5}-\\d{4}$";
         if(!Pattern.compile(tellFormat).matcher(tell).matches()){
@@ -179,7 +209,9 @@ public class Validacao {
         }
         return false;
     }
-    /*Será que precisa formatar a data já que o datapicker ja faz a data padrão local (Brasil no nosso caso)
+    /*Será que precisa formatar a data já que o datapicker ja faz a data padrão local (Brasil no nosso caso), 
+    formato de data caso necessario ^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$.
     Será que precisa de validação por tamanho max de componente, exemplo: Nome max 30 caracteres, então uma 
-    mensagem de error se for maior doq isso */
+    mensagem de error se for maior doq isso.
+    */
 }

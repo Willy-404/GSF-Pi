@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -92,7 +93,7 @@ public class CadastrarFuncionarioController {
     private FlowPane txtEndereco;
 
     @FXML
-    private TextField txtNascimento;
+    private DatePicker txtNascimento;
 
     @FXML
     private TextField txtNome;
@@ -227,8 +228,7 @@ public class CadastrarFuncionarioController {
         String cpfSemPontos = txtCpf.getText().replaceAll("[.-]", "");
         long Cpf = Long.parseLong(cpfSemPontos);
         String NomeFuncionario = txtNome.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate DataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
+        LocalDate DataNascimento = txtNascimento.getValue();
         String Telefone = txtContato.getText();
         String Email = txtEmail.getText();
         float ValorHora = Float.parseFloat(txtSalario.getText());
