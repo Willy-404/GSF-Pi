@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -24,6 +24,7 @@ import model.Faccao;
 import model.Lotes;
 import model.LotesDAO;
 import util.Alertas;
+import util.Validacao;
 
 public class CadastroLotesController {
 
@@ -84,13 +85,13 @@ public class CadastroLotesController {
     private Menu menuVisualizar;
 
     @FXML
-    private TextField txtEntrada;
+    private DatePicker txtEntrada;
 
     @FXML
     private TextField txtMarca;
 
     @FXML
-    private TextField txtPrazo;
+    private DatePicker txtPrazo;
 
     @FXML
     private TextField txtPreco;
@@ -114,12 +115,13 @@ public class CadastroLotesController {
         this.f=f;
     }
     Alertas alertas = new Alertas();
+    Validacao validacao = new Validacao();
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
         cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
-        cbModelo.getItems().addAll("Calça","Short","legging","Blusa","Regata","Casaco");
-        cbColecao.getItems().addAll("Primavera","verão","Outono","Inverno");
+        cbModelo.getItems().addAll("Calça","Short","Legging","Blusa","Regata","Casaco");
+        cbColecao.getItems().addAll("Primavera","Verão","Outono","Inverno");
     }
 
      @FXML
@@ -164,27 +166,77 @@ public class CadastroLotesController {
     
       @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
-       //Validação de saída
-       Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Sair?");
-        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-        alerta.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                try {
-                   alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
-                    TelaHomeController.trocarTelaHome(btnVoltar, f);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }else{
-                  alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
-            }
-        });
+    //Validação de saída
+        if(txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() &&  txtTecido.getText().isEmpty() && 
+           cbColecao.getSelectionModel().isEmpty() &&  txtPrazo.getValue() == null && txtEntrada.getValue() == null && 
+           txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty()){
+           TelaHomeController.trocarTelaHome(btnVoltar, f);
+       }else{
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+             alerta.setTitle("Sair?");
+             alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+             alerta.showAndWait().ifPresent(response -> {
+                 if (response == ButtonType.OK) {
+                     try {
+                        alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
+                         TelaHomeController.trocarTelaHome(btnVoltar, f);
+                     } catch (IOException ex) {
+                         ex.printStackTrace();
+                     }
+                 }else{
+                       alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
+                 }
+             });
+        }
     }
     
      @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
-       //Fazer as verificações
+       String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());
+         System.out.println(dataPrazo+"\n"+dataEntrada);
+               
+       int RefInt = 0;
+       if(validacao.itemisEmpty(txtReferencia.getText(), "Referencia")){
+           return;
+           //formato?
+       }else{
+           RefInt = Integer.parseInt(txtReferencia.getText());
+       }if(validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)){
+           return;
+           
+       }else if(validacao.itemisEmpty(txtMarca.getText(), "Marca")){
+           return;
+           //Nome de Fornecedores no sistema?
+           
+       }else if(validacao.itemisEmpty(txtTecido.getText(), "Tecido")){
+           return;
+       
+       }else if(validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")){
+           return;
+       
+       }else if(validacao.itemNull(dataPrazo, "Prazo")){
+           return;
+      /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataPrazo, "Formato da Data Prazo incorreta",
+             "O padrão esperado é DD/MM/YYYY!")){
+           return; 
+        *///validar o dia e o mes digitado exemplo 30/02, os numeros já estão bloqueados como colocar isso na mensagem de erro? me ajudem 
+           
+       }else if(validacao.itemNull(dataEntrada, "Entrada")){
+           return;
+      /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataEntrada, "Formato da Data Entrada incorreta",
+             "O padrão esperado é DD/MM/YYYY!")){
+           return; 
+        *///O mesmo dos dia e mes de cima (da de fazer um padrão na class Validacao 
+       }else if(validacao.itemisEmpty(txtPreco.getText(), "Preço")){
+           return;
+       }else if(validacao.ValidarFormat("^\\d+,\\d{2}$", txtPreco.getText(), "Formato do Preço incorreto",
+             "O padrão esperado é XXXXX,XX!")){
+           return;
+           
+       }else if(validacao.itemNull(cbModelo.getSelectionModel().getSelectedItem(), "Modelo")){
+           return;
+       }
+       
        if (cadastroDeLotes() != true) {
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
         } else {
@@ -219,14 +271,13 @@ public class CadastroLotesController {
     private boolean cadastroDeLotes() {
 
         int Referencia = Integer.parseInt(txtReferencia.getText());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate Prazo = LocalDate.parse(txtPrazo.getText(), formatter);
-        LocalDate Entrada = LocalDate.parse(txtEntrada.getText(), formatter);
+        LocalDate Prazo = txtPrazo.getValue();
+        LocalDate Entrada = txtEntrada.getValue();
         double Preco = Double.parseDouble(txtPreco.getText());
         String Tecido = txtTecido.getText();
         String Marca = txtMarca.getText();
-        String Colecao = cbColecao.getValue();
-        String Modelo = cbModelo.getValue();
+        String Colecao = cbColecao.getSelectionModel().getSelectedItem();
+        String Modelo = cbModelo.getSelectionModel().getSelectedItem();
         int Quantidade = Integer.parseInt(txtQuantidade.getText());
 
         Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade);
