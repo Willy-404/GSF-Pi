@@ -159,6 +159,35 @@ public class Validacao {
 
     }
     
+     public boolean ValidaCPFExiste(String cpf, Object... parametros){
+        String cpfSemPontos = cpf.replaceAll("[.-]", ""), sql = "Select Cpf FROM funcionario WHERE Cpf = ?" ;
+        long cpfNum = Long.parseLong(cpfSemPontos), rs = 0;
+        int validar = 0;
+       
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+             for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    rs = resultSet.getLong("Cpf");
+                }
+                if(rs == cpfNum){
+                    validar++;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        if(validar == 0){
+            alertas.alertaError("CPF no sistema","O CPF não foi registrado no sistema!");
+            return true;
+        }else {
+            return false;
+        }
+
+    }
     //Valida se existe a referencia no banco de dados
     public boolean ValidaRefSistema(String ref, Object... parametros){
         String sql = "Select Referencia FROM lote WHERE Referencia = ?" ;
