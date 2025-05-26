@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -78,7 +79,7 @@ public class CadastrarFuncionarioController {
     private Menu menuVisualizar;
 
     @FXML
-    private TextField txtCargo;
+    private ComboBox<String> cbCargo;
 
     @FXML
     private TextField txtContato;
@@ -108,6 +109,10 @@ public class CadastrarFuncionarioController {
     }
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao(); 
+    @FXML
+    public void initialize() {
+        cbCargo.getItems().addAll("Costureira","Manual");
+    }
     
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -180,7 +185,7 @@ public class CadastrarFuncionarioController {
         }else if(validacao.ValidaCPFSistema(txtCpf.getText(), "funcionario", "Cpf", cpfnum)){
             return;
             
-        }else if(validacao.itemisEmpty(txtCargo.getText(),"Cargo")){
+        }else if(validacao.itemisEmpty(cbCargo.getSelectionModel().getSelectedItem(),"Cargo")){
             return;
             
         }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
@@ -232,7 +237,7 @@ public class CadastrarFuncionarioController {
         String Telefone = txtContato.getText();
         String Email = txtEmail.getText();
         float ValorHora = Float.parseFloat(txtSalario.getText());
-        String Cargo = txtCargo.getText();
+        String Cargo = cbCargo.getSelectionModel().getSelectedItem();
 
         Funcionario f = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);
         FuncionarioDAO FuncaMetodo = new FuncionarioDAO();

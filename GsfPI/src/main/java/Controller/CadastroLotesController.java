@@ -123,9 +123,9 @@ public class CadastroLotesController {
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
-        cbTamanho.getItems().addAll("PP", "P", "M", "G", "GG", "1", "2", "3", "4", "6", "8", "10", "12", "16", "18");
-        cbModelo.getItems().addAll("Calça", "Short", "Legging", "Blusa", "Regata", "Casaco");
-        cbColecao.getItems().addAll("Primavera", "Verão", "Outono", "Inverno");
+        cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
+        cbModelo.getItems().addAll("Calça","Short","Legging","Blusa","Regata","Casaco");
+        cbColecao.getItems().addAll("Primavera","Verão","Outono","Inverno");
     }
 
     @FXML
