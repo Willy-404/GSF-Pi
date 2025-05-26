@@ -177,7 +177,7 @@ public class CadastrarFuncionarioController {
             return;
         } else if (validacao.ValidaTamanhoText(14,txtCpf.getText(), "CPF")) {
             return;
-        }else if(validacao.ItemCNPJnoSistema(txtCpf.getText(), "fornecedor", "CnpjFornecedor", cpfnum)){
+        }else if(validacao.ValidaCPFSistema(txtCpf.getText(), "funcionario", "Cpf", cpfnum)){
             return;
             
         }else if(validacao.itemisEmpty(txtCargo.getText(),"Cargo")){

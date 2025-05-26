@@ -1,20 +1,15 @@
 package Controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import model.Faccao;
+import util.Validacao;
 
 public class PontoEletronicoController {
 
@@ -59,8 +54,10 @@ public class PontoEletronicoController {
     Faccao f;
 
     public void setFaccao(Faccao f) {
-        this.f = f;
+        this.f = f; 
     }
+    
+    Validacao validacao = new Validacao();
     
     
     
@@ -103,5 +100,27 @@ public class PontoEletronicoController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
+    
+      @FXML
+    void OnClickConfirmarPonto(ActionEvent event) {
+        Long cpfnum;
+        if(validacao.itemisEmpty(txtCpfPonto.getText(),"CPF")){
+            return;
+        } else { 
+            String cpfSemPontos = txtCpfPonto.getText().replaceAll("[.-]", "");
+            cpfnum = Long.parseLong(cpfSemPontos);
+        }
+        if (validacao.ValidaFormatoCpf(txtCpfPonto.getText())) {
+            return;
+        } else if (validacao.ValidaTamanhoText(14,txtCpfPonto.getText(), "CPF")) {
+            return;
+        }else if(validacao.ValidaCPFExiste(txtCpfPonto.getText(), "funcionario", "Cpf", cpfnum)){
+            return;
+            
+        }
+
+    }
+
+    
 
 }
