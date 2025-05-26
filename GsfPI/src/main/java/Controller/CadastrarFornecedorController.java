@@ -161,6 +161,8 @@ public class CadastrarFornecedorController {
             return;
         }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
             return;
+        }else if(validacao.ItemEmailnoSistema(txtEmail.getText(), "fornecedor", "UsuarioFornecedor", txtEmail.getText())){
+            return;
             
        /* }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
             return;
