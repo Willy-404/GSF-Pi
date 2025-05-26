@@ -376,7 +376,7 @@
                                  <children>
                                     <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <TextField fx:id="txtPreco" prefHeight="46.0" prefWidth="111.0">
+                                          <TextField fx:id="txtPreco" prefHeight="46.0" prefWidth="238.0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -495,8 +495,22 @@
                                        <GridPane.margin>
                                           <Insets right="80.0" />
                                        </GridPane.margin>
+                                       <children>
+                                          <Label text="Quantidade Total " textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
                                     </FlowPane>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <TextField fx:id="txtQuantidade" prefHeight="46.0" prefWidth="238.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children></FlowPane>
                                  </children>
                               </GridPane>
                               <GridPane GridPane.columnIndex="1">

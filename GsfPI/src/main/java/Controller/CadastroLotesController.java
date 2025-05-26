@@ -3,7 +3,9 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DataFormat;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.Lotes;
@@ -97,9 +100,6 @@ public class CadastroLotesController {
     private TextField txtPreco;
 
     @FXML
-    private TextField txtQuantidade;
-
-    @FXML
     private TextField txtReferencia;
 
     @FXML
@@ -107,6 +107,9 @@ public class CadastroLotesController {
 
     @FXML
     private TableView<?> tbSubGrupo;
+    
+    @FXML
+    private TextField txtQuantidade;
 
     Faccao f;
     public Stage stage;
@@ -170,7 +173,7 @@ public class CadastroLotesController {
         //Validação de saída
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
             TelaHomeController.trocarTelaHome(btnVoltar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -193,32 +196,31 @@ public class CadastroLotesController {
 
     @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
-        String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());
-        System.out.println(dataPrazo + "\n" + dataEntrada);
-
-        int RefInt = 0;
-        if (validacao.itemisEmpty(txtReferencia.getText(), "Referencia")) {
-            return;
-            //formato?
-        } else {
-            RefInt = Integer.parseInt(txtReferencia.getText());
-        }
-        if (validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)) {
-            return;
-
-        } else if (validacao.itemisEmpty(txtMarca.getText(), "Marca")) {
-            return;
-            //Nome de Fornecedores no sistema?
-
-        } else if (validacao.itemisEmpty(txtTecido.getText(), "Tecido")) {
-            return;
-
-        } else if (validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")) {
-            return;
-
-        } else if (validacao.itemNull(dataPrazo, "Prazo")) {
-            return;
-            /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataPrazo, "Formato da Data Prazo incorreta",
+       String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());
+         System.out.println(dataPrazo+"\n"+dataEntrada);
+               
+       int RefInt = 0;
+       if(validacao.itemisEmpty(txtReferencia.getText(), "Referencia")){
+           return;
+           //formato?
+       }else{
+           RefInt = Integer.parseInt(txtReferencia.getText());
+       }if(validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)){
+           return;
+           
+       }else if(validacao.itemisEmpty(txtMarca.getText(), "Marca")){
+           return;
+           //Nome de Fornecedores no sistema?
+           
+       }else if(validacao.itemisEmpty(txtTecido.getText(), "Tecido")){
+           return;
+       
+       }else if(validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")){
+           return;
+       
+       }else if(validacao.itemNull(dataPrazo, "Prazo")){
+           return;
+      /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataPrazo, "Formato da Data Prazo incorreta",
              "O padrão esperado é DD/MM/YYYY!")){
            return; 
              *///validar o dia e o mes digitado exemplo 30/02, os numeros já estão bloqueados como colocar isso na mensagem de erro? me ajudem 
@@ -236,6 +238,9 @@ public class CadastroLotesController {
             return;
 
         } else if (validacao.itemNull(cbModelo.getSelectionModel().getSelectedItem(), "Modelo")) {
+            return;
+            
+        }else if(validacao.itemisEmpty(txtQuantidade.getText(), "Quantidade")){
             return;
         }
 
@@ -275,16 +280,17 @@ public class CadastroLotesController {
     }
 
     private boolean cadastroDeLotes() {
-
-        int Referencia = Integer.parseInt(txtReferencia.getText());
-        LocalDate Prazo = txtPrazo.getValue();
+        int Referencia = Integer.valueOf(txtReferencia.getText());
+        LocalDate Prazo = txtPrazo.getValue(); 
         LocalDate Entrada = txtEntrada.getValue();
-        float Preco = Float.parseFloat(txtPreco.getText());
+        String precoNum = txtPreco.getText().replaceAll("[,]", ".");
+        float Preco = Float.parseFloat(precoNum);
         String Tecido = txtTecido.getText();
         String Marca = txtMarca.getText();
         String Colecao = cbColecao.getSelectionModel().getSelectedItem();
         String Modelo = cbModelo.getSelectionModel().getSelectedItem();
-        int Quantidade = Integer.parseInt(txtQuantidade.getText());
+        int Quantidade = Integer.valueOf(txtQuantidade.getText());
+       
 
         Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade);
         LotesDAO LDmetodo = new LotesDAO();

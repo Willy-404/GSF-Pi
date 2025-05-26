@@ -27,11 +27,10 @@ public class LotesDAO extends GenericDAO {
     private String Linha;
   
     public boolean cadastroLotes(Lotes l){
-    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Tamanho, QuantidadeT, Linha) "
-            + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade) "
+            + "VALUES (?,?,?,?,?,?,?,?,?)";
     try  {
-            save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                     l.getQuantidade(), l.getLinha());
+            save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo());
             return true;
         } catch (SQLException e) {  
             e.printStackTrace();
@@ -132,11 +131,11 @@ public class LotesDAO extends GenericDAO {
     
     public boolean editarLotes(Lotes l, int id){
         //COmo atualiza no banco de dados?
-    String sql = "UPDATE lotes SET Referencia= ?, Prazo= ?, Entrada= ?, Preco= ?, Tecido= ?, Marca= ?, Colecao= ?, Modelo= ?, Tamanho= ?, QuantidadeT= ?, Linha= ? WHERE Referencia = ?";
+    String sql = "UPDATE lotes SET Referencia= ?, Prazo= ?, Entrada= ?, Preco= ?, Tecido= ?, Marca= ?, Colecao= ?, Modelo= ?, QuantidadeT= ? WHERE Referencia = ?";
     try  {
             
             update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                     l.getQuantidade(), l.getLinha() );
+                     l.getQuantidade() );
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
