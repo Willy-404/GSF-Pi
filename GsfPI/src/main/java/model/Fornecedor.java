@@ -6,12 +6,23 @@ public class Fornecedor {
     private String NomeRepreFornecedor;
     private String EmailAcesso;
     private String Senha;
+    private String Telefone;
 
-    public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha) {
+    
+    public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha, String Telefone) {
         this.CNPJFornecedor = CNPJFornecedor;
         this.NomeRepreFornecedor = NomeRepreFornecedor;
         this.EmailAcesso = EmailAcesso;
         this.Senha = Senha;
+        this.Telefone = Telefone;
+    }
+    
+    public String getTelefone() {
+        return Telefone;
+    }
+
+    public void setTelefone(String Telefone) {
+        this.Telefone = Telefone;
     }
 
     public long getCNPJFornecedor() {

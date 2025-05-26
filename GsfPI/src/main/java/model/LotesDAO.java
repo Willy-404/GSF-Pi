@@ -18,7 +18,7 @@ public class LotesDAO extends GenericDAO {
     private int Referencia;
     private LocalDate Prazo;
     private LocalDate Entrada;
-    private Double Preco;
+    private float Preco;
     private String Tecido; 
     private String Marca;
     private String Colecao;
@@ -68,7 +68,7 @@ public class LotesDAO extends GenericDAO {
                     LocalDate dataPrazo = LocalDate.parse(resultSet.getString("Prazo"));
                     LocalDate dataEntrada = LocalDate.parse(resultSet.getString("Entrada"));
                             
-                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, dataEntrada, resultSet.getDouble("Preco"),
+                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, dataEntrada, resultSet.getFloat("Preco"),
                         resultSet.getString("Tecido"), resultSet.getString("Marca"),resultSet.getString("Colecao"), resultSet.getString("Modelo"), 
                         resultSet.getInt("QuantidadeT"));
 
@@ -168,11 +168,11 @@ public class LotesDAO extends GenericDAO {
         this.Entrada = Entrada;
     }
 
-    public Double getPreco() {
+    public float getPreco() {
         return Preco;
     }
 
-    public void setPreco(Double Preco) {
+    public void setPreco(float Preco) {
         this.Preco = Preco;
     }
 

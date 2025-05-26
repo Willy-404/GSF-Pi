@@ -19,8 +19,8 @@ public class FornecedorDAO extends GenericDAO {
     CadastrarFornecedorController fc = new CadastrarFornecedorController();
     
     public boolean cadastroFornecedor(Fornecedor f){
-    String sql = "INSERT INTO fornecedor (CnpjFornecedor, NomeRepreFornecedor, UsuarioFornecedor, Senha) "
-            + "VALUES (?,?,?,?)";
+    String sql = "INSERT INTO fornecedor (CnpjFornecedor, NomeRepreFornecedor, UsuarioFornecedor, Senha, Telefone) "
+            + "VALUES (?,?,?,?,?)";
     try{
             save(sql,f.getCNPJFornecedor(),f.getNomeRepreFornecedor(), f.getEmailAcesso(), f.getSenha());
             
@@ -44,7 +44,7 @@ public class FornecedorDAO extends GenericDAO {
                     // Create a new object for each row
                     
                     Fornecedor object = new Fornecedor(resultSet.getLong("CnpjFornecedor"), resultSet.getString("NomeRepreFornecedor"),
-                        resultSet.getString("UsuarioFornecedor"), resultSet.getString("Senha"));
+                        resultSet.getString("UsuarioFornecedor"), resultSet.getString("Senha"), resultSet.getString("Telefone"));
                     // Add the object to the list
                     resultList.add(object);
                 }

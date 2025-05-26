@@ -6,7 +6,7 @@ public class Lotes {
     private int Referencia;
     private LocalDate Prazo;
     private LocalDate Entrada;
-    private Double Preco;
+    private float Preco;
     private String Tecido; 
     private String Marca;
     private String Colecao;
@@ -20,7 +20,7 @@ public class Lotes {
         this.Quantidade = Quantidade;
     }
 
-    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, Double Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade) {
+    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, float Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
         this.Entrada = Entrada;
@@ -56,11 +56,11 @@ public class Lotes {
         this.Entrada = Entrada;
     }
 
-    public Double getPreco() {
+    public float getPreco() {
         return Preco;
     }
 
-    public void setPreco(Double Preco) {
+    public void setPreco(float Preco) {
         this.Preco = Preco;
     }
 

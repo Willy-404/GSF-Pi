@@ -267,13 +267,17 @@ public class CadastroLotesController {
         ((Stage) menuBar.getScene().getWindow()).close();
 
     }
-
+    
+    public void setStage(Stage home) {
+         this.stage = home;  
+    }
+    
     private boolean cadastroDeLotes() {
 
         int Referencia = Integer.parseInt(txtReferencia.getText());
         LocalDate Prazo = txtPrazo.getValue();
         LocalDate Entrada = txtEntrada.getValue();
-        double Preco = Double.parseDouble(txtPreco.getText());
+        float Preco = Float.parseFloat(txtPreco.getText());
         String Tecido = txtTecido.getText();
         String Marca = txtMarca.getText();
         String Colecao = cbColecao.getSelectionModel().getSelectedItem();
@@ -286,9 +290,7 @@ public class CadastroLotesController {
 
     }
 
-    public void setStage(Stage home) {
-      this.stage = home;  
-    }
+   
     
         @FXML
     void onClickAdicionar(ActionEvent event) {

@@ -77,6 +77,9 @@ public class CadastrarFornecedorController {
 
   /*  @FXML
     private TextField txtEndereco;*/
+    
+    @FXML
+    private TextField txtContato;
 
     @FXML
     private TextField txtEmail;
@@ -163,17 +166,16 @@ public class CadastrarFornecedorController {
             return;
         }else if(validacao.ItemEmailnoSistema(txtEmail.getText(), "fornecedor", "UsuarioFornecedor", txtEmail.getText())){
             return;
+              
+        }else if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
+            return;
             
-       /* }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
+        }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
             return;
         }else if(validacao.ValidaFormatTell(txtContato.getText())){
             return;
         }else if (validacao.ValidaTamanhoText(15,txtContato.getText(), "Telefone")) {
             return;
-         */   
-        }else if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
-            return;
-            
         }
         
         if (CadastroDeFornecedor() != true) { 
@@ -212,8 +214,9 @@ public class CadastrarFornecedorController {
         String NomeRepreFornecedor = txtNome.getText();
         String Senha = txtSenha.getText();
         String EmailAcesso = txtEmail.getText();
+        String Telefone = txtContato.getText();
        
-        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor,EmailAcesso, Senha);
+        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor,EmailAcesso, Senha, Telefone);
         FornecedorDAO FornecMetodo = new FornecedorDAO();
         return FornecMetodo.cadastroFornecedor(f);
 

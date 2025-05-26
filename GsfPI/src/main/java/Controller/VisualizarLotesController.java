@@ -277,7 +277,7 @@ public class VisualizarLotesController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate PrazoT = LocalDate.parse(txtPrazo.getText(), formatter);
         LocalDate EntradaT = LocalDate.parse(txtEntrada.getText(), formatter);
-        Double PrecoT = Double.parseDouble(txtPreco.getText());
+        float PrecoT = Float.parseFloat(txtPreco.getText());
         String TecidoT = txtTecido.getText();
         String MarcaT = txtMarca.getText();
         String ColecaoT = cbColecao.getValue();

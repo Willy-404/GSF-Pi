@@ -276,11 +276,25 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextField fx:id="txtContato" prefHeight="46.0" prefWidth="262.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children></FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <padding>
                               <Insets right="10.0" />
                            </padding>
+                           <children>
+                              <Label text="Telefone" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
                         </FlowPane>
                      </children>
                   </GridPane>
