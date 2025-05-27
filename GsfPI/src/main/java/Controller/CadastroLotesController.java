@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +20,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.ItemLote;
@@ -108,7 +113,16 @@ public class CadastroLotesController {
     private TextField txtTecido;
 
     @FXML
-    private TableView<?> tbSubGrupo;
+    private TableView<ItemLote> tbSubGrupo;
+    
+    @FXML
+    private TableColumn<ItemLote, String> colLinha;
+
+    @FXML
+    private TableColumn<ItemLote, Integer> colQuantidade;
+
+    @FXML
+    private TableColumn<ItemLote, String> colTamanho;
     
     @FXML
     private TextField txtQuantidade;
@@ -128,6 +142,7 @@ public class CadastroLotesController {
         cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
         cbModelo.getItems().addAll("Calça","Short","Legging","Blusa","Regata","Casaco");
         cbColecao.getItems().addAll("Primavera","Verão","Outono","Inverno");
+        carregarSubgrupos();
     }
 
     @FXML
@@ -301,9 +316,20 @@ public class CadastroLotesController {
         String Linha = txtLinha.getText();
         int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
-        ItemLote subgrupo = new ItemLote(Tamanho, Linha, Quantidade);
+        ItemLote subgrupo = new ItemLote(Quantidade, Tamanho, Linha);
         ItemLoteDAO ItemMetodo = new ItemLoteDAO();
         return ItemMetodo.cadastroSubgrupo(subgrupo);
+    }
+    
+    ItemLoteDAO lmetodo = new ItemLoteDAO();
+    public void carregarSubgrupos() {
+         //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
+        List<ItemLote> subgruposList = lmetodo.listarSubgrupos();
+        ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
+        tbSubGrupo.setItems(listSubgrupos);
+        colTamanho.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+        colLinha.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
+        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Linha"));
     }
 
     @FXML

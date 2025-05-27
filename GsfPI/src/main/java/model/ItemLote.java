@@ -5,14 +5,14 @@ package model;
 public class ItemLote {
     
     
+    private int Quantidade;
     private String Tamanho;
     private String Linha;
-    private int Quantidade;
 
-    public ItemLote(String Tamanho,  String Linha, int Quantidade) {
+    public ItemLote(int Quantidade,  String Tamanho, String Linha) {
+        this.Quantidade = Quantidade;
         this.Tamanho = Tamanho;
         this.Linha = Linha;
-        this.Quantidade = Quantidade;
     }
 
     

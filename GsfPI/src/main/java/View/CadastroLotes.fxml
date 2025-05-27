@@ -54,9 +54,9 @@
                <children>
                   <TableView fx:id="tbSubGrupo" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Tamanho" />
-                      <TableColumn prefWidth="75.0" text="Linha" />
-                        <TableColumn prefWidth="75.0" text="Quantidade" />
+                        <TableColumn fx:id="colQuantidade" prefWidth="75.0" text="Quantidade" />
+                      <TableColumn fx:id="colTamanho" prefWidth="75.0" text="Tamanho" />
+                      <TableColumn fx:id="colLinha" prefWidth="75.0" text="Linha" />
                     </columns>
                   </TableView>
                   <Label layoutX="8.0" layoutY="38.0" text="Tamanho" textFill="WHITE">

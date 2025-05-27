@@ -19,7 +19,7 @@ public class ItemLoteDAO extends GenericDAO{
     private int Quantidade;
 
     public boolean cadastroSubgrupo(ItemLote l) {
-    String sql = "INSERT INTO itemlote (Tamanho, Linha, Quantidade) "
+    String sql = "INSERT INTO itemlote (Quantidade, Tamanho, Linha) "
             + "VALUES (?,?,?)";
     try  {
             save(sql, l.getTamanho(), l.getLinha(), l.getQuantidade());
@@ -30,7 +30,7 @@ public class ItemLoteDAO extends GenericDAO{
         }
     }
     public List<ItemLote> listarSubgrupos(){
-        String sql ="Select* FROM lote ";
+        String sql ="Select* FROM itemLote ";
         List<ItemLote> resultList = new ArrayList<ItemLote>();
 
         try (Connection connection = ConexaoBD.conectar();
@@ -40,7 +40,7 @@ public class ItemLoteDAO extends GenericDAO{
                 while (resultSet.next()) {
                     // Create a new object for each row
 
-                    ItemLote object = new ItemLote(resultSet.getString("Tamanho"),resultSet.getString("Linha"),resultSet.getInt("Quantidade"));
+                    ItemLote object = new ItemLote(resultSet.getInt("Quantidade"),resultSet.getString("Tamanho"),resultSet.getString("Linha"));
 
                     // Add the object to the list
                     resultList.add(object);
@@ -73,7 +73,7 @@ public class ItemLoteDAO extends GenericDAO{
     String sql = "UPDATE ItemLote SET Quantidade= ?, Tamanho=?, Linha=?";
     try  {
             
-            update(sql, id, l.getTamanho(), l.getLinha(), l.getQuantidade());
+            update(sql, id, l.getQuantidade(), l.getTamanho(), l.getLinha());
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
