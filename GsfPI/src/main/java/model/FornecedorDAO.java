@@ -19,10 +19,10 @@ public class FornecedorDAO extends GenericDAO {
     CadastrarFornecedorController fc = new CadastrarFornecedorController();
     
     public boolean cadastroFornecedor(Fornecedor f){
-    String sql = "INSERT INTO fornecedor (CnpjFornecedor, NomeRepreFornecedor, UsuarioFornecedor, Senha, Telefone) "
+    String sql = "INSERT INTO fornecedor (CnpjFornecedor, NomeRepreFornecedor, UsuarioFornecedor, Senha, Contato) "
             + "VALUES (?,?,?,?,?)";
     try{
-            save(sql,f.getCNPJFornecedor(),f.getNomeRepreFornecedor(), f.getEmailAcesso(), f.getSenha());
+            save(sql,f.getCNPJFornecedor(),f.getNomeRepreFornecedor(), f.getEmailAcesso(), f.getSenha(), f.getTelefone());
             
            
              return true;

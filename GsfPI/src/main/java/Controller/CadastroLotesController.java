@@ -240,7 +240,7 @@ public class CadastroLotesController {
             
         } else if (validacao.itemisEmpty(txtPreco.getText(), "Preço")) {
             return;
-        } else if (validacao.ValidarFormat("^\\d+,\\d{2}$", txtPreco.getText(), "Formato do Preço incorreto",
+        } else if (validacao.ValidarFormat("^\\d+,\\d{1,2}$", txtPreco.getText(), "Formato do Preço incorreto",
                 "O padrão esperado é XXXXX,XX!")) {
             return;
 

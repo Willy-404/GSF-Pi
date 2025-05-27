@@ -211,7 +211,7 @@ public class CadastrarFuncionarioController {
                
         }else if(validacao.itemisEmpty(txtSalario.getText(),"Salario")){
              return;
-        }else if(validacao.ValidarFormat("^\\d+,\\d{2}$", txtSalario.getText(), "Formato do Salário incorreto", "O padrão esperado é XXXXX,XX!")){
+        }else if(validacao.ValidarFormat("^\\d+,\\d{1,2}$", txtSalario.getText(), "Formato do Salário incorreto", "O padrão esperado é XXXXX,XX!")){
             return;
         }
         //Validar data?

@@ -172,7 +172,8 @@ public class CadastrarFornecedorController {
         }
         if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
             return;
-        } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText(), "CNPJ")) {
+        } else if ((validacao.ValidaTamanhoText(18,txtCnpj.getText()))&& (validacao.ValidaTamanhoText(14,txtCnpj.getText()))) {
+            alertas.alertaError("Tamanho do campo CNPJ Incompativel!","Tamanho do texto digitado no campo CNPJ fora do permitido!");
             return;
         }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "fornecedor", "CnpjFornecedor", cnpjnum)){
             return;
@@ -191,7 +192,8 @@ public class CadastrarFornecedorController {
             return;
         }else if(validacao.ValidaFormatTell(txtContato.getText())){
             return;
-        }else if (validacao.ValidaTamanhoText(15,txtContato.getText(), "Telefone")) {
+        }else if ((validacao.ValidaTamanhoText(15,txtContato.getText())) && (validacao.ValidaTamanhoText(11,txtContato.getText()))) {
+            alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
             return;
         }
         
