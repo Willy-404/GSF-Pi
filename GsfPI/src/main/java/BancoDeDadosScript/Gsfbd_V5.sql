@@ -241,6 +241,7 @@ CREATE TABLE `itemlote` (
 
 LOCK TABLES `itemlote` WRITE;
 /*!40000 ALTER TABLE `itemlote` DISABLE KEYS */;
+INSERT INTO `itemlote` VALUES (1,12312313,500,'P','Azul');
 /*!40000 ALTER TABLE `itemlote` ENABLE KEYS */;
 UNLOCK TABLES;
 
