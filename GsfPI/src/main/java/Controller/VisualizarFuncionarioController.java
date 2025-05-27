@@ -108,7 +108,7 @@ public class VisualizarFuncionarioController {
         ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioList);
         tabelaFuncionario.setItems(listaFuncionario);
         colCPF.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
-        colNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
+        colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
         colNascimento.setCellValueFactory(new PropertyValueFactory<>("DataNascimento"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));

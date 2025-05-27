@@ -132,7 +132,7 @@ public class LotesDAO extends GenericDAO {
     
     public boolean editarLotes(Lotes l, int id){
         //COmo atualiza no banco de dados?
-    String sql = "UPDATE lotes SET Referencia= ?, Prazo= ?, Entrada= ?, Preco= ?, Tecido= ?, Marca= ?, Colecao= ?, Modelo= ?, QuantidadeT= ? WHERE Referencia = ?";
+    String sql = "UPDATE lote SET Referencia= ?, Prazo= ?, Entrada= ?, Preco= ?, Tecido= ?, Marca= ?, Colecao= ?, Modelo= ?, QuantidadeT= ? WHERE Referencia = ?";
     try  {
             
             update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
