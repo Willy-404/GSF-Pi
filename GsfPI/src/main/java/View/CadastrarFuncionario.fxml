@@ -101,7 +101,11 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <ComboBox fx:id="cbCargo" prefHeight="46.0" prefWidth="220.0" />
+                              <TextField fx:id="txtNome" prefHeight="46.0" prefWidth="219.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
                            </children>
                         </FlowPane>
                      </children>
@@ -269,11 +273,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtCargo" prefHeight="46.0" prefWidth="219.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
+                              <ComboBox fx:id="cbCargo" prefHeight="46.0" prefWidth="220.0" />
                            </children>
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">

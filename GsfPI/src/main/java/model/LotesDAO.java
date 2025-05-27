@@ -30,7 +30,8 @@ public class LotesDAO extends GenericDAO {
     String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, QuantidadeT) "
             + "VALUES (?,?,?,?,?,?,?,?,?)";
     try  {
-            save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo());
+            save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(), 
+                    l.getQuantidadeT());
             return true;
         } catch (SQLException e) {  
             e.printStackTrace();
@@ -135,7 +136,7 @@ public class LotesDAO extends GenericDAO {
     try  {
             
             update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                     l.getQuantidadeT() );
+                     l.getQuantidadeT());
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

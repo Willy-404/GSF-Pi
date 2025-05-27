@@ -29,9 +29,6 @@ import util.Alertas;
 import util.Validacao;
 
 public class CadastrarFuncionarioController {
-
-
-
   
     private ArrayList<Funcionario> userInfo = new ArrayList<>();
     public ArrayList<Funcionario> getUserInfo() {
@@ -220,9 +217,16 @@ public class CadastrarFuncionarioController {
         //Validar data?
         
         if (CadastroDeFuncionario() != true) { 
-            alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionario");
+            alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionário!");
         } else {
-            alertas.alertaInformation("Cadastro realizado com sucesso", "O Funcionario foi cadastrado com sucesso");
+            alertas.alertaInformation("Cadastro realizado com sucesso", "O Funcionário foi cadastrado com sucesso!");
+            txtNome.setText("");
+            txtCpf.setText("");
+            txtContato.setText("");
+            txtNascimento.setValue(null);
+            txtEmail.setText("");
+            txtSalario.setText("");
+            cbCargo.setValue(null);
         }
     }
         //Metodo para trocar pra tela Cadastrar funcionario
@@ -253,7 +257,8 @@ public class CadastrarFuncionarioController {
         LocalDate DataNascimento = txtNascimento.getValue();
         String Telefone = txtContato.getText();
         String Email = txtEmail.getText();
-        float ValorHora = Float.parseFloat(txtSalario.getText());
+        String valorComPonto = txtSalario.getText().replaceAll("[,]", ".");
+        float ValorHora = Float.parseFloat(valorComPonto);
         String Cargo = cbCargo.getSelectionModel().getSelectedItem();
 
         Funcionario f = new Funcionario(Cpf, NomeFuncionario, DataNascimento, Telefone, Email, ValorHora, Cargo);

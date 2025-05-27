@@ -255,8 +255,15 @@ public class CadastroLotesController {
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
         } else {
             alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
-
-            VisualizarLotesController.trocarVizLotes(btnConfirmarLote, f);
+            txtReferencia.setText("");
+            txtTecido.setText("");
+            txtPrazo.setValue(null);
+            txtPreco.setText("");
+            txtQuantidade.setText("");
+            txtMarca.setText("");
+            cbColecao.setValue(null);
+            txtEntrada.setValue(null);
+            cbModelo.setValue(null);
         }
     }
 

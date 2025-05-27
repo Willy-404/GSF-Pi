@@ -195,7 +195,7 @@ CREATE TABLE `funcionario` (
   `Cpf` bigint(20) NOT NULL,
   `NomeFuncionario` varchar(30) NOT NULL,
   `DataNascimento` date NOT NULL,
-  `Telefone` char(12) NOT NULL,
+  `Telefone` varchar(20) NOT NULL,
   `Email` varchar(40) NOT NULL,
   `ValorHora` decimal(4,2) NOT NULL,
   `Cargo` varchar(30) NOT NULL,
@@ -212,6 +212,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
+INSERT INTO `funcionario` VALUES (10087956775,'larissa','2020-05-20','(45) 98765-0943','Larissa@gmail.com',8.50,'Costureira',NULL),(12378956076,'felipe','2025-05-15','(28) 99876-7645','felipe@gmail.com',12.30,'Manual',NULL),(23465734576,'willian','2025-01-21','(67) 90765-8754','willian@gmail.com',13.00,'Costureira',NULL);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +232,7 @@ CREATE TABLE `itemlote` (
   PRIMARY KEY (`id`),
   KEY `referenciaLote_idx` (`referenciaLote`),
   CONSTRAINT `referenciaLote` FOREIGN KEY (`referenciaLote`) REFERENCES `lote` (`Referencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +241,6 @@ CREATE TABLE `itemlote` (
 
 LOCK TABLES `itemlote` WRITE;
 /*!40000 ALTER TABLE `itemlote` DISABLE KEYS */;
-INSERT INTO `itemlote` VALUES (1,12312313,500,'P','Azul');
 /*!40000 ALTER TABLE `itemlote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,4 +315,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-27 11:30:25
+-- Dump completed on 2025-05-27 11:23:31
