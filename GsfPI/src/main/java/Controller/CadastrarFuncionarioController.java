@@ -194,7 +194,8 @@ public class CadastrarFuncionarioController {
         }
         if (validacao.ValidaFormatoCpf(txtCpf.getText())) {
             return;
-        } else if (validacao.ValidaTamanhoText(14,txtCpf.getText(), "CPF")) {
+        } else if ((validacao.ValidaTamanhoText(14,txtCpf.getText())) && (validacao.ValidaTamanhoText(11,txtCpf.getText()))) {
+            alertas.alertaError("Tamanho do campo CPF Incompativel!","Tamanho do texto digitado no campo CPF fora do permitido!");
             return;
         }else if(validacao.ValidaCPFSistema(txtCpf.getText(), "funcionario", "Cpf", cpfnum)){
             return;
@@ -206,7 +207,8 @@ public class CadastrarFuncionarioController {
             return;
         }else if(validacao.ValidaFormatTell(txtContato.getText())){
             return;
-        }else if (validacao.ValidaTamanhoText(15,txtContato.getText(), "Telefone")) {
+        }else if ((validacao.ValidaTamanhoText(15,txtContato.getText())) && (validacao.ValidaTamanhoText(11,txtContato.getText()))) {
+            alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
             return;
                
         }else if(validacao.itemisEmpty(txtSalario.getText(),"Salario")){

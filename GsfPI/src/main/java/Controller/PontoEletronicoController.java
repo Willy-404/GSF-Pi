@@ -9,6 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import model.Faccao;
+import util.Alertas;
 import util.Validacao;
 
 public class PontoEletronicoController {
@@ -101,6 +102,8 @@ public class PontoEletronicoController {
         TelaHomeController.trocarTelaHome(MenuBar, f);
     }
     
+    Alertas alertas = new Alertas();
+    
       @FXML
     void OnClickConfirmarPonto(ActionEvent event) {
         Long cpfnum;
@@ -112,7 +115,8 @@ public class PontoEletronicoController {
         }
         if (validacao.ValidaFormatoCpf(txtCpfPonto.getText())) {
             return;
-        } else if (validacao.ValidaTamanhoText(14,txtCpfPonto.getText(), "CPF")) {
+        } else if ((validacao.ValidaTamanhoText(14,txtCpfPonto.getText())) && (validacao.ValidaTamanhoText(11,txtCpfPonto.getText()))) {
+            alertas.alertaError("Tamanho do campo CPF Incompativel!","Tamanho do texto digitado no campo CPF fora do permitido!");
             return;
         }else if(validacao.ValidaCPFExiste(txtCpfPonto.getText(), "funcionario", "Cpf", cpfnum)){
             return;

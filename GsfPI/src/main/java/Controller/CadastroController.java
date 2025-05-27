@@ -68,7 +68,8 @@ public class CadastroController {
         }
         if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
             return;
-        } else if (validacao.ValidaTamanhoText(18,txtCnpj.getText(), "CNPJ")) {
+        } else if ((validacao.ValidaTamanhoText(18,txtCnpj.getText()))&& (validacao.ValidaTamanhoText(14,txtCnpj.getText()))) {
+            alertas.alertaError("Tamanho do campo CNPJ Incompativel!","Tamanho do texto digitado no campo CNPJ fora do permitido!");
             return;
         }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "faccao", "CnpjFaccao", cnpjnum)){
             return;
@@ -77,10 +78,10 @@ public class CadastroController {
             return;
         }else if(validacao.ValidaFormatTell(txtTelefone.getText())){
             return;
-        }else if (validacao.ValidaTamanhoText(15,txtTelefone.getText(), "Telefone")) {
+        }else if ((validacao.ValidaTamanhoText(15,txtTelefone.getText())) && (validacao.ValidaTamanhoText(11,txtTelefone.getText()))) {
+            alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
             return;
-        
-            
+                   
         }else if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
             return;
         }
