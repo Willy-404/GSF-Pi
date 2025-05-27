@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
@@ -157,7 +158,23 @@ public class CadastrarFuncionarioController {
         @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
-        TelaHomeController.trocarTelaHome(btnVoltar, f);
+        if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+            TelaHomeController.trocarTelaHome(btnVoltar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        TelaHomeController.trocarTelaHome(btnVoltar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
     }
 
     @FXML

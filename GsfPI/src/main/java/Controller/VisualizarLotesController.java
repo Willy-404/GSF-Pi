@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -33,6 +34,7 @@ import model.Faccao;
 import model.Lotes;
 import model.LotesDAO;
 import util.Alertas;
+import util.Validacao;
 
 public class VisualizarLotesController {
 
@@ -92,13 +94,13 @@ public class VisualizarLotesController {
 
     Lotes l;
     @FXML
-    private TextField txtEntrada;
+    private DatePicker  txtEntrada;
 
     @FXML
     private TextField txtReferencia;
 
     @FXML
-    private TextField txtPrazo;
+    private DatePicker txtPrazo;
 
     @FXML
     private TextField txtQuantidade;
@@ -124,6 +126,7 @@ public class VisualizarLotesController {
 
     @FXML
     private TableColumn<Lotes, LocalDate> colPrazo;
+    
     @FXML
     private TableColumn<Lotes, Integer> colQuantidade;
 
@@ -133,6 +136,7 @@ public class VisualizarLotesController {
     @FXML
     private TextField txtTecido;
     Alertas alertas = new Alertas();
+    Validacao validacao = new Validacao();
 
     private void carregarLotes() {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
@@ -186,20 +190,20 @@ public class VisualizarLotesController {
 
     @FXML
     void onSelecionaItem(MouseEvent event) {
-        if (event.getClickCount() == 1) {
+        if (event.getClickCount() == 2) {
             itemLote = TabelaLotes.getSelectionModel().getSelectedItem();
             if (itemLote != null) {
                 int id = itemLote.getReferencia();
                 itemLote = lmetodo.loteSelecionado(id);
                 txtReferencia.setText(String.valueOf(itemLote.getReferencia()));
-                txtPrazo.setText(String.valueOf(itemLote.getPrazo()));
-                txtEntrada.setText(String.valueOf(itemLote.getEntrada()));
+                txtPrazo.setValue(itemLote.getPrazo());
+                txtEntrada.setValue(itemLote.getEntrada());
                 txtPreco.setText(String.valueOf(itemLote.getPreco()));
                 txtTecido.setText(String.valueOf(itemLote.getTecido()));
                 txtMarca.setText(String.valueOf(itemLote.getMarca()));
                 cbColecao.setValue(itemLote.getColecao());
                 cbModelo.setValue(itemLote.getModelo());
-                txtQuantidade.setText(String.valueOf(itemLote.getQuantidade()));
+                txtQuantidade.setText(String.valueOf(itemLote.getQuantidadeT()));
             } else {
                 alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
             }
@@ -208,23 +212,26 @@ public class VisualizarLotesController {
     }
 
     @FXML
-    void onClickVoltar(ActionEvent event) {
+    void onClickVoltar(ActionEvent event) throws IOException {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
+         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+            TelaHomeController.trocarTelaHome(btnVoltar, f);
+        } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Sair da tela?");
         alerta.setHeaderText("Ao sair perderá qualquer alteração!");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
                     TelaHomeController.trocarTelaHome(btnVoltar, f);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
-                alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
-            }
+            } 
         });
+        }
     }
 
     public static void trocarVizLotes(MenuBar menuBar, Faccao f) throws IOException {
@@ -269,37 +276,84 @@ public class VisualizarLotesController {
         ((Stage) btn.getScene().getWindow()).close();
     }
 
-    void OnClickEditar(ActionEvent event) throws IOException {
-        int id = (l.getReferencia());
-        LotesDAO lmetodo = new LotesDAO();
+    //Não entra no botão onClickEditar
+    @FXML
+    void onClickEditar(ActionEvent event) throws IOException {
+        if (!txtReferencia.getText().isEmpty() && !txtMarca.getText().isEmpty() && !txtTecido.getText().isEmpty()
+            && !cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() != null && txtEntrada.getValue() != null
+            && !txtPreco.getText().isEmpty() && !cbModelo.getSelectionModel().isEmpty() && !txtQuantidade.getText().isEmpty()) {
+            
+            String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());   
+            int RefInt = 0;
+            
+            if(validacao.itemisEmpty(txtReferencia.getText(), "Referencia")){
+                return;
+                //formato?
+            }else{
+                RefInt = Integer.parseInt(txtReferencia.getText());
+            }if(validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)){
+                return;
 
-        int ReferenciaT = Integer.parseInt(txtReferencia.getText());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate PrazoT = LocalDate.parse(txtPrazo.getText(), formatter);
-        LocalDate EntradaT = LocalDate.parse(txtEntrada.getText(), formatter);
-        float PrecoT = Float.parseFloat(txtPreco.getText());
-        String TecidoT = txtTecido.getText();
-        String MarcaT = txtMarca.getText();
-        String ColecaoT = cbColecao.getValue();
-        String ModeloT = cbModelo.getValue();
-        int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
+            }else if(validacao.itemisEmpty(txtMarca.getText(), "Marca")){
+                return;
+                //Nome de Fornecedores no sistema?
 
-        Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT);
+            }else if(validacao.itemisEmpty(txtTecido.getText(), "Tecido")){
+                return;
 
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Editar?");
-        alerta.setHeaderText("Deseja fazer a edição das informações?");
-        alerta.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                if (lmetodo.editarLotes(lTroca, id) != true) {
-                    alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+            }else if(validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")){
+                return;
+
+            }else if(validacao.itemNull(dataPrazo, "Prazo")){
+                return;
+
+             } else if (validacao.itemNull(dataEntrada, "Entrada")) {
+                 return;
+
+             } else if (validacao.itemisEmpty(txtPreco.getText(), "Preço")) {
+                 return;
+             } else if (validacao.ValidarFormat("^\\d+,\\d{2}$", txtPreco.getText(), "Formato do Preço incorreto",
+                     "O padrão esperado é XXXXX,XX!")) {
+                 return;
+
+             } else if (validacao.itemNull(cbModelo.getSelectionModel().getSelectedItem(), "Modelo")) {
+                 return;
+
+             }else if(validacao.itemisEmpty(txtQuantidade.getText(), "Quantidade")){
+                 return;
+             }
+            int id = (l.getReferencia());
+            LotesDAO lmetodo = new LotesDAO();
+            System.out.println("Entrou no clique?");
+
+            int ReferenciaT = Integer.parseInt(txtReferencia.getText());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate PrazoT = txtPrazo.getValue();
+            LocalDate EntradaT = txtEntrada.getValue();
+            float PrecoT = Float.parseFloat(txtPreco.getText());
+            String TecidoT = txtTecido.getText();
+            String MarcaT = txtMarca.getText();
+            String ColecaoT = cbColecao.getValue();
+            String ModeloT = cbModelo.getValue();
+            int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
+
+            Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT);
+
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Editar?");
+            alerta.setHeaderText("Deseja fazer a edição das informações?");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    if (lmetodo.editarLotes(lTroca, id) != true) {
+                        alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+                    } else {
+                        alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                    }
                 } else {
-                    alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                    alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
                 }
-            } else {
-                alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
-            }
-        });
+            });
+        }
     }
 
     public void setStage(Stage visuLotes) {

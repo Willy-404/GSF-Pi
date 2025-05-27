@@ -182,14 +182,11 @@ public class CadastroLotesController {
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
                         TelaHomeController.trocarTelaHome(btnVoltar, f);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                } else {
-                    alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
-                }
+                } 
             });
         }
     }
@@ -220,17 +217,10 @@ public class CadastroLotesController {
        
        }else if(validacao.itemNull(dataPrazo, "Prazo")){
            return;
-      /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataPrazo, "Formato da Data Prazo incorreta",
-             "O padrão esperado é DD/MM/YYYY!")){
-           return; 
-             *///validar o dia e o mes digitado exemplo 30/02, os numeros já estão bloqueados como colocar isso na mensagem de erro? me ajudem 
-
+    
         } else if (validacao.itemNull(dataEntrada, "Entrada")) {
             return;
-            /* }else if(validacao.ValidarFormat("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$", dataEntrada, "Formato da Data Entrada incorreta",
-             "O padrão esperado é DD/MM/YYYY!")){
-           return; 
-             *///O mesmo dos dia e mes de cima (da de fazer um padrão na class Validacao 
+            
         } else if (validacao.itemisEmpty(txtPreco.getText(), "Preço")) {
             return;
         } else if (validacao.ValidarFormat("^\\d+,\\d{2}$", txtPreco.getText(), "Formato do Preço incorreto",

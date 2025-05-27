@@ -109,15 +109,11 @@ public class CadastroController {
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        alertas.alertaInformation("Saida Confirmada", "A saida foi confirmada com sucesso!");
                         lc.trocarLogin(btnSair);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                }else{
-                     alertas.alertaInformation("Saida Cancelada", "A saida foi cancelada com sucesso!");
                 }
-
             });
         }
     }

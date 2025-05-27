@@ -23,11 +23,11 @@ public class LotesDAO extends GenericDAO {
     private String Marca;
     private String Colecao;
     private String Modelo;
-    private int Quantidade;
+    private int QuantidadeT;
     private String Linha;
   
     public boolean cadastroLotes(Lotes l){
-    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade) "
+    String sql = "INSERT INTO lote (Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, QuantidadeT) "
             + "VALUES (?,?,?,?,?,?,?,?,?)";
     try  {
             save(sql, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo());
@@ -87,7 +87,7 @@ public class LotesDAO extends GenericDAO {
     
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
     public List<Lotes> listarLotes(){
-        String sql ="Select* FROM lote ";
+        String sql ="Select Referencia, Prazo, QuantidadeT FROM lote ";
         List<Lotes> resultList = new ArrayList<Lotes>();
 
         try (Connection connection = ConexaoBD.conectar();
@@ -135,7 +135,7 @@ public class LotesDAO extends GenericDAO {
     try  {
             
             update(sql, id, l.getReferencia(), l.getPrazo(), l.getEntrada(), l.getPreco(), l.getTecido(), l.getMarca(), l.getColecao(), l.getModelo(),
-                     l.getQuantidade() );
+                     l.getQuantidadeT() );
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -208,12 +208,12 @@ public class LotesDAO extends GenericDAO {
     }
 
    
-    public int getQuantidade() {
-        return Quantidade;
+    public int getQuantidadeT() {
+        return QuantidadeT;
     }
 
-    public void setQuantidade(int Quantidade) {
-        this.Quantidade = Quantidade;
+    public void setQuantidadeT(int Quantidade) {
+        this.QuantidadeT = Quantidade;
     }
 
     public String getLinha() {

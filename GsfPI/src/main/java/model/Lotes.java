@@ -11,12 +11,12 @@ public class Lotes {
     private String Marca;
     private String Colecao;
     private String Modelo;
-    private int Quantidade;
+    private int QuantidadeT;
 
     public Lotes(int Referencia, LocalDate Prazo, int Quantidade) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
-        this.Quantidade = Quantidade;
+        this.QuantidadeT = Quantidade;
     }
 
     public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, float Preco, String Tecido, String Marca, String Colecao, String Modelo) {
@@ -39,7 +39,7 @@ public class Lotes {
         this.Marca = Marca;
         this.Colecao = Colecao;
         this.Modelo = Modelo;
-        this.Quantidade = Quantidade;
+        this.QuantidadeT = Quantidade;
     }
 
     public int getReferencia() {
@@ -106,12 +106,12 @@ public class Lotes {
         this.Modelo = Modelo;
     }
 
-    public int getQuantidade() {
-        return Quantidade;
+    public int getQuantidadeT() {
+        return QuantidadeT;
     }
 
-    public void setQuantidade(int Quantidade) {
-        this.Quantidade = Quantidade;
+    public void setQuantidadeT(int Quantidade) {
+        this.QuantidadeT = Quantidade;
     }  
     
 }

@@ -40,12 +40,9 @@ public class TelaHomeController {
     
     Faccao f;
 
-    
-    
     public void setFaccao(Faccao r) {
         this.f = r;
     }
-
 
     @FXML
     void onClickCadastrarLotes(ActionEvent event) throws IOException {

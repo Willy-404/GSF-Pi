@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -105,7 +106,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtEntrada" />
+                              <DatePicker fx:id="txtEntrada" />
                            </children>
                         </FlowPane>
                      </children>
@@ -289,7 +290,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtPrazo" />
+                              <DatePicker fx:id="txtPrazo" />
                            </children>
                         </FlowPane>
                      </children>
@@ -327,7 +328,7 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Editar" textFill="#4d7794">
+                              <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#onClickEditar" prefHeight="40.0" prefWidth="100.0" text="Editar" textFill="#4d7794">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
