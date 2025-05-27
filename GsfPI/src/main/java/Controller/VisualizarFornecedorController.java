@@ -94,7 +94,7 @@ public class VisualizarFornecedorController {
         List<Fornecedor> fornecedorList = lmetodo.ListarFornecedor();
         ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorList);
         tabelaFornecedor.setItems(listaFornecedor);
-        colCnpj.setCellValueFactory(new PropertyValueFactory<>("CnpjFornecedor"));
+        colCnpj.setCellValueFactory(new PropertyValueFactory<>("CNPJFornecedor"));
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
         colSenha.setCellValueFactory(new PropertyValueFactory<>("Senha"));
     }
@@ -151,6 +151,7 @@ public class VisualizarFornecedorController {
 
         VisualizarFornecedorController thc = loader.getController();
         thc.setFaccao(f);
+        thc.visuFornecedor();
         thc.setStage(home);
 
         Scene cena = new Scene(root);
@@ -160,6 +161,27 @@ public class VisualizarFornecedorController {
         ((Stage) menuBar.getScene().getWindow()).close();
     }
 
+    public static void trocarVizFornecedor(Button botao, Faccao f) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Visualizar o Fornecedor");
+
+        URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        VisualizarFornecedorController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.visuFornecedor();
+        thc.setStage(home);
+
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) botao.getScene().getWindow()).close();
+    }
+    
     @FXML
     void OnClickNovoFornecedor(ActionEvent event) throws IOException {
         Stage cadastroFornecedor = new Stage();

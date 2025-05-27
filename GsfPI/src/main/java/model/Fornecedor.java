@@ -4,7 +4,7 @@ public class Fornecedor {
 
     private long CNPJFornecedor;
     private String NomeRepreFornecedor;
-    private String EmailAcesso;
+    private String UsuarioFornecedor;
     private String Senha;
     private String Telefone;
 
@@ -12,7 +12,7 @@ public class Fornecedor {
     public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha, String Telefone) {
         this.CNPJFornecedor = CNPJFornecedor;
         this.NomeRepreFornecedor = NomeRepreFornecedor;
-        this.EmailAcesso = EmailAcesso;
+        this.UsuarioFornecedor = EmailAcesso;
         this.Senha = Senha;
         this.Telefone = Telefone;
     }
@@ -42,11 +42,11 @@ public class Fornecedor {
     }
 
     public String getEmailAcesso() {
-        return EmailAcesso;
+        return UsuarioFornecedor;
     }
 
     public void setEmailAcesso(String EmailAcesso) {
-        this.EmailAcesso = EmailAcesso;
+        this.UsuarioFornecedor = EmailAcesso;
     }
 
     public String getSenha() {

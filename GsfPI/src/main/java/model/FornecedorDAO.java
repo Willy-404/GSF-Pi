@@ -14,8 +14,10 @@ import javafx.collections.ObservableList;
 public class FornecedorDAO extends GenericDAO {
    private long CNPJFornecedor;
    private String NomeRepreFornecedor;
-   private String EmailAcesso;
+   private String UsuarioFornecedor;
    private String Senha;
+   private String Telefone;
+
     CadastrarFornecedorController fc = new CadastrarFornecedorController();
     
     public boolean cadastroFornecedor(Fornecedor f){
@@ -43,7 +45,7 @@ public class FornecedorDAO extends GenericDAO {
                 while (resultSet.next()) {
                     // Create a new object for each row
                     
-                    Fornecedor object = new Fornecedor(resultSet.getLong("CnpjFornecedor"), resultSet.getString("NomeRepreFornecedor"),
+                    Fornecedor object = new Fornecedor(resultSet.getLong("CNPJFornecedor"), resultSet.getString("NomeRepreFornecedor"),
                         resultSet.getString("UsuarioFornecedor"), resultSet.getString("Senha"), resultSet.getString("Telefone"));
                     // Add the object to the list
                     resultList.add(object);
@@ -75,11 +77,11 @@ public class FornecedorDAO extends GenericDAO {
     }
 
     public String getEmailAcesso() {
-        return EmailAcesso;
+        return UsuarioFornecedor;
     }
 
     public void setEmailAcesso(String EmailAcesso) {
-        this.EmailAcesso = EmailAcesso;
+        this.UsuarioFornecedor = EmailAcesso;
     }
 
     public String getSenha() {

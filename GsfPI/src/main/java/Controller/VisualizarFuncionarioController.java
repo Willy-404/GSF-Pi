@@ -168,6 +168,7 @@ public class VisualizarFuncionarioController {
 
         VisualizarFuncionarioController thc = loader.getController();
         thc.setFaccao(f);
+        thc.carregarFuncionarios();
         thc.setStage(home);
 
         Scene cena = new Scene(root);
@@ -175,6 +176,26 @@ public class VisualizarFuncionarioController {
         home.show();
 
         ((Stage) menuBar.getScene().getWindow()).close();
+    }
+    public static void trocarVizFuncionario(Button botao, Faccao f) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Visualizar Funcionario");
+
+        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        VisualizarFuncionarioController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.carregarFuncionarios();
+        thc.setStage(home);
+
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) botao.getScene().getWindow()).close();
     }
 
     @FXML

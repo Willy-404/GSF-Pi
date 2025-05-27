@@ -86,51 +86,16 @@ public class TelaHomeController {
 
     @FXML
     void onClickTelaFornecedor(ActionEvent event) throws IOException {
-
-        Stage fornecedor = new Stage();
-        fornecedor.setMaximized(true);
-        fornecedor.setTitle("Tela Fornecedor");
-
-        URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        
-        VisualizarFornecedorController thc = loader.getController();
-        thc.setFaccao(f);
-        thc.setStage(fornecedor);
-
-        Scene cena = new Scene(root);
-        fornecedor.setScene(cena);
-        fornecedor.show();
-        
-        ((Stage) btnFornecedor.getScene().getWindow()).close();
+        VisualizarFornecedorController.trocarVizFornecedor(btnFornecedor, f);
     }
 
     @FXML
     void onClickTelaFuncionario(ActionEvent event) throws IOException {
-
-        Stage funcionario = new Stage();
-        funcionario.setMaximized(true);
-        funcionario.setTitle("Tela Funcionario");
-
-        URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        
-        VisualizarFuncionarioController thc = loader.getController();
-        thc.setFaccao(f);
-        thc.setStage(funcionario);
-
-        Scene cena = new Scene(root);
-        funcionario.setScene(cena);
-        funcionario.show();
-        
-        ((Stage) btnFuncionario.getScene().getWindow()).close();
+        VisualizarFuncionarioController.trocarVizFuncionario(btnFuncionario, f);
     }
 
     @FXML
     void onClickVisualizarLotes(ActionEvent event) throws IOException {
-
         VisualizarLotesController.trocarVizLotes(btnVisualizarLotes, f);
     }
 
