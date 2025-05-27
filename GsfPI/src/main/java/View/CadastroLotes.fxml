@@ -75,7 +75,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtQuantidade" layoutX="165.0" layoutY="137.0" prefHeight="46.0" prefWidth="110.0">
+                  <TextField fx:id="txtQuantidadeItem" layoutX="165.0" layoutY="137.0" prefHeight="46.0" prefWidth="110.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -467,8 +467,22 @@
                                        <padding>
                                           <Insets right="80.0" />
                                        </padding>
+                                       <children>
+                                          <Label text="Quantidade Total " textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
                                     </FlowPane>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <TextField fx:id="txtQuantidade" prefHeight="46.0" prefWidth="238.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children></FlowPane>
                                  </children>
                               </GridPane>
                            </children>
@@ -495,22 +509,8 @@
                                        <GridPane.margin>
                                           <Insets right="80.0" />
                                        </GridPane.margin>
-                                       <children>
-                                          <Label text="Quantidade Total " textFill="WHITE">
-                                             <font>
-                                                <Font name="System Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
                                     </FlowPane>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                       <children>
-                                          <TextField fx:id="txtQuantidade" prefHeight="46.0" prefWidth="238.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </TextField>
-                                       </children></FlowPane>
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane GridPane.columnIndex="1">

@@ -3,9 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,9 +19,10 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DataFormat;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.ItemLote;
+import model.ItemLoteDAO;
 import model.Lotes;
 import model.LotesDAO;
 import util.Alertas;
@@ -47,6 +46,9 @@ public class CadastroLotesController {
 
     @FXML
     private TextField txtLinha;
+    
+    @FXML
+    private TextField txtQuantidadeItem;
 
     @FXML
     private ComboBox<String> cbColecao;
@@ -290,7 +292,18 @@ public class CadastroLotesController {
 
     @FXML
     void onClickAdicionar(ActionEvent event) {
+        adcionarSubgrupo();
+    }
+    
+    @FXML
+    public boolean adcionarSubgrupo() {
+        String Tamanho = cbTamanho.getSelectionModel().getSelectedItem();
+        String Linha = txtLinha.getText();
+        int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
+        ItemLote subgrupo = new ItemLote(Tamanho, Linha, Quantidade);
+        ItemLoteDAO ItemMetodo = new ItemLoteDAO();
+        return ItemMetodo.cadastroSubgrupo(subgrupo);
     }
 
     @FXML
