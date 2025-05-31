@@ -147,42 +147,186 @@ public class CadastroLotesController {
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastroLotesController.trocarCadLotes(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                       VisualizarPontoController.trocarVizPonto(MenuBar, f); 
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                       VisualizarPontoController.trocarVizPonto(MenuBar, f); 
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController.trocarTelaHome(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+                && cbColecao.getSelectionModel().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                        TelaHomeController.trocarTelaHome(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        TelaHomeController.trocarTelaHome(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
@@ -334,9 +478,9 @@ public class CadastroLotesController {
         List<ItemLote> subgruposList = lmetodo.listarSubgrupos();
         ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
         tbSubGrupo.setItems(listSubgrupos);
-        colTamanho.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
-        colLinha.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
-        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Linha"));
+        colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
+        colLinha.setCellValueFactory(new PropertyValueFactory<>("Linha"));
+        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
 
     @FXML

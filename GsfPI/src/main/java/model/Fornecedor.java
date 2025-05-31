@@ -2,7 +2,7 @@ package model;
 
 public class Fornecedor {
 
-    private long CNPJFornecedor;
+    private long CnpjFornecedor;
     private String NomeRepreFornecedor;
     private String UsuarioFornecedor;
     private String Senha;
@@ -10,7 +10,7 @@ public class Fornecedor {
 
     
     public Fornecedor(long CNPJFornecedor, String NomeRepreFornecedor, String EmailAcesso, String Senha, String Telefone) {
-        this.CNPJFornecedor = CNPJFornecedor;
+        this.CnpjFornecedor = CNPJFornecedor;
         this.NomeRepreFornecedor = NomeRepreFornecedor;
         this.UsuarioFornecedor = EmailAcesso;
         this.Senha = Senha;
@@ -25,12 +25,12 @@ public class Fornecedor {
         this.Telefone = Telefone;
     }
 
-    public long getCNPJFornecedor() {
-        return CNPJFornecedor;
+    public long getCnpjFornecedor() {
+        return CnpjFornecedor;
     }
 
-    public void setCNPJFornecedor(long CNPJFornecedor) {
-        this.CNPJFornecedor = CNPJFornecedor;
+    public void setCnpjFornecedor(long CnpjFornecedor) {
+        this.CnpjFornecedor = CnpjFornecedor;
     }
 
     public String getNomeRepreFornecedor() {
@@ -41,12 +41,12 @@ public class Fornecedor {
         this.NomeRepreFornecedor = NomeRepreFornecedor;
     }
 
-    public String getEmailAcesso() {
+    public String getUsuarioFornecedor() {
         return UsuarioFornecedor;
     }
 
-    public void setEmailAcesso(String EmailAcesso) {
-        this.UsuarioFornecedor = EmailAcesso;
+    public void setUsuarioFornecedor(String UsuarioFornecedor) {
+        this.UsuarioFornecedor = UsuarioFornecedor;
     }
 
     public String getSenha() {

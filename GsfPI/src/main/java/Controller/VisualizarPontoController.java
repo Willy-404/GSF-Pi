@@ -19,8 +19,12 @@ import model.Faccao;
 
 public class VisualizarPontoController {
 
+   
     @FXML
     private MenuBar MenuBar;
+
+    @FXML
+    private TableColumn<?, ?> colCpf;
 
     @FXML
     private TableColumn<?, ?> colData;
@@ -29,16 +33,19 @@ public class VisualizarPontoController {
     private TableColumn<?, ?> colEntrada;
 
     @FXML
-    private TableColumn<?, ?> colHorasTrabalhadas;
+    private TableColumn<?, ?> colEntrada1;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<?, ?> colHorasTrabalhadas;
 
     @FXML
     private TableColumn<?, ?> colNome;
 
     @FXML
     private TableColumn<?, ?> colSaida;
+
+    @FXML
+    private TableColumn<?, ?> colSaida1;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -66,14 +73,15 @@ public class VisualizarPontoController {
 
     @FXML
     private Menu menuHome;
-    
+
     @FXML
-    private TextField txtPesquisarFuncionario;
+    private Menu menuVisualizar;
 
     @FXML
     private TableView<?> tablePonto;
+
     @FXML
-    private Menu menuVisualizar;
+    private TextField txtPesquisarFuncionario;
     Faccao f;
 
     public void setFaccao(Faccao f) {

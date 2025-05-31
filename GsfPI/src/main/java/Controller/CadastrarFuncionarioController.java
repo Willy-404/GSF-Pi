@@ -114,42 +114,176 @@ public class CadastrarFuncionarioController {
     
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
-    }
+        if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+           }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController.trocarCadLotes(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastroLotesController.trocarCadLotes(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                         VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                         VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+       
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+         
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController.trocarTelaHome(MenuBar, f);
+         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                        TelaHomeController.trocarTelaHome(MenuBar, f);
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        TelaHomeController.trocarTelaHome(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
     
         @FXML

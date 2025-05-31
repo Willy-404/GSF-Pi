@@ -138,6 +138,7 @@ public class VisualizarLotesController {
     private TextField txtTecido;
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
+    int validarSelecao = 0;
 
     private void carregarLotes() {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
@@ -151,42 +152,185 @@ public class VisualizarLotesController {
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
-    }
+         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                    CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+            }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+            CadastroLotesController.trocarCadLotes(MenuBar, f); 
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                   CadastroLotesController.trocarCadLotes(MenuBar, f); 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+            VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+            VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+            VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    VisualizarLotesController.trocarVizLotes(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+            VisualizarPontoController.trocarVizPonto(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    VisualizarPontoController.trocarVizPonto(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController.trocarTelaHome(MenuBar, f);
+        if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
+             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+                    TelaHomeController.trocarTelaHome(MenuBar, f);
+        } else {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
+        alerta.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    TelaHomeController.trocarTelaHome(MenuBar, f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } 
+        });
+        }
+        
     }
 
     @FXML
@@ -209,6 +353,7 @@ public class VisualizarLotesController {
                 cbModelo.setValue(itemLote.getModelo());
                 txtQuantidade.setText(String.valueOf(itemLote.getQuantidadeT()));
                 l = lselect;
+                validarSelecao++;
             } else {
                 alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
             }
@@ -220,13 +365,13 @@ public class VisualizarLotesController {
     void onClickVoltar(ActionEvent event) throws IOException {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
          if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
             TelaHomeController.trocarTelaHome(btnVoltar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Sair da tela?");
-        alerta.setHeaderText("Ao sair perderá qualquer alteração!");
+        alerta.setTitle("Sair?");
+        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
@@ -284,7 +429,10 @@ public class VisualizarLotesController {
     //Não entra no botão onClickEditar
     @FXML
     void onClickEditar(ActionEvent event) throws IOException {  
-        if(!txtReferencia.getText().isEmpty() && !txtTecido.getText().isEmpty() && !cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() != null 
+        if(validarSelecao == 0){
+            alertas.alertaError("Selecione um Item", "Nenhum Item foi selecionado, selecione um item para fazer a sua alteração!");
+            return;
+        }else if(!txtReferencia.getText().isEmpty() && !txtTecido.getText().isEmpty() && !cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() != null 
            && txtEntrada.getValue() != null && !txtPreco.getText().isEmpty() && !cbModelo.getSelectionModel().getSelectedItem().isEmpty()
            && !txtQuantidade.getText().isEmpty()) {
             

@@ -86,6 +86,13 @@ public class VisualizarFornecedorController {
     @FXML
     private TableColumn<Fornecedor, String> colRepresentante;
     
+    
+    @FXML
+    private TableColumn<Fornecedor, String> colEmail;
+    
+    @FXML
+    private TableColumn<Fornecedor, String> colTelefone;
+    
     FornecedorDAO lmetodo = new FornecedorDAO();
 
     //Método para buscar do banco de dados
@@ -94,9 +101,10 @@ public class VisualizarFornecedorController {
         List<Fornecedor> fornecedorList = lmetodo.ListarFornecedor();
         ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorList);
         tabelaFornecedor.setItems(listaFornecedor);
-        colCnpj.setCellValueFactory(new PropertyValueFactory<>("CNPJFornecedor"));
+        colCnpj.setCellValueFactory(new PropertyValueFactory<>("CnpjFornecedor"));
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
-        colSenha.setCellValueFactory(new PropertyValueFactory<>("Senha"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("UsuarioFornecedor"));
+        colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
     }
 
     @FXML
