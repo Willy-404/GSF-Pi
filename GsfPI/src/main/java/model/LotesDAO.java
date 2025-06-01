@@ -41,9 +41,8 @@ public class LotesDAO extends GenericDAO {
 
     public Lotes loteSelecionado(int ref){
         Lotes l;
-        String sql ="Select* FROM lote WHERE Referencia = ?";
         try {
-            l=select(sql, ref );
+            l=select( ref );
            return l;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,17 +50,15 @@ public class LotesDAO extends GenericDAO {
         }
     }
     
-    public Lotes select(String insertSql, Object... parametros ) throws SQLException {
+    public Lotes select( Object... parametros ) throws SQLException {
          String sql ="Select* FROM lote WHERE Referencia = ? ";
         Lotes l = null;
-
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
             
             for (int i = 0; i < parametros.length; i++) {
             preparedStatement.setObject(i + 1, parametros[i]);
         }
-
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                 
@@ -76,14 +73,10 @@ public class LotesDAO extends GenericDAO {
                     l = object;
                 }
             }
-
         } catch (SQLException e) {
             System.err.println("Error executing query: " + e.getMessage());
         }
-
-        
-        return l;
-        
+        return l; 
     }
     
     //int ref tem que ser pego quando clicado no tableView isso é possivel?

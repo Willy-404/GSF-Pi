@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,9 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -99,8 +100,13 @@ public class CadastrarFuncionarioController {
 
     @FXML
     private TextField txtSalario;
-  Faccao f;
+    
+     @FXML
+    private Label lblTitulo;
+
+    Faccao f;
     public Stage stage;
+    
 
     public void setFaccao(Faccao r) {
         this.f = r;
@@ -110,6 +116,7 @@ public class CadastrarFuncionarioController {
     @FXML
     public void initialize() {
         cbCargo.getItems().addAll("Costureira","Manual");
+        
     }
     
      @FXML
@@ -309,8 +316,12 @@ public class CadastrarFuncionarioController {
     }
 
     @FXML
-    void onClickCadastroFunca(ActionEvent event)  {
+    void onClickCadastroFunca(ActionEvent event) throws IOException  {
         long cpfnum;
+        boolean isEdit = false;
+        if(btnCadastroFunca.getText().equals("Editar")){
+            isEdit = true;
+        }
         //Nome, Cpf, Contato(telefone), Data de nascimento (trocar para datapicker). e no direito com, Email, Cargo, Salario.
         if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
             return;
@@ -331,9 +342,10 @@ public class CadastrarFuncionarioController {
         } else if ((validacao.ValidaTamanhoText(14,txtCpf.getText())) && (validacao.ValidaTamanhoText(11,txtCpf.getText()))) {
             alertas.alertaError("Tamanho do campo CPF Incompativel!","Tamanho do texto digitado no campo CPF fora do permitido!");
             return;
-        }else if(validacao.ValidaCPFSistema(txtCpf.getText(), "funcionario", "Cpf", cpfnum)){
-            return;
-            
+        }else if(isEdit == false){
+            if(validacao.ValidaCPFSistema(txtCpf.getText(), "funcionario", "Cpf", cpfnum)){
+                return;   
+            }
         }else if(validacao.itemisEmpty(cbCargo.getSelectionModel().getSelectedItem(),"Cargo")){
             return;
             
@@ -347,25 +359,39 @@ public class CadastrarFuncionarioController {
                
         }else if(validacao.itemisEmpty(txtSalario.getText(),"Salario")){
              return;
-        }else if(validacao.ValidarFormat("^\\d+,\\d{1,2}$", txtSalario.getText(), "Formato do Salário incorreto", "O padrão esperado é XXXXX,XX!")){
+        }else if(validacao.ValidarFormat("^\\d+[.,]\\d{1,2}$", txtSalario.getText(), "Formato do Salário incorreto", "O padrão esperado é XXXXX,XX!")){
             return;
         }
-        //Validar data?
-        
-        if (CadastroDeFuncionario() != true) { 
-            alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionário!");
-        } else {
-            alertas.alertaInformation("Cadastro realizado com sucesso", "O Funcionário foi cadastrado com sucesso!");
-            txtNome.setText("");
-            txtCpf.setText("");
-            txtContato.setText("");
-            txtNascimento.setValue(null);
-            txtEmail.setText("");
-            txtSalario.setText("");
-            cbCargo.setValue(null);
+        if(isEdit == false){
+            if (CadastroDeFuncionario() != true) { 
+                alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionário!");
+            } else {
+                alertas.alertaInformation("Cadastro realizado com sucesso", "O Funcionário foi cadastrado com sucesso!");
+                txtNome.setText("");
+                txtCpf.setText("");
+                txtContato.setText("");
+                txtNascimento.setValue(null);
+                txtEmail.setText("");
+                txtSalario.setText("");
+                cbCargo.setValue(null);
+            }
+        }else{
+            FuncionarioDAO funcionarioMetodo = new FuncionarioDAO();
+            String valorTexto = txtSalario.getText().replaceAll("[,]", ".");
+            float valorSalario = Float.parseFloat(valorTexto);
+            Funcionario funcionario = new Funcionario(cpfnum, txtNome.getText(), txtNascimento.getValue(), txtContato.getText(), 
+                    txtEmail.getText(), valorSalario, cbCargo.getValue());
+            if(funcionarioMetodo.editarFuncionario(funcionario, cpfnum) != true){
+                 alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+            }else {
+                 alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                 VisualizarFuncionarioController.trocarVizFuncionario(btnCadastroFunca, f);
+            }
         }
+        
+        
     }
-        //Metodo para trocar pra tela Cadastrar funcionario
+        //Metodo para trocar pra tela Cadastrar funcionario pelo menubar
     public static void trocarCadFuncionario(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
@@ -378,12 +404,38 @@ public class CadastrarFuncionarioController {
         CadastrarFuncionarioController thc = loader.getController();
             thc.setFaccao(f);
             thc.setStage(home);
+            thc.setTextButon("Cadastrar");
+            thc.setTextLabel("Cadastro de Funcionário");
 
         Scene cena = new Scene(root);
         home.setScene(cena);
         home.show();
 
         ((Stage) menuBar.getScene().getWindow()).close();
+    }
+    
+    //Metodo pra trocar de tela para editar
+    public static void trocarCadFuncionario(TableView tabela, Faccao f, Funcionario funcionario) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Edição de Funcionario");
+
+        URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        CadastrarFuncionarioController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(home);
+            thc.setTextButon("Editar");
+            thc.setTextLabel("Edição de Funcionário");
+            thc.setValores(funcionario);
+
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) tabela.getScene().getWindow()).close();
     }
 
     public boolean CadastroDeFuncionario() {
@@ -406,5 +458,23 @@ public class CadastrarFuncionarioController {
     public void setStage(Stage home) {
       this.stage = home;  
     }
-
+    
+    public void setTextButon(String txtButton){
+        btnCadastroFunca.setText(txtButton);
+    }
+    
+    public void setTextLabel(String txtLabel){
+        lblTitulo.setText(txtLabel);
+    }
+    
+    public void setValores(Funcionario f){
+            txtNome.setText(f.getNomeFuncionario());
+            txtCpf.setText(String.valueOf(f.getCpf()));
+            txtContato.setText(f.getTelefone());
+            txtNascimento.setValue(f.getDataNascimento());
+            txtEmail.setText(f.getEmail());
+            String salarioFormatado = String.valueOf(f.getValorHora()).replaceAll("[.]", ",");
+            txtSalario.setText(salarioFormatado);
+            cbCargo.setValue(f.getCargo());
+    }
 }

@@ -472,7 +472,6 @@ public class VisualizarLotesController {
              }
             int id = (l.getReferencia());
             LotesDAO lmetodo = new LotesDAO();
-            System.out.println("Entrou no clique?");
 
             int ReferenciaT = Integer.parseInt(txtReferencia.getText());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

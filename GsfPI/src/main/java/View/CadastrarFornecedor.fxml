@@ -57,7 +57,7 @@
          <children>
             <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="100.0" prefWidth="200.0" prefWrapLength="200.0">
                <children>
-                  <Label text="Cadastro de Fornecedor" textFill="WHITE">
+                  <Label fx:id="lblTitulo" text="Cadastro de Fornecedor" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>

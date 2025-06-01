@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -21,10 +25,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
+import util.Alertas;
 
 public class VisualizarFuncionarioController {
 
@@ -100,6 +106,7 @@ public class VisualizarFuncionarioController {
         this.f = f;
     }
     FuncionarioDAO lmetodo = new FuncionarioDAO();
+    Alertas alertas = new Alertas();
 
     //Método para buscar do banco de dados
     public void carregarFuncionarios() {
@@ -116,6 +123,11 @@ public class VisualizarFuncionarioController {
         colCargo.setCellValueFactory(new PropertyValueFactory<>("Cargo"));
     }
 
+    @FXML
+    public void initialize() {
+        carregarFuncionarios();
+    }
+    
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
@@ -154,6 +166,30 @@ public class VisualizarFuncionarioController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         TelaHomeController.trocarTelaHome(MenuBar, f);
+    }
+    
+    @FXML
+    void onSelecionaItem(MouseEvent event) throws IOException {
+        if(event.getClickCount() == 2){
+            Funcionario itemSelecionado = tabelaFuncionario.getSelectionModel().getSelectedItem();
+            if(itemSelecionado != null){
+                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                alerta.setTitle("Editar?");
+                alerta.setHeaderText("Deseja fazer a edição do item selecionado?");
+                alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFuncionarioController.trocarCadFuncionario(tabelaFuncionario, f, itemSelecionado);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } 
+            });
+                
+            }else {
+                alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
+            }
+        }
     }
 
     //metodo de trocar para a tela vizu funcionario
@@ -211,7 +247,9 @@ public class VisualizarFuncionarioController {
         CadastrarFuncionarioController thc = loader.getController();
         thc.setFaccao(f);
         thc.setStage(cadastroFuncionario);
-
+        thc.setTextButon("Cadastrar");
+        thc.setTextLabel("Cadastro de Funcionário");
+        
         Scene cena = new Scene(root);
         cadastroFuncionario.setScene(cena);
         cadastroFuncionario.show();
@@ -223,9 +261,5 @@ public class VisualizarFuncionarioController {
         this.stage = visuFuncionario;
     }
 
-    @FXML
-    public void initialize() {
-        carregarFuncionarios();
-    }
 
 }

@@ -31,6 +31,19 @@ public class FornecedorDAO extends GenericDAO {
         }
         }
     
+     public boolean editarFornecedor(Fornecedor f, long Cnpj) {
+        String sql = "UPDATE fornecedor SET CnpjFornecedor = ?, NomeRepreFornecedor =  ?, UsuarioFornecedor = ?, Senha = ?, Contato = ? WHERE CnpjFornecedor = ? ";
+         System.out.println(f.getCnpjFornecedor()+" "+ f.getNomeRepreFornecedor()+" "+ f.getUsuarioFornecedor()+" "+ f.getSenha()+" "+ f.getTelefone()+" "+ Cnpj);
+        try {
+            update(sql,Cnpj, f.getCnpjFornecedor(), f.getNomeRepreFornecedor(), f.getUsuarioFornecedor(), f.getSenha(), f.getTelefone());
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+
+        }
+    }
+     
      public List<Fornecedor> ListarFornecedor() {
         String sql = "SELECT * FROM fornecedor";
         List<Fornecedor> resultList = new ArrayList<Fornecedor>();

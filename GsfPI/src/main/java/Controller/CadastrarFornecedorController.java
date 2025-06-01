@@ -12,10 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
@@ -88,6 +90,8 @@ public class CadastrarFornecedorController {
     @FXML
     private TextField txtNome;
     
+      @FXML
+    private Label lblTitulo;
     
     Faccao f;
      public Stage stage;
@@ -297,8 +301,12 @@ public class CadastrarFornecedorController {
     }
     
     @FXML
-    void OnClickCadastrarForn(ActionEvent event) {
+    void OnClickCadastrarForn(ActionEvent event) throws IOException {
         long cnpjnum;
+        boolean isEdit = false;
+        if(btnCadastrarForn.getText().equals("Editar")){
+            isEdit = true;
+        }
         
         if(validacao.itemisEmpty(txtCnpj.getText(),"CNPJ")){
             return;
@@ -309,11 +317,12 @@ public class CadastrarFornecedorController {
         if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
             return;
         } else if ((validacao.ValidaTamanhoText(18,txtCnpj.getText()))&& (validacao.ValidaTamanhoText(14,txtCnpj.getText()))) {
-            alertas.alertaError("Tamanho do campo CNPJ Incompativel!","Tamanho do texto digitado no campo CNPJ fora do permitido!");
+            alertas.alertaError("Tamanho do campo CNPJ Incompativel","Tamanho do texto digitado no campo CNPJ fora do permitido!");
             return;
-        }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "fornecedor", "CnpjFornecedor", cnpjnum)){
-            return;
-            
+        }else if(isEdit == false){
+            if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "fornecedor", "CnpjFornecedor", cnpjnum)){
+                return;
+            }
         }else if(validacao.itemisEmpty(txtEmail.getText(),"Email")){
             return;
         }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
@@ -324,6 +333,12 @@ public class CadastrarFornecedorController {
         }else if (validacao.itemisEmpty(txtNome.getText(),"Nome")) {
             return;
             
+        }else if(validacao.itemisEmpty(txtSenha.getText(), "Senha")){
+            return;
+        }else if(txtSenha.getText().length() > 20){
+            alertas.alertaError("Tamanho do campo Senha Incompativel","Tamanho do texto digitado no campo Senha fora do permitido!");
+            return;
+            
         }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
             return;
         }else if(validacao.ValidaFormatTell(txtContato.getText())){
@@ -332,11 +347,34 @@ public class CadastrarFornecedorController {
             alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
             return;
         }
-        
-        if (CadastroDeFornecedor() != true) { 
-            alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Fornecedor");
-        } else {
-            alertas.alertaInformation("Cadastro realizado com sucesso", "O Fornecedor foi cadastrado com sucesso");
+        if(isEdit == false){
+            if (CadastroDeFornecedor() != true) { 
+                alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Fornecedor");
+            } else {
+                alertas.alertaInformation("Cadastro realizado com sucesso", "O Fornecedor foi cadastrado com sucesso");
+                txtCnpj.setText("");
+                txtContato.setText("");
+                txtEmail.setText("");
+                txtSenha.setText("");
+                txtNome.setText("");
+            }
+        }else{
+            FornecedorDAO fornecedorMetodo = new FornecedorDAO();
+            System.out.println(cnpjnum +" "+ txtNome.getText()+" "+ txtContato.getText()+" "+ txtEmail.getText()+" "+ txtSenha.getText());
+            
+            String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+            long CNPJFornecedor = Long.parseLong(cnpjSemPontos);
+            String NomeRepreFornecedor = txtNome.getText();
+            String Senha = txtSenha.getText();
+            String EmailAcesso = txtEmail.getText();
+            String Telefone = txtContato.getText();
+            Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone);
+            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true){
+                 alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+            }else {
+                 alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                 VisualizarFornecedorController.trocarVizFornecedor(btnCadastrarForn, f);
+            }
         }
     }
     
@@ -353,13 +391,38 @@ public class CadastrarFornecedorController {
             CadastrarFornecedorController thc = loader.getController();
             thc.setFaccao(f);
             thc.setStage(home);
-            
+            thc.setTextButon("Cadastrar");
+            thc.setTextLabel("Cadastro de Fornecedor");
            
             Scene cena = new Scene(root);
             home.setScene(cena);
             home.show();
 
             ((Stage) menuBar.getScene().getWindow()).close();
+    }
+    
+     //Metodo pra trocar de tela para editar
+    public static void trocarCadFornecedor(TableView tabela, Faccao f, Fornecedor fornecedor)throws IOException {
+          Stage home = new Stage();
+            home.setMaximized(true);
+            home.setTitle("Edição de Fornecedor");
+
+            URL url = new File("src/main/java/view/CadastrarFornecedor.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            CadastrarFornecedorController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(home);
+            thc.setTextButon("Editar");
+            thc.setTextLabel("Edição de Fornecedor");
+            thc.setValores(fornecedor);
+           
+            Scene cena = new Scene(root);
+            home.setScene(cena);
+            home.show();
+
+            ((Stage) tabela.getScene().getWindow()).close();
     }
     
      public boolean CadastroDeFornecedor() {
@@ -381,5 +444,19 @@ public class CadastrarFornecedorController {
     public void setStage(Stage home) {
         this.stage = home;
     }
-
+    public void setTextButon(String txtButton){
+        btnCadastrarForn.setText(txtButton);
+    }
+    
+    public void setTextLabel(String txtLabel){
+        lblTitulo.setText(txtLabel);
+    }
+    
+    public void setValores (Fornecedor f){
+        txtCnpj.setText(String.valueOf(f.getCnpjFornecedor()));
+        txtContato.setText(f.getTelefone());
+        txtEmail.setText(f.getUsuarioFornecedor());
+        txtSenha.setText(f.getSenha());
+        txtNome.setText(f.getNomeRepreFornecedor());
+    }
 }
