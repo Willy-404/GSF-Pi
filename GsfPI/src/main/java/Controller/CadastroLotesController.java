@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -145,6 +146,10 @@ public class CadastroLotesController {
         cbColecao.getItems().addAll("Primavera","Verão","Outono","Inverno");
         carregarSubgrupos();
     }
+    
+    
+    ArrayList<ItemLote> ItensLote = new ArrayList<>();
+    
 
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
@@ -428,7 +433,8 @@ public class CadastroLotesController {
         }else{
             int quantItem = Integer.parseInt(txtQuantidadeItem.getText());
             quantSomada = quantSomada + quantItem;
-            adcionarSubgrupo();    
+            ItemLote item = adcionarSubgrupo();
+            ItensLote.add(item);
         }
     }
 
@@ -478,20 +484,25 @@ public class CadastroLotesController {
     }
     
     @FXML
-    public boolean adcionarSubgrupo() {
+    public ItemLote adcionarSubgrupo() {
+        
         String Tamanho = cbTamanho.getSelectionModel().getSelectedItem();
         String Linha = txtLinha.getText();
         int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
         ItemLote subgrupo = new ItemLote( Quantidade, Tamanho, Linha);
-        ItemLoteDAO ItemMetodo = new ItemLoteDAO();
-        return ItemMetodo.cadastroSubgrupo(subgrupo);
+        //ItemLoteDAO ItemMetodo = new ItemLoteDAO(); 
+        //return ItemMetodo.cadastroSubgrupo(subgrupo);
+        
+        return subgrupo;
     }
     
     ItemLoteDAO lmetodo = new ItemLoteDAO();
     public void carregarSubgrupos() {
+        //vamos puxar os dados pra tabela direto do Array ItensLote
+        
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
-        int RefeLote = 0;
+            int RefeLote = 0;
             List<ItemLote> subgruposList = lmetodo.listarSubgrupos(RefeLote);
             ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
             tbSubGrupo.setItems(listSubgrupos);
