@@ -8,34 +8,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Aluno
- */
 public class ItemLoteDAO extends GenericDAO{
     
+    private int RefeLote;
     private String Tamanho;
     private String Linha;
     private int Quantidade;
 
     public boolean cadastroSubgrupo(ItemLote l) {
-    String sql = "INSERT INTO itemlote (Quantidade, Tamanho, Linha) "
+    String sql = "INSERT INTO itemlote ( Quantidade, Tamanho, Linha) "
             + "VALUES (?,?,?)";
     try  {
-            save(sql, l.getTamanho(), l.getLinha(), l.getQuantidade());
+            save(sql, l.getQuantidade(), l.getTamanho(), l.getLinha());
             return true;
         } catch (SQLException e) {  
             e.printStackTrace();
             return false;
         }
     }
-    public List<ItemLote> listarSubgrupos(){
-        String sql ="Select* FROM itemLote ";
+    public List<ItemLote> listarSubgrupos(Object... parametros){
+        String sql ="Select* FROM itemLote WHERE referenciaLote = ?";
         List<ItemLote> resultList = new ArrayList<ItemLote>();
 
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
-
+            for (int i = 0; i < parametros.length; i++) {
+                 preparedStatement.setObject(i + 1, parametros[i]);
+            }
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     // Create a new object for each row

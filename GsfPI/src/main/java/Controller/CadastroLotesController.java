@@ -135,6 +135,7 @@ public class CadastroLotesController {
     }
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
+    int quantSomada = 0;
 
     @FXML
     public void initialize() {
@@ -393,7 +394,7 @@ public class CadastroLotesController {
             
         }else if(validacao.itemisEmpty(txtQuantidade.getText(), "Quantidade")){
             return;
-        }
+        }//Validar quantidades dos itens e quantidade total, as duas tem que ser iguais;
 
         if (cadastroDeLotes() != true) {
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
@@ -408,6 +409,26 @@ public class CadastroLotesController {
             cbColecao.setValue(null);
             txtEntrada.setValue(null);
             cbModelo.setValue(null);
+        }
+    }
+    
+    @FXML
+    void onClickAdicionar(ActionEvent event) {
+        if(txtReferencia.getText().equals("")){
+            //Melhorar isso!
+            alertas.alertaError("Falha para adicionar Item de Lote", "É necessario adicionar a Referencia do Lote antes de adicionar um item!");
+        }else if(validacao.itemisEmpty(cbTamanho.getSelectionModel().getSelectedItem(), "Tamanho")){
+            return;
+            
+        }else if(validacao.itemisEmpty(txtLinha.getText(), "Linha")){
+               return;
+               
+        }else if(validacao.itemisEmpty(txtQuantidadeItem.getText(), "Quantidade")){
+             return;
+        }else{
+            int quantItem = Integer.parseInt(txtQuantidadeItem.getText());
+            quantSomada = quantSomada + quantItem;
+            adcionarSubgrupo();    
         }
     }
 
@@ -455,11 +476,6 @@ public class CadastroLotesController {
         return LDmetodo.cadastroLotes(l);
 
     }
-
-    @FXML
-    void onClickAdicionar(ActionEvent event) {
-        adcionarSubgrupo();
-    }
     
     @FXML
     public boolean adcionarSubgrupo() {
@@ -467,7 +483,7 @@ public class CadastroLotesController {
         String Linha = txtLinha.getText();
         int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
-        ItemLote subgrupo = new ItemLote(Quantidade, Tamanho, Linha);
+        ItemLote subgrupo = new ItemLote( Quantidade, Tamanho, Linha);
         ItemLoteDAO ItemMetodo = new ItemLoteDAO();
         return ItemMetodo.cadastroSubgrupo(subgrupo);
     }
@@ -475,12 +491,13 @@ public class CadastroLotesController {
     ItemLoteDAO lmetodo = new ItemLoteDAO();
     public void carregarSubgrupos() {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
-        List<ItemLote> subgruposList = lmetodo.listarSubgrupos();
-        ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
-        tbSubGrupo.setItems(listSubgrupos);
-        colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
-        colLinha.setCellValueFactory(new PropertyValueFactory<>("Linha"));
-        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+        int RefeLote = 0;
+            List<ItemLote> subgruposList = lmetodo.listarSubgrupos(RefeLote);
+            ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
+            tbSubGrupo.setItems(listSubgrupos);
+            colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
+            colLinha.setCellValueFactory(new PropertyValueFactory<>("Linha"));
+            colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
 
     @FXML
