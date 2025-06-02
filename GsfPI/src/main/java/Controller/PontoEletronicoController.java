@@ -118,11 +118,15 @@ public class PontoEletronicoController {
         } else if ((validacao.ValidaTamanhoText(14,txtCpfPonto.getText())) && (validacao.ValidaTamanhoText(11,txtCpfPonto.getText()))) {
             alertas.alertaError("Tamanho do campo CPF Incompativel!","Tamanho do texto digitado no campo CPF fora do permitido!");
             return;
-        }else if(validacao.ValidaCPFExiste(txtCpfPonto.getText(), "funcionario", "Cpf", cpfnum)){
-            return;
+        }
+        
+        if(validacao.ValidaCPFExiste(txtCpfPonto.getText(), "funcionario", "Cpf", cpfnum)){
+            return;  
+        }else{
+            
             
         }
-
+        
     }
 
     
