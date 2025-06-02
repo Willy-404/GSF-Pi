@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.ItemLote;
@@ -144,7 +145,6 @@ public class CadastroLotesController {
         cbTamanho.getItems().addAll("PP","P","M","G","GG","1","2","3","4","6","8","10","12","16","18");
         cbModelo.getItems().addAll("Calça","Short","Legging","Blusa","Regata","Casaco");
         cbColecao.getItems().addAll("Primavera","Verão","Outono","Inverno");
-        carregarSubgrupos();
     }
     
     
@@ -419,10 +419,7 @@ public class CadastroLotesController {
     
     @FXML
     void onClickAdicionar(ActionEvent event) {
-        if(txtReferencia.getText().equals("")){
-            //Melhorar isso!
-            alertas.alertaError("Falha para adicionar Item de Lote", "É necessario adicionar a Referencia do Lote antes de adicionar um item!");
-        }else if(validacao.itemisEmpty(cbTamanho.getSelectionModel().getSelectedItem(), "Tamanho")){
+        if(validacao.itemNull(cbTamanho.getSelectionModel().getSelectedItem(), "Tamanho")){
             return;
             
         }else if(validacao.itemisEmpty(txtLinha.getText(), "Linha")){
@@ -430,12 +427,33 @@ public class CadastroLotesController {
                
         }else if(validacao.itemisEmpty(txtQuantidadeItem.getText(), "Quantidade")){
              return;
+             
         }else{
             int quantItem = Integer.parseInt(txtQuantidadeItem.getText());
             quantSomada = quantSomada + quantItem;
             ItemLote item = adcionarSubgrupo();
             ItensLote.add(item);
+            carregarSubgrupos(ItensLote);
+            
+            txtLinha.setText("");
+            txtQuantidadeItem.setText("");
+            cbTamanho.setValue(null);
         }
+    }
+    
+    @FXML
+    void onSelecionaItem(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            subgrupo = tbSubGrupo.getSelectionModel().getSelectedItem();
+            btnAdicionar.setText("Editar");
+        }
+        if(subgrupo != null){
+            //verificar qual o subgrupo ta sendo alterado por meio de um for e fazer a alteração nesse momento
+            cbTamanho.setValue(subgrupo.getTamanho());
+            txtLinha.setText(subgrupo.getLinha());
+            txtQuantidadeItem.setText(String.valueOf(subgrupo.getQuantidade()));
+        }
+        btnAdicionar.setText("Adicionar");
     }
 
     //metodo de trocar tela para cadastro lote
@@ -483,6 +501,7 @@ public class CadastroLotesController {
 
     }
     
+    ItemLote subgrupo; 
     @FXML
     public ItemLote adcionarSubgrupo() {
         
@@ -490,7 +509,7 @@ public class CadastroLotesController {
         String Linha = txtLinha.getText();
         int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
-        ItemLote subgrupo = new ItemLote( Quantidade, Tamanho, Linha);
+        subgrupo = new ItemLote( Quantidade, Tamanho, Linha);
         //ItemLoteDAO ItemMetodo = new ItemLoteDAO(); 
         //return ItemMetodo.cadastroSubgrupo(subgrupo);
         
@@ -498,12 +517,10 @@ public class CadastroLotesController {
     }
     
     ItemLoteDAO lmetodo = new ItemLoteDAO();
-    public void carregarSubgrupos() {
+    public void carregarSubgrupos(List<ItemLote> subgruposList) {
         //vamos puxar os dados pra tabela direto do Array ItensLote
         
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
-            int RefeLote = 0;
-            List<ItemLote> subgruposList = lmetodo.listarSubgrupos(RefeLote);
             ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
             tbSubGrupo.setItems(listSubgrupos);
             colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));

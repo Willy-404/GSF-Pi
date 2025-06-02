@@ -52,7 +52,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #386b8f;">
                <children>
-                  <TableView fx:id="tbSubGrupo" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+                  <TableView fx:id="tbSubGrupo" onMouseClicked="#onSelecionaItem" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                     <columns>
                         <TableColumn fx:id="colLinha" prefWidth="75.0" text="Linha" />
                       <TableColumn fx:id="colTamanho" prefWidth="75.0" text="Tamanho" />
