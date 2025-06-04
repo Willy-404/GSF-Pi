@@ -1,12 +1,15 @@
 package model;
 
 import dal.ConexaoBD;
+import static java.lang.Math.random;
+import static java.lang.StrictMath.random;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ItemLoteDAO extends GenericDAO{
     
@@ -14,12 +17,15 @@ public class ItemLoteDAO extends GenericDAO{
     private String Tamanho;
     private String Linha;
     private int Quantidade;
+    private int id;
+    Random random = new Random();
 
     public boolean cadastroSubgrupo(ItemLote l) {
-    String sql = "INSERT INTO itemlote ( Quantidade, Tamanho, Linha) "
-            + "VALUES (?,?,?)";
+    String sql = "INSERT INTO itemlote ( id, referenciaLote, Quantidade, Tamanho, Linha) "
+            + "VALUES (?,?,?,?,?)";
+    id = random.nextInt(100);
     try  {
-            save(sql, l.getQuantidade(), l.getTamanho(), l.getLinha());
+            save(sql, id, l.getRefeLote(), l.getQuantidade(), l.getTamanho(), l.getLinha());
             return true;
         } catch (SQLException e) {  
             e.printStackTrace();

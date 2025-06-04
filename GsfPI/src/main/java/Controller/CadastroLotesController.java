@@ -415,6 +415,12 @@ public class CadastroLotesController {
             txtEntrada.setValue(null);
             cbModelo.setValue(null);
         }
+        
+        if (cadastroDeSubgrupos() != true){
+            alertas.alertaError("Erro no Cadastro de Subgrupo", "Não foi possível cadastrar o Subgrupo");
+        } else {
+            alertas.alertaInformation("Subgrupo Cadastrado", "O Subgrupo foi Cadastrado com Sucesso");
+        }
     }
     
     @FXML
@@ -501,6 +507,20 @@ public class CadastroLotesController {
 
     }
     
+    private boolean cadastroDeSubgrupos(){
+    
+        int RefeLote = Integer.valueOf(txtReferencia.getText());
+        ItemLoteDAO metodo = new ItemLoteDAO();
+        boolean resultado = true;
+        
+        for (ItemLote item : ItensLote){
+            ItemLote subgrupo = new ItemLote(RefeLote,item.getQuantidade(),item.getTamanho(),item.getLinha());
+            metodo.cadastroSubgrupo(subgrupo);
+        }
+        return resultado;
+    }
+    
+    
     ItemLote subgrupo; 
     @FXML
     public ItemLote adcionarSubgrupo() {
@@ -509,7 +529,7 @@ public class CadastroLotesController {
         String Linha = txtLinha.getText();
         int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
-        subgrupo = new ItemLote( Quantidade, Tamanho, Linha);
+        subgrupo = new ItemLote(Quantidade, Tamanho, Linha);
         //ItemLoteDAO ItemMetodo = new ItemLoteDAO(); 
         //return ItemMetodo.cadastroSubgrupo(subgrupo);
         
