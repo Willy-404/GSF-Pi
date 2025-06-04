@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -20,7 +25,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="239.0" prefWidth="1793.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
+<BorderPane prefHeight="239.0" prefWidth="1793.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroLotesController">
    <top>
       <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1776.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
          <menus>
@@ -54,9 +59,9 @@
                <children>
                   <TableView fx:id="tbSubGrupo" onMouseClicked="#onSelecionaItem" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                     <columns>
-                        <TableColumn fx:id="colLinha" prefWidth="75.0" text="Linha" />
-                      <TableColumn fx:id="colTamanho" prefWidth="75.0" text="Tamanho" />
-                      <TableColumn fx:id="colQuantidade" prefWidth="75.0" text="Quantidade" />
+                        <TableColumn fx:id="colLinha" minWidth="75.0" prefWidth="180.0" text="Linha" />
+                      <TableColumn fx:id="colTamanho" prefWidth="125.0" text="Tamanho" />
+                      <TableColumn fx:id="colQuantidade" prefWidth="230.0" text="Quantidade" />
                     </columns>
                   </TableView>
                   <Label layoutX="8.0" layoutY="38.0" text="Tamanho" textFill="WHITE">
