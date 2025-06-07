@@ -251,15 +251,11 @@ public class PontoEletronicoController {
         
         if(validacao.ValidaCPFExiste(cpfnum, cpfnum)){
             return;  
-        }else{
-            
-            
         }
+        
+        //Aqui será feito o registro de hora no ponto
         
         }   
        
     }
 
-    
-
-}

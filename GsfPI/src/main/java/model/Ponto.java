@@ -1,37 +1,82 @@
 package model;
 
+import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Ponto {
     private int id;
-    private String nomeFuncionario;
+    private long cpf;
     private LocalDate data;
-    private LocalTime horaEntrada;
-    private LocalTime horaSaida;
-    private double horasTrabalhadas;
-
-    public Ponto(int id, String nomeFuncionario, LocalDate data, LocalTime horaEntrada, LocalTime horaSaida, double horasTrabalhadas) {
+    private Time horaEntradaM;
+    private Time horaSaidaM;
+    private Time horaEntradaV;
+    private Time horaSaidaV;
+    
+    public Ponto(int id,long cpf , LocalDate data, Time horaEntradaM, Time horaSaidaM, Time horaEntradaV, Time horaSaidaV) {
         this.id = id;
-        this.nomeFuncionario = nomeFuncionario;
+        this.cpf = cpf;
         this.data = data;
-        this.horaEntrada = horaEntrada;
-        this.horaSaida = horaSaida;
-        this.horasTrabalhadas = horasTrabalhadas;
+        this.horaEntradaM = this.horaEntradaM;
+        this.horaSaidaM = this.horaSaidaM;
+        this.horaEntradaV = this.horaEntradaV;
+        this.horaSaidaV = this.horaSaidaV;
+    }
+
+    public Time getHoraEntradaV() {
+        return horaEntradaV;
+    }
+
+    public void setHoraEntradaV(Time horaEntradaV) {
+        this.horaEntradaV = horaEntradaV;
+    }
+
+    public Time getHoraSaidaV() {
+        return horaSaidaV;
+    }
+
+    public void setHoraSaidaV(Time horaSaidaV) {
+        this.horaSaidaV = horaSaidaV;
     }
 
     // Getters e setters
-    public int getId() { return id; }
-    public String getNomeFuncionario() { return nomeFuncionario; }
-    public LocalDate getData() { return data; }
-    public LocalTime getHoraEntrada() { return horaEntrada; }
-    public LocalTime getHoraSaida() { return horaSaida; }
-    public double getHorasTrabalhadas() { return horasTrabalhadas; }
 
-    public void setId(int id) { this.id = id; }
-    public void setNomeFuncionario(String nomeFuncionario) { this.nomeFuncionario = nomeFuncionario; }
-    public void setData(LocalDate data) { this.data = data; }
-    public void setHoraEntrada(LocalTime horaEntrada) { this.horaEntrada = horaEntrada; }
-    public void setHoraSaida(LocalTime horaSaida) { this.horaSaida = horaSaida; }
-    public void setHorasTrabalhadas(double horasTrabalhadas) { this.horasTrabalhadas = horasTrabalhadas; }
-}
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(long cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public Time getHoraEntradaM() {
+        return horaEntradaM;
+    }
+
+    public void setHoraEntradaM(Time horaEntradaM) {
+        this.horaEntradaM = horaEntradaM;
+    }
+
+    public Time getHoraSaidaM() {
+        return horaSaidaM;
+    }
+
+    public void setHoraSaidaM(Time horaSaidaM) {
+        this.horaSaidaM = horaSaidaM;
+    }
+    }
