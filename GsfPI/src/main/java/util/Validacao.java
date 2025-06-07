@@ -158,9 +158,9 @@ public class Validacao {
 
     }
     
-     public boolean ValidaCPFExiste(String cpf, Object... parametros){
-        String cpfSemPontos = cpf.replaceAll("[.-]", ""), sql = "Select Cpf FROM funcionario WHERE Cpf = ?" ;
-        long cpfNum = Long.parseLong(cpfSemPontos), rs = 0;
+     public boolean ValidaCPFExiste(long cpf, Object... parametros){
+        String sql = "Select Cpf FROM funcionario WHERE Cpf = ?" ;
+        long rs = 0;
         int validar = 0;
        
         try (Connection connection = ConexaoBD.conectar();
@@ -172,7 +172,7 @@ public class Validacao {
                 while(resultSet.next()) {
                     rs = resultSet.getLong("Cpf");
                 }
-                if(rs == cpfNum){
+                if(rs == cpf){
                     validar++;
                 }
             }

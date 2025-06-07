@@ -3,7 +3,9 @@ package Controller;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -59,54 +61,181 @@ public class PontoEletronicoController {
     }
     
     Validacao validacao = new Validacao();
-    
+    Alertas alertas = new Alertas();
     
     
   @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CadastroLotesController.trocarCadLotes(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                       VisualizarPontoController.trocarVizPonto(MenuBar, f); 
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                       VisualizarPontoController.trocarVizPonto(MenuBar, f); 
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController.trocarTelaHome(MenuBar, f);
+        if (txtCpfPonto.getText().isEmpty()) {
+                        TelaHomeController.trocarTelaHome(MenuBar, f);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Sair?");
+            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        TelaHomeController.trocarTelaHome(MenuBar, f);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+        }
+        
     }
-    
-    Alertas alertas = new Alertas();
     
       @FXML
     void OnClickConfirmarPonto(ActionEvent event) {
         Long cpfnum;
+        
         if(validacao.itemisEmpty(txtCpfPonto.getText(),"CPF")){
             return;
         } else { 
@@ -120,13 +249,15 @@ public class PontoEletronicoController {
             return;
         }
         
-        if(validacao.ValidaCPFExiste(txtCpfPonto.getText(), "funcionario", "Cpf", cpfnum)){
+        if(validacao.ValidaCPFExiste(cpfnum, cpfnum)){
             return;  
         }else{
             
             
         }
         
+        }   
+       
     }
 
     
