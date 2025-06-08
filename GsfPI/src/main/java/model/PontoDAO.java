@@ -7,50 +7,47 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import model.Ponto;
 
 public class PontoDAO extends GenericDAO{
 
-    private final Connection connection;
-
-    public PontoDAO(Connection connection) {
-        this.connection = connection;
-    }
     
-    public boolean cadastroHora(long cpf){
+    public boolean cadastroHora(long cpf, LocalDate data, int id, Time hora){
         String sql;
         Ponto p = select(cpf);
-        int i;
         try{
+            if(p == null){
+                sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro) VALUES (?,?,?)";
+                save(sql, id, cpf, data);
+            }
             if(p.getHoraEntradaM() == null){
-                sql = "INSERT INTO registrohora (id, Cpf, data, HorarioEntradaM) VALUES (?,?,?,?)";
-                save(sql, p.getId(), p.getData(), p.getHoraEntradaM(), p.getCpf());
+                sql = "UPDATE registrohora SET HorarioEntradaM = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, hora, cpf, data);
                 return true;
             }else if(p.getHoraSaidaM() == null){
-                sql ="INSERT INTO registrohora (id, Cpf, data, HorarioSaidaM) VALUES (?,?,?,?)";
-                save(sql, p.getId(), p.getData(), p.getHoraSaidaM(), p.getCpf());
+                sql ="UPDATE registrohora SET HorarioSaidaM = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, data, cpf, hora);
                 return true;
             }else if(p.getHoraEntradaV() == null){
-                sql="INSERT INTO registrohora (id, Cpf, data, HorarioEntradaV) VALUES (?,?,?,?)";
-                save(sql, p.getId(), p.getData(), p.getHoraSaidaV(), p.getCpf());
-                return true;
+                sql="UPDATE registrohora SET HorarioEntradaV = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, data, cpf, hora);
+               return true;
             }else if(p.getHoraSaidaV() == null){
-                sql = "INSERT INTO registrohora (id, Cpf, data, HorarioSaidasM) VALUES (?,?,?,?)";
-                save(sql, p.getId(), p.getData(), p.getHoraSaidaV(), p.getCpf());
+                sql = "UPDATE registrohora SET HorarioSaidaV = ? WHERE DataRegistro = ? AND Cpf = ?";
+                 update(sql, data, cpf, hora);
                 return true;
             }else{
-               return false; 
+               return false;
             }
         }catch (SQLException e) {  
             e.printStackTrace();
             return false;
         }
-        
     }
     
     public Ponto select(Object... parametros){
         String sql = "SELECT* FROM registrohora WHERE Cpf = ?";
         Ponto p = null;
+        LocalTime hem, hev, hsm, hsv;
         int id;
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
@@ -60,18 +57,40 @@ public class PontoDAO extends GenericDAO{
             }
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    //int id,long cpf , LocalDate data, LocalTime horaEntrada, LocalTime horaSaida
-                          
-                    Ponto objeto = new Ponto(
-                        rs.getInt("id"),
+                    if(rs.getTime("HorarioEntradaM") == null){
+                        hem = LocalTime.MIN;
+                    }else{
+                        hem = rs.getTime("HorarioEntrada").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaM") == null){
+                        hsm = LocalTime.MIN;
+                    }else{
+                        hsm = rs.getTime("HorarioSaidaM").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioEntradaV") == null){
+                        hev = LocalTime.MIN;
+                    }else{
+                        hev = rs.getTime("HorarioSaidaM").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaV") == null){
+                        hsv = LocalTime.MIN;
+                    }else{
+                        hsv = rs.getTime("HorarioSaidaV").toLocalTime();
+                    }
+                    
+                    p = new Ponto(
+                        rs.getInt("idRegistroHora"),
                         rs.getLong("Cpf"),
-                        rs.getDate("Data").toLocalDate(),
-                        rs.getTime("HorarioEntradaM"),
-                        rs.getTime("HorarioSaidaM"),
-                        rs.getTime("HorarioEntradaV"),
-                        rs.getTime("HorarioSaidaV")
+                        rs.getDate("DataRegistro").toLocalDate(),
+                        hem,
+                        hsm,
+                        hev,
+                        hsv
                     );
-                    p = objeto;
+                    return p;
                 }
             }
         } catch (SQLException e) {
@@ -83,27 +102,68 @@ public class PontoDAO extends GenericDAO{
     public List<Ponto> listarPontos() {
         List<Ponto> lista = new ArrayList<>();
         String sql = "SELECT * FROM ponto";
+        LocalTime hem, hev, hsm, hsv;
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Ponto ponto = new Ponto(
-                    rs.getInt("id"),
-                    rs.getLong("Cpf"),
-                    rs.getDate("Data").toLocalDate(),
-                    rs.getTime("HorarioEntradaM"),
-                    rs.getTime("HorarioSaidaM"),
-                    rs.getTime("HorarioEntradaV"),
-                    rs.getTime("HorarioSaidaV")
-                );
-                lista.add(ponto);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    if(rs.getTime("HorarioEntradaM") == null){
+                        hem = LocalTime.MIN;
+                    }else{
+                        hem = rs.getTime("HorarioEntrada").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaM") == null){
+                        hsm = LocalTime.MIN;
+                    }else{
+                        hsm = rs.getTime("HorarioSaidaM").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioEntradaV") == null){
+                        hev = LocalTime.MIN;
+                    }else{
+                        hev = rs.getTime("HorarioSaidaM").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaV") == null){
+                        hsv = LocalTime.MIN;
+                    }else{
+                        hsv = rs.getTime("HorarioSaidaV").toLocalTime();
+                    }
+                    Ponto ponto = new Ponto(
+                        rs.getInt("idRegistroHora"),
+                        rs.getLong("Cpf"),
+                        rs.getDate("DataRegistro").toLocalDate(),
+                        hem,
+                        hsm,
+                        hev,
+                        hsv
+                    );
+                    lista.add(ponto);
+                }
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }  catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
         }
 
         return lista;
+    }
+    
+    public int numId(){
+        String sql = "SELECT* FROM registrohora";
+        int i = 0;
+         try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while(rs.next()){
+                   i++;
+                }
+            }
+        }  catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+         return i;
     }
 }

@@ -122,7 +122,7 @@ public class CadastrarFuncionarioController {
      @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -147,7 +147,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -173,7 +173,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         CadastroLotesController.trocarCadLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -199,7 +199,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                          VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -224,7 +224,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -250,7 +250,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         VisualizarLotesController.trocarVizLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -276,7 +276,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         VisualizarPontoController.trocarVizPonto(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -302,7 +302,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         TelaHomeController.trocarTelaHome(MenuBar, f);
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
@@ -329,7 +329,7 @@ public class CadastrarFuncionarioController {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
         if(btnCadastroFunca.getText().equals("Editar")){
             if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                    &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                    &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                 VisualizarFuncionarioController.trocarVizFuncionario(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -347,7 +347,7 @@ public class CadastrarFuncionarioController {
             }
         }else{
             if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                    &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel() == null && txtSalario.getText().isEmpty()) {
+                    &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                 TelaHomeController.trocarTelaHome(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);

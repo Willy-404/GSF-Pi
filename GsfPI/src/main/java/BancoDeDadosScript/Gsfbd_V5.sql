@@ -262,13 +262,12 @@ DROP TABLE IF EXISTS `registrohora`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `registrohora` (
   `idRegistroHora` int NOT NULL,
-  `Data` date NOT NULL,
+  `DataRegistro` date NOT NULL,
   `HorarioEntradaM` time DEFAULT NULL,
   `HorarioSaidaM` time DEFAULT NULL,
   `Cpf` bigint NOT NULL,
-  `Mes` int NOT NULL,
   `HorarioEntradaV` time DEFAULT NULL,
-  `HorarrioSaidaV` time DEFAULT NULL,
+  `HorarioSaidaV` time DEFAULT NULL,
   PRIMARY KEY (`idRegistroHora`),
   KEY `Cpf_idx` (`Cpf`),
   CONSTRAINT `Cpf` FOREIGN KEY (`Cpf`) REFERENCES `funcionario` (`Cpf`)
@@ -293,4 +292,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-07 14:00:56
+-- Dump completed on 2025-06-08 16:16:54

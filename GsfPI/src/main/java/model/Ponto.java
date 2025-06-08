@@ -1,18 +1,18 @@
 package model;
 
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Ponto {
     private int id;
     private long cpf;
     private LocalDate data;
-    private Time horaEntradaM;
-    private Time horaSaidaM;
-    private Time horaEntradaV;
-    private Time horaSaidaV;
+    private LocalTime horaEntradaM;
+    private LocalTime horaSaidaM;
+    private LocalTime horaEntradaV;
+    private LocalTime horaSaidaV;
     
-    public Ponto(int id,long cpf , LocalDate data, Time horaEntradaM, Time horaSaidaM, Time horaEntradaV, Time horaSaidaV) {
+    public Ponto(int id,long cpf , LocalDate data, LocalTime horaEntradaM, LocalTime horaSaidaM, LocalTime horaEntradaV, LocalTime horaSaidaV) {
         this.id = id;
         this.cpf = cpf;
         this.data = data;
@@ -22,19 +22,19 @@ public class Ponto {
         this.horaSaidaV = this.horaSaidaV;
     }
 
-    public Time getHoraEntradaV() {
+    public LocalTime getHoraEntradaV() {
         return horaEntradaV;
     }
 
-    public void setHoraEntradaV(Time horaEntradaV) {
+    public void setHoraEntradaV(LocalTime horaEntradaV) {
         this.horaEntradaV = horaEntradaV;
     }
 
-    public Time getHoraSaidaV() {
+    public LocalTime getHoraSaidaV() {
         return horaSaidaV;
     }
 
-    public void setHoraSaidaV(Time horaSaidaV) {
+    public void setHoraSaidaV(LocalTime horaSaidaV) {
         this.horaSaidaV = horaSaidaV;
     }
 
@@ -64,19 +64,19 @@ public class Ponto {
         this.data = data;
     }
 
-    public Time getHoraEntradaM() {
+    public LocalTime getHoraEntradaM() {
         return horaEntradaM;
     }
 
-    public void setHoraEntradaM(Time horaEntradaM) {
+    public void setHoraEntradaM(LocalTime horaEntradaM) {
         this.horaEntradaM = horaEntradaM;
     }
 
-    public Time getHoraSaidaM() {
+    public LocalTime getHoraSaidaM() {
         return horaSaidaM;
     }
 
-    public void setHoraSaidaM(Time horaSaidaM) {
+    public void setHoraSaidaM(LocalTime horaSaidaM) {
         this.horaSaidaM = horaSaidaM;
     }
     }

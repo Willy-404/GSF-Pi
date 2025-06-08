@@ -1,6 +1,10 @@
 package Controller;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import static java.time.temporal.ChronoUnit.SECONDS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -63,7 +67,7 @@ public class PontoEletronicoController {
     
     Validacao validacao = new Validacao();
     Alertas alertas = new Alertas();
-    PontoDAO pMetodo;
+    PontoDAO pMetodo = new PontoDAO();
     
     
   @FXML
@@ -254,9 +258,9 @@ public class PontoEletronicoController {
         }
         
         if(cadastroDePonto() != true){
-            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote!");
+            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Horario!");
         } else {
-            alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
+            alertas.alertaInformation("Cadastro realizado com sucesso", "O Horario foi cadastrado com sucesso!");
             txtCpfPonto.setText("");
         }
         //Aqui será feito o registro de hora no ponto
@@ -265,8 +269,11 @@ public class PontoEletronicoController {
 
     private boolean cadastroDePonto() {
         long cpfNum = Long.parseLong(txtCpfPonto.getText());
-        return pMetodo.cadastroHora(cpfNum);
+        int id = pMetodo.numId();
+        Time hora = Time.valueOf(LocalTime.now().truncatedTo(SECONDS));
+        return pMetodo.cadastroHora(cpfNum, LocalDate.now(), id, hora);
     }
        
+   
     }
 

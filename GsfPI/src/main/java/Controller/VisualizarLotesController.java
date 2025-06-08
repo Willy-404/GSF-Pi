@@ -153,8 +153,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
          if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
                     CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -175,8 +175,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
              CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -198,8 +198,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
             CadastroLotesController.trocarCadLotes(MenuBar, f); 
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -221,8 +221,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
             VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -244,8 +244,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
             VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -267,8 +267,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
             VisualizarLotesController.trocarVizLotes(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -290,8 +290,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
             VisualizarPontoController.trocarVizPonto(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -313,8 +313,8 @@ public class VisualizarLotesController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem().isEmpty() && txtQuantidade.getText().isEmpty()) {
+             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
+             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
                     TelaHomeController.trocarTelaHome(MenuBar, f);
         } else {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
