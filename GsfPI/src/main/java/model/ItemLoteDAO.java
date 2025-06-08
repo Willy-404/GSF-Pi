@@ -84,7 +84,24 @@ public class ItemLoteDAO extends GenericDAO{
             e.printStackTrace();
             return false;
         }
-    }  
+    }
+    
+    public int numId(){
+        String sql = "SELECT* FROM ItemLote";
+        int i = 0;
+         try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while(rs.next()){
+                   i++;
+                }
+            }
+        }  catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+         return i;
+    }
 
     public String getTamanho() {
         return Tamanho;
