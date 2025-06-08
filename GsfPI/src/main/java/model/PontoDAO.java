@@ -19,17 +19,33 @@ public class PontoDAO extends GenericDAO{
     
     public boolean cadastroHora(long cpf){
         String sql;
-        Ponto verificar = select(cpf);
-        if(verificar.getHoraEntradaM() == null){
-            sql = "";
-        }else if(verificar.getHoraSaidaM() == null){
-            sql ="";
-        }else if(verificar.getHoraEntradaV() == null){
-            sql="";
-        }else if(verificar.getHoraSaidaV() == null){
-            sql = "";
+        Ponto p = select(cpf);
+        int i;
+        try{
+            if(p.getHoraEntradaM() == null){
+                sql = "INSERT INTO registrohora (id, Cpf, data, HorarioEntradaM) VALUES (?,?,?,?)";
+                save(sql, p.getId(), p.getData(), p.getHoraEntradaM(), p.getCpf());
+                return true;
+            }else if(p.getHoraSaidaM() == null){
+                sql ="INSERT INTO registrohora (id, Cpf, data, HorarioSaidaM) VALUES (?,?,?,?)";
+                save(sql, p.getId(), p.getData(), p.getHoraSaidaM(), p.getCpf());
+                return true;
+            }else if(p.getHoraEntradaV() == null){
+                sql="INSERT INTO registrohora (id, Cpf, data, HorarioEntradaV) VALUES (?,?,?,?)";
+                save(sql, p.getId(), p.getData(), p.getHoraSaidaV(), p.getCpf());
+                return true;
+            }else if(p.getHoraSaidaV() == null){
+                sql = "INSERT INTO registrohora (id, Cpf, data, HorarioSaidasM) VALUES (?,?,?,?)";
+                save(sql, p.getId(), p.getData(), p.getHoraSaidaV(), p.getCpf());
+                return true;
+            }else{
+               return false; 
+            }
+        }catch (SQLException e) {  
+            e.printStackTrace();
+            return false;
         }
-        return false;
+        
     }
     
     public Ponto select(Object... parametros){
@@ -49,11 +65,11 @@ public class PontoDAO extends GenericDAO{
                     Ponto objeto = new Ponto(
                         rs.getInt("id"),
                         rs.getLong("Cpf"),
-                        rs.getDate("data").toLocalDate(),
+                        rs.getDate("Data").toLocalDate(),
                         rs.getTime("HorarioEntradaM"),
                         rs.getTime("HorarioSaidaM"),
                         rs.getTime("HorarioEntradaV"),
-                        rs.getTime("HorarioSaidaMV")
+                        rs.getTime("HorarioSaidaV")
                     );
                     p = objeto;
                 }
@@ -75,11 +91,11 @@ public class PontoDAO extends GenericDAO{
                 Ponto ponto = new Ponto(
                     rs.getInt("id"),
                     rs.getLong("Cpf"),
-                    rs.getDate("data").toLocalDate(),
+                    rs.getDate("Data").toLocalDate(),
                     rs.getTime("HorarioEntradaM"),
                     rs.getTime("HorarioSaidaM"),
                     rs.getTime("HorarioEntradaV"),
-                    rs.getTime("HorarioSaidaMV")
+                    rs.getTime("HorarioSaidaV")
                 );
                 lista.add(ponto);
             }

@@ -11,6 +11,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import model.Faccao;
+import model.PontoDAO;
 import util.Alertas;
 import util.Validacao;
 
@@ -62,6 +63,7 @@ public class PontoEletronicoController {
     
     Validacao validacao = new Validacao();
     Alertas alertas = new Alertas();
+    PontoDAO pMetodo;
     
     
   @FXML
@@ -247,15 +249,24 @@ public class PontoEletronicoController {
         } else if ((validacao.ValidaTamanhoText(14,txtCpfPonto.getText())) && (validacao.ValidaTamanhoText(11,txtCpfPonto.getText()))) {
             alertas.alertaError("Tamanho do campo CPF Incompativel!","Tamanho do texto digitado no campo CPF fora do permitido!");
             return;
-        }
-        
-        if(validacao.ValidaCPFExiste(cpfnum, cpfnum)){
+        } else if(validacao.ValidaCPFExiste(cpfnum, cpfnum)){
             return;  
         }
         
+        if(cadastroDePonto() != true){
+            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote!");
+        } else {
+            alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
+            txtCpfPonto.setText("");
+        }
         //Aqui será feito o registro de hora no ponto
         
         }   
+
+    private boolean cadastroDePonto() {
+        long cpfNum = Long.parseLong(txtCpfPonto.getText());
+        return pMetodo.cadastroHora(cpfNum);
+    }
        
     }
 
