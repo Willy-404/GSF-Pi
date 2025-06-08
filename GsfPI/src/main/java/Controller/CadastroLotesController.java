@@ -357,7 +357,7 @@ public class CadastroLotesController {
             });
         }
     }
-
+    String ReferenciaSalva;
     @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
        String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());
@@ -401,6 +401,7 @@ public class CadastroLotesController {
             return;
         }//Validar quantidades dos itens e quantidade total, as duas tem que ser iguais;
 
+        ReferenciaSalva = txtReferencia.getText();
         if (cadastroDeLotes() != true) {
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
         } else {
@@ -509,7 +510,7 @@ public class CadastroLotesController {
     
     private boolean cadastroDeSubgrupos(){
     
-        int RefeLote = Integer.valueOf(txtReferencia.getText());
+        int RefeLote = Integer.valueOf(ReferenciaSalva);
         ItemLoteDAO metodo = new ItemLoteDAO();
         boolean resultado = true;
         
