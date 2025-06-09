@@ -52,7 +52,7 @@
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="3" GridPane.rowIndex="5">
          <children>
-            <Button fx:id="btnPontoEletronico" mnemonicParsing="false" onAction="#onClickPontoEletronico" prefHeight="66.0" prefWidth="268.0" text="Ponto Eletrônico">
+            <Button fx:id="btnVisualizarPonto" mnemonicParsing="false" onAction="#onClickVisualizarPonto" prefHeight="66.0" prefWidth="268.0" text="Visualizar Pontos">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -79,7 +79,7 @@
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #386b8f;" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <children>
-            <Button fx:id="btnVisualizarPonto" mnemonicParsing="false" onAction="#onClickVisualizarPonto" prefHeight="66.0" prefWidth="268.0" text="Visualizar Pontos">
+            <Button fx:id="btnPontoEletronico" mnemonicParsing="false" onAction="#onClickPontoEletronico" prefHeight="66.0" prefWidth="268.0" text="Ponto Eletrônico">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
