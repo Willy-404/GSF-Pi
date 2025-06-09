@@ -7,35 +7,35 @@ public class Ponto {
     private int id;
     private long cpf;
     private LocalDate data;
-    private LocalTime horaEntradaM;
-    private LocalTime horaSaidaM;
-    private LocalTime horaEntradaV;
-    private LocalTime horaSaidaV;
+    private LocalTime HorarioEntradaM;
+    private LocalTime HorarioSaidaM;
+    private LocalTime HorarioEntradaV;
+    private LocalTime HorarioSaidaV;
     
     public Ponto(int id,long cpf , LocalDate data, LocalTime horaEntradaM, LocalTime horaSaidaM, LocalTime horaEntradaV, LocalTime horaSaidaV) {
         this.id = id;
         this.cpf = cpf;
         this.data = data;
-        this.horaEntradaM = horaEntradaM;
-        this.horaSaidaM = horaSaidaM;
-        this.horaEntradaV = horaEntradaV;
-        this.horaSaidaV = horaSaidaV;
+        this.HorarioEntradaM = horaEntradaM;
+        this.HorarioSaidaM = horaSaidaM;
+        this.HorarioEntradaV = horaEntradaV;
+        this.HorarioSaidaV = horaSaidaV;
     }
 
     public LocalTime getHoraEntradaV() {
-        return horaEntradaV;
+        return HorarioEntradaV;
     }
 
     public void setHoraEntradaV(LocalTime horaEntradaV) {
-        this.horaEntradaV = horaEntradaV;
+        this.HorarioEntradaV = horaEntradaV;
     }
 
     public LocalTime getHoraSaidaV() {
-        return horaSaidaV;
+        return HorarioSaidaV;
     }
 
     public void setHoraSaidaV(LocalTime horaSaidaV) {
-        this.horaSaidaV = horaSaidaV;
+        this.HorarioSaidaV = horaSaidaV;
     }
 
     // Getters e setters
@@ -65,18 +65,18 @@ public class Ponto {
     }
 
     public LocalTime getHoraEntradaM() {
-        return horaEntradaM;
+        return HorarioEntradaM;
     }
 
     public void setHoraEntradaM(LocalTime horaEntradaM) {
-        this.horaEntradaM = horaEntradaM;
+        this.HorarioEntradaM = horaEntradaM;
     }
 
     public LocalTime getHoraSaidaM() {
-        return horaSaidaM;
+        return HorarioSaidaM;
     }
 
     public void setHoraSaidaM(LocalTime horaSaidaM) {
-        this.horaSaidaM = horaSaidaM;
+        this.HorarioSaidaM = horaSaidaM;
     }
     }

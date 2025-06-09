@@ -1,12 +1,17 @@
 package Controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import static java.time.temporal.ChronoUnit.SECONDS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,6 +19,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Faccao;
 import model.PontoDAO;
 import util.Alertas;
@@ -274,6 +280,25 @@ public class PontoEletronicoController {
         return pMetodo.cadastroHora(cpfNum, LocalDate.now(), hora);
     }
        
+    public static void trocarPonto(Button button, Faccao f)throws IOException {
+       Stage visuPonto = new Stage();
+        visuPonto.setMaximized(true);
+        visuPonto.setTitle("Visualizar Ponto Eletronico");
+
+        URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        VisualizarPontoController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(visuPonto);
+
+        Scene cena = new Scene(root);
+        visuPonto.setScene(cena);
+        visuPonto.show();
+        
+        ((Stage) button.getScene().getWindow()).close();
+    }
    
     }
 

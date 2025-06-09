@@ -68,20 +68,7 @@ public class TelaHomeController {
 
     @FXML
     void onClickPontoEletronico(ActionEvent event) throws IOException {
-
-        Stage pontoEletro = new Stage();
-        pontoEletro.setMaximized(true);
-        pontoEletro.setTitle("Ponto Eletronico");
-
-        URL url = new File("src/main/java/view/PontoEletronico.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        pontoEletro.setScene(cena);
-        pontoEletro.show();
-        
-        ((Stage) btnPontoEletronico.getScene().getWindow()).close();
+        PontoEletronicoController.trocarPonto(btnPontoEletronico, f);
     }
 
     @FXML

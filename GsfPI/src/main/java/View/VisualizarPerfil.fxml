@@ -234,24 +234,27 @@
                             </rowConstraints>
                             <children>
                                 <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                    <children>
-                                        <TextField fx:id="txtEndereco" prefHeight="30.0" prefWidth="300.0" />
-                                    </children>
                                     <padding>
                                         <Insets top="5.0" />
                                     </padding>
+                           <children>
+                              <TextField fx:id="txtSenha" prefHeight="30.0" prefWidth="300.0" />
+                           </children>
                                 </FlowPane>
                                 <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <Label text="Endereço" textFill="WHITE">
-                                            <font>
-                                                <Font name="System Bold" size="24.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
                                     <padding>
-                                        <Insets right="10.0" />
+                                        <Insets right="44.0" />
                                     </padding>
+                           <children>
+                              <Label text="Senha" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                                 </FlowPane>
                             </children>
                         </GridPane>
@@ -264,21 +267,11 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="txtSenha" prefHeight="30.0" prefWidth="300.0" />
-                           </children></FlowPane>
+                                <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                 <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                                     <padding>
                                         <Insets right="20.0" />
                                     </padding>
-                           <children>
-                              <Label text="Senha" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
                                 </FlowPane>
                             </children>
                         </GridPane>

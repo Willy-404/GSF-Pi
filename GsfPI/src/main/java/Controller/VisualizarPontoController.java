@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -176,6 +177,26 @@ public class VisualizarPontoController {
         visuPonto.show();
         
         ((Stage) menuBar.getScene().getWindow()).close();
+    }
+     
+      public static void trocarVizPonto(Button button, Faccao f)throws IOException {
+       Stage visuPonto = new Stage();
+        visuPonto.setMaximized(true);
+        visuPonto.setTitle("Visualizar Ponto Eletronico");
+
+        URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        VisualizarPontoController thc = loader.getController();
+            thc.setFaccao(f);
+            thc.setStage(visuPonto);
+
+        Scene cena = new Scene(root);
+        visuPonto.setScene(cena);
+        visuPonto.show();
+        
+        ((Stage) button.getScene().getWindow()).close();
     }
 
     public void setStage(Stage visuPonto) {

@@ -191,10 +191,10 @@ public class VisualizarFornecedorController {
         Parent root = loader.load();
 
         VisualizarFornecedorController thc = loader.getController();
-        thc.setFaccao(f);
         thc.visuFornecedor();
         thc.setStage(home);
-
+        thc.setFaccao(f);
+        
         Scene cena = new Scene(root);
         home.setScene(cena);
         home.show();

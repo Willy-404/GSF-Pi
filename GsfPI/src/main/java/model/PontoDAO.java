@@ -22,6 +22,7 @@ public class PontoDAO extends GenericDAO{
                 sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro) VALUES (?,?,?)";
                 save(sql, id, cpf, data);
                 alertas.alertaInformation("Registro do Dia", "Criado o registro de hoje \n Por favor clique novamente para fazer o registro do seu horario!");
+                //Colocar para cadastrar o primeiro horarios
             }
             
             if(p.getHoraEntradaM() == null){
