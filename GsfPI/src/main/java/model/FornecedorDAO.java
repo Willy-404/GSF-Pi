@@ -15,13 +15,14 @@ public class FornecedorDAO extends GenericDAO {
    private String UsuarioFornecedor;
    private String Senha;
    private String Telefone;
+   private String Endereco;
 
     
     public boolean cadastroFornecedor(Fornecedor f){
-    String sql = "INSERT INTO fornecedor (CnpjFornecedor, NomeRepreFornecedor, UsuarioFornecedor, Senha, Contato) "
-            + "VALUES (?,?,?,?,?)";
+    String sql = "INSERT INTO fornecedor (CnpjFornecedor, NomeRepreFornecedor, UsuarioFornecedor, Senha, Contato, endereco) "
+            + "VALUES (?,?,?,?,?,?)";
     try{
-            save(sql,f.getCnpjFornecedor(),f.getNomeRepreFornecedor(), f.getUsuarioFornecedor(), f.getSenha(), f.getTelefone());
+            save(sql,f.getCnpjFornecedor(),f.getNomeRepreFornecedor(), f.getUsuarioFornecedor(), f.getSenha(), f.getTelefone(),f.getEndereco());
             
            
              return true;
@@ -32,10 +33,9 @@ public class FornecedorDAO extends GenericDAO {
         }
     
      public boolean editarFornecedor(Fornecedor f, long Cnpj) {
-        String sql = "UPDATE fornecedor SET CnpjFornecedor = ?, NomeRepreFornecedor =  ?, UsuarioFornecedor = ?, Senha = ?, Contato = ? WHERE CnpjFornecedor = ? ";
-         System.out.println(f.getCnpjFornecedor()+" "+ f.getNomeRepreFornecedor()+" "+ f.getUsuarioFornecedor()+" "+ f.getSenha()+" "+ f.getTelefone()+" "+ Cnpj);
+        String sql = "UPDATE fornecedor SET CnpjFornecedor = ?, NomeRepreFornecedor =  ?, UsuarioFornecedor = ?, Senha = ?, Contato = ?, endereco = ? WHERE CnpjFornecedor = ? ";
         try {
-            update(sql,Cnpj, f.getCnpjFornecedor(), f.getNomeRepreFornecedor(), f.getUsuarioFornecedor(), f.getSenha(), f.getTelefone());
+            update(sql,Cnpj, f.getCnpjFornecedor(), f.getNomeRepreFornecedor(), f.getUsuarioFornecedor(), f.getSenha(), f.getTelefone(), f.getEndereco());
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class FornecedorDAO extends GenericDAO {
                     // Create a new object for each row
                     
                     Fornecedor object = new Fornecedor(resultSet.getLong("CnpjFornecedor"), resultSet.getString("NomeRepreFornecedor"),
-                        resultSet.getString("UsuarioFornecedor"), resultSet.getString("Senha"), resultSet.getString("Contato"));
+                        resultSet.getString("UsuarioFornecedor"), resultSet.getString("Senha"), resultSet.getString("Contato"), resultSet.getString("endereco"));
                     // Add the object to the list
                     resultList.add(object);
                 }

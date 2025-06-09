@@ -56,7 +56,7 @@
                 <TableColumn fx:id="colCnpj" prefWidth="309.0" style="-fx-backgorund-color: #386b8f;" text="CNPJ" />
                 <TableColumn fx:id="colRepresentante" minWidth="0.0" prefWidth="300.0" text="Nome do Representante" />
                   <TableColumn fx:id="colEmail" minWidth="0.0" prefWidth="302.0" style="-fx-backgorund-color: #386b8f;" text="Email" />
-                  <TableColumn minWidth="0.0" prefWidth="336.0" style="-fx-backgorund-color: #386b8f;" text="Endereço" />
+                  <TableColumn fx:id="colEndereco" minWidth="0.0" prefWidth="336.0" style="-fx-backgorund-color: #386b8f;" text="Endereço" />
                   <TableColumn fx:id="colTelefone" prefWidth="318.0" style="-fx-backgorund-color: #386b8f;" text="Telefone" />
               </columns>
             </TableView>

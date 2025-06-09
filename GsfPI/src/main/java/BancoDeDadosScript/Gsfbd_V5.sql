@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `gsf` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gsf`;
--- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gsf
 -- ------------------------------------------------------
--- Server version	8.0.41
+-- Server version	8.0.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -144,6 +144,7 @@ CREATE TABLE `fornecedor` (
   `UsuarioFornecedor` varchar(30) NOT NULL,
   `Senha` varchar(10) NOT NULL,
   `Contato` varchar(20) DEFAULT NULL,
+  `Endereco` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`CnpjFornecedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -154,7 +155,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
-INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL);
+INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL,NULL),(12098098098709,'Pedrinho','pedrinho@gmail.com','123f','(47) 98979-0987','Bairro Ruan Barros, KleberWan-DallCity');
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,6 +281,7 @@ CREATE TABLE `registrohora` (
 
 LOCK TABLES `registrohora` WRITE;
 /*!40000 ALTER TABLE `registrohora` DISABLE KEYS */;
+INSERT INTO `registrohora` VALUES (0,'2025-06-09','07:54:44','07:57:28',12378956076,NULL,NULL),(1,'2025-06-09','07:57:48',NULL,10087956775,NULL,NULL);
 /*!40000 ALTER TABLE `registrohora` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -292,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-08 16:16:54
+-- Dump completed on 2025-06-09  8:30:33

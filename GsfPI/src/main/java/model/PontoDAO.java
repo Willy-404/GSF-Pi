@@ -7,10 +7,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import util.Alertas;
 
 public class PontoDAO extends GenericDAO{
 
-    
+    Alertas alertas = new Alertas();
     public boolean cadastroHora(long cpf, LocalDate data, Time hora){
         String sql;
         Ponto p = select(cpf);
@@ -20,8 +21,9 @@ public class PontoDAO extends GenericDAO{
                 id = numId();
                 sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro) VALUES (?,?,?)";
                 save(sql, id, cpf, data);
+                alertas.alertaInformation("Registro do Dia", "Criado o registro de hoje \n Por favor clique novamente para fazer o registro do seu horario!");
             }
-            System.out.println(p.getHoraEntradaM());
+            
             if(p.getHoraEntradaM() == null){
                 sql = "UPDATE registrohora SET HorarioEntradaM = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, hora, data);

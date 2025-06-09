@@ -78,8 +78,8 @@ public class CadastrarFornecedorController {
     @FXML
     private PasswordField txtSenha;
 
-  /*  @FXML
-    private TextField txtEndereco;*/
+    @FXML
+    private TextField txtEndereco;
     
     @FXML
     private TextField txtContato;
@@ -105,7 +105,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                         CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -131,7 +131,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                         CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -157,7 +157,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty()  && txtEndereco.getText().isEmpty()) {
                         CadastroLotesController.trocarCadLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -183,7 +183,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                          VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -209,7 +209,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f); 
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -235,7 +235,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                         VisualizarLotesController.trocarVizLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -261,7 +261,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                         VisualizarPontoController.trocarVizPonto(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -287,7 +287,7 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                         TelaHomeController.trocarTelaHome(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -315,7 +315,7 @@ public class CadastrarFornecedorController {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
         if(btnCadastrarForn.getText().equals("Editar")){
             if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                 VisualizarFornecedorController.trocarVizFornecedor(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -333,7 +333,7 @@ public class CadastrarFornecedorController {
             }
         }else{
             if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                 TelaHomeController.trocarTelaHome(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -398,7 +398,11 @@ public class CadastrarFornecedorController {
         }else if ((validacao.ValidaTamanhoText(15,txtContato.getText())) && (validacao.ValidaTamanhoText(11,txtContato.getText()))) {
             alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
             return;
+            
+        }else if(validacao.itemisEmpty(txtEndereco.getText(), "Endereco")){
+            return;
         }
+        
         if(isEdit == false){
             if (CadastroDeFornecedor() != true) { 
                 alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Fornecedor");
@@ -409,6 +413,7 @@ public class CadastrarFornecedorController {
                 txtEmail.setText("");
                 txtSenha.setText("");
                 txtNome.setText("");
+                txtEndereco.setText("");
             }
         }else{
             FornecedorDAO fornecedorMetodo = new FornecedorDAO();
@@ -420,7 +425,9 @@ public class CadastrarFornecedorController {
             String Senha = txtSenha.getText();
             String EmailAcesso = txtEmail.getText();
             String Telefone = txtContato.getText();
-            Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone);
+            String Endereco = txtEndereco.getText();
+            
+            Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone, Endereco);
             if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
@@ -485,8 +492,9 @@ public class CadastrarFornecedorController {
         String Senha = txtSenha.getText();
         String EmailAcesso = txtEmail.getText();
         String Telefone = txtContato.getText();
+        String Endereco = txtEndereco.getText();
        
-        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor,EmailAcesso, Senha, Telefone);
+        Fornecedor f = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor,EmailAcesso, Senha, Telefone, Endereco);
         FornecedorDAO FornecMetodo = new FornecedorDAO();
         return FornecMetodo.cadastroFornecedor(f);
 
@@ -510,5 +518,6 @@ public class CadastrarFornecedorController {
         txtEmail.setText(f.getUsuarioFornecedor());
         txtSenha.setText(f.getSenha());
         txtNome.setText(f.getNomeRepreFornecedor());
+        txtEndereco.setText(f.getEndereco());
     }
 }

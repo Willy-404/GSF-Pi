@@ -8,7 +8,7 @@ public class ConexaoBD {
     private static final String URL_MYSQL = "jdbc:mysql://localhost:3306/gsf";
     private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "root";
-    private static final String PASSWORD = "aluno";
+    private static final String PASSWORD = "admin";
     
  public static Connection conectar(){
     try {

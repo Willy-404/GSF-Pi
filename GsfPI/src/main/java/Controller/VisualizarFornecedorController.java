@@ -90,6 +90,8 @@ public class VisualizarFornecedorController {
     @FXML
     private TableColumn<Fornecedor, String> colRepresentante;
     
+    @FXML
+    private TableColumn<Fornecedor, String> colEndereco;
     
     @FXML
     private TableColumn<Fornecedor, String> colEmail;
@@ -110,6 +112,8 @@ public class VisualizarFornecedorController {
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("UsuarioFornecedor"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+        colEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
+        
     }
 
     @FXML
