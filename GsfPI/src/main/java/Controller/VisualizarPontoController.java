@@ -108,11 +108,11 @@ public class VisualizarPontoController {
         //colNome.setCellValueFactory(new PropertyValueFactory<>(""));
         
         //Error: IllegalStateException: Cannot read from unreadable property HorarioSaidaV
-        colData.setCellValueFactory(new PropertyValueFactory<>("DataRegistro"));
-        colEntrada.setCellValueFactory(new PropertyValueFactory<>("HorarioEntradaM"));
-        colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaM"));
-        colSaida.setCellValueFactory(new PropertyValueFactory<>("HorarioEntradaV"));
-        colSaida1.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaV"));
+        colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colEntrada.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaM"));
+        colSaida.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaM"));
+        colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaV"));
+        colSaida1.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaV"));
     }
     
     @FXML

@@ -304,6 +304,7 @@ public class CadastrarFuncionarioController {
          if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
                 &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                         TelaHomeController.trocarTelaHome(MenuBar, f);
+        }else{
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
