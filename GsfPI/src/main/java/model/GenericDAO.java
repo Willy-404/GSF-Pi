@@ -41,7 +41,7 @@ public abstract class GenericDAO {
     
 
     // Método para atualizar
-    protected void update(String updateSql, Object id, Object... parametros) throws SQLException {
+    final protected void update(String updateSql, Object id, Object... parametros) throws SQLException {
         PreparedStatement pstmt = conectarDAO().prepareStatement(updateSql);
         for (int i = 0; i < parametros.length; i++) {
             pstmt.setObject(i + 1, parametros[i]);

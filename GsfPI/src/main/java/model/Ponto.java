@@ -16,10 +16,10 @@ public class Ponto {
         this.id = id;
         this.cpf = cpf;
         this.data = data;
-        this.horaEntradaM = this.horaEntradaM;
-        this.horaSaidaM = this.horaSaidaM;
-        this.horaEntradaV = this.horaEntradaV;
-        this.horaSaidaV = this.horaSaidaV;
+        this.horaEntradaM = horaEntradaM;
+        this.horaSaidaM = horaSaidaM;
+        this.horaEntradaV = horaEntradaV;
+        this.horaSaidaV = horaSaidaV;
     }
 
     public LocalTime getHoraEntradaV() {

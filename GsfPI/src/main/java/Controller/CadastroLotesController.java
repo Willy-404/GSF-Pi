@@ -510,7 +510,7 @@ public class CadastroLotesController {
     
     private boolean cadastroDeSubgrupos(){
     
-        int RefeLote = Integer.valueOf(ReferenciaSalva);
+        int RefeLote = Integer.parseInt(ReferenciaSalva);
         ItemLoteDAO metodo = new ItemLoteDAO();
         boolean resultado = true;
         

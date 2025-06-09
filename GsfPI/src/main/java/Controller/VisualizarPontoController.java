@@ -3,6 +3,11 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +19,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Ponto;
+import model.PontoDAO;
 
 public class VisualizarPontoController {
 
@@ -24,28 +32,31 @@ public class VisualizarPontoController {
     private MenuBar MenuBar;
 
     @FXML
-    private TableColumn<?, ?> colCpf;
+    private TableView<Ponto> TabelaPonto;
+    
+    @FXML
+    private TableColumn<Ponto, String> colCpf;
 
     @FXML
-    private TableColumn<?, ?> colData;
+    private TableColumn<Ponto, LocalDate> colData;
 
     @FXML
-    private TableColumn<?, ?> colEntrada;
+    private TableColumn<Ponto, LocalTime> colEntrada;
 
     @FXML
-    private TableColumn<?, ?> colEntrada1;
+    private TableColumn<Ponto, LocalTime> colEntrada1;
 
     @FXML
-    private TableColumn<?, ?> colHorasTrabalhadas;
+    private TableColumn<Ponto, String> colHorasTrabalhadas;
 
     @FXML
-    private TableColumn<?, ?> colNome;
+    private TableColumn<Ponto, String> colNome;
 
     @FXML
-    private TableColumn<?, ?> colSaida;
+    private TableColumn<Ponto, LocalTime> colSaida;
 
     @FXML
-    private TableColumn<?, ?> colSaida1;
+    private TableColumn<Ponto, LocalTime> colSaida1;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -78,17 +89,35 @@ public class VisualizarPontoController {
     private Menu menuVisualizar;
 
     @FXML
-    private TableView<?> tablePonto;
-
-    @FXML
     private TextField txtPesquisarFuncionario;
     Faccao f;
 
     public void setFaccao(Faccao f) {
         this.f=f;
     }
-
+    PontoDAO pmetodo = new PontoDAO();
     public Stage stage;
+    private void carregarPonto() {
+         //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
+        List<Ponto> pontoList = pmetodo.listarPontos();
+        ObservableList<Ponto> listaObPonto = FXCollections.observableArrayList(pontoList);
+        TabelaPonto.setItems(listaObPonto);
+        colCpf.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+        //Ver como puxar o nome da tabela de funcionario
+        //colNome.setCellValueFactory(new PropertyValueFactory<>(""));
+        
+        //Error: IllegalStateException: Cannot read from unreadable property HorarioSaidaV
+        colData.setCellValueFactory(new PropertyValueFactory<>("DataRegistro"));
+        colEntrada.setCellValueFactory(new PropertyValueFactory<>("HorarioEntradaM"));
+        colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaM"));
+        colSaida.setCellValueFactory(new PropertyValueFactory<>("HorarioEntradaV"));
+        colSaida1.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaV"));
+    }
+    
+    @FXML
+    public void initialize() {
+        carregarPonto();
+    }
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);

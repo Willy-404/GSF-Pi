@@ -271,7 +271,7 @@ public class PontoEletronicoController {
         long cpfNum = Long.parseLong(txtCpfPonto.getText());
         int id = pMetodo.numId();
         Time hora = Time.valueOf(LocalTime.now().truncatedTo(SECONDS));
-        return pMetodo.cadastroHora(cpfNum, LocalDate.now(), id, hora);
+        return pMetodo.cadastroHora(cpfNum, LocalDate.now(), hora);
     }
        
    

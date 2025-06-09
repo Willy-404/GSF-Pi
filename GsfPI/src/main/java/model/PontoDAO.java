@@ -11,29 +11,32 @@ import java.util.List;
 public class PontoDAO extends GenericDAO{
 
     
-    public boolean cadastroHora(long cpf, LocalDate data, int id, Time hora){
+    public boolean cadastroHora(long cpf, LocalDate data, Time hora){
         String sql;
         Ponto p = select(cpf);
+        int id=0;
         try{
             if(p == null){
+                id = numId();
                 sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro) VALUES (?,?,?)";
                 save(sql, id, cpf, data);
             }
+            System.out.println(p.getHoraEntradaM());
             if(p.getHoraEntradaM() == null){
                 sql = "UPDATE registrohora SET HorarioEntradaM = ? WHERE DataRegistro = ? AND Cpf = ?";
-                update(sql, hora, cpf, data);
+                update(sql, cpf, hora, data);
                 return true;
             }else if(p.getHoraSaidaM() == null){
                 sql ="UPDATE registrohora SET HorarioSaidaM = ? WHERE DataRegistro = ? AND Cpf = ?";
-                update(sql, data, cpf, hora);
+                update(sql, cpf, hora, data);
                 return true;
             }else if(p.getHoraEntradaV() == null){
                 sql="UPDATE registrohora SET HorarioEntradaV = ? WHERE DataRegistro = ? AND Cpf = ?";
-                update(sql, data, cpf, hora);
+                update(sql, cpf, hora, data);
                return true;
             }else if(p.getHoraSaidaV() == null){
                 sql = "UPDATE registrohora SET HorarioSaidaV = ? WHERE DataRegistro = ? AND Cpf = ?";
-                 update(sql, data, cpf, hora);
+                 update(sql, cpf, hora, data);
                 return true;
             }else{
                return false;
@@ -58,25 +61,25 @@ public class PontoDAO extends GenericDAO{
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                     if(rs.getTime("HorarioEntradaM") == null){
-                        hem = LocalTime.MIN;
+                        hem = null;
                     }else{
-                        hem = rs.getTime("HorarioEntrada").toLocalTime();
+                        hem = rs.getTime("HorarioEntradaM").toLocalTime();
                     }
                     
                     if(rs.getTime("HorarioSaidaM") == null){
-                        hsm = LocalTime.MIN;
+                        hsm = null;
                     }else{
                         hsm = rs.getTime("HorarioSaidaM").toLocalTime();
                     }
                     
                     if(rs.getTime("HorarioEntradaV") == null){
-                        hev = LocalTime.MIN;
+                        hev = null;
                     }else{
-                        hev = rs.getTime("HorarioSaidaM").toLocalTime();
+                        hev = rs.getTime("HorarioEntradaV").toLocalTime();
                     }
                     
                     if(rs.getTime("HorarioSaidaV") == null){
-                        hsv = LocalTime.MIN;
+                        hsv = null;
                     }else{
                         hsv = rs.getTime("HorarioSaidaV").toLocalTime();
                     }
@@ -101,36 +104,37 @@ public class PontoDAO extends GenericDAO{
     
     public List<Ponto> listarPontos() {
         List<Ponto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM ponto";
-        LocalTime hem, hev, hsm, hsv;
+        String sql = "SELECT * FROM registrohora";
+         LocalTime hem, hev, hsm, hsv;
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    if(rs.getTime("HorarioEntradaM") == null){
-                        hem = LocalTime.MIN;
+                     if(rs.getTime("HorarioEntradaM") == null){
+                        hem = null;
                     }else{
-                        hem = rs.getTime("HorarioEntrada").toLocalTime();
+                        hem = rs.getTime("HorarioEntradaM").toLocalTime();
                     }
                     
                     if(rs.getTime("HorarioSaidaM") == null){
-                        hsm = LocalTime.MIN;
+                        hsm = null;
                     }else{
                         hsm = rs.getTime("HorarioSaidaM").toLocalTime();
                     }
                     
                     if(rs.getTime("HorarioEntradaV") == null){
-                        hev = LocalTime.MIN;
+                        hev = null;
                     }else{
-                        hev = rs.getTime("HorarioSaidaM").toLocalTime();
+                        hev = rs.getTime("HorarioEntradaV").toLocalTime();
                     }
                     
                     if(rs.getTime("HorarioSaidaV") == null){
-                        hsv = LocalTime.MIN;
+                        hsv = null;
                     }else{
                         hsv = rs.getTime("HorarioSaidaV").toLocalTime();
                     }
+                    
                     Ponto ponto = new Ponto(
                         rs.getInt("idRegistroHora"),
                         rs.getLong("Cpf"),
