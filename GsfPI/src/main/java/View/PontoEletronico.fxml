@@ -33,6 +33,11 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
+                  <Button fx:id="btnVoltar" layoutX="745.0" layoutY="622.0" mnemonicParsing="false" onAction="#OnClickVoltar" prefHeight="30.0" prefWidth="99.0" text="Voltar">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                 </children>
             </AnchorPane>
          </children>

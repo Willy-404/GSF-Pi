@@ -32,6 +32,9 @@ public class PontoEletronicoController {
 
     @FXML
     private Button btnConfirmarPonto;
+    
+        @FXML
+    private Button btnVoltar;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -299,6 +302,11 @@ public class PontoEletronicoController {
         ponto.show();
         
         ((Stage) button.getScene().getWindow()).close();
+    }
+    
+        @FXML
+    void OnClickVoltar(ActionEvent event) throws IOException {
+     TelaHomeController.trocarTelaHome(btnVoltar, f);
     }
    
     public void setStage(Stage visuPonto) {
