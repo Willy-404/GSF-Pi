@@ -61,11 +61,11 @@ public class ItemLoteDAO extends GenericDAO{
         return resultList;
     } 
     
-    public boolean deletarSubgrupo(ItemLote l, int ref){
-    String sql = "DELETE FROM itemlote WHERE Referencia = ? ";
+    public boolean deletarSubgrupo(ItemLote l, int id){
+    String sql = "DELETE FROM itemlote WHERE id = ? ";
            
     try  {
-            delete(sql, l);
+            delete(sql, id, l.getLinha(), l.getQuantidade(), l.getRefeLote(), l.getTamanho());
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class ItemLoteDAO extends GenericDAO{
         }
     }
     
-    public int numId(){
+    public int numIdSubGrupo(){
         String sql = "SELECT* FROM ItemLote";
         int i = 0;
          try (Connection connection = ConexaoBD.conectar();
