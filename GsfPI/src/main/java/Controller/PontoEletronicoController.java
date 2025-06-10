@@ -66,6 +66,7 @@ public class PontoEletronicoController {
     @FXML
     private TextField txtCpfPonto;
     Faccao f;
+    private Stage stage;
 
     public void setFaccao(Faccao f) {
         this.f = f; 
@@ -281,24 +282,27 @@ public class PontoEletronicoController {
     }
        
     public static void trocarPonto(Button button, Faccao f)throws IOException {
-       Stage visuPonto = new Stage();
-        visuPonto.setMaximized(true);
-        visuPonto.setTitle("Visualizar Ponto Eletronico");
+       Stage ponto = new Stage();
+        ponto.setMaximized(true);
+        ponto.setTitle("Ponto Eletronico");
 
-        URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
+        URL url = new File("src/main/java/view/PontoEletronico.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         
-        VisualizarPontoController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(visuPonto);
+        PontoEletronicoController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.setStage(ponto);
 
         Scene cena = new Scene(root);
-        visuPonto.setScene(cena);
-        visuPonto.show();
+        ponto.setScene(cena);
+        ponto.show();
         
         ((Stage) button.getScene().getWindow()).close();
     }
    
+    public void setStage(Stage visuPonto) {
+        this.stage = visuPonto;
+    }
     }
 

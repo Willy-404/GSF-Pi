@@ -96,6 +96,7 @@ public class VisualizarPontoController {
     public void setFaccao(Faccao f) {
         this.f=f;
     }
+    
     PontoDAO pmetodo = new PontoDAO();
     public Stage stage;
     private void carregarPonto() {
@@ -189,13 +190,13 @@ public class VisualizarPontoController {
         Parent root = loader.load();
         
         VisualizarPontoController thc = loader.getController();
-            thc.setFaccao(f);
-            thc.setStage(visuPonto);
+        thc.setFaccao(f);
+        thc.setStage(visuPonto);
 
         Scene cena = new Scene(root);
         visuPonto.setScene(cena);
         visuPonto.show();
-        
+       
         ((Stage) button.getScene().getWindow()).close();
     }
 
