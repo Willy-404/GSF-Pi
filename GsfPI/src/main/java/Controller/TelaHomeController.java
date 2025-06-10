@@ -88,20 +88,7 @@ public class TelaHomeController {
 
     @FXML
     void onClickVisualizarPonto(ActionEvent event) throws IOException {
-
-        Stage visuPonto = new Stage();
-        visuPonto.setMaximized(true);
-        visuPonto.setTitle("Visualizar Pontos");
-
-        URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Scene cena = new Scene(root);
-        visuPonto.setScene(cena);
-        visuPonto.show();
-        
-        ((Stage) btnVisualizarPonto.getScene().getWindow()).close();
+        VisualizarPontoController.trocarVizPonto(btnVisualizarPonto, f);
     }
     @FXML
     void onClickVisualizarPerfil(ActionEvent event) throws IOException {
