@@ -328,32 +328,17 @@ public class CadastrarFuncionarioController {
         @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
-        if(btnCadastroFunca.getText().equals("Editar")){
-            if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                    &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
-                VisualizarFuncionarioController.trocarVizFuncionario(btnVoltar, f);
-            } else {
-                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                alerta.setTitle("Sair?");
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
-                alerta.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        try {
-                             VisualizarFuncionarioController.trocarVizFuncionario(btnVoltar, f);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    } 
-                });
-            }
-        }else{
             if (txtCpf.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
                     &&  txtContato.getText().isEmpty() && cbCargo.getSelectionModel().getSelectedItem() == null && txtSalario.getText().isEmpty()) {
                 TelaHomeController.trocarTelaHome(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                 alerta.setTitle("Sair?");
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+                if(btnCadastroFunca.getText().equals("Editar")){
+                    alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                }else{
+                    alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+                }    
                 alerta.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
@@ -365,7 +350,6 @@ public class CadastrarFuncionarioController {
                 });
             }
         }
-    }
 
     @FXML
     void onClickCadastroFunca(ActionEvent event) throws IOException  {

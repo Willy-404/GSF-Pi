@@ -313,32 +313,17 @@ public class CadastrarFornecedorController {
       @FXML
     void OnClickVoltar(ActionEvent event) throws IOException {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
-        if(btnCadastrarForn.getText().equals("Editar")){
-            if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
-                VisualizarFornecedorController.trocarVizFornecedor(btnVoltar, f);
-            } else {
-                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                alerta.setTitle("Sair?");
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
-                alerta.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        try {
-                            VisualizarFornecedorController.trocarVizFornecedor(btnVoltar, f);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    } 
-                });
-            }
-        }else{
             if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
                 &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
                 TelaHomeController.trocarTelaHome(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                 alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+                if(btnCadastrarForn.getText().equals("Editar")){
+                    alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                }else{
+                    alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+                }            
                 alerta.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
@@ -350,7 +335,7 @@ public class CadastrarFornecedorController {
                 });
             }
         }
-    }
+    
     
     @FXML
     void OnClickCadastrarForn(ActionEvent event) throws IOException {

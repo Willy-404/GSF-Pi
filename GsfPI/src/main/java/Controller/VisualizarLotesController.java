@@ -338,50 +338,25 @@ public class VisualizarLotesController {
         if (event.getClickCount() == 2) {
             itemLote = TabelaLotes.getSelectionModel().getSelectedItem();
             if (itemLote != null) {
-                int id = itemLote.getReferencia();
-                Lotes lselect = new Lotes(id);
-                itemLote = lmetodo.loteSelecionado(id);
-                txtReferencia.setText(String.valueOf(itemLote.getReferencia()));
-                txtPrazo.setValue(itemLote.getPrazo());
-                txtEntrada.setValue(itemLote.getEntrada());
-                String precoTexto = String.valueOf(itemLote.getPreco());
-                String precoFormatado = precoTexto.replaceAll("[.]", ",");
-                txtPreco.setText(String.valueOf(precoFormatado));
-                txtTecido.setText(String.valueOf(itemLote.getTecido()));
-                txtMarca.setText(String.valueOf(itemLote.getMarca()));
-                cbColecao.setValue(itemLote.getColecao());
-                cbModelo.setValue(itemLote.getModelo());
-                txtQuantidade.setText(String.valueOf(itemLote.getQuantidadeT()));
-                l = lselect;
-                validarSelecao++;
+                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                alerta.setTitle("Editar?");
+                alerta.setHeaderText("Deseja fazer a edição do item selecionado?");
+                alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        int id= itemLote.getReferencia();
+                        itemLote = lmetodo.loteSelecionado(id);
+                        CadastroLotesController.trocarCadLotes(TabelaLotes, f, itemLote);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } 
+            });    
             } else {
                 alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
             }
         }
 
-    }
-
-    @FXML
-    void onClickVoltar(ActionEvent event) throws IOException {
-        //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
-         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
-             && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-             && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
-            TelaHomeController.trocarTelaHome(btnVoltar, f);
-        } else {
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Sair?");
-        alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas!");
-        alerta.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                try {
-                    TelaHomeController.trocarTelaHome(btnVoltar, f);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } 
-        });
-        }
     }
 
     public static void trocarVizLotes(MenuBar menuBar, Faccao f) throws IOException {
@@ -424,86 +399,6 @@ public class VisualizarLotesController {
         visuLotes.show();
 
         ((Stage) btn.getScene().getWindow()).close();
-    }
-
-    //Não entra no botão onClickEditar
-    @FXML
-    void onClickEditar(ActionEvent event) throws IOException {  
-        if(validarSelecao == 0){
-            alertas.alertaError("Selecione um Item", "Nenhum Item foi selecionado, selecione um item para fazer a sua alteração!");
-            return;
-        }else if(!txtReferencia.getText().isEmpty() && !txtTecido.getText().isEmpty() && !cbColecao.getSelectionModel().getSelectedItem().isEmpty() && txtPrazo.getValue() != null 
-           && txtEntrada.getValue() != null && !txtPreco.getText().isEmpty() && !cbModelo.getSelectionModel().getSelectedItem().isEmpty()
-           && !txtQuantidade.getText().isEmpty()) {
-            
-            String dataPrazo = String.valueOf(txtPrazo.getValue()), dataEntrada = String.valueOf(txtEntrada.getValue());   
-            int RefInt = 0;
-            
-            if(validacao.itemisEmpty(txtReferencia.getText(), "Referencia")){
-                return;
-                //formato?
-            }else if(validacao.itemisEmpty(txtMarca.getText(), "Marca")){
-                return;
-                //Nome de Fornecedores no sistema?
-
-            }else if(validacao.itemisEmpty(txtTecido.getText(), "Tecido")){
-                return;
-
-            }else if(validacao.itemNull(cbColecao.getSelectionModel().getSelectedItem(), "Coleção")){
-                return;
-
-            }else if(validacao.itemNull(dataPrazo, "Prazo")){
-                return;
-
-             } else if (validacao.itemNull(dataEntrada, "Entrada")) {
-                 return;
-
-             } else if (validacao.itemisEmpty(txtPreco.getText(), "Preço")) {
-                 return;
-             } else if (validacao.ValidarFormat("^\\d+,\\d{1,2}$", txtPreco.getText(), "Formato do Preço incorreto",
-                     "O padrão esperado é XXXXX,XX!")) {
-                 return;
-
-             } else if (validacao.itemNull(cbModelo.getSelectionModel().getSelectedItem(), "Modelo")) {
-                 return;
-
-             }else if(validacao.itemisEmpty(txtQuantidade.getText(), "Quantidade")){
-                 return;
-             }
-            int id = (l.getReferencia());
-            LotesDAO lmetodo = new LotesDAO();
-
-            int ReferenciaT = Integer.parseInt(txtReferencia.getText());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate PrazoT = txtPrazo.getValue();
-            LocalDate EntradaT = txtEntrada.getValue();
-            String precoTNum = txtPreco.getText().replaceAll("[,]", ".");
-            float PrecoT = Float.parseFloat(precoTNum);
-            String TecidoT = txtTecido.getText();
-            String MarcaT = txtMarca.getText();
-            String ColecaoT = cbColecao.getValue();
-            String ModeloT = cbModelo.getValue();
-            int QuantidadeT = Integer.parseInt(txtQuantidade.getText());
-
-            Lotes lTroca = new Lotes(ReferenciaT, PrazoT, EntradaT, PrecoT, TecidoT, MarcaT, ColecaoT, ModeloT, QuantidadeT);
-
-            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-            alerta.setTitle("Editar?");
-            alerta.setHeaderText("Deseja fazer a edição das informações?");
-            alerta.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    if (lmetodo.editarLotes(lTroca, id) != true) {
-                        alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
-                    } else {
-                        alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
-                    }
-                } else {
-                    alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
-                }
-            });
-        }else{
-            alertas.alertaError("Erro na edição", "Erro ao editar o lote!");
-        }
     }
 
     public void setStage(Stage visuLotes) {
