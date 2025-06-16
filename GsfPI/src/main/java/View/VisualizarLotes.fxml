@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarLotesController">
    <top>
@@ -41,13 +44,25 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="TabelaLotes" layoutX="79.0" onMouseClicked="#onSelecionaItem" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="TabelaLotes" layoutX="79.0" onMouseClicked="#onSelecionaItem" prefHeight="750.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
                     <columns>
-                      <TableColumn fx:id="colReferencia" prefWidth="161.0" text="REFERÊNCIA" />
+                      <TableColumn fx:id="colReferencia" prefWidth="170.0" text="REFERÊNCIA" />
+                        <TableColumn fx:id="colPrazo" prefWidth="170.0" text="PRAZO" />
+                        <TableColumn fx:id="colEntrada" prefWidth="170.0" text="ENTRADA" />
+                        <TableColumn fx:id="colModelo" prefWidth="170.0" text="MODELO" />
+                        <TableColumn fx:id="colColeção" prefWidth="170.0" text="COLEÇÃO" />
+                        <TableColumn fx:id="colTecido" prefWidth="170.0" text="TECIDO" />
+                        <TableColumn fx:id="colMarca" prefWidth="170.0" text="MARCA" />
                       <TableColumn fx:id="colQuantidade" minWidth="0.0" prefWidth="206.0" text="QUANTIDADE" />
-                        <TableColumn fx:id="colPrazo" prefWidth="157.0" text="PRAZO" />
+                        <TableColumn fx:id="colPreco" prefWidth="170.0" text="PREÇO" />
                     </columns>
                   </TableView>
+                  <Label layoutX="200.0" layoutY="26.0" prefHeight="30.0" prefWidth="225.0" text="Visualizar Lotes" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtPesquisarFuncionario" layoutX="446.0" layoutY="31.0" prefHeight="25.0" prefWidth="447.0" promptText="Digite a referência do lote" />
                </children>
             </AnchorPane>
         </items>

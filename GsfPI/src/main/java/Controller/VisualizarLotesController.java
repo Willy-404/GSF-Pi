@@ -133,6 +133,24 @@ public class VisualizarLotesController {
 
     @FXML
     private TableColumn<Lotes, Integer> colReferencia;
+    
+     @FXML
+    private TableColumn<Lotes, String> colColeção;
+
+    @FXML
+    private TableColumn<Lotes, LocalDate> colEntrada;
+
+    @FXML
+    private TableColumn<Lotes, String> colMarca;
+
+    @FXML
+    private TableColumn<Lotes, String> colModelo;
+
+    @FXML
+    private TableColumn<Lotes, Float> colPreco;
+
+    @FXML
+    private TableColumn<Lotes, String> colTecido;
 
     @FXML
     private TextField txtTecido;
@@ -145,9 +163,16 @@ public class VisualizarLotesController {
         List<Lotes> lotesList = lmetodo.listarLotes();
         ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotesList);
         TabelaLotes.setItems(listaObLotes);
-        colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+        //Referencia, Prazo, Entrada, Modelo, Coleção, tecido, Marca, Quant, preco
         colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+        colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+        colEntrada.setCellValueFactory(new PropertyValueFactory<>("Entrada"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
+        colColeção.setCellValueFactory(new PropertyValueFactory<>("Colecao"));
+        colTecido.setCellValueFactory(new PropertyValueFactory<>("Tecido"));
+        colMarca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
         colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
+        colPreco.setCellValueFactory(new PropertyValueFactory<>("Preco"));
     }
 
     @FXML

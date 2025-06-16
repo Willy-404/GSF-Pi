@@ -81,7 +81,7 @@ public class LotesDAO extends GenericDAO {
     
     //int ref tem que ser pego quando clicado no tableView isso é possivel?
     public List<Lotes> listarLotes(){
-        String sql ="Select Referencia, Prazo, QuantidadeT FROM lote ";
+        String sql ="Select* FROM lote ";
         List<Lotes> resultList = new ArrayList<Lotes>();
 
         try (Connection connection = ConexaoBD.conectar();
@@ -89,13 +89,14 @@ public class LotesDAO extends GenericDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    // Create a new object for each row
                     
                     LocalDate dataPrazo = LocalDate.parse(resultSet.getString("Prazo"));
+                    LocalDate dataEntrada = LocalDate.parse(resultSet.getString("Entrada"));
                             
-                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, resultSet.getInt("QuantidadeT") );
+                    Lotes object = new Lotes(resultSet.getInt("Referencia"), dataPrazo, dataEntrada, resultSet.getFloat("Preco"),
+                        resultSet.getString("Tecido"), resultSet.getString("Marca"),resultSet.getString("Colecao"), resultSet.getString("Modelo"), 
+                        resultSet.getInt("QuantidadeT"));
 
-                    // Add the object to the list
                     resultList.add(object);
                 }
             }
@@ -104,8 +105,6 @@ public class LotesDAO extends GenericDAO {
             System.err.println("Error executing query: " + e.getMessage());
         }
 
-        
-        
         return resultList;
     }
     
