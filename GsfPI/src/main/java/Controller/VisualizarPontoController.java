@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -33,31 +34,40 @@ public class VisualizarPontoController {
     private MenuBar MenuBar;
 
     @FXML
-    private TableView<Ponto> TabelaPonto;
+    private Button btnBuscar;
+
+    @FXML
+    private ComboBox<?> cbMes;
     
-    @FXML
-    private TableColumn<Ponto, String> colCpf;
+        @FXML
+    private TableView<?> TabelaIdentificação;
 
     @FXML
-    private TableColumn<Ponto, LocalDate> colData;
+    private TableView<?> TabelaPonto;
 
     @FXML
-    private TableColumn<Ponto, LocalTime> colEntrada;
+    private TableColumn<?, ?> colCpf;
 
     @FXML
-    private TableColumn<Ponto, LocalTime> colEntrada1;
+    private TableColumn<?, ?> colData;
 
     @FXML
-    private TableColumn<Ponto, String> colHorasTrabalhadas;
+    private TableColumn<?, ?> colEntrada;
 
     @FXML
-    private TableColumn<Ponto, String> colNome;
+    private TableColumn<?, ?> colEntrada1;
 
     @FXML
-    private TableColumn<Ponto, LocalTime> colSaida;
+    private TableColumn<?, ?> colNome;
 
     @FXML
-    private TableColumn<Ponto, LocalTime> colSaida1;
+    private TableColumn<?, ?> colSaida;
+
+    @FXML
+    private TableColumn<?, ?> colSaida1;
+
+    @FXML
+    private TableColumn<?, ?> colTurno;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -90,7 +100,13 @@ public class VisualizarPontoController {
     private Menu menuVisualizar;
 
     @FXML
-    private TextField txtPesquisarFuncionario;
+    private TextField txtCpf;
+
+    @FXML
+    private TextField txtNome;
+
+    @FXML
+    private TextField txtPesquisa;
     Faccao f;
 
     public void setFaccao(Faccao f) {
@@ -99,7 +115,7 @@ public class VisualizarPontoController {
     
     PontoDAO pmetodo = new PontoDAO();
     public Stage stage;
-    private void carregarPonto() {
+  /*  private void carregarPonto() {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Ponto> pontoList = pmetodo.listarPontos();
         ObservableList<Ponto> listaObPonto = FXCollections.observableArrayList(pontoList);
@@ -119,7 +135,7 @@ public class VisualizarPontoController {
     @FXML
     public void initialize() {
         carregarPonto();
-    }
+    }*/
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
        CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
