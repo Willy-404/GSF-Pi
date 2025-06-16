@@ -9,8 +9,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VisualizarPontoController">
@@ -41,28 +43,7 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane prefHeight="675.0" prefWidth="1442.0" style="-fx-background-color: #386b8f;" BorderPane.alignment="CENTER">
-         <children>   
-                        <TableView fx:id="TabelaPonto" layoutY="60.0" prefHeight="794.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="104.0">
-               <columns>
-                  <TableColumn fx:id="colCpf" prefWidth="230.0" text="CPF" />
-                  <TableColumn fx:id="colNome" prefWidth="230.0" text="Funcionário" />
-                  <TableColumn fx:id="colData" prefWidth="185.0" text="Data" />
-                  <TableColumn fx:id="colEntrada" prefWidth="185.0" text="Entrada" />
-                  <TableColumn fx:id="colSaida" prefWidth="185.0" text="Saída" />
-                  <TableColumn fx:id="colEntrada1" prefWidth="185.0" text="Entrada" />
-                  <TableColumn fx:id="colSaida1" prefWidth="185.0" text="Saída" />
-                  <TableColumn fx:id="colHorasTrabalhadas" prefWidth="160.0" text="Horas Trabalhadas" />
-               </columns>
-            </TableView>
-            <Label layoutX="200.0" layoutY="26.0" prefHeight="30.0" prefWidth="225.0" text="Registros de Ponto" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtPesquisarFuncionario" layoutX="446.0" layoutY="31.0" prefHeight="25.0" prefWidth="447.0" promptText="Digite o nome do Funcionário" />
-
-            <SplitPane dividerPositions="0.26944444444444443" prefHeight="557.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.26944444444444443" prefHeight="557.0" prefWidth="992.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #386b8f;">
                      <children>
@@ -116,8 +97,5 @@
                   </AnchorPane>
               </items>
             </SplitPane>
-
-         </children>
-      </AnchorPane>
    </center>
 </BorderPane>
