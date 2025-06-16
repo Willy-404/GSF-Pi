@@ -319,7 +319,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#onClickVoltar" prefHeight="40.0" prefWidth="100.0" text="Voltar" textFill="#4d7794">
+                              <Button fx:id="btnVoltar" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Voltar" textFill="#4d7794">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -328,7 +328,7 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#onClickEditar" prefHeight="40.0" prefWidth="100.0" text="Editar" textFill="#4d7794">
+                              <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Editar" textFill="#4d7794">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

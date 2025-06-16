@@ -142,8 +142,10 @@ public class CadastroLotesController {
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
     int quantSomada = 0;
-   
-
+    List<ItemLote> ItensLote = new ArrayList<>();
+    LotesDAO metodo = new LotesDAO();
+    ItemLoteDAO lmetodo = new ItemLoteDAO();
+     
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
@@ -153,7 +155,7 @@ public class CadastroLotesController {
     }
     
     
-    ArrayList<ItemLote> ItensLote = new ArrayList<>();
+   
     
 
     @FXML
@@ -460,7 +462,6 @@ public class CadastroLotesController {
                 cbModelo.setValue(null);
             }
         }else{
-            LotesDAO metodo = new LotesDAO();
              String valorTexto = txtPreco.getText().replaceAll("[,]", ".");
             float valorPreco = Float.parseFloat(valorTexto);
             int quantidade = Integer.parseInt(txtQuantidade.getText());
@@ -481,36 +482,53 @@ public class CadastroLotesController {
         }*/
     }
     
+    int lugarLista = 0;
     @FXML
     void onClickAdicionar(ActionEvent event) {
-        if(validacao.itemNull(cbTamanho.getSelectionModel().getSelectedItem(), "Tamanho")){
-            return;
-            
-        }else if(validacao.itemisEmpty(txtLinha.getText(), "Linha")){
-               return;
-               
-        }else if(validacao.itemisEmpty(txtQuantidadeItem.getText(), "Quantidade")){
-             return;
-             
-        }else{
-            int quantItem = Integer.parseInt(txtQuantidadeItem.getText());
-            quantSomada = quantSomada + quantItem;
-            ItemLote item = adcionarSubgrupo();
-            ItensLote.add(item);
-            carregarSubgruposCadastro(ItensLote);
-            
-            txtLinha.setText("");
-            txtQuantidadeItem.setText("");
-            cbTamanho.setValue(null);
-        }
-        //Fazer a parte de editar o subGrupo
-        btnAdicionar.setText("Adicionar");
+            if(validacao.itemNull(cbTamanho.getSelectionModel().getSelectedItem(), "Tamanho")){
+                return;
+
+            }else if(validacao.itemisEmpty(txtLinha.getText(), "Linha")){
+                   return;
+
+            }else if(validacao.itemisEmpty(txtQuantidadeItem.getText(), "Quantidade")){
+                 return;
+
+            }else{
+                if(!btnAdicionar.getText().equals("Editar")){
+                    int quantItem = Integer.parseInt(txtQuantidadeItem.getText());
+                    quantSomada = quantSomada + quantItem;
+                    ItemLote item = adcionarSubgrupo();
+                    ItensLote.add(item);
+                    carregarSubgruposCadastro(ItensLote);
+
+                    txtLinha.setText("");
+                    txtQuantidadeItem.setText("");
+                    cbTamanho.setValue(null);
+                }else{
+                    ItensLote.remove(lugarLista);
+                    ItemLote item = adcionarSubgrupo();
+                    ItensLote.add(item);
+                    
+                    txtLinha.setText("");
+                    txtQuantidadeItem.setText("");
+                    cbTamanho.setValue(null);
+                    
+                    btnAdicionar.setText("Adicionar");  
+                }
+        }  
+           
     }
     
     @FXML
     void onSelecionaItem(MouseEvent event) {
         if (event.getClickCount() == 2) {
             subgrupo = tbSubGrupo.getSelectionModel().getSelectedItem();
+            for (int i = 0; i <ItensLote.size() ; i++) {
+                if(subgrupo.equals(ItensLote.get(i))){
+                    lugarLista = i;
+                }
+            }
             btnAdicionar.setText("Editar");
         }
         if(subgrupo != null){
@@ -556,6 +574,8 @@ public class CadastroLotesController {
         thc.setFaccao(f);
         thc.setTextButon("Editar");
         thc.setTextLabel("Edição de Lote");
+        thc.setValoresSubGrupo(l.getReferencia());
+        
         thc.setValores(l);
         //Carregar os SubGrupos 
         thc.setStage(home);
@@ -612,25 +632,18 @@ public class CadastroLotesController {
         String Linha = txtLinha.getText();
         int Quantidade = Integer.parseInt(txtQuantidadeItem.getText());
 
-        subgrupo = new ItemLote(Quantidade, Tamanho, Linha);
-        //ItemLoteDAO ItemMetodo = new ItemLoteDAO(); 
-        //return ItemMetodo.cadastroSubgrupo(subgrupo);
-        
+        subgrupo = new ItemLote(Quantidade, Tamanho, Linha);     
         return subgrupo;
     }
     
-    ItemLoteDAO lmetodo = new ItemLoteDAO();
+   
     public void carregarSubgruposCadastro(List<ItemLote> subgruposList) {
         ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
         tbSubGrupo.setItems(listSubgrupos);
         colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
         colLinha.setCellValueFactory(new PropertyValueFactory<>("Linha"));
         colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
-    }
-    
-    public void carregarSubgrupoEdit(){
-        
-    }
+    }         
     
     public void setTextButon(String txtButton){
         btnConfirmarLote.setText(txtButton);
@@ -651,6 +664,17 @@ public class CadastroLotesController {
         cbColecao.setValue(l.getColecao());
         cbModelo.setValue(l.getModelo());
         txtTecido.setText(l.getTecido());
+    }
+    
+    public void setValoresSubGrupo(int ref){
+        ItemLoteDAO metodo = new ItemLoteDAO();
+        ItensLote = lmetodo.listarSubgrupos(ref); 
+        List<ItemLote> subgruposList = metodo.listarSubgrupos(ref);
+        ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
+        tbSubGrupo.setItems(listSubgrupos);
+        colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
+        colLinha.setCellValueFactory(new PropertyValueFactory<>("Linha"));
+        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
     
     @FXML
