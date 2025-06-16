@@ -155,9 +155,6 @@ public class CadastroLotesController {
     }
     
     
-   
-    
-
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
@@ -396,7 +393,9 @@ public class CadastroLotesController {
             });
         }
     }
+   
     String ReferenciaSalva;
+    
     @FXML
     void onClickbtnConfirmar(ActionEvent event) throws IOException {
          boolean isEdit = false;
@@ -483,6 +482,30 @@ public class CadastroLotesController {
     }
     
     int lugarLista = 0;
+    ItemLote item = null;
+    
+    @FXML
+    void onSelecionaItem(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            subgrupo = tbSubGrupo.getSelectionModel().getSelectedItem();
+            for (int i = 0; i <ItensLote.size() ; i++) {
+                if(subgrupo.equals(ItensLote.get(i))){
+                    item = lmetodo.ItemSelecionado(Integer.parseInt(ReferenciaSalva),i);
+                    
+                }
+            }
+            btnAdicionar.setText("Editar");
+        }
+        if(subgrupo != null){
+            //verificar qual o subgrupo ta sendo alterado por meio de um for e fazer a alteração nesse momento
+            cbTamanho.setValue(subgrupo.getTamanho());
+            txtLinha.setText(subgrupo.getLinha());
+            txtQuantidadeItem.setText(String.valueOf(subgrupo.getQuantidade()));
+           
+        }
+        
+    }
+    
     @FXML
     void onClickAdicionar(ActionEvent event) {
             if(validacao.itemNull(cbTamanho.getSelectionModel().getSelectedItem(), "Tamanho")){
@@ -506,38 +529,26 @@ public class CadastroLotesController {
                     txtQuantidadeItem.setText("");
                     cbTamanho.setValue(null);
                 }else{
-                    ItensLote.remove(lugarLista);
-                    ItemLote item = adcionarSubgrupo();
-                    ItensLote.add(item);
+                    item.setQuantidade(Integer.parseInt(txtQuantidadeItem.getText()));
+                    item.setLinha(txtLinha.getText());
+                    item.setTamanho(cbTamanho.getSelectionModel().getSelectedItem());
+                    boolean itemUpdate = lmetodo.editarSubgrupo(item, lugarLista);
                     
-                    txtLinha.setText("");
-                    txtQuantidadeItem.setText("");
-                    cbTamanho.setValue(null);
+                    if(itemUpdate == true){
+                        tbSubGrupo.refresh(); 
+                        txtLinha.setText("");
+                        txtQuantidadeItem.setText("");
+                        cbTamanho.setValue(null);
+
+                        btnAdicionar.setText("Adicionar");  
+                    }else{
+                        alertas.alertaError("Edição de Item", "Erro na edição de Item!");
+                    }
                     
-                    btnAdicionar.setText("Adicionar");  
+                   
                 }
         }  
            
-    }
-    
-    @FXML
-    void onSelecionaItem(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            subgrupo = tbSubGrupo.getSelectionModel().getSelectedItem();
-            for (int i = 0; i <ItensLote.size() ; i++) {
-                if(subgrupo.equals(ItensLote.get(i))){
-                    lugarLista = i;
-                }
-            }
-            btnAdicionar.setText("Editar");
-        }
-        if(subgrupo != null){
-            //verificar qual o subgrupo ta sendo alterado por meio de um for e fazer a alteração nesse momento
-            cbTamanho.setValue(subgrupo.getTamanho());
-            txtLinha.setText(subgrupo.getLinha());
-            txtQuantidadeItem.setText(String.valueOf(subgrupo.getQuantidade()));
-        }
-        
     }
 
     //metodo de trocar tela para cadastro lote

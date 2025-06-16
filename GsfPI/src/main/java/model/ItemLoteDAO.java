@@ -1,8 +1,6 @@
 package model;
 
 import dal.ConexaoBD;
-import static java.lang.Math.random;
-import static java.lang.StrictMath.random;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,7 +83,37 @@ public class ItemLoteDAO extends GenericDAO{
             return false;
         }
     }
-    
+    public ItemLote ItemSelecionado(int ref, int id){
+        ItemLote l;
+        try {
+            l=select(ref,id);
+           return l;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public ItemLote select(Object... parametros ) throws SQLException{
+        ItemLote l = null;
+        String sql = "SELECT * FROM itemlote WHERE id = ? AND ref = ?";
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            
+            for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    ItemLote object = new ItemLote(resultSet.getInt("referenciaLote"), resultSet.getInt("Quantidade"), resultSet.getString("Tamanho"),
+                    resultSet.getString("Linha"));
+                    l = object;
+                }
+            }catch(SQLException e){
+                e.printStackTrace();   
+            }
+        return l;
+        }
+    }
     public int numIdSubGrupo(){
         String sql = "SELECT* FROM ItemLote";
         int i = 0;
