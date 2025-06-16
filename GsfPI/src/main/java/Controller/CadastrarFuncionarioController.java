@@ -431,7 +431,7 @@ public class CadastrarFuncionarioController {
     public static void trocarCadFuncionario(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Cadastro de Funcionario");
+        home.setTitle("Cadastro de Funcionário");
 
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -454,7 +454,7 @@ public class CadastrarFuncionarioController {
     public static void trocarCadFuncionario(TableView tabela, Faccao f, Funcionario funcionario) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Edição de Funcionario");
+        home.setTitle("Edição de Funcionário");
 
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);

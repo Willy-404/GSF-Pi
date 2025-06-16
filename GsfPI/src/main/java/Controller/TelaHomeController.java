@@ -102,7 +102,7 @@ public class TelaHomeController {
     public static void trocarTelaHome(Button btnTroca, Faccao r)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
-            home.setTitle("home");
+            home.setTitle("Home");
 
             URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
@@ -122,7 +122,7 @@ public class TelaHomeController {
      public static void trocarTelaHome(MenuBar menubar, Faccao r)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
-            home.setTitle("home");
+            home.setTitle("Home");
 
             URL url = new File("src/main/java/view/TelaHome.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);

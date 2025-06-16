@@ -184,7 +184,7 @@ public class VisualizarFornecedorController {
     public static void trocarVizFornecedor(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Visualizar o Fornecedor");
+        home.setTitle("Visualizar Fornecedor");
 
         URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -205,7 +205,7 @@ public class VisualizarFornecedorController {
     public static void trocarVizFornecedor(Button botao, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Visualizar o Fornecedor");
+        home.setTitle("Visualizar Fornecedor");
 
         URL url = new File("src/main/java/view/VisualizarFornecedor.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);

@@ -287,7 +287,7 @@ public class PontoEletronicoController {
     public static void trocarPonto(Button button, Faccao f)throws IOException {
        Stage ponto = new Stage();
         ponto.setMaximized(true);
-        ponto.setTitle("Ponto Eletronico");
+        ponto.setTitle("Ponto Eletrônico");
 
         URL url = new File("src/main/java/view/PontoEletronico.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);

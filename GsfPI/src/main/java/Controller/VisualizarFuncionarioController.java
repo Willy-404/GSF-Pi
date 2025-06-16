@@ -196,7 +196,7 @@ public class VisualizarFuncionarioController {
     public static void trocarVizFuncionario(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Visualizar Funcionario");
+        home.setTitle("Visualizar Funcionário");
 
         URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -216,7 +216,7 @@ public class VisualizarFuncionarioController {
     public static void trocarVizFuncionario(Button botao, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Visualizar Funcionario");
+        home.setTitle("Visualizar Funcionário");
 
         URL url = new File("src/main/java/view/VisualizarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);

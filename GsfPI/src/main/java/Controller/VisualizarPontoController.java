@@ -163,7 +163,7 @@ public class VisualizarPontoController {
      public static void trocarVizPonto(MenuBar menuBar, Faccao f)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
-        visuPonto.setTitle("Visualizar Ponto Eletronico");
+        visuPonto.setTitle("Visualizar Ponto Eletrônico");
 
         URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -183,7 +183,7 @@ public class VisualizarPontoController {
       public static void trocarVizPonto(Button button, Faccao f)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
-        visuPonto.setTitle("Visualizar Ponto Eletronico");
+        visuPonto.setTitle("Visualizar Ponto Eletrônico");
 
         URL url = new File("src/main/java/view/VisualizarPonto.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);

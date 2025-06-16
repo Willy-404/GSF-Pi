@@ -309,7 +309,7 @@ public class VisualizarLotesController {
         }
         
     }
-
+    
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()

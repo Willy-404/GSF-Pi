@@ -555,7 +555,7 @@ public class CadastroLotesController {
     public static void trocarCadLotes(MenuBar menuBar, Faccao f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Cadastro de Lotes");
+        home.setTitle("Cadastro de Lote");
 
         URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -575,7 +575,7 @@ public class CadastroLotesController {
     public static void trocarCadLotes(TableView tabela, Faccao f, Lotes l) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
-        home.setTitle("Cadastro de Lotes");
+        home.setTitle("Edição de Lote");
 
         URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
