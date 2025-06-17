@@ -21,7 +21,7 @@ public class ItemLoteDAO extends GenericDAO{
     public boolean cadastroSubgrupo(ItemLote l) {
     String sql = "INSERT INTO itemlote ( id, referenciaLote, Quantidade, Tamanho, Linha) "
             + "VALUES (?,?,?,?,?)";
-    id = random.nextInt(100);
+    id = numIdSubGrupo();
     try  {
             save(sql, id, l.getRefeLote(), l.getQuantidade(), l.getTamanho(), l.getLinha());
             return true;
