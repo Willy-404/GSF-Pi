@@ -19,17 +19,11 @@ public class PontoDAO extends GenericDAO{
         try{
             if(p == null){
                 id = numId();
-                sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro) VALUES (?,?,?)";
-                save(sql, id, cpf, data);
-                alertas.alertaInformation("Registro do Dia", "Criado o registro de hoje \n Por favor clique novamente para fazer o registro do seu horario!");
-                //Colocar para cadastrar o primeiro horarios
-            }
-            
-            if(p.getHoraEntradaM() == null){
-                sql = "UPDATE registrohora SET HorarioEntradaM = ? WHERE DataRegistro = ? AND Cpf = ?";
-                update(sql, cpf, hora, data);
+                sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro, HorarioEntradaM) VALUES (?,?,?,?)";
+                save(sql, id, cpf, data, hora);
                 return true;
-            }else if(p.getHoraSaidaM() == null){
+            }
+             if(p.getHoraSaidaM() == null){
                 sql ="UPDATE registrohora SET HorarioSaidaM = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, hora, data);
                 return true;
@@ -105,12 +99,16 @@ public class PontoDAO extends GenericDAO{
         return p;
     }
     
-    public List<Ponto> listarPontos() {
+    public List<Ponto> listarPontos(Object... parametros) {
         List<Ponto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM registrohora";
+        String sql = "SELECT * FROM registrohora WHERE Cpf = ?";
          LocalTime hem, hev, hsm, hsv;
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            
+            for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {

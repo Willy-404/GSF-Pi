@@ -270,6 +270,7 @@ public class PontoEletronicoController {
         if(cadastroDePonto() != true){
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Horario!");
         } else {
+            //Fazer pegar nome do funcionario e trocar mensagem;
             alertas.alertaInformation("Cadastro realizado com sucesso", "O Horario foi cadastrado com sucesso!");
             txtCpfPonto.setText("");
         }

@@ -21,6 +21,11 @@ public class Funcionario {
         this.Cargo = Cargo;
     }
 
+    public Funcionario(long Cpf, String NomeFuncionario) {
+        this.Cpf = Cpf;
+        this.NomeFuncionario = NomeFuncionario;
+    }
+
     public long getCpf() {
         return Cpf;
     }
