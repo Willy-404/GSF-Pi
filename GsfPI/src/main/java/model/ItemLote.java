@@ -16,6 +16,23 @@ public class ItemLote {
     private int Quantidade;
     private String Tamanho;
     private String Linha;
+    private int id;
+
+    public ItemLote(int RefeLote, int Quantidade, String Tamanho, String Linha, int id) {
+        this.RefeLote = RefeLote;
+        this.Quantidade = Quantidade;
+        this.Tamanho = Tamanho;
+        this.Linha = Linha;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public ItemLote(int Quantidade,  String Tamanho, String Linha) {
         this.Quantidade = Quantidade;

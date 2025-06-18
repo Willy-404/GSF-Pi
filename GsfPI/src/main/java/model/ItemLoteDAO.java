@@ -21,6 +21,7 @@ public class ItemLoteDAO extends GenericDAO{
     public boolean cadastroSubgrupo(ItemLote l) {
     String sql = "INSERT INTO itemlote ( id, referenciaLote, Quantidade, Tamanho, Linha) "
             + "VALUES (?,?,?,?,?)";
+    //listarSubgrupo e fazer verificação se o id já existe não faz nada, mas se não fazer o insert? 
     id = numIdSubGrupo();
     try  {
             save(sql, id, l.getRefeLote(), l.getQuantidade(), l.getTamanho(), l.getLinha());
@@ -73,7 +74,7 @@ public class ItemLoteDAO extends GenericDAO{
     
     public boolean editarSubgrupo(ItemLote l, int id){
         //COmo atualiza no banco de dados?
-    String sql = "UPDATE ItemLote SET Quantidade= ?, Tamanho=?, Linha=?";
+    String sql = "UPDATE ItemLote SET Quantidade= ?, Tamanho=?, Linha=? Where id = ?";
     try  {
             
             update(sql, id, l.getQuantidade(), l.getTamanho(), l.getLinha());

@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -408,17 +409,17 @@ public class CadastroLotesController {
        int RefInt = 0;
        if(validacao.itemisEmpty(txtReferencia.getText(), "Referencia")){
            return;
-           //formato?
+           
        }else{
            RefInt = Integer.parseInt(txtReferencia.getText());
        }if(isEdit == false){
            if(validacao.ValidaRefSistema(txtReferencia.getText(), RefInt)){
                 return;
            }
+           
        }else if(validacao.itemisEmpty(txtMarca.getText(), "Marca")){
            return;
-           //Nome de Fornecedores no sistema?
-           
+             
        }else if(validacao.itemisEmpty(txtTecido.getText(), "Tecido")){
            return;
        
@@ -446,7 +447,7 @@ public class CadastroLotesController {
 
         ReferenciaSalva = txtReferencia.getText();
         if(isEdit == false){
-            if (cadastroDeLotes() != true) {
+            if (cadastroDeLotes() != true && cadastroDeSubgrupos() != true) {
                 alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
             } else {
                 alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
@@ -459,6 +460,7 @@ public class CadastroLotesController {
                 cbColecao.setValue(null);
                 txtEntrada.setValue(null);
                 cbModelo.setValue(null);
+                tbSubGrupo.setItems(null);
             }
         }else{
              String valorTexto = txtPreco.getText().replaceAll("[,]", ".");
@@ -466,38 +468,30 @@ public class CadastroLotesController {
             int quantidade = Integer.parseInt(txtQuantidade.getText());
             Lotes loteEdit = new Lotes(RefInt, txtPrazo.getValue(), txtEntrada.getValue(), valorPreco, txtTecido.getText(), 
                 txtMarca.getText(), cbColecao.getSelectionModel().getSelectedItem(), cbModelo.getSelectionModel().getSelectedItem(), quantidade);
-            if(metodo.editarLotes(loteEdit, RefInt) != true){
+            if(metodo.editarLotes(loteEdit, RefInt) != true && cadastroDeSubgrupos()){
                 alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             } else {
                 alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                VisualizarLotesController.trocarVizLotes(btnVoltar, f);
             }
             
         }
-        //Não precisa disso eu acho
-        /*if (cadastroDeSubgrupos() != true){
-            alertas.alertaError("Erro no Cadastro de Subgrupo", "Não foi possível cadastrar o Subgrupo");
-        } else {
-            alertas.alertaInformation("Subgrupo Cadastrado", "O Subgrupo foi Cadastrado com Sucesso");
-        }*/
     }
     
     int lugarLista = 0;
-    ItemLote item = null;
     
     @FXML
-    void onSelecionaItem(MouseEvent event) {
-        if (event.getClickCount() == 2) {
+    void onSelecionaItem(MouseEvent event) throws SQLException {
+        if (event.getClickCount() == 1) {
             subgrupo = tbSubGrupo.getSelectionModel().getSelectedItem();
-            for (int i = 0; i <ItensLote.size() ; i++) {
-                if(subgrupo.equals(ItensLote.get(i))){
-                    item = lmetodo.ItemSelecionado(Integer.parseInt(ReferenciaSalva),i);
-                    
+            for(int i=0; i<lmetodo.numIdSubGrupo(); i++){
+                if(subgrupo.equals(lmetodo.select(i,subgrupo.getRefeLote()))){
+                   subgrupo.setId(i);
                 }
             }
             btnAdicionar.setText("Editar");
         }
         if(subgrupo != null){
-            //verificar qual o subgrupo ta sendo alterado por meio de um for e fazer a alteração nesse momento
             cbTamanho.setValue(subgrupo.getTamanho());
             txtLinha.setText(subgrupo.getLinha());
             txtQuantidadeItem.setText(String.valueOf(subgrupo.getQuantidade()));
@@ -529,12 +523,16 @@ public class CadastroLotesController {
                     txtQuantidadeItem.setText("");
                     cbTamanho.setValue(null);
                 }else{
-                    item.setQuantidade(Integer.parseInt(txtQuantidadeItem.getText()));
-                    item.setLinha(txtLinha.getText());
-                    item.setTamanho(cbTamanho.getSelectionModel().getSelectedItem());
-                    boolean itemUpdate = lmetodo.editarSubgrupo(item, lugarLista);
-                    
+                    subgrupo.setQuantidade(Integer.parseInt(txtQuantidadeItem.getText()));
+                    subgrupo.setLinha(txtLinha.getText());
+                    subgrupo.setTamanho(cbTamanho.getSelectionModel().getSelectedItem());
+                    boolean itemUpdate = lmetodo.editarSubgrupo(subgrupo, subgrupo.getId());
+                    System.out.println(subgrupo);
+                    System.out.println(subgrupo.getId());
                     if(itemUpdate == true){
+                        
+                        carregarSubgruposCadastro(ItensLote);
+                        
                         tbSubGrupo.refresh(); 
                         txtLinha.setText("");
                         txtQuantidadeItem.setText("");
@@ -545,7 +543,6 @@ public class CadastroLotesController {
                         alertas.alertaError("Edição de Item", "Erro na edição de Item!");
                     }
                     
-                   
                 }
         }  
            
