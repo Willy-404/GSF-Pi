@@ -11,8 +11,10 @@ public class Ponto {
     private LocalTime HorarioSaidaM;
     private LocalTime HorarioEntradaV;
     private LocalTime HorarioSaidaV;
+    private LocalTime HorarioEntradaEx;
+    private LocalTime HorarioSaidaEx;
     
-    public Ponto(int id,long cpf , LocalDate data, LocalTime horaEntradaM, LocalTime horaSaidaM, LocalTime horaEntradaV, LocalTime horaSaidaV) {
+    public Ponto(int id,long cpf , LocalDate data, LocalTime horaEntradaM, LocalTime horaSaidaM, LocalTime horaEntradaV, LocalTime horaSaidaV, LocalTime horaEntradaEx, LocalTime horaSaidaEx) {
         this.id = id;
         this.cpf = cpf;
         this.data = data;
@@ -20,6 +22,24 @@ public class Ponto {
         this.HorarioSaidaM = horaSaidaM;
         this.HorarioEntradaV = horaEntradaV;
         this.HorarioSaidaV = horaSaidaV;
+        this.HorarioEntradaEx = horaEntradaEx;
+        this.HorarioSaidaEx = horaSaidaEx;
+    }
+
+    public LocalTime getHorarioEntradaEx() {
+        return HorarioEntradaEx;
+    }
+
+    public void setHorarioEntradaEx(LocalTime HorarioEntradaEx) {
+        this.HorarioEntradaEx = HorarioEntradaEx;
+    }
+
+    public LocalTime getHorarioSaidaEx() {
+        return HorarioSaidaEx;
+    }
+
+    public void setHorarioSaidaEx(LocalTime HorarioSaidaEx) {
+        this.HorarioSaidaEx = HorarioSaidaEx;
     }
 
     public LocalTime getHoraEntradaV() {

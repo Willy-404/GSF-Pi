@@ -60,6 +60,9 @@ public class VisualizarPontoController {
 
     @FXML
     private TableColumn<Ponto, LocalTime> colEntrada1;
+    
+     @FXML
+    private TableColumn<Ponto, LocalTime> colEntradaEx;
 
     @FXML
     private TableColumn<Funcionario, String> colNome;
@@ -69,6 +72,9 @@ public class VisualizarPontoController {
 
     @FXML
     private TableColumn<Ponto, LocalTime> colSaida1;
+    
+     @FXML
+    private TableColumn<Ponto, LocalTime> colSaidaEx;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -128,6 +134,8 @@ public class VisualizarPontoController {
         colSaida.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaM"));
         colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaV"));
         colSaida1.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaV"));
+        colEntradaEx.setCellValueFactory(new PropertyValueFactory<>("HorarioEntradaEx"));
+        colSaidaEx.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaEx"));
     }
     private void carregarFuncionario(){
         List<Funcionario> funcList = fmetodo.ListarFuncionario();
