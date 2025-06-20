@@ -63,7 +63,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #386b8f;">
                      <children>
-                        <TableView fx:id="TabelaPonto" layoutX="385.0" layoutY="301.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
+                        <TableView fx:id="TabelaPonto" layoutX="385.0" layoutY="301.0" onMouseClicked="#onSelectHora" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
                           <columns>
                             <TableColumn fx:id="colData" prefWidth="141.0" text="Data" />
                               <TableColumn fx:id="colEntrada" prefWidth="141.0" text="Entrada" />

@@ -96,7 +96,7 @@ public class ItemLoteDAO extends GenericDAO{
     }
     public ItemLote select(Object... parametros ) throws SQLException{
         ItemLote l = null;
-        String sql = "SELECT * FROM itemlote WHERE id = ? AND ref = ?";
+        String sql = "SELECT FROM itemlote WHERE id = ? AND ref = ?";
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
             

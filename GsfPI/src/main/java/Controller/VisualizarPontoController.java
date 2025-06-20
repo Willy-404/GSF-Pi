@@ -205,6 +205,13 @@ public class VisualizarPontoController {
          }
     }
     
+    @FXML
+    void onSelectHora(MouseEvent event) throws IOException {
+        if(event.getClickCount() == 2){
+            Ponto p = TabelaPonto.getSelectionModel().getSelectedItem();
+            EditHorariosController.trocarTelaEditHora(TabelaPonto, f, p);
+        }
+    }
      public static void trocarVizPonto(MenuBar menuBar, Faccao f)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);

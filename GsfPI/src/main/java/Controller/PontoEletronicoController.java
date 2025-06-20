@@ -6,7 +6,7 @@ import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import static java.time.temporal.ChronoUnit.SECONDS;
+import static java.time.temporal.ChronoUnit.MINUTES;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -281,7 +281,7 @@ public class PontoEletronicoController {
     private boolean cadastroDePonto() {
         long cpfNum = Long.parseLong(txtCpfPonto.getText());
         int id = pMetodo.numId();
-        Time hora = Time.valueOf(LocalTime.now().truncatedTo(SECONDS));
+        Time hora = Time.valueOf(LocalTime.now().truncatedTo(MINUTES));
         return pMetodo.cadastroHora(cpfNum, LocalDate.now(), hora);
     }
        
@@ -307,7 +307,7 @@ public class PontoEletronicoController {
     
         @FXML
     void OnClickVoltar(ActionEvent event) throws IOException {
-     TelaHomeController.trocarTelaHome(btnVoltar, f);
+        SaidaPontoController.trocarSaidaPonto(btnVoltar, f);
     }
    
     public void setStage(Stage visuPonto) {

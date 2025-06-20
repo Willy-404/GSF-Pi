@@ -14,7 +14,7 @@ public class PontoDAO extends GenericDAO{
     Alertas alertas = new Alertas();
     public boolean cadastroHora(long cpf, LocalDate data, Time hora){
         String sql;
-        Ponto p = select(cpf);
+        Ponto p = select(cpf, data);
         int id=0;
         try{
             if(p == null){
@@ -53,7 +53,7 @@ public class PontoDAO extends GenericDAO{
     }
     
     public Ponto select(Object... parametros){
-        String sql = "SELECT* FROM registrohora WHERE Cpf = ?";
+        String sql = "SELECT FROM registrohora WHERE Cpf = ? AND DataRegistro = ?";
         Ponto p = null;
         LocalTime hem, hev, hsm, hsv, hee, hse;
         int id;
@@ -206,5 +206,19 @@ public class PontoDAO extends GenericDAO{
             System.err.println("Error executing query: " + e.getMessage());
         }
          return i;
+    }
+    
+    public boolean editarHorario(Ponto p){
+        String sql;
+         try{
+            sql ="UPDATE registrohora SET HorarioEntradaM = ?, HorarioSaidaM = ?, HorarioEntradaV = ?, HorarioSaidaV = ?, HorarioEntradaEx = ?,"
+                    + "HorarioSaidaEx = ? WHERE DataRegistro = ? AND Cpf = ?";
+            update(sql, p.getCpf(),p.getHoraEntradaM(),p.getHoraSaidaM(),p.getHoraEntradaV(),p.getHoraSaidaV(),p.getHorarioEntradaEx(),
+                    p.getHorarioSaidaEx(),p.getData());
+            return true;
+         }catch (SQLException e) {  
+            e.printStackTrace();
+            return false;
+        }
     }
 }
