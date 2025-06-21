@@ -19,18 +19,16 @@ public class ItemLoteDAO extends GenericDAO{
     Random random = new Random();
 
     public boolean cadastroSubgrupo(ItemLote l) {
-    String sql = "INSERT INTO itemlote ( id, referenciaLote, Quantidade, Tamanho, Linha) "
-            + "VALUES (?,?,?,?,?)";
-    //listarSubgrupo e fazer verificação se o id já existe não faz nada, mas se não fazer o insert? 
+    String sql = "INSERT INTO itemlote (id, referenciaLote, Quantidade, Tamanho, Linha) VALUES (?,?,?,?,?)";
     id = numIdSubGrupo();
-    try  {
-            save(sql, id, l.getRefeLote(), l.getQuantidade(), l.getTamanho(), l.getLinha());
-            return true;
-        } catch (SQLException e) {  
-            e.printStackTrace();
-            return false;
-        }
+    try {
+        save(sql,id, l.getRefeLote(), l.getQuantidade(), l.getTamanho(), l.getLinha());
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
     public List<ItemLote> listarSubgrupos(Object... parametros){
         String sql ="Select* FROM itemLote WHERE referenciaLote = ?";
         List<ItemLote> resultList = new ArrayList<ItemLote>();
@@ -44,7 +42,8 @@ public class ItemLoteDAO extends GenericDAO{
                 while (resultSet.next()) {
                     // Create a new object for each row
 
-                    ItemLote object = new ItemLote(resultSet.getInt("Quantidade"),resultSet.getString("Tamanho"),resultSet.getString("Linha"));
+                    ItemLote object = new ItemLote(resultSet.getInt("referenciaLote"),resultSet.getInt("Quantidade"),resultSet.getString("Tamanho"),
+                        resultSet.getString("Linha"),resultSet.getInt("id"));
 
                     // Add the object to the list
                     resultList.add(object);
@@ -61,23 +60,22 @@ public class ItemLoteDAO extends GenericDAO{
     } 
     
     public boolean deletarSubgrupo(ItemLote l, int id){
-    String sql = "DELETE FROM itemlote WHERE id = ? ";
-           
+    String sql = "DELETE FROM itemlote WHERE id = ?";
     try  {
-            delete(sql, id, l.getLinha(), l.getQuantidade(), l.getRefeLote(), l.getTamanho());
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        delete(sql, id);
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
     
     public boolean editarSubgrupo(ItemLote l, int id){
         //COmo atualiza no banco de dados?
     String sql = "UPDATE ItemLote SET Quantidade= ?, Tamanho=?, Linha=? Where id = ?";
     try  {
             
-            update(sql, id, l.getQuantidade(), l.getTamanho(), l.getLinha());
+            update(sql, l.getQuantidade(), l.getTamanho(), l.getLinha(), id);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,7 +94,7 @@ public class ItemLoteDAO extends GenericDAO{
     }
     public ItemLote select(Object... parametros ) throws SQLException{
         ItemLote l = null;
-        String sql = "SELECT FROM itemlote WHERE id = ? AND ref = ?";
+        String sql = "SELECT * FROM itemlote WHERE id = ? AND referenciaLote = ?";
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
             
