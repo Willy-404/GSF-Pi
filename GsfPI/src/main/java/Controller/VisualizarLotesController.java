@@ -271,6 +271,7 @@ public class VisualizarLotesController {
             if(lotePesq == null){
                 alertas.alertaError("Nenhum Lote Encontrado", "A referência não existe no sistema, digite uma referência valida!");
                 txtPesquisar.setText("");
+                carregarLotes();
             }else{
                 ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotePesq);
                 TabelaLotes.setItems(listaObLotes);

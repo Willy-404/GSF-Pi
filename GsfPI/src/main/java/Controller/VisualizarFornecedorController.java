@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Fornecedor;
 import model.FornecedorDAO;
+import model.Lotes;
 import util.Alertas;
 
 public class VisualizarFornecedorController {
@@ -122,6 +124,11 @@ public class VisualizarFornecedorController {
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
         colEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
         
+    }
+    
+     @FXML
+    public void initialize() {
+        visuFornecedor();
     }
 
     @FXML
@@ -221,7 +228,6 @@ public class VisualizarFornecedorController {
 
         VisualizarFornecedorController thc = loader.getController();
         thc.setFaccao(f);
-        thc.visuFornecedor();
         thc.setStage(home);
 
         Scene cena = new Scene(root);
@@ -257,39 +263,28 @@ public class VisualizarFornecedorController {
         this.stage = home;
     }
     
-    Fornedor fornecedorPesq;
-    FornecedorDAO metodo;
+    Fornecedor fornecedorPesq;
     @FXML
-    void OnClickPesquisar(ActionEvent event) {
+    void OnClickPesquisar(ActionEvent event) throws SQLException{
         //Pesquisa por nome do Fornecedor 
-        if(!txtPesquisar.getText().equals("")){
-            int pesquisaRef = Integer.parseInt(txtPesquisar.getText());
-            fornecedorPesq = metodo.select(pesquisaRef);
-            if(lotePesq == null){
-                alertas.alertaError("Nenhum Lote Encontrado", "A referência não existe no sistema, digite uma referência valida!");
-                txtPesquisar.setText("");
+        if(!txtPesquisa.getText().equals("")){
+            fornecedorPesq = lmetodo.pesquisa(txtPesquisa.getText());
+            if(fornecedorPesq == null){
+                alertas.alertaError("Nenhum Fornecedor Encontrado", "O Fornecedor não existe no sistema, digite um nome valido!");
+                txtPesquisa.setText("");
+                visuFornecedor();
             }else{
-                ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotePesq);
-                TabelaLotes.setItems(listaObLotes);
-
-                colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
-                colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
-                colEntrada.setCellValueFactory(new PropertyValueFactory<>("Entrada"));
-                colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
-                colColeção.setCellValueFactory(new PropertyValueFactory<>("Colecao"));
-                colTecido.setCellValueFactory(new PropertyValueFactory<>("Tecido"));
-                colMarca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
-                colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
-                colPreco.setCellValueFactory(new PropertyValueFactory<>("Preco"));
+                ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorPesq);
+                tabelaFornecedor.setItems(listaFornecedor);
+                colCnpj.setCellValueFactory(new PropertyValueFactory<>("CnpjFornecedor"));
+                colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
+                colEmail.setCellValueFactory(new PropertyValueFactory<>("UsuarioFornecedor"));
+                colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+                colEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
             }
         }else {
-            carregarLotes();
+            visuFornecedor();
         }
-    }
-    
-     @FXML
-    public void initialize() {
-        visuFornecedor();
     }
 
 }

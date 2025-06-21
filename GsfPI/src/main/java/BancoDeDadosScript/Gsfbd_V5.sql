@@ -144,6 +144,7 @@ CREATE TABLE `fornecedor` (
   `UsuarioFornecedor` varchar(30) NOT NULL,
   `Senha` varchar(10) NOT NULL,
   `Contato` varchar(20) DEFAULT NULL,
+  `endereco` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`CnpjFornecedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -154,7 +155,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
-INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL);
+INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL,NULL);
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-19 11:18:13
+-- Dump completed on 2025-06-21 17:24:17

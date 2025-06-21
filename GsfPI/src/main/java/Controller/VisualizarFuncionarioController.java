@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
@@ -265,10 +266,30 @@ public class VisualizarFuncionarioController {
         this.stage = visuFuncionario;
     }
     
+    Funcionario funcionarioPesq;
     @FXML
-    void OnClickPesquisar(ActionEvent event) {
+    void OnClickPesquisar(ActionEvent event) throws SQLException {
         //Pesquisa por nome de funcionario
-        
+         if(!txtPesquisa.getText().equals("")){
+            funcionarioPesq = lmetodo.pesquisa(txtPesquisa.getText());
+            if(funcionarioPesq == null){
+                alertas.alertaError("Nenhum Funcionário Encontrado", "O Funcionário não existe no sistema, digite um nome valido!");
+                txtPesquisa.setText("");
+                carregarFuncionarios();
+            }else{
+                ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioPesq);
+                tabelaFuncionario.setItems(listaFuncionario);
+                colCPF.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+                colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
+                colNascimento.setCellValueFactory(new PropertyValueFactory<>("DataNascimento"));
+                colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+                colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+                colSalario.setCellValueFactory(new PropertyValueFactory<>("ValorHora"));
+                colCargo.setCellValueFactory(new PropertyValueFactory<>("Cargo"));
+            }
+        }else {
+            carregarFuncionarios();
+        }
     }
 
 }
