@@ -709,6 +709,19 @@ public class CadastroLotesController {
     
     @FXML
     void onClickExcluir(ActionEvent event) {
-
+        ItemLote item = tbSubGrupo.getSelectionModel().getSelectedItem();
+        
+        if (item != null){
+            int id = item.getId();
+        
+            ItemLoteDAO excluir = new ItemLoteDAO();
+            if (!excluir.deletarSubgrupo(item, id)){
+                System.out.println("erro na exclusao");
+            }else {
+            tbSubGrupo.getItems().remove(item);
+            }
+        } else{
+            System.out.println("Nenhum subgrupo selecionado");
+        }
     }
 }
