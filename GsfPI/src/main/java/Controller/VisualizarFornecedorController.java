@@ -20,6 +20,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -71,6 +72,13 @@ public class VisualizarFornecedorController {
 
     @FXML
     private Menu menuCadastrar;
+    
+     @FXML
+    private Button btnPesquisar;
+
+    @FXML
+    private TextField txtPesquisa;
+    
     Faccao f;
     public Stage stage;
 
@@ -248,10 +256,40 @@ public class VisualizarFornecedorController {
     public void setStage(Stage home) {
         this.stage = home;
     }
+    
+    Fornedor fornecedorPesq;
+    FornecedorDAO metodo;
+    @FXML
+    void OnClickPesquisar(ActionEvent event) {
+        //Pesquisa por nome do Fornecedor 
+        if(!txtPesquisar.getText().equals("")){
+            int pesquisaRef = Integer.parseInt(txtPesquisar.getText());
+            fornecedorPesq = metodo.select(pesquisaRef);
+            if(lotePesq == null){
+                alertas.alertaError("Nenhum Lote Encontrado", "A referência não existe no sistema, digite uma referência valida!");
+                txtPesquisar.setText("");
+            }else{
+                ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotePesq);
+                TabelaLotes.setItems(listaObLotes);
 
-  /*  @FXML
+                colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
+                colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+                colEntrada.setCellValueFactory(new PropertyValueFactory<>("Entrada"));
+                colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
+                colColeção.setCellValueFactory(new PropertyValueFactory<>("Colecao"));
+                colTecido.setCellValueFactory(new PropertyValueFactory<>("Tecido"));
+                colMarca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
+                colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
+                colPreco.setCellValueFactory(new PropertyValueFactory<>("Preco"));
+            }
+        }else {
+            carregarLotes();
+        }
+    }
+    
+     @FXML
     public void initialize() {
         visuFornecedor();
-    }*/
+    }
 
 }

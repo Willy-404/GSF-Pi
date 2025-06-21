@@ -569,6 +569,7 @@ public class CadastroLotesController {
         ((Stage) menuBar.getScene().getWindow()).close();
 
     }
+    
     public static void trocarCadLotes(TableView tabela, Faccao f, Lotes l) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
@@ -596,6 +597,27 @@ public class CadastroLotesController {
 
     }
 
+    public static void trocarCadLotes(Button b, Faccao f) throws IOException {
+        Stage home = new Stage();
+        home.setMaximized(true);
+        home.setTitle("Cadastro de Lote");
+
+        URL url = new File("src/main/java/view/CadastroLotes.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        CadastroLotesController thc = loader.getController();
+        thc.setFaccao(f);
+        thc.setStage(home);
+
+        Scene cena = new Scene(root);
+        home.setScene(cena);
+        home.show();
+
+        ((Stage) b.getScene().getWindow()).close();
+
+    }
+    
     public void setStage(Stage home) {
         this.stage = home;
     }

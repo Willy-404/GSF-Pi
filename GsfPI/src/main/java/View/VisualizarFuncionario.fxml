@@ -47,11 +47,11 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnNovoFuncionario" layoutX="373.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickNovoFuncionario" text="Novo" textFill="#4d7794">
+            <Button fx:id="btnNovoFuncionario" layoutX="1073.0" layoutY="29.0" mnemonicParsing="false" onAction="#OnClickNovoFuncionario" text="Novo" textFill="#4d7794">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <TextField fx:id="txtPesquisaFuncionario" layoutX="448.0" layoutY="31.0" prefHeight="25.0" prefWidth="552.0" promptText="Digite o nome do Funcionário" />
+            <TextField fx:id="txtPesquisa" layoutX="373.0" layoutY="31.0" prefHeight="25.0" prefWidth="552.0" promptText="DIGITE O NOME DO FUNCIONÁRIO" />
             <TableView fx:id="tabelaFuncionario" layoutY="60.0" onMouseClicked="#onSelecionaItem" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
                <columns>
                   <TableColumn fx:id="colCPF" prefWidth="200.0" text="CPF" />
@@ -62,6 +62,11 @@
                   <TableColumn fx:id="colSalario" prefWidth="150.0" text="Salário" />
                   <TableColumn fx:id="colCargo" prefWidth="300.0" text="Cargo" />
                </columns></TableView>
+            <Button fx:id="btnPesquisar" layoutX="961.0" layoutY="29.0" mnemonicParsing="false" onAction="#OnClickPesquisar" text="Buscar" textFill="#4d7794">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>

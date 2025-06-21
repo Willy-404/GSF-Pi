@@ -92,13 +92,17 @@ public class VisualizarFuncionarioController {
     private Label lblFuncionarios;
 
     @FXML
-    private TextField txtPesquisaFuncionario;
+    private TextField txtPesquisa;
 
     @FXML
     private Menu menuHome;
 
     @FXML
     private Menu menuVisualizar;
+    
+     @FXML
+    private Button btnPesquisar;
+
     Faccao f;
     public Stage stage;
 
@@ -260,6 +264,11 @@ public class VisualizarFuncionarioController {
     public void setStage(Stage visuFuncionario) {
         this.stage = visuFuncionario;
     }
-
+    
+    @FXML
+    void OnClickPesquisar(ActionEvent event) {
+        //Pesquisa por nome de funcionario
+        
+    }
 
 }

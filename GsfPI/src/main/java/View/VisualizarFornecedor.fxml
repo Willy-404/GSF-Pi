@@ -47,10 +47,6 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnNovoFornecedor" layoutX="393.0" layoutY="32.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" textFill="#4d7794">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Button>
             <TableView fx:id="tabelaFornecedor" layoutX="187.0" layoutY="96.0" onMouseClicked="#onSelecionaItem" prefHeight="794.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
               <columns>
                 <TableColumn fx:id="colCnpj" prefWidth="309.0" style="-fx-backgorund-color: #386b8f;" text="CNPJ" />
@@ -60,7 +56,17 @@
                   <TableColumn fx:id="colTelefone" prefWidth="318.0" style="-fx-backgorund-color: #386b8f;" text="Telefone" />
               </columns>
             </TableView>
-            <TextField layoutX="467.0" layoutY="32.0" prefHeight="25.0" prefWidth="552.0" promptText="DIGITE O NOME DO FORNECEDOR" />
+            <TextField layoutX="392.0" layoutY="32.0" prefHeight="25.0" prefWidth="552.0" promptText="DIGITE O NOME DO FORNECEDOR" />
+            <Button fx:id="btnNovoFornecedor" layoutX="1083.0" layoutY="30.0" mnemonicParsing="false" onAction="#OnClickNovoFornecedor" text="Novo" textFill="#4d7794">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPesquisar" layoutX="971.0" layoutY="30.0" mnemonicParsing="false" onAction="#OnClickPesquisar" text="Buscar" textFill="#4d7794">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>
