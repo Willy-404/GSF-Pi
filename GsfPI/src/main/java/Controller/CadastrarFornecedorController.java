@@ -433,7 +433,7 @@ public class CadastrarFornecedorController {
                  
                  Perfil p = new Perfil(CNPJFornecedor, EmailAcesso, Senha, perfil);
                 PerfilDAO pmetodo = new PerfilDAO();
-                pmetodo.editarPerfil(p, CNPJFornecedor);
+                pmetodo.editarPerfilCnpj(p, CNPJFornecedor);
                 
                  VisualizarFornecedorController.trocarVizFornecedor(btnCadastrarForn, f);
             }

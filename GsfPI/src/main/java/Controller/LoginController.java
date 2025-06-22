@@ -29,6 +29,9 @@ private Connection conexao;
     
     @FXML
     private Hyperlink LinkCadastrar;
+    
+     @FXML
+    private Hyperlink LinkRecuperar;
  
     @FXML
     private Button btnConfirmar;
@@ -96,7 +99,7 @@ private Connection conexao;
     
     
     //Metodo para trocar para a tela de login
-    public void trocarLogin(Button btnTroca)throws IOException {
+    public static void trocarLogin(Button btnTroca)throws IOException {
             Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Login");
@@ -114,7 +117,7 @@ private Connection conexao;
     
       @FXML
     void OnClickLinkCadastro(ActionEvent event) throws IOException {
- Stage cadatrar = new Stage();
+        Stage cadatrar = new Stage();
         cadatrar.setMaximized(true);
         cadatrar.setTitle("Cadastro");
 
@@ -129,6 +132,23 @@ private Connection conexao;
         ((Stage) LinkCadastrar.getScene().getWindow()).close();
     }
      
+     @FXML
+    void OnClickLinkRecuperar(ActionEvent event) throws IOException {
+        Stage ponto = new Stage();
 
+        URL url = new File("src/main/java/view/SaidaPonto.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        
+        SaidaPontoController thc = loader.getController();
+        thc.verificaCaminho("Login");
+        thc.setStage(ponto);
+
+        Scene cena = new Scene(root);
+        ponto.setScene(cena);
+        ponto.show();
+        
+        ((Stage) LinkRecuperar.getScene().getWindow()).close();
+    }
 
 }

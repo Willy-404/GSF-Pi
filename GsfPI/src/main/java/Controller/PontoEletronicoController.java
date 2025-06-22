@@ -310,7 +310,7 @@ public class PontoEletronicoController {
     
         @FXML
     void OnClickVoltar(ActionEvent event) throws IOException {
-        SaidaPontoController.trocarSaidaPonto(btnVoltar, f);
+        SaidaPontoController.trocarSaidaPonto(btnVoltar, f, "Ponto");
     }
    
     public void setStage(Stage visuPonto) {

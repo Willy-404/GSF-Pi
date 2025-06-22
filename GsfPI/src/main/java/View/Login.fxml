@@ -16,7 +16,7 @@
          <children>
       
             <TextField fx:id="txtEmail" layoutX="202.0" layoutY="195.0" prefHeight="36.0" prefWidth="195.0" promptText="Email" />
-            <Button fx:id="btnConfirmar" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar">
+            <Button fx:id="btnConfirmar" layoutX="234.0" layoutY="334.0" mnemonicParsing="false" onAction="#onClickTelaHome" prefHeight="30.0" prefWidth="113.0" text="Confirmar">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -37,6 +37,7 @@
             </ImageView>
             <PasswordField fx:id="txtSenha" layoutX="203.0" layoutY="251.0" prefHeight="36.0" prefWidth="195.0" promptText="Senha" />
             <Hyperlink fx:id="LinkCadastrar" layoutX="165.0" layoutY="287.0" onAction="#OnClickLinkCadastro" text="Não possui conta? Cadastrar" textFill="#6dc7f4" />
+            <Hyperlink fx:id="LinkRecuperar" layoutX="165.0" layoutY="305.0" onAction="#OnClickLinkRecuperar" text="Esqueceu a senha? Recuperar" textFill="#6dc7f4" />
       
          </children>
       </AnchorPane>

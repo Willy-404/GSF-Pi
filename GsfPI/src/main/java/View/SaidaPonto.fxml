@@ -9,12 +9,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="199.0" prefWidth="599.0" style="-fx-background-color: #386b8f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="Controller.SaidaPontoController">
+<AnchorPane id="AnchorPane" prefHeight="199.0" prefWidth="599.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SaidaPontoController">
    <children>
-      <Label layoutX="46.0" layoutY="81.0" text="Por medidas de segurança, digite sua senha para poder sair" textFill="WHITE" />
-      <PasswordField fx:id="txtSenha" layoutX="134.0" layoutY="40.0" prefHeight="26.0" prefWidth="405.0" promptText="Digite a senha do perfil" />
-      <Label layoutX="46.0" layoutY="39.0" prefHeight="27.0" prefWidth="78.0" text="Senha" textFill="WHITE">
+      <Label fx:id="lblInfo" layoutX="38.0" layoutY="101.0" text="Por medidas de segurança, digite sua senha para poder sair" textFill="WHITE" />
+      <PasswordField fx:id="txtSenha" layoutX="132.0" layoutY="66.0" prefHeight="26.0" prefWidth="405.0" promptText="Digite a senha do perfil" />
+      <Label fx:id="lblSenha" layoutX="38.0" layoutY="65.0" prefHeight="27.0" prefWidth="78.0" text="Senha:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -40,5 +39,11 @@
             </Button>
          </children>
       </GridPane>
+      <Label fx:id="lblEmail" layoutX="38.0" layoutY="25.0" prefHeight="27.0" prefWidth="78.0" text="Email:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txtEmail" layoutX="132.0" layoutY="25.0" prefHeight="26.0" prefWidth="405.0" promptText="Digite o email do perfil" />
    </children>
 </AnchorPane>
