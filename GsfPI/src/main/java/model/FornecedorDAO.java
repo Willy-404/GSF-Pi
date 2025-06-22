@@ -68,6 +68,30 @@ public class FornecedorDAO extends GenericDAO {
         return resultList;
     }
 
+    public Fornecedor pesquisa( Object... parametros ) throws SQLException {
+         String sql ="Select* FROM fornecedor WHERE NomeRepreFornecedor = ? ";
+        Fornecedor l = null;
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            
+            for (int i = 0; i < parametros.length; i++) {
+                 preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                
+                    Fornecedor object = new Fornecedor(resultSet.getLong("CnpjFornecedor"), resultSet.getString("NomeRepreFornecedor"),
+                        resultSet.getString("UsuarioFornecedor"), resultSet.getString("Senha"), resultSet.getString("Contato"), resultSet.getString("endereco"));
+
+                    // Add the object to the list
+                    l = object;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        return l; 
+    }
  
     public long getCNPJFornecedor() {
         return CNPJFornecedor;

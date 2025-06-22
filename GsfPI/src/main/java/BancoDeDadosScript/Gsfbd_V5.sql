@@ -18,64 +18,6 @@ USE `gsf`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `empresa`
---
-
-DROP TABLE IF EXISTS `empresa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `empresa` (
-  `Cnpj` bigint NOT NULL,
-  `NomeEmpresa` varchar(45) NOT NULL,
-  `Telefone` varchar(45) NOT NULL,
-  `EmailContato` varchar(45) NOT NULL,
-  `DataFundacao` varchar(45) NOT NULL,
-  `idEndereco` int DEFAULT NULL,
-  PRIMARY KEY (`Cnpj`),
-  KEY `idEndereco_idx` (`idEndereco`),
-  CONSTRAINT `idEndereco` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`idEndereco`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `empresa`
---
-
-LOCK TABLES `empresa` WRITE;
-/*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `endereco`
---
-
-DROP TABLE IF EXISTS `endereco`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `endereco` (
-  `idEndereco` int NOT NULL,
-  `Cep` char(9) NOT NULL,
-  `Rua` varchar(40) DEFAULT NULL,
-  `Complemento` varchar(30) DEFAULT NULL,
-  `Bairro` varchar(30) DEFAULT NULL,
-  `Numero` int NOT NULL,
-  `Cidade` varchar(30) NOT NULL,
-  `Estado` varchar(20) NOT NULL,
-  PRIMARY KEY (`idEndereco`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `endereco`
---
-
-LOCK TABLES `endereco` WRITE;
-/*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `faccao`
 --
 
@@ -144,6 +86,7 @@ CREATE TABLE `fornecedor` (
   `UsuarioFornecedor` varchar(30) NOT NULL,
   `Senha` varchar(10) NOT NULL,
   `Contato` varchar(20) DEFAULT NULL,
+  `endereco` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`CnpjFornecedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -154,7 +97,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
-INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL);
+INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL,NULL);
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,4 +238,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-19 11:18:13
+-- Dump completed on 2025-06-21 22:13:15

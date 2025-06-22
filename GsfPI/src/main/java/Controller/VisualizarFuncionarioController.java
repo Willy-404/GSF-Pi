@@ -3,10 +3,9 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Fornecedor;
 import model.Funcionario;
 import model.FuncionarioDAO;
 import util.Alertas;
@@ -265,10 +265,30 @@ public class VisualizarFuncionarioController {
         this.stage = visuFuncionario;
     }
     
+    Funcionario funcionarioPesq;
+    FuncionarioDAO metodo;
     @FXML
-    void OnClickPesquisar(ActionEvent event) {
-        //Pesquisa por nome de funcionario
-        
+    void OnClickPesquisar(ActionEvent event) throws SQLException {
+        //Pesquisa por nome do Fornecedor 
+        if(!txtPesquisa.getText().equals("")){
+            funcionarioPesq = metodo.pesquisa(txtPesquisa.getText());
+            if(funcionarioPesq == null){
+                alertas.alertaError("Nenhum Funcionário Encontrado", "Funcionário não registrado no sistema, digite um Funcionário válido!");
+                txtPesquisa.setText("");
+            }else{
+                ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioPesq);
+                tabelaFuncionario.setItems(listaFuncionario);
+                colCPF.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+                colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
+                colNascimento.setCellValueFactory(new PropertyValueFactory<>("DataNascimento"));
+                colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+                colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+                colSalario.setCellValueFactory(new PropertyValueFactory<>("ValorHora"));
+                colCargo.setCellValueFactory(new PropertyValueFactory<>("Cargo"));
+            }
+        }else {
+            carregarFuncionarios();
+        }
     }
-
+    
 }

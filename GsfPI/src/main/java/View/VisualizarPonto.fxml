@@ -42,7 +42,7 @@
       </MenuBar>
    </top>
    <center>
-            <SplitPane dividerPositions="0.26944444444444443" prefHeight="557.0" prefWidth="992.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.20415993537964455" prefHeight="557.0" prefWidth="992.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #386b8f;">
                      <children>
@@ -57,8 +57,12 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtPesquisa" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="342.0" promptText="Digite o nome do Funcionário" />
-                        <Button fx:id="btnBuscar" layoutX="370.0" layoutY="55.0" mnemonicParsing="false" text="Buscar" />
+                        <TextField fx:id="txtPesquisa" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="342.0" promptText="DIGITE O NOME DO FUNCIONÁRIO" />
+                  <Button fx:id="btnPesquisa" layoutX="371.0" layoutY="53.0" mnemonicParsing="false" onAction="#onClickPesquisa" text="Buscar" textFill="#4d7794">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #386b8f;">
@@ -100,6 +104,11 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
+                  <Button fx:id="btnPesquisaMes" layoutX="589.0" layoutY="43.0" mnemonicParsing="false" onAction="#onClickPesquisaMes" text="Buscar" textFill="#4d7794">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                      </children>
                   </AnchorPane>
               </items>

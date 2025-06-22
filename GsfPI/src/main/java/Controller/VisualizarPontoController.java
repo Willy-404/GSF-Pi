@@ -3,8 +3,10 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +32,7 @@ import model.Funcionario;
 import model.FuncionarioDAO;
 import model.Ponto;
 import model.PontoDAO;
+import util.Alertas;
 
 public class VisualizarPontoController {
 
@@ -43,7 +46,7 @@ public class VisualizarPontoController {
     @FXML
     private ComboBox<String> cbMes;
     
-        @FXML
+    @FXML
     private TableView<Funcionario> TabelaIdentificação;
 
     @FXML
@@ -114,6 +117,10 @@ public class VisualizarPontoController {
 
     @FXML
     private TextField txtPesquisa;
+    
+    @FXML
+    private Button btnPesquisaMes;
+    
     Faccao f;
 
     public void setFaccao(Faccao f) {
@@ -123,6 +130,8 @@ public class VisualizarPontoController {
     PontoDAO pmetodo = new PontoDAO();
     FuncionarioDAO fmetodo = new FuncionarioDAO();
     public Stage stage;
+    Alertas alertas = new Alertas();
+    
     private void carregarPonto(long cpf) {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Ponto> pontoList = pmetodo.listarPontos(cpf);
@@ -149,6 +158,7 @@ public class VisualizarPontoController {
     @FXML
     public void initialize() {
         carregarFuncionario();
+        btnPesquisaMes.setVisible(false);
     }
 
     @FXML
@@ -200,7 +210,7 @@ public class VisualizarPontoController {
              txtCpf.setText(cpf);
              txtNome.setText(fun.getNomeFuncionario());
              cbMes.getItems().addAll("JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO");
-
+             btnPesquisaMes.setVisible(true);
              carregarPonto(fun.getCpf());
          }
     }
@@ -254,6 +264,104 @@ public class VisualizarPontoController {
 
     public void setStage(Stage visuPonto) {
         this.stage = visuPonto;
+    }
+    
+    Funcionario funcionarioPesq;
+    @FXML
+    void onClickPesquisa(ActionEvent event) throws SQLException{
+        //Pesquisa pelo nome do funcionario
+        if(!txtPesquisa.getText().equals("")){
+            funcionarioPesq = fmetodo.pesquisa(txtPesquisa.getText());
+            if(funcionarioPesq == null){
+                alertas.alertaError("Nenhum Funcionário Encontrado", "O Funcionário não existe no sistema, digite um nome valido!");
+                txtPesquisa.setText("");
+                carregarFuncionario();
+            }else{
+                ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioPesq);
+                TabelaIdentificação.setItems(listaFuncionario);
+                colCpf.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+                colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
+            }
+        }else {
+            carregarFuncionario();
+        }
+    }
+    
+    List<Ponto> pontoPesq = new ArrayList<>();
+    @FXML
+    void onClickPesquisaMes(ActionEvent event) throws SQLException{
+        //Pesquisa dos meses de horario 
+        String sql;
+        long cpf = Long.parseLong(txtCpf.getText());
+        if(cbMes.getSelectionModel().getSelectedItem() !=  null){
+            if(cbMes.getSelectionModel().getSelectedItem().equals("JANEIRO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 1";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("FEVEREIRO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 2";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("MARÇO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 3";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("ABRIL")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 4";
+               pontoPesq = pmetodo.pesquisa(sql);  
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("MAIO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 5";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("JUNHO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 6";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("JULHO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 7";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("AGOSTO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 8";
+               pontoPesq = pmetodo.pesquisa(sql);  
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("SETEMBRO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 9";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("OUTUBRO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 10";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("NOVEMBRO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 11";
+               pontoPesq = pmetodo.pesquisa(sql); 
+               
+            }else if(cbMes.getSelectionModel().getSelectedItem().equals("DEZEMBRO")){
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 12";
+               pontoPesq = pmetodo.pesquisa(sql); 
+            }
+            
+            if(pontoPesq == null){
+                alertas.alertaError("Nenhum Registro nesse mês foi Encontrado", "O Registro desse mês não existe no sistema, selecione um mês com registros validos!");
+                txtPesquisa.setText("");
+                carregarPonto(cpf);
+            }else{
+                ObservableList<Ponto> listaObPonto = FXCollections.observableArrayList(pontoPesq);
+                TabelaPonto.setItems(listaObPonto);
+
+                colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+                colEntrada.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaM"));
+                colSaida.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaM"));
+                colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaV"));
+                colSaida1.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaV"));
+                colEntradaEx.setCellValueFactory(new PropertyValueFactory<>("HorarioEntradaEx"));
+                colSaidaEx.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaEx"));
+            }
+        }else {
+            carregarPonto(cpf);
+        }
     }
 
 }

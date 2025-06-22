@@ -100,7 +100,33 @@ public class FuncionarioDAO extends GenericDAO {
 
         return resultList;
     }
-
+    
+    public Funcionario pesquisa( Object... parametros ) throws SQLException {
+         String sql ="Select* FROM funcionario WHERE NomeFuncionario = ? ";
+        Funcionario l = null;
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            
+            for (int i = 0; i < parametros.length; i++) {
+                 preparedStatement.setObject(i + 1, parametros[i]);
+            }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                
+                     LocalDate dataNascimento = LocalDate.parse(resultSet.getString("DataNascimento"));
+                    
+                    Funcionario object = new Funcionario(resultSet.getLong("Cpf"), resultSet.getString("NomeFuncionario"),
+                        dataNascimento, resultSet.getString("Telefone"), resultSet.getString("Email"),
+                        resultSet.getFloat("ValorHora"),resultSet.getString("Cargo"));
+                    // Add the object to the list
+                    l = object;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+        return l; 
+    }
 
     public boolean editarFuncionario(Funcionario f, long Cpf) {
         String sql = "UPDATE funcionario SET Cpf = ?, NomeFuncionario =  ?, DataNascimento = ?, Telefone = ?, Email = ?, ValorHora = ?, Cargo = ? WHERE Cpf = ? ";

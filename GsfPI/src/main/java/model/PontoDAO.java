@@ -22,8 +22,7 @@ public class PontoDAO extends GenericDAO{
                 sql = "INSERT INTO registrohora (idRegistroHora,Cpf,DataRegistro, HorarioEntradaM) VALUES (?,?,?,?)";
                 save(sql, id, cpf, data, hora);
                 return true;
-            }
-             if(p.getHoraSaidaM() == null){
+            }else if(p.getHoraSaidaM() == null){
                 sql ="UPDATE registrohora SET HorarioSaidaM = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, hora, data);
                 return true;
@@ -44,7 +43,9 @@ public class PontoDAO extends GenericDAO{
                  update(sql, cpf, hora, data);
                 return true;
             }else{
-               return false;
+                alertas.alertaError("Cadastros Feitos para o dia de hoje", "Foram feitos os 6 registros do dia de hoje."
+                        + "Chame um responsavel para fazer o registro de forma Manual!");
+                return false;
             }
         }catch (SQLException e) {  
             e.printStackTrace();
@@ -185,6 +186,71 @@ public class PontoDAO extends GenericDAO{
                 }
             }
         }  catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+
+        return lista;
+    }
+    
+    public List<Ponto> pesquisa(String sql){
+        List<Ponto> lista = new ArrayList<>();
+         LocalTime hem, hev, hsm, hsv, hee, hse;
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                     if(rs.getTime("HorarioEntradaM") == null){
+                        hem = null;
+                    }else{
+                        hem = rs.getTime("HorarioEntradaM").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaM") == null){
+                        hsm = null;
+                    }else{
+                        hsm = rs.getTime("HorarioSaidaM").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioEntradaV") == null){
+                        hev = null;
+                    }else{
+                        hev = rs.getTime("HorarioEntradaV").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaV") == null){
+                        hsv = null;
+                    }else{
+                        hsv = rs.getTime("HorarioSaidaV").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioEntradaEx") == null){
+                        hee = null;
+                    }else{
+                        hee = rs.getTime("HorarioEntradaEx").toLocalTime();
+                    }
+                    
+                    if(rs.getTime("HorarioSaidaEx") == null){
+                        hse = null;
+                    }else{
+                        hse = rs.getTime("HorarioSaidaEx").toLocalTime();
+                    }
+                    
+                    Ponto ponto = new Ponto(
+                        rs.getInt("idRegistroHora"),
+                        rs.getLong("Cpf"),
+                        rs.getDate("DataRegistro").toLocalDate(),
+                        hem,
+                        hsm,
+                        hev,
+                        hsv, 
+                        hee,
+                        hse
+                    );
+                    lista.add(ponto);
+                }
+            }
+        }catch (SQLException e) {
             System.err.println("Error executing query: " + e.getMessage());
         }
 
