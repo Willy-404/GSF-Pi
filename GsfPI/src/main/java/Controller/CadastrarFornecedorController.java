@@ -425,16 +425,14 @@ public class CadastrarFornecedorController {
             String Endereco = txtEndereco.getText();
             TipoPerfil perfil = TipoPerfil.FORNECEDOR;
             
+            Perfil p = new Perfil(CNPJFornecedor, EmailAcesso, Senha, perfil);
+            PerfilDAO pmetodo = new PerfilDAO();
+            
             Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone, Endereco);
-            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true){
+            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true && pmetodo.editarPerfilCnpj(p, cnpjnum) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
                  alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
-                 
-                 Perfil p = new Perfil(CNPJFornecedor, EmailAcesso, Senha, perfil);
-                PerfilDAO pmetodo = new PerfilDAO();
-                pmetodo.editarPerfilCnpj(p, CNPJFornecedor);
-                
                  VisualizarFornecedorController.trocarVizFornecedor(btnCadastrarForn, f);
             }
         }

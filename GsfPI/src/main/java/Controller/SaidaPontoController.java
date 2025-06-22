@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
@@ -39,7 +40,7 @@ public class SaidaPontoController {
     private Label lblSenha;
 
     @FXML
-    private PasswordField txtEmail;
+    private TextField txtEmail;
 
     @FXML
     private PasswordField txtSenha;
@@ -77,7 +78,7 @@ public class SaidaPontoController {
                 LoginController.trocarLogin(btnConfirmar);
             }
         }else{
-            if(txtSenha.getText() == f.getSenha()){
+            if(txtSenha.getText().equals(f.getSenha())){
                 TelaHomeController.trocarTelaHome(btnConfirmar, f);
             }else{
                 alertas.alertaError("Senha incorreta", "Digite uma senha valida!");  

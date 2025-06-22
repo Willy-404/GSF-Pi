@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +23,7 @@ import model.FaccaoDAO;
 import model.Fornecedor;
 import model.FornecedorDAO;
 import model.Perfil;
+import model.PerfilDAO;
 import model.TipoPerfil;
 import util.Alertas;
 import util.Validacao;
@@ -215,12 +214,48 @@ public class VisualizarPerfilController {
         String SenhaT = txtSenha.getText();
         String TelefoneT = txtContato.getText();
         String EnderecoT = txtEndereco.getText();
+        PerfilDAO pmetodo = new PerfilDAO();
         
-        //Pegando as informações da Faccao atual
+        if (validacao.ValidaFormatoCnpj(txtCnpj.getText())) {
+            return;
+        } else if ((validacao.ValidaTamanhoText(18,txtCnpj.getText()))&& (validacao.ValidaTamanhoText(14,txtCnpj.getText()))) {
+            alertas.alertaError("Tamanho do campo CNPJ Incompativel","Tamanho do texto digitado no campo CNPJ fora do permitido!");
+            return;
+        }else if(validacao.ItemCNPJnoSistema(txtCnpj.getText(), "fornecedor", "CnpjFornecedor", cnpjT)){
+                return;
+         }else if(validacao.itemisEmpty(txtCnpj.getText(),"CNPJ")){
+            return;
+            
+         }else if(validacao.itemisEmpty(txtEmail.getText(),"Email")){
+            return;
+        }else if(validacao.ValidaFormatEmail(txtEmail.getText())){
+            return;
+        }else if(validacao.ItemEmailnoSistema(txtEmail.getText(), "fornecedor", "UsuarioFornecedor", txtEmail.getText())){
+            return;
+            
+         }else if(validacao.itemisEmpty(txtContato.getText(),"Contato")){
+            return;
+        }else if(validacao.ValidaFormatTell(txtContato.getText())){
+            return;
+        }else if ((validacao.ValidaTamanhoText(15,txtContato.getText())) && (validacao.ValidaTamanhoText(11,txtContato.getText()))) {
+            alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
+            return;
+            
+         }else if(validacao.itemisEmpty(txtNome.getText(),"Nome")){
+            return;
+            
+         }else if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
+            return;
+         }else if(txtSenha.getText().length() > 20){
+            alertas.alertaError("Tamanho do campo Senha Incompativel","Tamanho do texto digitado no campo Senha fora do permitido!");
+            return;
+          
+         }
+        //fazendo o edit de Perfil e dos respectivos usuarios
         if(isFaccao){
             long id = (faccao.getCNPJFaccao());
              TipoPerfil perfil = TipoPerfil.FACCAO;
-
+             
             Faccao fTroca = new Faccao(cnpjT,NomeRepreT,EmailAcessoT,SenhaT,TelefoneT);
             Perfil Ptroca = new Perfil(cnpjT, EmailAcessoT, SenhaT, perfil);
             FaccaoDAO fmetodo = new FaccaoDAO();
@@ -229,7 +264,7 @@ public class VisualizarPerfilController {
             alerta.setHeaderText("Deseja fazer a edição das informações?");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    if(fmetodo.editarFaccao(fTroca, id) != true){
+                    if(fmetodo.editarFaccao(fTroca, id) != true && pmetodo.editarPerfilCnpj(Ptroca, id) != true){
                         alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                     }else{
                         alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
@@ -244,6 +279,9 @@ public class VisualizarPerfilController {
                 }
             });     
         }else{
+           if(validacao.itemisEmpty(txtEndereco.getText(),"Endereço")){
+                return; 
+           }
             long id = (forne.getCnpjFornecedor());
             TipoPerfil perfil = TipoPerfil.FORNECEDOR;
             
@@ -255,7 +293,7 @@ public class VisualizarPerfilController {
             alerta.setHeaderText("Deseja fazer a edição das informações?");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    if(fmetodo.editarFornecedor(fTroca, id) != true){
+                    if(fmetodo.editarFornecedor(fTroca, id) != true && pmetodo.editarPerfilCnpj(Ptroca, id) != true){
                         alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                     }else{
                         alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
