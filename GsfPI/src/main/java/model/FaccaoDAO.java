@@ -1,6 +1,10 @@
 package model;
 
 import Controller.LoginController;
+import dal.ConexaoBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -59,7 +63,30 @@ public class FaccaoDAO extends GenericDAO {
          }
     }
     
-   
+   public Faccao selecionar(Object... parametros){
+       Faccao f = null;
+       String sql ="Select* FROM faccao WHERE CnpjFaccao = ? ";
+        try (Connection connection = ConexaoBD.conectar();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+            
+            for (int i = 0; i < parametros.length; i++) {
+            preparedStatement.setObject(i + 1, parametros[i]);
+        }
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                
+                    Faccao object = new Faccao(rs.getLong("CnpjFaccao"), rs.getString("NomeRepreFaccao"), rs.getString("EmailAcesso"), 
+                            rs.getString("Senha"), rs.getString("Telefone"));
+                    
+                    f = object;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+        }
+       
+       return f;
+   }
 
     public long getCNPJFaccao() {
         return CnpjFaccao;

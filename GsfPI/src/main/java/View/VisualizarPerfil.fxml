@@ -267,11 +267,21 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                                <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextField fx:id="txtEndereco" prefHeight="30.0" prefWidth="300.0" />
+                           </children></FlowPane>
                                 <FlowPane alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="200.0">
                                     <padding>
                                         <Insets right="20.0" />
                                     </padding>
+                           <children>
+                              <Label fx:id="lblEndereco" text="Endereco" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
                                 </FlowPane>
                             </children>
                         </GridPane>

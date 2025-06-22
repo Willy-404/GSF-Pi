@@ -23,7 +23,7 @@ public class LoginDAO extends GenericDAO{
     
  //	 Método para autenticar usuários
 	public Perfil autenticar(String login, String senha) throws SQLException {
-		String sql = "SELECT * FROM perfil WHERE EmailAcesso=? AND Senha=?";
+		String sql = "SELECT * FROM perfil WHERE email=? AND senha=?";
 		Perfil p = null;
 		Connection con = conectarDAO();
 		if (con != null) {

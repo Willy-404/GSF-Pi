@@ -3,6 +3,9 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -18,6 +22,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
+import model.Fornecedor;
+import model.FornecedorDAO;
 import model.Perfil;
 import model.TipoPerfil;
 import util.Alertas;
@@ -87,62 +93,91 @@ public class VisualizarPerfilController {
     
     @FXML
     private TextField txtSenha;
+    
+    @FXML
+    private Label lblEndereco;
+    
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
     
     //Retorno dos valores da faccao Logada no sistema 
     FaccaoDAO fd = new FaccaoDAO();
-    Perfil f;
+    FornecedorDAO fmetodo = new FornecedorDAO();
+    Perfil p;
+    Faccao faccao = null;
+    Fornecedor forne = null;
+    boolean isFaccao;
    public Stage stage;
    
    
-    public void setPerfil(Perfil f) {
-        this.f=f;
-        /*txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
-        txtContato.setText(f.getTelefone());
-        txtEmail.setText(f.getEmailAcesso());
-        txtNome.setText(f.getNomeRepreFaccao());
-        txtSenha.setText(f.getSenha());*/
+    public void setPerfil(Perfil f) throws SQLException {
+        this.p=f;
+        if(f.getTipoPerfil().toString().equals("Faccao")){
+           faccao = fd.selecionar(f.getCNPJ());
+           txtCnpj.setText(String.valueOf(faccao.getCNPJFaccao()));
+           txtContato.setText(faccao.getTelefone());
+           txtEmail.setText(faccao.getEmailAcesso());
+           txtNome.setText(faccao.getNomeRepreFaccao());
+           txtSenha.setText(faccao.getSenha()); 
+           lblEndereco.setVisible(false);
+           txtEndereco.setVisible(false);
+           isFaccao = true;
+        }else{
+            System.out.println(f.getCNPJ()+ " Fornecedor");
+            forne = fmetodo.selecionar(f.getCNPJ());
+            txtCnpj.setText(String.valueOf(forne.getCnpjFornecedor()));
+            txtNome.setText(forne.getNomeRepreFornecedor());
+            txtEmail.setText(forne.getUsuarioFornecedor());
+            txtSenha.setText(forne.getSenha());
+            txtContato.setText(forne.getTelefone());
+            
+            lblEndereco.setVisible(true);
+            txtEndereco.setVisible(true); 
+            txtEndereco.setText(forne.getEndereco());
+            
+            isFaccao = false;
+        }
+        
     }
         
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
-       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, p);
     }
 
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
-        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, p);
     }
 
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
-        CadastroLotesController.trocarCadLotes(MenuBar, f);
+        CadastroLotesController.trocarCadLotes(MenuBar, p);
     }
 
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
-        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, p);
     }
 
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
-         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, p);
     }
 
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
-        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+        VisualizarLotesController.trocarVizLotes(MenuBar, p);
     }
 
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
-        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+        VisualizarPontoController.trocarVizPonto(MenuBar, p);
     }
 
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
-        TelaHomeController.trocarTelaHome(MenuBar, f);
+        TelaHomeController.trocarTelaHome(MenuBar, p);
     }
     
     @FXML
@@ -154,7 +189,7 @@ public class VisualizarPerfilController {
         alerta.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try{
-                lc.trocarLogin(btnSairDoPerfil);
+                    lc.trocarLogin(btnSairDoPerfil);
                 }catch(IOException e){
                     e.printStackTrace();
                 }
@@ -167,42 +202,77 @@ public class VisualizarPerfilController {
       @FXML
     void onClickVoltar(ActionEvent event) throws IOException {
         //Fazer validação para ver se algum dado foi alterado para mostrar o alert CONFIRMATION
-        TelaHomeController.trocarTelaHome(btnVoltar, f);
+        TelaHomeController.trocarTelaHome(btnVoltar, p);
     }
     
      @FXML
     void OnClickEditar(ActionEvent event) throws IOException {
         //seleciona o id da faccao que será modificada
-        /*long id = (f.getCNPJFaccao());
+        long id = (faccao.getCNPJFaccao());
         
-        //Pegando as informações da Faccao atual
         long cnpjT = Long.parseLong(txtCnpj.getText());
-        String NomeRepreFaccaoT = txtNome.getText();
+        String NomeRepreT = txtNome.getText();
         String EmailAcessoT = txtEmail.getText();
         String SenhaT = txtSenha.getText();
         String TelefoneT = txtContato.getText();
-        TipoPerfil perfilT = TipoPerfil.FACCAO;
+        String EnderecoT = txtEndereco.getText();
         
-        Faccao fTroca = new Faccao(cnpjT,NomeRepreFaccaoT,EmailAcessoT,SenhaT,TelefoneT, perfilT);
-        FaccaoDAO fmetodo = new FaccaoDAO();
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Editar?");
-        alerta.setHeaderText("Deseja fazer a edição das informações?");
-        alerta.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                if(fmetodo.editarFaccao(fTroca, id) != true){
-                    alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+        //Pegando as informações da Faccao atual
+        if(isFaccao){
+             TipoPerfil perfil = TipoPerfil.FACCAO;
+
+            Faccao fTroca = new Faccao(cnpjT,NomeRepreT,EmailAcessoT,SenhaT,TelefoneT);
+            Perfil Ptroca = new Perfil(cnpjT, EmailAcessoT, SenhaT, perfil);
+            FaccaoDAO fmetodo = new FaccaoDAO();
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Editar?");
+            alerta.setHeaderText("Deseja fazer a edição das informações?");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    if(fmetodo.editarFaccao(fTroca, id) != true){
+                        alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+                    }else{
+                        alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                        try {
+                            setPerfil(Ptroca);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }else{
-                    alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
-                    setFaccao(fTroca);
+                    alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
                 }
-            }else{
-                alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
-            }
-        });   */  
+            });     
+        }else{
+            TipoPerfil perfil = TipoPerfil.FORNECEDOR;
+            
+            Fornecedor fTroca = new Fornecedor(cnpjT,NomeRepreT, EmailAcessoT, SenhaT, TelefoneT, EnderecoT);
+            Perfil Ptroca = new Perfil(cnpjT, EmailAcessoT, SenhaT, perfil);
+            FornecedorDAO fmetodo = new FornecedorDAO();
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Editar?");
+            alerta.setHeaderText("Deseja fazer a edição das informações?");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    if(fmetodo.editarFornecedor(fTroca, id) != true){
+                        alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+                    }else{
+                        alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                        try {
+                            setPerfil(Ptroca);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }else{
+                    alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
+                }
+            });     
+        }
+        
     }
 
-   public static void TrocarVisualizarPerfil(Button btnPerfil, Perfil f) throws IOException {
+   public static void TrocarVisualizarPerfil(Button btnPerfil, Perfil f) throws IOException, SQLException {
         Stage visuPerfil = new Stage();
         visuPerfil.setMaximized(true);
         visuPerfil.setTitle("Visualizar Perfil");

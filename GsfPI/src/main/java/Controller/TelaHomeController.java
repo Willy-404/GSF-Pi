@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,7 +92,7 @@ public class TelaHomeController {
         VisualizarPontoController.trocarVizPonto(btnVisualizarPonto, f);
     }
     @FXML
-    void onClickVisualizarPerfil(ActionEvent event) throws IOException {
+    void onClickVisualizarPerfil(ActionEvent event) throws IOException, SQLException {
         VisualizarPerfilController.TrocarVisualizarPerfil(btnPerfil, f);
     }
     

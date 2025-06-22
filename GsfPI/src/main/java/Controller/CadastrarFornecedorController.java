@@ -415,8 +415,7 @@ public class CadastrarFornecedorController {
             }
         }else{
             FornecedorDAO fornecedorMetodo = new FornecedorDAO();
-            System.out.println(cnpjnum +" "+ txtNome.getText()+" "+ txtContato.getText()+" "+ txtEmail.getText()+" "+ txtSenha.getText());
-            
+                
             String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
             long CNPJFornecedor = Long.parseLong(cnpjSemPontos);
             String NomeRepreFornecedor = txtNome.getText();
@@ -424,12 +423,18 @@ public class CadastrarFornecedorController {
             String EmailAcesso = txtEmail.getText();
             String Telefone = txtContato.getText();
             String Endereco = txtEndereco.getText();
+            TipoPerfil perfil = TipoPerfil.FORNECEDOR;
             
             Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone, Endereco);
             if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
                  alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                 
+                 Perfil p = new Perfil(CNPJFornecedor, EmailAcesso, Senha, perfil);
+                PerfilDAO pmetodo = new PerfilDAO();
+                pmetodo.editarPerfil(p, CNPJFornecedor);
+                
                  VisualizarFornecedorController.trocarVizFornecedor(btnCadastrarForn, f);
             }
         }
