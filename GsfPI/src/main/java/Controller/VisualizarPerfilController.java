@@ -208,7 +208,6 @@ public class VisualizarPerfilController {
      @FXML
     void OnClickEditar(ActionEvent event) throws IOException {
         //seleciona o id da faccao que será modificada
-        long id = (faccao.getCNPJFaccao());
         
         long cnpjT = Long.parseLong(txtCnpj.getText());
         String NomeRepreT = txtNome.getText();
@@ -219,6 +218,7 @@ public class VisualizarPerfilController {
         
         //Pegando as informações da Faccao atual
         if(isFaccao){
+            long id = (faccao.getCNPJFaccao());
              TipoPerfil perfil = TipoPerfil.FACCAO;
 
             Faccao fTroca = new Faccao(cnpjT,NomeRepreT,EmailAcessoT,SenhaT,TelefoneT);
@@ -244,6 +244,7 @@ public class VisualizarPerfilController {
                 }
             });     
         }else{
+            long id = (forne.getCnpjFornecedor());
             TipoPerfil perfil = TipoPerfil.FORNECEDOR;
             
             Fornecedor fTroca = new Fornecedor(cnpjT,NomeRepreT, EmailAcessoT, SenhaT, TelefoneT, EnderecoT);

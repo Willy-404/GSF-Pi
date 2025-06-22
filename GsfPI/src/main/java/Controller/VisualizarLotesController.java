@@ -88,6 +88,19 @@ public class VisualizarLotesController {
 
     public void setPerfil(Perfil f) {
         this.f = f;
+        if(f.getTipoPerfil().toString().equals("Fornecedor")){
+            itemCadFornecedor.setVisible(false);
+            itemCadFuncionario.setVisible(false);
+            itemVisuFornecedor.setVisible(false);
+            itemVisuFuncionario.setVisible(false);
+            itemVisuPonto.setVisible(false);
+        }else{
+             itemCadFornecedor.setVisible(true);
+            itemCadFuncionario.setVisible(true);
+            itemVisuFornecedor.setVisible(true);
+            itemVisuFuncionario.setVisible(true);
+            itemVisuPonto.setVisible(true);
+        }
     }
 
     Lotes itemLote;

@@ -140,6 +140,19 @@ public class CadastroLotesController {
 
     public void setPerfil(Perfil f) {
         this.f = f;
+        if(f.getTipoPerfil().toString().equals("Fornecedor")){
+            itemCadFornecedor.setVisible(false);
+            itemCadFuncionario.setVisible(false);
+            itemVisuFornecedor.setVisible(false);
+            itemVisuFuncionario.setVisible(false);
+            itemVisuPonto.setVisible(false);
+        }else{
+             itemCadFornecedor.setVisible(true);
+            itemCadFuncionario.setVisible(true);
+            itemVisuFornecedor.setVisible(true);
+            itemVisuFuncionario.setVisible(true);
+            itemVisuPonto.setVisible(true);
+        }
     }
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();

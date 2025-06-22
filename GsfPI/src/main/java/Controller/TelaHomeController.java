@@ -11,8 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import model.Faccao;
 import model.Perfil;
 
 public class TelaHomeController {
@@ -39,10 +39,41 @@ public class TelaHomeController {
     @FXML
     private Button btnVisualizarPonto;
     
+    @FXML
+    private ImageView iconFornecedor;
+
+    @FXML
+    private ImageView iconFuncionario;
+
+    @FXML
+    private ImageView iconPonto;
+
+    @FXML
+    private ImageView iconVisuPonto;
+    
     Perfil f;
 
     public void setPerfil(Perfil r) {
         this.f = r;
+        if(f.getTipoPerfil().toString().equals("Fornecedor")){
+            btnFornecedor.setVisible(false);
+            btnFuncionario.setVisible(false);
+            btnPontoEletronico.setVisible(false);
+            btnVisualizarPonto.setVisible(false);
+            iconFornecedor.setVisible(false);
+            iconFuncionario.setVisible(false);
+            iconPonto.setVisible(false);
+            iconVisuPonto.setVisible(false);
+        }else{
+            btnFornecedor.setVisible(true);
+            btnFuncionario.setVisible(true);
+            btnPontoEletronico.setVisible(true);
+            btnVisualizarPonto.setVisible(true);
+            iconFornecedor.setVisible(true);
+            iconFuncionario.setVisible(true);
+            iconPonto.setVisible(true);
+            iconVisuPonto.setVisible(true);
+        }
     }
 
     @FXML
