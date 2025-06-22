@@ -27,9 +27,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
-import model.Fornecedor;
 import model.Funcionario;
 import model.FuncionarioDAO;
+import model.Perfil;
 import util.Alertas;
 
 public class VisualizarFuncionarioController {
@@ -103,10 +103,10 @@ public class VisualizarFuncionarioController {
      @FXML
     private Button btnPesquisar;
 
-    Faccao f;
+    Perfil f;
     public Stage stage;
 
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f = f;
     }
     FuncionarioDAO lmetodo = new FuncionarioDAO();
@@ -197,7 +197,7 @@ public class VisualizarFuncionarioController {
     }
 
     //metodo de trocar para a tela vizu funcionario
-    public static void trocarVizFuncionario(MenuBar menuBar, Faccao f) throws IOException {
+    public static void trocarVizFuncionario(MenuBar menuBar, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Visualizar Funcionário");
@@ -207,7 +207,7 @@ public class VisualizarFuncionarioController {
         Parent root = loader.load();
 
         VisualizarFuncionarioController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.carregarFuncionarios();
         thc.setStage(home);
 
@@ -217,7 +217,7 @@ public class VisualizarFuncionarioController {
 
         ((Stage) menuBar.getScene().getWindow()).close();
     }
-    public static void trocarVizFuncionario(Button botao, Faccao f) throws IOException {
+    public static void trocarVizFuncionario(Button botao, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Visualizar Funcionário");
@@ -227,7 +227,7 @@ public class VisualizarFuncionarioController {
         Parent root = loader.load();
 
         VisualizarFuncionarioController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.carregarFuncionarios();
         thc.setStage(home);
 
@@ -242,14 +242,14 @@ public class VisualizarFuncionarioController {
     void OnClickNovoFuncionario(ActionEvent event) throws IOException {
         Stage cadastroFuncionario = new Stage();
         cadastroFuncionario.setMaximized(true);
-        cadastroFuncionario.setTitle("CadastroFuncionario");
+        cadastroFuncionario.setTitle("Cadastro de Funcionário");
 
         URL url = new File("src/main/java/view/CadastrarFuncionario.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
         CadastrarFuncionarioController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(cadastroFuncionario);
         thc.setTextButon("Cadastrar");
         thc.setTextLabel("Cadastro de Funcionário");

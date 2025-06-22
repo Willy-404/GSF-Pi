@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
 import model.Perfil;
+import model.TipoPerfil;
 import util.Alertas;
 import util.Validacao;
 
@@ -91,17 +92,17 @@ public class VisualizarPerfilController {
     
     //Retorno dos valores da faccao Logada no sistema 
     FaccaoDAO fd = new FaccaoDAO();
-    Faccao f;
+    Perfil f;
    public Stage stage;
    
    
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f=f;
-        txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
+        /*txtCnpj.setText(String.valueOf(f.getCNPJFaccao()));
         txtContato.setText(f.getTelefone());
         txtEmail.setText(f.getEmailAcesso());
         txtNome.setText(f.getNomeRepreFaccao());
-        txtSenha.setText(f.getSenha());
+        txtSenha.setText(f.getSenha());*/
     }
         
     @FXML
@@ -172,7 +173,7 @@ public class VisualizarPerfilController {
      @FXML
     void OnClickEditar(ActionEvent event) throws IOException {
         //seleciona o id da faccao que será modificada
-        long id = (f.getCNPJFaccao());
+        /*long id = (f.getCNPJFaccao());
         
         //Pegando as informações da Faccao atual
         long cnpjT = Long.parseLong(txtCnpj.getText());
@@ -180,7 +181,7 @@ public class VisualizarPerfilController {
         String EmailAcessoT = txtEmail.getText();
         String SenhaT = txtSenha.getText();
         String TelefoneT = txtContato.getText();
-        Perfil perfilT = Perfil.FACCAO;
+        TipoPerfil perfilT = TipoPerfil.FACCAO;
         
         Faccao fTroca = new Faccao(cnpjT,NomeRepreFaccaoT,EmailAcessoT,SenhaT,TelefoneT, perfilT);
         FaccaoDAO fmetodo = new FaccaoDAO();
@@ -198,10 +199,10 @@ public class VisualizarPerfilController {
             }else{
                 alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
             }
-        });     
+        });   */  
     }
 
-   public static void TrocarVisualizarPerfil(Button btnPerfil, Faccao f) throws IOException {
+   public static void TrocarVisualizarPerfil(Button btnPerfil, Perfil f) throws IOException {
         Stage visuPerfil = new Stage();
         visuPerfil.setMaximized(true);
         visuPerfil.setTitle("Visualizar Perfil");
@@ -211,7 +212,7 @@ public class VisualizarPerfilController {
         Parent root = loader.load();
         
           VisualizarPerfilController thc = loader.getController();
-            thc.setFaccao(f);
+            thc.setPerfil(f);
             thc.setStage(visuPerfil);
 
         Scene cena = new Scene(root);

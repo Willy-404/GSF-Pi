@@ -31,6 +31,7 @@ import model.Faccao;
 
 import model.Lotes;
 import model.LotesDAO;
+import model.Perfil;
 import util.Alertas;
 import util.Validacao;
 
@@ -82,10 +83,10 @@ public class VisualizarLotesController {
     private TextField txtPesquisar;
 
     Lotes l;
-    Faccao f;
+    Perfil f;
     public Stage stage;
 
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f = f;
     }
 
@@ -210,7 +211,7 @@ public class VisualizarLotesController {
 
     }
 
-    public static void trocarVizLotes(MenuBar menuBar, Faccao f) throws IOException {
+    public static void trocarVizLotes(MenuBar menuBar, Perfil f) throws IOException {
         Stage visuLotes = new Stage();
         visuLotes.setMaximized(true);
         visuLotes.setTitle("Visualizar Lotes");
@@ -220,7 +221,7 @@ public class VisualizarLotesController {
         Parent root = loader.load();
 
         VisualizarLotesController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(visuLotes);
         thc.carregarLotes();
 
@@ -231,7 +232,7 @@ public class VisualizarLotesController {
         ((Stage) menuBar.getScene().getWindow()).close();
     }
 
-    public static void trocarVizLotes(Button btn, Faccao f) throws IOException {
+    public static void trocarVizLotes(Button btn, Perfil f) throws IOException {
         Stage visuLotes = new Stage();
         visuLotes.setMaximized(true);
         visuLotes.setTitle("Visualizar Lotes");
@@ -241,7 +242,7 @@ public class VisualizarLotesController {
         Parent root = loader.load();
 
         VisualizarLotesController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(visuLotes);
         thc.carregarLotes();
 

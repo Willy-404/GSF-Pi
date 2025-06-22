@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import model.Faccao;
+import model.Perfil;
 import util.Alertas;
 
 public class SaidaPontoController {
@@ -41,7 +41,7 @@ public class SaidaPontoController {
         }
     }
     
-    public static void trocarSaidaPonto(Button button, Faccao f)throws IOException {
+    public static void trocarSaidaPonto(Button button, Perfil f)throws IOException {
         Stage ponto = new Stage();
         //Como deixar sem poder alterar tamanho? Será que da pra transformar em pop-up, ai quando confirmar e der certo fechar essa e a tela PontoEletronico
 
@@ -51,7 +51,7 @@ public class SaidaPontoController {
         Parent root = loader.load();
         
         SaidaPontoController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(ponto);
 
         Scene cena = new Scene(root);
@@ -68,8 +68,8 @@ public class SaidaPontoController {
         this.stage = visuPonto;
     }
     
-    Faccao f;
-    public void setFaccao(Faccao f) {
+    Perfil f;
+    public void setPerfil(Perfil f) {
         this.f = f; 
     }
 }

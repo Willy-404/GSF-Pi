@@ -28,9 +28,9 @@ CREATE TABLE `faccao` (
   `CnpjFaccao` bigint NOT NULL,
   `NomeRepreFaccao` varchar(30) NOT NULL,
   `EmailAcesso` varchar(30) NOT NULL,
-  `Senha` varchar(10) NOT NULL,
+  `Senha` varchar(20) NOT NULL,
   `Telefone` varchar(20) DEFAULT NULL,
-  `Perfil` varchar(10) NOT NULL,
+  `Apagar` varchar(10) NOT NULL,
   PRIMARY KEY (`CnpjFaccao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -84,7 +84,7 @@ CREATE TABLE `fornecedor` (
   `CnpjFornecedor` bigint NOT NULL,
   `NomeRepreFornecedor` varchar(45) NOT NULL,
   `UsuarioFornecedor` varchar(30) NOT NULL,
-  `Senha` varchar(10) NOT NULL,
+  `Senha` varchar(20) NOT NULL,
   `Contato` varchar(20) DEFAULT NULL,
   `endereco` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`CnpjFornecedor`)
@@ -197,6 +197,32 @@ INSERT INTO `lote` VALUES (12,'2025-06-05','2025-06-05',2.40,'Algoritmo','A','In
 UNLOCK TABLES;
 
 --
+-- Table structure for table `perfil`
+--
+
+DROP TABLE IF EXISTS `perfil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `perfil` (
+  `CNPJ` bigint NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `senha` varchar(20) NOT NULL,
+  `tipoPerfil` varchar(10) NOT NULL,
+  PRIMARY KEY (`CNPJ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `perfil`
+--
+
+LOCK TABLES `perfil` WRITE;
+/*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
+INSERT INTO `perfil` VALUES (12321,'ff','ff','Fornecedor'),(11111111111111,'f','f','Faccao'),(11111111111112,'f@gmail.com','f','Faccao'),(12345678901234,'banana','banana','Faccao');
+/*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registrohora`
 --
 
@@ -225,7 +251,7 @@ CREATE TABLE `registrohora` (
 
 LOCK TABLES `registrohora` WRITE;
 /*!40000 ALTER TABLE `registrohora` DISABLE KEYS */;
-INSERT INTO `registrohora` VALUES (0,10087956775,'2025-06-08','23:50:12','23:56:38',NULL,NULL,NULL,NULL);
+INSERT INTO `registrohora` VALUES (0,10087956775,'2025-06-08','23:50:12','23:56:38',NULL,NULL,NULL,NULL),(1,10087956775,'2025-06-21','22:39:00',NULL,NULL,NULL,NULL,NULL),(2,10087956775,'2025-06-21','22:40:00',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `registrohora` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -238,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-21 22:13:15
+-- Dump completed on 2025-06-21 22:49:26

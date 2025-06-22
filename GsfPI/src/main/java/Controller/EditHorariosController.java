@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Perfil;
 import model.Ponto;
 import model.PontoDAO;
 import util.Alertas;
@@ -48,7 +49,7 @@ public class EditHorariosController {
     @FXML
     private TextField txtSaidaV;
 
-    public static void trocarTelaEditHora(TableView t, Faccao f, Ponto p) throws IOException{
+    public static void trocarTelaEditHora(TableView t, Perfil f, Ponto p) throws IOException{
         Stage ponto = new Stage();
         ponto.setMaximized(true);
         ponto.setTitle("Editar Horários");
@@ -58,7 +59,7 @@ public class EditHorariosController {
         Parent root = loader.load();
         
         EditHorariosController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setValores(p);
         thc.setStage(ponto);
 
@@ -75,8 +76,8 @@ public class EditHorariosController {
         this.stage = visuPonto;
     }
     
-    Faccao f;
-    public void setFaccao(Faccao f) {
+    Perfil f;
+    public void setPerfil(Perfil f) {
         this.f = f; 
     }
     

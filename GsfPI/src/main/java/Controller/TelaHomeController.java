@@ -3,7 +3,6 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Perfil;
 
 public class TelaHomeController {
 
@@ -38,9 +38,9 @@ public class TelaHomeController {
     @FXML
     private Button btnVisualizarPonto;
     
-    Faccao f;
+    Perfil f;
 
-    public void setFaccao(Faccao r) {
+    public void setPerfil(Perfil r) {
         this.f = r;
     }
 
@@ -56,7 +56,7 @@ public class TelaHomeController {
         Parent root = loader.load();
         
         CadastroLotesController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(cadastroLote);
             
         Scene cena = new Scene(root);
@@ -99,7 +99,7 @@ public class TelaHomeController {
 
     
     //metodo para trocar a tela pro home
-    public static void trocarTelaHome(Button btnTroca, Faccao r)throws IOException {
+    public static void trocarTelaHome(Button btnTroca, Perfil p)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Home");
@@ -109,7 +109,7 @@ public class TelaHomeController {
             Parent root = loader.load();
             
             TelaHomeController thc = loader.getController();
-            thc.setFaccao(r);
+            thc.setPerfil(p);
             thc.setStage(home);
             
             Scene cena = new Scene(root);
@@ -119,7 +119,7 @@ public class TelaHomeController {
             ((Stage) btnTroca.getScene().getWindow()).close();
     }
     //metodo para trocar a tela pro home usando menubar como parametro
-     public static void trocarTelaHome(MenuBar menubar, Faccao r)throws IOException {
+     public static void trocarTelaHome(MenuBar menubar, Perfil p)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Home");
@@ -129,7 +129,7 @@ public class TelaHomeController {
             Parent root = loader.load();
             
             TelaHomeController thc = loader.getController();
-            thc.setFaccao(r);
+            thc.setPerfil(p);
             thc.setStage(home);
 
             Scene cena = new Scene(root);

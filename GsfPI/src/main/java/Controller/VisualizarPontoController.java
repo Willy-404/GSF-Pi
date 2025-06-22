@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
+import model.Perfil;
 import model.Ponto;
 import model.PontoDAO;
 import util.Alertas;
@@ -121,9 +122,9 @@ public class VisualizarPontoController {
     @FXML
     private Button btnPesquisaMes;
     
-    Faccao f;
+    Perfil f;
 
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f=f;
     }
     
@@ -222,7 +223,7 @@ public class VisualizarPontoController {
             EditHorariosController.trocarTelaEditHora(TabelaPonto, f, p);
         }
     }
-     public static void trocarVizPonto(MenuBar menuBar, Faccao f)throws IOException {
+     public static void trocarVizPonto(MenuBar menuBar, Perfil f)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
         visuPonto.setTitle("Visualizar Ponto Eletrônico");
@@ -232,7 +233,7 @@ public class VisualizarPontoController {
         Parent root = loader.load();
         
         VisualizarPontoController thc = loader.getController();
-            thc.setFaccao(f);
+            thc.setPerfil(f);
             thc.setStage(visuPonto);
 
         Scene cena = new Scene(root);
@@ -242,7 +243,7 @@ public class VisualizarPontoController {
         ((Stage) menuBar.getScene().getWindow()).close();
     }
      
-      public static void trocarVizPonto(Button button, Faccao f)throws IOException {
+      public static void trocarVizPonto(Button button, Perfil f)throws IOException {
        Stage visuPonto = new Stage();
         visuPonto.setMaximized(true);
         visuPonto.setTitle("Visualizar Ponto Eletrônico");
@@ -252,7 +253,7 @@ public class VisualizarPontoController {
         Parent root = loader.load();
         
         VisualizarPontoController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(visuPonto);
 
         Scene cena = new Scene(root);

@@ -22,9 +22,9 @@ public class LoginDAO extends GenericDAO{
 	}
     
  //	 Método para autenticar usuários
-	public Faccao autenticar(String login, String senha) throws SQLException {
-		String sql = "SELECT * FROM faccao WHERE EmailAcesso=? AND Senha=?";
-		Faccao faccao = null;
+	public Perfil autenticar(String login, String senha) throws SQLException {
+		String sql = "SELECT * FROM perfil WHERE EmailAcesso=? AND Senha=?";
+		Perfil p = null;
 		Connection con = conectarDAO();
 		if (con != null) {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -34,13 +34,11 @@ public class LoginDAO extends GenericDAO{
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-                            long CNPJFaccao = rs.getLong("CnpjFaccao");
-                            String NomeRepreFaccao = rs.getString("NomeRepreFaccao");
-                            String EmailAcesso = rs.getString("EmailAcesso");
-                            String Senha = rs.getString("Senha");
-                            String Telefone = rs.getString("Telefone");
-                            Perfil perfil = Perfil.getPerfil(rs.getString("Perfil"));
-				faccao = new Faccao(CNPJFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, perfil);
+                            long CNPJ = rs.getLong("CNPJ");
+                            String EmailAcesso = rs.getString("email");
+                            String Senha = rs.getString("senha");
+                            TipoPerfil perfil = TipoPerfil.getPerfil(rs.getString("tipoPerfil"));
+				p = new Perfil(CNPJ, EmailAcesso, Senha, perfil);
   
 			}
 
@@ -49,7 +47,7 @@ public class LoginDAO extends GenericDAO{
 			conectarDAO().close();
                         System.out.println("passou pelo banco?");
                                 
-			return faccao;
+			return p;
 		} else {
 			return null;
 			

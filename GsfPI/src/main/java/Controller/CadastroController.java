@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
 import model.Perfil;
+import model.PerfilDAO;
+import model.TipoPerfil;
 import util.Alertas;
 import util.Validacao;
 
@@ -91,6 +93,16 @@ public class CadastroController {
         } else {
             alertas.alertaInformation("Cadastro realizado com sucesso", "Seu perfil foi cadastrado com sucesso!");
             
+            String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+            long Cnpj = Long.parseLong(cnpjSemPontos);
+            String EmailAcesso = txtEmail.getText();
+            String Senha = txtSenha.getText();
+            TipoPerfil perfil = TipoPerfil.FACCAO;
+            
+            Perfil p = new Perfil(Cnpj, EmailAcesso, Senha, perfil);
+            PerfilDAO pmetodo = new PerfilDAO();
+            pmetodo.cadastroPerfil(p);
+            
             LoginController lc = new LoginController();
             lc.trocarLogin(btnCadastrar);
         }
@@ -143,8 +155,7 @@ public class CadastroController {
         String EmailAcesso = txtEmail.getText();
         String Senha = txtSenha.getText();
         String Telefone = txtTelefone.getText();
-        Perfil perfil = Perfil.FACCAO;
-        Faccao f = new Faccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha,Telefone,  perfil);
+        Faccao f = new Faccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha,Telefone);
         FaccaoDAO fmetodo = new FaccaoDAO(); 
         return fmetodo.cadastroFaccao(f);
 

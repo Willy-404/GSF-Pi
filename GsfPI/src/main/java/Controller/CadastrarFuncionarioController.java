@@ -23,9 +23,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
+import model.Perfil;
 import util.Alertas;
 import util.Validacao;
 
@@ -104,11 +104,11 @@ public class CadastrarFuncionarioController {
      @FXML
     private Label lblTitulo;
 
-    Faccao f;
+    Perfil f;
     public Stage stage;
     
 
-    public void setFaccao(Faccao r) {
+    public void setPerfil(Perfil r) {
         this.f = r;
     }
     Alertas alertas = new Alertas();
@@ -428,7 +428,7 @@ public class CadastrarFuncionarioController {
         
     }
         //Metodo para trocar pra tela Cadastrar funcionario pelo menubar
-    public static void trocarCadFuncionario(MenuBar menuBar, Faccao f) throws IOException {
+    public static void trocarCadFuncionario(MenuBar menuBar, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Cadastro de Funcionário");
@@ -438,7 +438,7 @@ public class CadastrarFuncionarioController {
         Parent root = loader.load();
         
         CadastrarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
+            thc.setPerfil(f);
             thc.setStage(home);
             thc.setTextButon("Cadastrar");
             thc.setTextLabel("Cadastro de Funcionário");
@@ -451,7 +451,7 @@ public class CadastrarFuncionarioController {
     }
     
     //Metodo pra trocar de tela para editar
-    public static void trocarCadFuncionario(TableView tabela, Faccao f, Funcionario funcionario) throws IOException {
+    public static void trocarCadFuncionario(TableView tabela, Perfil f, Funcionario funcionario) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Edição de Funcionário");
@@ -461,7 +461,7 @@ public class CadastrarFuncionarioController {
         Parent root = loader.load();
         
         CadastrarFuncionarioController thc = loader.getController();
-            thc.setFaccao(f);
+            thc.setPerfil(f);
             thc.setStage(home);
             thc.setTextButon("Editar");
             thc.setTextLabel("Edição de Funcionário");

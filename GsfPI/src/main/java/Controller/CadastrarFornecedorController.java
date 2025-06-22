@@ -23,6 +23,9 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Fornecedor;
 import model.FornecedorDAO;
+import model.Perfil;
+import model.PerfilDAO;
+import model.TipoPerfil;
 import util.Alertas;
 import util.Validacao;
 
@@ -93,10 +96,10 @@ public class CadastrarFornecedorController {
       @FXML
     private Label lblTitulo;
     
-    Faccao f;
+    Perfil f;
      public Stage stage;
      
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f=f;
     }
     Alertas alertas = new Alertas();
@@ -392,6 +395,16 @@ public class CadastrarFornecedorController {
             if (CadastroDeFornecedor() != true) { 
                 alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Fornecedor");
             } else {
+                 String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
+                long Cnpj = Long.parseLong(cnpjSemPontos);
+                String EmailAcesso = txtEmail.getText();
+                String Senha = txtSenha.getText();
+                TipoPerfil perfil = TipoPerfil.FORNECEDOR;
+            
+                Perfil p = new Perfil(Cnpj, EmailAcesso, Senha, perfil);
+                PerfilDAO pmetodo = new PerfilDAO();
+                pmetodo.cadastroPerfil(p);
+                
                 alertas.alertaInformation("Cadastro realizado com sucesso", "O Fornecedor foi cadastrado com sucesso");
                 txtCnpj.setText("");
                 txtContato.setText("");
@@ -423,7 +436,7 @@ public class CadastrarFornecedorController {
     }
     
     //metodo para trocar tela para cadastrar fornecedor
-    public static void trocarCadFornecedor(MenuBar menuBar, Faccao f)throws IOException {
+    public static void trocarCadFornecedor(MenuBar menuBar, Perfil f)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Cadastro de Fornecedor");
@@ -433,7 +446,7 @@ public class CadastrarFornecedorController {
             Parent root = loader.load();
 
             CadastrarFornecedorController thc = loader.getController();
-            thc.setFaccao(f);
+            thc.setPerfil(f);
             thc.setStage(home);
             thc.setTextButon("Cadastrar");
             thc.setTextLabel("Cadastro de Fornecedor");
@@ -446,7 +459,7 @@ public class CadastrarFornecedorController {
     }
     
      //Metodo pra trocar de tela para editar
-    public static void trocarCadFornecedor(TableView tabela, Faccao f, Fornecedor fornecedor)throws IOException {
+    public static void trocarCadFornecedor(TableView tabela, Perfil f, Fornecedor fornecedor)throws IOException {
           Stage home = new Stage();
             home.setMaximized(true);
             home.setTitle("Edição de Fornecedor");
@@ -456,7 +469,7 @@ public class CadastrarFornecedorController {
             Parent root = loader.load();
 
             CadastrarFornecedorController thc = loader.getController();
-            thc.setFaccao(f);
+            thc.setPerfil(f);
             thc.setStage(home);
             thc.setTextButon("Editar");
             thc.setTextLabel("Edição de Fornecedor");

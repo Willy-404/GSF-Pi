@@ -49,6 +49,7 @@ public class PontoDAO extends GenericDAO{
             }
         }catch (SQLException e) {  
             e.printStackTrace();
+            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Horario!");
             return false;
         }
     }

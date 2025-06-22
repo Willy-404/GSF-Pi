@@ -1,45 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package model;
 
-/**
- *
- * @author Aluno
- */
-public enum Perfil {
-    FACCAO("Faccao"),FORNECEDOR("Fornecedor");
-    
-    String nome;
-    
-    Perfil(String nome){
-        this.nome = nome;
+public class Perfil {
+    private long CNPJ;
+    private String email;
+    private String senha;
+    private TipoPerfil tipoPerfil;
+
+    public long getCNPJ() {
+        return CNPJ;
     }
 
-    public String getNome() {
-        return nome;
+    public void setCNPJ(long CNPJ) {
+        this.CNPJ = CNPJ;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    public static Perfil getPerfil(String nome){
-        if(nome.equals("Faccao")){
-            return FACCAO;
-        }if(nome.equals("Fornecedor")){
-            return FORNECEDOR;
-        }else{
-            return null;
-        }
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public String toString() {
-        return nome; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    public void setEmail(String email) {
+        this.email = email;
     }
-    
-    
-    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public TipoPerfil getTipoPerfil() {
+        return tipoPerfil;
+    }
+
+    public void setTipoPerfil(TipoPerfil tipoPerfil) {
+        this.tipoPerfil = tipoPerfil;
+    }
+
+    public Perfil(long CNPJ, String email, String senha, TipoPerfil tipoPerfil) {
+        this.CNPJ = CNPJ;
+        this.email = email;
+        this.senha = senha;
+        this.tipoPerfil = tipoPerfil;
+    }
 }

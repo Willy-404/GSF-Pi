@@ -14,14 +14,14 @@ public class FaccaoDAO extends GenericDAO {
     private String Perfil;
     LoginController lc = new LoginController();
     public boolean cadastroFaccao(Faccao f) {
-        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone, Perfil) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO faccao (CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha, Telefone) VALUES (?,?,?,?,?)";
       
         try{
-            save(sql, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone(), f.getPerfil().getNome());
+            save(sql, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone());
             
            
              return true;
-            }catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -46,10 +46,10 @@ public class FaccaoDAO extends GenericDAO {
         String EmailAcessoT = f.getEmailAcesso();
         String SenhaT = f.getSenha();
         String TelefoneT = f.getTelefone();
-        Perfil perfil = f.getPerfil();
-        String sql = "UPDATE faccao SET CnpjFaccao = ?, NomeRepreFaccao =  ?, EmailAcesso = ?, Senha = ?, Telefone = ?, perfil = ? WHERE CnpjFaccao = ? ";
+        
+        String sql = "UPDATE faccao SET CnpjFaccao = ?, NomeRepreFaccao =  ?, EmailAcesso = ?, Senha = ?, Telefone = ? WHERE CnpjFaccao = ? ";
         try{
-            update(sql,id, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone(), f.getPerfil().getNome());
+            update(sql,id, f.getCNPJFaccao(), f.getNomeRepreFaccao(), f.getEmailAcesso(), f.getSenha(), f.getTelefone());
             
             return true;
         }catch (SQLException e) {

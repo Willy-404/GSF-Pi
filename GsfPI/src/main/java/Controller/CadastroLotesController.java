@@ -34,6 +34,7 @@ import model.ItemLote;
 import model.ItemLoteDAO;
 import model.Lotes;
 import model.LotesDAO;
+import model.Perfil;
 import util.Alertas;
 import util.Validacao;
 
@@ -134,10 +135,10 @@ public class CadastroLotesController {
     @FXML
     private TextField txtQuantidade;
 
-    Faccao f;
+    Perfil f;
     public Stage stage;
 
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f = f;
     }
     Alertas alertas = new Alertas();
@@ -549,7 +550,7 @@ public class CadastroLotesController {
     }
 
     //metodo de trocar tela para cadastro lote
-    public static void trocarCadLotes(MenuBar menuBar, Faccao f) throws IOException {
+    public static void trocarCadLotes(MenuBar menuBar, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Cadastro de Lote");
@@ -559,7 +560,7 @@ public class CadastroLotesController {
         Parent root = loader.load();
 
         CadastroLotesController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(home);
 
         Scene cena = new Scene(root);
@@ -570,7 +571,7 @@ public class CadastroLotesController {
 
     }
     
-    public static void trocarCadLotes(TableView tabela, Faccao f, Lotes l) throws IOException {
+    public static void trocarCadLotes(TableView tabela, Perfil f, Lotes l) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Edição de Lote");
@@ -580,7 +581,7 @@ public class CadastroLotesController {
         Parent root = loader.load();
 
         CadastroLotesController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setTextButon("Editar");
         thc.setTextLabel("Edição de Lote");
         thc.setValoresSubGrupo(l.getReferencia());
@@ -597,7 +598,7 @@ public class CadastroLotesController {
 
     }
 
-    public static void trocarCadLotes(Button b, Faccao f) throws IOException {
+    public static void trocarCadLotes(Button b, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Cadastro de Lote");
@@ -607,7 +608,7 @@ public class CadastroLotesController {
         Parent root = loader.load();
 
         CadastroLotesController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(home);
 
         Scene cena = new Scene(root);

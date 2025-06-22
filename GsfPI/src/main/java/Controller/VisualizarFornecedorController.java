@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import model.Faccao;
 import model.Fornecedor;
 import model.FornecedorDAO;
+import model.Perfil;
 import util.Alertas;
 
 public class VisualizarFornecedorController {
@@ -80,10 +81,10 @@ public class VisualizarFornecedorController {
     @FXML
     private TextField txtPesquisa;
     
-    Faccao f;
+    Perfil f;
     public Stage stage;
 
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f = f;
     }
 
@@ -190,7 +191,7 @@ public class VisualizarFornecedorController {
     }
 
     //metodo para trocar tela para visualizar fornecedor
-    public static void trocarVizFornecedor(MenuBar menuBar, Faccao f) throws IOException {
+    public static void trocarVizFornecedor(MenuBar menuBar, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Visualizar Fornecedor");
@@ -202,7 +203,7 @@ public class VisualizarFornecedorController {
         VisualizarFornecedorController thc = loader.getController();
         thc.visuFornecedor();
         thc.setStage(home);
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         
         Scene cena = new Scene(root);
         home.setScene(cena);
@@ -211,7 +212,7 @@ public class VisualizarFornecedorController {
         ((Stage) menuBar.getScene().getWindow()).close();
     }
 
-    public static void trocarVizFornecedor(Button botao, Faccao f) throws IOException {
+    public static void trocarVizFornecedor(Button botao, Perfil f) throws IOException {
         Stage home = new Stage();
         home.setMaximized(true);
         home.setTitle("Visualizar Fornecedor");
@@ -221,7 +222,7 @@ public class VisualizarFornecedorController {
         Parent root = loader.load();
 
         VisualizarFornecedorController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.visuFornecedor();
         thc.setStage(home);
 
@@ -242,7 +243,7 @@ public class VisualizarFornecedorController {
         Parent root = loader.load();
 
         CadastrarFornecedorController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(cadastroFornecedor);
         thc.setTextButon("Cadastrar");
         thc.setTextLabel("Cadastro de Fornecedor");

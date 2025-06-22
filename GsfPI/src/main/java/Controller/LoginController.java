@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.LoginDAO;
+import model.Perfil;
 import util.Alertas;
 
 public class LoginController {
@@ -44,25 +44,25 @@ private Connection conexao;
     void onClickTelaHome(ActionEvent event) throws IOException {
         
         
-        Faccao r = null;
+        Perfil p= null;
     try {
-        r = processarLogin();
+        p = processarLogin();
     } catch (SQLException ex) {
                    System.out.println("Erro de conexao com o banco de dados");
 
     }
-        if(r == null){
+        if(p == null){
             alertas.alertaError("Informações incorretas", "Login ou senha inválidos!");
        
         }else{
-            TelaHomeController.trocarTelaHome(btnConfirmar, r);
+            TelaHomeController.trocarTelaHome(btnConfirmar, p);
         }
       
 
     }
     
     
-        public Faccao processarLogin() throws IOException, SQLException {
+        public Perfil processarLogin() throws IOException, SQLException {
         if (!dao.bancoOnline()) {
             System.out.println("Banco de dados desconectado!");
         } else if (txtEmail.getText() != null && !txtEmail.getText().isEmpty() && txtSenha.getText() != null && !txtSenha.getText().isEmpty()) {
@@ -70,9 +70,9 @@ private Connection conexao;
             String Senha = txtSenha.getText();
             
             LoginDAO loginDAO = new LoginDAO();
-            Faccao f = loginDAO.autenticar(Email, Senha);
+            Perfil p = loginDAO.autenticar(Email, Senha);
             
-            return f;
+            return p;
         } else {
             System.out.println("Verifique as informações!");
         }

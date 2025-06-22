@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +22,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Faccao;
+import model.Funcionario;
+import model.FuncionarioDAO;
+import model.Perfil;
 import model.PontoDAO;
 import util.Alertas;
 import util.Validacao;
@@ -68,10 +72,10 @@ public class PontoEletronicoController {
 
     @FXML
     private TextField txtCpfPonto;
-    Faccao f;
+    Perfil f;
     private Stage stage;
 
-    public void setFaccao(Faccao f) {
+    public void setPerfil(Perfil f) {
         this.f = f; 
     }
     
@@ -247,10 +251,10 @@ public class PontoEletronicoController {
         }
         
     }
-    
+    FuncionarioDAO fmetodo = new FuncionarioDAO();
+    Long cpfnum;
       @FXML
-    void OnClickConfirmarPonto(ActionEvent event) {
-        Long cpfnum;
+    void OnClickConfirmarPonto(ActionEvent event) throws SQLException {
         
         if(validacao.itemisEmpty(txtCpfPonto.getText(),"CPF")){
             return;
@@ -268,14 +272,13 @@ public class PontoEletronicoController {
         }
         
         if(cadastroDePonto() != true){
-            alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Horario!");
+            return;
         } else {
-            //Fazer pegar nome do funcionario e trocar mensagem;
-            alertas.alertaInformation("Cadastro realizado com sucesso", "O Horario foi cadastrado com sucesso!");
+            Funcionario f = fmetodo.select(cpfnum);
+            alertas.alertaInformation("Seu cadastro realizado com sucesso "+f.getNomeFuncionario(), "O Horario foi cadastrado com sucesso!");
             txtCpfPonto.setText("");
         }
-        //Aqui será feito o registro de hora no ponto
-        
+                
         }   
 
     private boolean cadastroDePonto() {
@@ -285,7 +288,7 @@ public class PontoEletronicoController {
         return pMetodo.cadastroHora(cpfNum, LocalDate.now(), hora);
     }
        
-    public static void trocarPonto(Button button, Faccao f)throws IOException {
+    public static void trocarPonto(Button button, Perfil f)throws IOException {
        Stage ponto = new Stage();
         ponto.setMaximized(true);
         ponto.setTitle("Ponto Eletrônico");
@@ -295,7 +298,7 @@ public class PontoEletronicoController {
         Parent root = loader.load();
         
         PontoEletronicoController thc = loader.getController();
-        thc.setFaccao(f);
+        thc.setPerfil(f);
         thc.setStage(ponto);
 
         Scene cena = new Scene(root);
