@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
@@ -29,7 +31,7 @@ public class SaidaPontoController {
 
     @FXML
     private Button btnConfirmar;
-    
+
     @FXML
     private Label lblEmail;
 
@@ -45,19 +47,25 @@ public class SaidaPontoController {
     @FXML
     private PasswordField txtSenha;
 
-    @FXML
-    void onClickCancelar(ActionEvent event) throws IOException {
-         if(lblEmail.isVisible()){
-            LoginController.trocarLogin(btnConfirmar);
-         }else{
-            PontoEletronicoController.trocarPonto(btnCancelar, f); 
-         }
-    }
-    
+    private Stage stage;
+    private Perfil f;
+
     Alertas alertas = new Alertas();
     PerfilDAO pmetodo = new PerfilDAO();
-    
+
+    // Ação do botão cancelar
     @FXML
+    void onClickCancelar(ActionEvent event) throws IOException {
+        if (lblEmail.isVisible()) {
+            LoginController.trocarLogin(btnConfirmar);
+        } else {
+            PontoEletronicoController.trocarPonto(btnCancelar, f);
+        }
+        stage.close(); // Fecha o pop-up
+    }
+
+    // Ação do botão confirmar
+      @FXML
     void onClickConfirmar(ActionEvent event) throws IOException, SQLException {
         if(lblEmail.isVisible()){
             Perfil pT = pmetodo.selecionaPerfilEmail(txtEmail.getText());
@@ -86,46 +94,47 @@ public class SaidaPontoController {
         }
         
     }
-    
-    public static void trocarSaidaPonto(Button button, Perfil f, String caminho)throws IOException {
-        Stage ponto = new Stage();
-        //Como deixar sem poder alterar tamanho? Será que da pra transformar em pop-up, ai quando confirmar e der certo fechar essa e a tela PontoEletronico
 
+    // Método para abrir a janela como pop-up modal
+    public static void trocarSaidaPonto(Button button, Perfil f, String caminho) throws IOException {
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Saída do Ponto");
+        popupStage.setResizable(false);
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.initOwner(((Stage) button.getScene().getWindow()));
 
         URL url = new File("src/main/java/view/SaidaPonto.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        
-        SaidaPontoController thc = loader.getController();
-        thc.setPerfil(f);
-        thc.verificaCaminho(caminho);
-        thc.setStage(ponto);
 
-        Scene cena = new Scene(root);
-        ponto.setScene(cena);
-        ponto.show();
+        SaidaPontoController controller = loader.getController();
+        controller.setPerfil(f);
+        controller.verificaCaminho(caminho);
+        controller.setStage(popupStage);
+
+        Scene scene = new Scene(root);
+        popupStage.setScene(scene);
+        popupStage.showAndWait(); // Modal: bloqueia interação com janela anterior
         
         ((Stage) button.getScene().getWindow()).close();
     }
-    
-     
-    private Stage stage;
-    
+
+    // Setters auxiliares para passar dados para o controller
     public void setStage(Stage visuPonto) {
         this.stage = visuPonto;
     }
-    
-    Perfil f;
+
     public void setPerfil(Perfil f) {
-        this.f = f; 
+        this.f = f;
     }
-    
-    public void verificaCaminho(String c){
-        if(c.equals("Ponto")){
+
+    // Define o comportamento do formulário com base no caminho
+    public void verificaCaminho(String c) {
+        if (c.equals("Ponto")) {
             lblEmail.setVisible(false);
             txtEmail.setVisible(false);
             lblInfo.setText("Por medidas de segurança, digite sua senha para poder sair!");
-        }else{
+        } else {
             lblEmail.setVisible(true);
             txtEmail.setVisible(true);
             lblInfo.setText("Informe o Email e a nova senha!");
