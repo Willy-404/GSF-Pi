@@ -461,7 +461,7 @@ public class CadastroLotesController {
 
         ReferenciaSalva = txtReferencia.getText();
         if(isEdit == false){
-            if (cadastroDeLotes() != true && cadastroDeSubgrupos() != true) {
+            if (cadastroDeLotes() != true || cadastroDeSubgrupos() != true) {
                 alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar o Lote");
             } else {
                 alertas.alertaInformation("Cadastro realizado com sucesso", "O Lote foi cadastrado com sucesso!");
@@ -482,8 +482,13 @@ public class CadastroLotesController {
             int quantidade = Integer.parseInt(txtQuantidade.getText());
             Lotes loteEdit = new Lotes(RefInt, txtPrazo.getValue(), txtEntrada.getValue(), valorPreco, txtTecido.getText(), 
                 txtMarca.getText(), cbColecao.getSelectionModel().getSelectedItem(), cbModelo.getSelectionModel().getSelectedItem(), quantidade);
-            if(metodo.editarLotes(loteEdit, RefInt) != true && cadastroDeSubgrupos()){
+            if(metodo.editarLotes(loteEdit, RefInt) != true || updateDeSubgrupos()!= true){
                 alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
+                txtLinha.setText("");
+                txtQuantidadeItem.setText("");
+                cbTamanho.setValue(null);
+
+                btnAdicionar.setText("Adicionar");  
             } else {
                 alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
                 VisualizarLotesController.trocarVizLotes(btnVoltar, f);
@@ -492,24 +497,24 @@ public class CadastroLotesController {
         }
     }
     
-    int lugarLista = 0;
-    
+    int possicaoSGSelect;
     @FXML
     void onSelecionaItem(MouseEvent event) throws SQLException {
-        if (event.getClickCount() == 1) {
+        if (event.getClickCount() == 2) {
             subgrupo = tbSubGrupo.getSelectionModel().getSelectedItem();
+            
             for(int i=0; i<lmetodo.numIdSubGrupo(); i++){
                 if(subgrupo.equals(lmetodo.select(i,subgrupo.getRefeLote()))){
                    subgrupo.setId(i);
-                }
+                } 
             }
+            
             btnAdicionar.setText("Editar");
         }
         if(subgrupo != null){
             cbTamanho.setValue(subgrupo.getTamanho());
             txtLinha.setText(subgrupo.getLinha());
             txtQuantidadeItem.setText(String.valueOf(subgrupo.getQuantidade()));
-           
         }
         
     }
@@ -541,13 +546,10 @@ public class CadastroLotesController {
                     subgrupo.setLinha(txtLinha.getText());
                     subgrupo.setTamanho(cbTamanho.getSelectionModel().getSelectedItem());
                     boolean itemUpdate = lmetodo.editarSubgrupo(subgrupo, subgrupo.getId());
-                    System.out.println(subgrupo);
-                    System.out.println(subgrupo.getId());
+                    System.out.println(itemUpdate);
                     if(itemUpdate == true){
-                        
-                        carregarSubgruposCadastro(ItensLote);
-                        
-                        tbSubGrupo.refresh(); 
+                        setValoresSubGrupo(subgrupo.getRefeLote());
+                         
                         txtLinha.setText("");
                         txtQuantidadeItem.setText("");
                         cbTamanho.setValue(null);
@@ -659,16 +661,32 @@ public class CadastroLotesController {
     
         int RefeLote = Integer.parseInt(ReferenciaSalva);
         ItemLoteDAO metodo = new ItemLoteDAO();
-        boolean resultado = true;
         
         for (ItemLote item : ItensLote){
             ItemLote subgrupo = new ItemLote(RefeLote,item.getQuantidade(),item.getTamanho(),item.getLinha());
-            metodo.cadastroSubgrupo(subgrupo);
+            if(metodo.cadastroSubgrupo(subgrupo) == false){
+                return false;
+            }
         }
-        return resultado;
+        return true;
     }
     
-    ItemLote subgrupo; 
+    private boolean updateDeSubgrupos(){
+        int RefeLote = Integer.parseInt(ReferenciaSalva);
+        ItemLoteDAO metodo = new ItemLoteDAO();
+        List<ItemLote> lista = metodo.listarSubgrupos(RefeLote);
+        int i = 0;
+        for (ItemLote item : ItensLote){
+            ItemLote subgrupo = new ItemLote(RefeLote,item.getQuantidade(),item.getTamanho(),item.getLinha());
+            if(metodo.editarSubgrupo(subgrupo, lista.get(i).getId()) == false){
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+    
+    ItemLote subgrupo = null; 
     @FXML
     public ItemLote adcionarSubgrupo() {
         
@@ -730,12 +748,15 @@ public class CadastroLotesController {
         
             ItemLoteDAO excluir = new ItemLoteDAO();
             if (!excluir.deletarSubgrupo(item, id)){
-                System.out.println("erro na exclusao");
+                alertas.alertaError("Erro na exclusão", "Exclusão não efetivada!");
             }else {
-            tbSubGrupo.getItems().remove(item);
+                tbSubGrupo.getItems().remove(item);
+                txtQuantidadeItem.setText("");
+                cbTamanho.setValue(null);
+                txtLinha.setText("");
             }
         } else{
-            System.out.println("Nenhum subgrupo selecionado");
+            alertas.alertaError("Nenhum Item selecionado","Selecione um Item para poder excluir!");
         }
     }
 }

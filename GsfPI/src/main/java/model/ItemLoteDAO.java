@@ -25,7 +25,7 @@ public class ItemLoteDAO extends GenericDAO{
         save(sql,id, l.getRefeLote(), l.getQuantidade(), l.getTamanho(), l.getLinha());
         return true;
     } catch (SQLException e) {
-        e.printStackTrace();
+        System.out.println(e.getMessage());
         return false;
     }
 }
@@ -75,7 +75,7 @@ public class ItemLoteDAO extends GenericDAO{
     String sql = "UPDATE ItemLote SET Quantidade= ?, Tamanho=?, Linha=? Where id = ?";
     try  {
             
-            update(sql, l.getQuantidade(), l.getTamanho(), l.getLinha(), id);
+            update(sql, id, l.getQuantidade(), l.getTamanho(), l.getLinha());
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,7 +115,7 @@ public class ItemLoteDAO extends GenericDAO{
     }
     public int numIdSubGrupo(){
         String sql = "SELECT* FROM ItemLote";
-        int i = 0;
+        int i = 1;
          try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
