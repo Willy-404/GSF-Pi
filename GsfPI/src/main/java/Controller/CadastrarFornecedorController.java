@@ -114,10 +114,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }       
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -140,10 +140,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }          
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -166,10 +166,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+               alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }         
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -192,10 +192,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }         
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -218,10 +218,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }         
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -244,10 +244,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }        
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -270,10 +270,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }         
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -296,10 +296,10 @@ public class CadastrarFornecedorController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastrarForn.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }          
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -323,10 +323,10 @@ public class CadastrarFornecedorController {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                 alerta.setTitle("Sair?");
                 if(btnCadastrarForn.getText().equals("Editar")){
-                    alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                   alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
                 }else{
-                    alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-                }            
+                    alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+                }           
                 alerta.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
@@ -405,7 +405,7 @@ public class CadastrarFornecedorController {
                 PerfilDAO pmetodo = new PerfilDAO();
                 pmetodo.cadastroPerfil(p);
                 
-                alertas.alertaInformation("Cadastro realizado com sucesso", "O Fornecedor foi cadastrado com sucesso");
+                alertas.alertaInformation("Cadastro realizado com sucesso", "Fornecedor cadastrado com sucesso");
                 txtCnpj.setText("");
                 txtContato.setText("");
                 txtEmail.setText("");
@@ -432,7 +432,7 @@ public class CadastrarFornecedorController {
             if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true && pmetodo.editarPerfilCnpj(p, cnpjnum) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
-                 alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                 alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                  VisualizarFornecedorController.trocarVizFornecedor(btnCadastrarForn, f);
             }
         }

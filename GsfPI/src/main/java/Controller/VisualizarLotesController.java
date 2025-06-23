@@ -218,7 +218,7 @@ public class VisualizarLotesController {
                 } 
             });    
             } else {
-                alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
+                alertas.alertaError("Item selecionado", "Item selecionado não contem informações!");
             }
         }
 
@@ -283,7 +283,7 @@ public class VisualizarLotesController {
             int pesquisaRef = Integer.parseInt(txtPesquisar.getText());
             lotePesq = metodo.select(pesquisaRef);
             if(lotePesq == null){
-                alertas.alertaError("Nenhum Lote Encontrado", "A referência não existe no sistema, digite uma referência valida!");
+                alertas.alertaError("Nenhum Lote Encontrado", "Referência não existe no sistema, digite uma referência valida!");
                 txtPesquisar.setText("");
             }else{
                 ObservableList<Lotes> listaObLotes = FXCollections.observableArrayList(lotePesq);

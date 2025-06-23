@@ -191,7 +191,7 @@ public class VisualizarFuncionarioController {
             });
                 
             }else {
-                alertas.alertaError("Item selecionado", "O item selecionado não contem informações!");
+                alertas.alertaError("Item selecionado", "Item selecionado não contem informações!");
             }
         }
     }

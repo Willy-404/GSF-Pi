@@ -128,10 +128,10 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }         
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -153,10 +153,10 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }        
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -179,10 +179,10 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }        
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -205,10 +205,10 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }                        alerta.showAndWait().ifPresent(response -> {
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }                     alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
                          VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
@@ -230,10 +230,10 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+               alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }         
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -256,10 +256,10 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+               alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-            }            
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }          
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -282,9 +282,9 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -308,9 +308,9 @@ public class CadastrarFuncionarioController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnCadastroFunca.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -335,10 +335,10 @@ public class CadastrarFuncionarioController {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                 alerta.setTitle("Sair?");
                 if(btnCadastroFunca.getText().equals("Editar")){
-                    alerta.setHeaderText("Ao sair as informações alteradas seram perdidas! ");
+                    alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
                 }else{
-                    alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
-                }    
+                    alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+                }   
                 alerta.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
@@ -402,7 +402,7 @@ public class CadastrarFuncionarioController {
             if (CadastroDeFuncionario() != true) { 
                 alertas.alertaError("Erro ao cadastrar ", "Erro ao cadastrar o Funcionário!");
             } else {
-                alertas.alertaInformation("Cadastro realizado com sucesso", "O Funcionário foi cadastrado com sucesso!");
+                alertas.alertaInformation("Cadastro realizado com sucesso", "Funcionário cadastrado com sucesso!");
                 txtNome.setText("");
                 txtCpf.setText("");
                 txtContato.setText("");
@@ -420,7 +420,7 @@ public class CadastrarFuncionarioController {
             if(funcionarioMetodo.editarFuncionario(funcionario, cpfnum) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
-                 alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                 alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                  VisualizarFuncionarioController.trocarVizFuncionario(btnCadastroFunca, f);
             }
         }

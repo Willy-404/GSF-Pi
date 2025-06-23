@@ -91,7 +91,7 @@ public class CadastroController {
         if (cadastroDeFaccao() != true) {
             alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar seu Perfil!");
         } else {
-            alertas.alertaInformation("Cadastro realizado com sucesso", "Seu perfil foi cadastrado com sucesso!");
+            alertas.alertaInformation("Cadastro realizado com sucesso", "Perfil cadastrado com sucesso!");
             
             String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
             long Cnpj = Long.parseLong(cnpjSemPontos);
@@ -118,7 +118,7 @@ public class CadastroController {
         }else{
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {

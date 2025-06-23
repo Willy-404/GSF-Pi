@@ -193,7 +193,7 @@ public class VisualizarPerfilController {
                     e.printStackTrace();
                 }
             }else{
-                  alertas.alertaInformation("Logoff Cancelado", "O logoff foi cancelado com sucesso!");
+                  alertas.alertaInformation("Logoff Cancelado", "Logoff foi cancelado com sucesso!");
             }
         });  
     }
@@ -267,7 +267,7 @@ public class VisualizarPerfilController {
                     if(fmetodo.editarFaccao(fTroca, id) != true && pmetodo.editarPerfilCnpj(Ptroca, id) != true){
                         alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                     }else{
-                        alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                        alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                         try {
                             setPerfil(Ptroca);
                         } catch (SQLException ex) {
@@ -275,7 +275,7 @@ public class VisualizarPerfilController {
                         }
                     }
                 }else{
-                    alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
+                    alertas.alertaInformation("Edição Cancelada", "Edição cancelada com sucesso!!");
                 }
             });     
         }else{
@@ -296,7 +296,7 @@ public class VisualizarPerfilController {
                     if(fmetodo.editarFornecedor(fTroca, id) != true && pmetodo.editarPerfilCnpj(Ptroca, id) != true){
                         alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                     }else{
-                        alertas.alertaInformation("Edição Concluida", "A edição foi concluída com sucesso!");
+                        alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                         try {
                             setPerfil(Ptroca);
                         } catch (SQLException ex) {
@@ -304,7 +304,7 @@ public class VisualizarPerfilController {
                         }
                     }
                 }else{
-                    alertas.alertaInformation("Edição Cancelada", "A edição foi cancelada com sucesso!!");
+                    alertas.alertaInformation("Edição Cancelada", "Edição cancelada com sucesso!!");
                 }
             });     
         }

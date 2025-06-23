@@ -91,7 +91,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -112,7 +112,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -133,7 +133,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -154,7 +154,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -175,7 +175,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -196,7 +196,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -217,7 +217,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -238,7 +238,7 @@ public class PontoEletronicoController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas seram perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -275,7 +275,7 @@ public class PontoEletronicoController {
             return;
         } else {
             Funcionario f = fmetodo.select(cpfnum);
-            alertas.alertaInformation("Seu cadastro realizado com sucesso "+f.getNomeFuncionario(), "O Horario foi cadastrado com sucesso!");
+            alertas.alertaInformation("Cadastro realizado com sucesso "+f.getNomeFuncionario(), "Horario cadastrado com sucesso!");
             txtCpfPonto.setText("");
         }
                 

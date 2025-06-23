@@ -171,7 +171,7 @@ public class EditHorariosController {
         Ponto pUpdate = new Ponto(pontoSalvo.getId(), pontoSalvo.getCpf(), pontoSalvo.getData(), hem, hsm, hev, hsv, hee, hse);
        
         if(metodo.editarHorario(pUpdate)){
-            alertas.alertaInformation("Edição Concluída", "A edição foi feita com sucesso!");
+            alertas.alertaInformation("Edição Concluída", "Edição concluída com sucesso!");
             VisualizarPontoController.trocarVizPonto(btnConfirmar, f);
         }else{
             alertas.alertaError("Erro ao editar", "Erro ao editar!");

@@ -180,9 +180,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -207,9 +207,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -234,9 +234,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -261,9 +261,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -288,9 +288,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -315,9 +315,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -342,9 +342,9 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -369,10 +369,10 @@ public class CadastroLotesController {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
-                alerta.setHeaderText("Ao sair as informações alteradas serao perdidas! ");
+                alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
             }else{
-                alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
-            }    
+                alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
+            }  
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -396,7 +396,7 @@ public class CadastroLotesController {
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
-            alerta.setHeaderText("Ao sair as informações apresentadas serao perdidas! ");
+            alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -464,7 +464,7 @@ public class CadastroLotesController {
             if (cadastroDeLotes() != true || cadastroDeSubgrupos() != true) {
                 alertas.alertaError("Erro ao cadastrar", "Erro ao cadastrar Lote");
             } else {
-                alertas.alertaInformation("Cadastro realizado com sucesso", " Lote cadastrado com sucesso!");
+                alertas.alertaInformation("Cadastro realizado com sucesso", "Lote cadastrado com sucesso!");
                 txtReferencia.setText("");
                 txtTecido.setText("");
                 txtPrazo.setValue(null);
@@ -490,7 +490,7 @@ public class CadastroLotesController {
 
                 btnAdicionar.setText("Adicionar");  
             } else {
-                alertas.alertaInformation("Edição Concluida", "edição concluída com sucesso!");
+                alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                 VisualizarLotesController.trocarVizLotes(btnVoltar, f);
             }
             

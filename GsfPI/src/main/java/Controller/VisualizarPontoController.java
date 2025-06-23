@@ -274,7 +274,7 @@ public class VisualizarPontoController {
         if(!txtPesquisa.getText().equals("")){
             funcionarioPesq = fmetodo.pesquisa(txtPesquisa.getText());
             if(funcionarioPesq == null){
-                alertas.alertaError("Nenhum Funcionário Encontrado", "O Funcionário não existe no sistema, digite um nome valido!");
+                alertas.alertaError("Nenhum Funcionário Encontrado", "Funcionário não existe no sistema, digite um nome valido!");
                 txtPesquisa.setText("");
                 carregarFuncionario();
             }else{
@@ -345,7 +345,7 @@ public class VisualizarPontoController {
             }
             
             if(pontoPesq == null){
-                alertas.alertaError("Nenhum Registro nesse mês foi Encontrado", "O Registro desse mês não existe no sistema, selecione um mês com registros validos!");
+                alertas.alertaError("Nenhum Registro nesse mês foi Encontrado", "Registros desse mês não existe no sistema, selecione um mês com registros validos!");
                 txtPesquisa.setText("");
                 carregarPonto(cpf);
             }else{
