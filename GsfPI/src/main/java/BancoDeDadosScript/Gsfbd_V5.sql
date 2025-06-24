@@ -30,7 +30,6 @@ CREATE TABLE `faccao` (
   `EmailAcesso` varchar(30) NOT NULL,
   `Senha` varchar(20) NOT NULL,
   `Telefone` varchar(20) DEFAULT NULL,
-  `Apagar` varchar(10) NOT NULL,
   PRIMARY KEY (`CnpjFaccao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +40,7 @@ CREATE TABLE `faccao` (
 
 LOCK TABLES `faccao` WRITE;
 /*!40000 ALTER TABLE `faccao` DISABLE KEYS */;
-INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123','Faccao'),(11111111111112,'f','f@gmail.com','f','(47) 99999-9999','Faccao'),(12345678901234,'Felipe','banana','banana',NULL,'Faccao');
+INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123'),(11111111111112,'f','f@gmail.com','f','(47) 99999-9999'),(12345678901234,'Felipe','banana','banana',NULL),(22222222222222,'f','felipe.w28@gmail.com','f','47999122334');
 /*!40000 ALTER TABLE `faccao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +96,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
-INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','ff',NULL,NULL);
+INSERT INTO `fornecedor` VALUES (12321,'felipe','ff','f',NULL,'Rua dali');
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +148,7 @@ CREATE TABLE `itemlote` (
   PRIMARY KEY (`id`),
   KEY `referenciaLote_idx` (`referenciaLote`),
   CONSTRAINT `referenciaLote` FOREIGN KEY (`referenciaLote`) REFERENCES `lote` (`Referencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +157,7 @@ CREATE TABLE `itemlote` (
 
 LOCK TABLES `itemlote` WRITE;
 /*!40000 ALTER TABLE `itemlote` DISABLE KEYS */;
-INSERT INTO `itemlote` VALUES (1,12312313,500,'P','Azul'),(67,12,230,'PP','Preto');
+INSERT INTO `itemlote` VALUES (3,21,2,'P','Azul'),(4,21,2,'GG','Branco');
 /*!40000 ALTER TABLE `itemlote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +191,7 @@ CREATE TABLE `lote` (
 
 LOCK TABLES `lote` WRITE;
 /*!40000 ALTER TABLE `lote` DISABLE KEYS */;
-INSERT INTO `lote` VALUES (12,'2025-06-05','2025-06-05',2.40,'Algoritmo','A','Inverno','Short',NULL,1233),(1234,'2025-06-26','2025-06-08',2.40,'Algodao','Alguem','Inverno','Short',NULL,460),(12344,'2025-07-02','2025-06-08',2.40,'A','A','Outono','Legging',NULL,1305),(12312313,'2222-12-22','2222-12-22',5.00,'oi','oi','oi','oi',12321,1230);
+INSERT INTO `lote` VALUES (12,'2025-06-05','2025-06-05',2.40,'Algoritmo','A','Inverno','Short',NULL,1233),(21,'2025-06-19','2025-06-03',2.40,'A','A','Verão','Short',NULL,5);
 /*!40000 ALTER TABLE `lote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +217,7 @@ CREATE TABLE `perfil` (
 
 LOCK TABLES `perfil` WRITE;
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-INSERT INTO `perfil` VALUES (12321,'ff','ff','Fornecedor'),(11111111111111,'f','f','Faccao'),(11111111111112,'f@gmail.com','f','Faccao'),(12345678901234,'banana','banana','Faccao');
+INSERT INTO `perfil` VALUES (12321,'ff','f','Fornecedor'),(11111111111111,'f','f','Faccao'),(11111111111112,'f@gmail.com','f','Faccao'),(12345678901234,'banana','banana','Faccao'),(22222222222222,'felipe.w28@gmail.com','f','Faccao');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,6 +238,7 @@ CREATE TABLE `registrohora` (
   `HorarioSaidaV` time DEFAULT NULL,
   `HorarioEntradaEx` time DEFAULT NULL,
   `HorarioSaidaEx` time DEFAULT NULL,
+  `SalarioDoDia` decimal(6,2) DEFAULT NULL,
   PRIMARY KEY (`idRegistroHora`),
   KEY `Cpf_idx` (`Cpf`),
   CONSTRAINT `Cpf` FOREIGN KEY (`Cpf`) REFERENCES `funcionario` (`Cpf`)
@@ -251,7 +251,7 @@ CREATE TABLE `registrohora` (
 
 LOCK TABLES `registrohora` WRITE;
 /*!40000 ALTER TABLE `registrohora` DISABLE KEYS */;
-INSERT INTO `registrohora` VALUES (0,10087956775,'2025-06-08','23:50:12','23:56:38',NULL,NULL,NULL,NULL),(1,10087956775,'2025-06-21','22:39:00',NULL,NULL,NULL,NULL,NULL),(2,10087956775,'2025-06-21','22:40:00',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `registrohora` VALUES (0,10087956775,'2025-06-08','23:50:12','23:56:38',NULL,NULL,NULL,NULL,NULL),(1,10087956775,'2025-06-21','22:39:00',NULL,NULL,NULL,NULL,NULL,NULL),(2,10087956775,'2025-06-21','22:40:00',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `registrohora` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -264,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-21 22:49:26
+-- Dump completed on 2025-06-23 23:00:17

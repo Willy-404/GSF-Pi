@@ -42,7 +42,7 @@
       </MenuBar>
    </top>
    <center>
-            <SplitPane dividerPositions="0.20415993537964455" prefHeight="557.0" prefWidth="992.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.07996768982229402" prefHeight="557.0" prefWidth="992.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #386b8f;">
                      <children>
@@ -109,6 +109,16 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
+                  <Label fx:id="lblSalario" layoutX="710.0" layoutY="14.0" text="Salário do mês: " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtSalario" layoutX="709.0" layoutY="44.0" prefHeight="26.0" prefWidth="0.0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                      </children>
                   </AnchorPane>
               </items>

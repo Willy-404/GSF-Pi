@@ -115,6 +115,12 @@ public class VisualizarPontoController {
 
     @FXML
     private Label txtNome;
+    
+    @FXML
+    private Label txtSalario;
+    
+    @FXML
+    private Label lblSalario;
 
     @FXML
     private TextField txtPesquisa;
@@ -160,6 +166,8 @@ public class VisualizarPontoController {
     public void initialize() {
         carregarFuncionario();
         btnPesquisaMes.setVisible(false);
+        lblSalario.setVisible(false);
+        txtSalario.setVisible(false);
     }
 
     @FXML
@@ -343,12 +351,21 @@ public class VisualizarPontoController {
                sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 12";
                pontoPesq = pmetodo.pesquisa(sql); 
             }
-            
+            float SalarioMes = 0;
             if(pontoPesq == null){
                 alertas.alertaError("Nenhum Registro nesse mês foi Encontrado", "Registros desse mês não existe no sistema, selecione um mês com registros validos!");
                 txtPesquisa.setText("");
+                lblSalario.setVisible(false);
+                txtSalario.setVisible(false);
                 carregarPonto(cpf);
             }else{
+                for (Ponto ponto : pontoPesq) {
+                    SalarioMes = SalarioMes + ponto.getSalarioDoDia();
+                }
+                
+                lblSalario.setVisible(true);
+                txtSalario.setVisible(true);
+                txtSalario.setText(String.valueOf("SalarioMes"));
                 ObservableList<Ponto> listaObPonto = FXCollections.observableArrayList(pontoPesq);
                 TabelaPonto.setItems(listaObPonto);
 
@@ -361,6 +378,8 @@ public class VisualizarPontoController {
                 colSaidaEx.setCellValueFactory(new PropertyValueFactory<>("HorarioSaidaEx"));
             }
         }else {
+            lblSalario.setVisible(false);        
+            txtSalario.setVisible(false);
             carregarPonto(cpf);
         }
     }

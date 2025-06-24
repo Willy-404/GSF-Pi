@@ -134,21 +134,7 @@ private Connection conexao;
      
      @FXML
     void OnClickLinkRecuperar(ActionEvent event) throws IOException {
-        Stage ponto = new Stage();
-
-        URL url = new File("src/main/java/view/SaidaPonto.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        
-        SaidaPontoController thc = loader.getController();
-        thc.verificaCaminho("Login");
-        thc.setStage(ponto);
-
-        Scene cena = new Scene(root);
-        ponto.setScene(cena);
-        ponto.show();
-        
-        ((Stage) LinkRecuperar.getScene().getWindow()).close();
+        SaidaPontoController.trocarSaidaPonto(btnConfirmar, null, "Login");
     }
 
 }

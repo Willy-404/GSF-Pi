@@ -12,9 +12,12 @@ import util.Alertas;
 public class PontoDAO extends GenericDAO{
 
     Alertas alertas = new Alertas();
-    public boolean cadastroHora(long cpf, LocalDate data, Time hora){
-        String sql;
+    FuncionarioDAO fmetodo = new FuncionarioDAO();
+    public boolean cadastroHora(long cpf, LocalDate data, Time hora) throws SQLException{
+        String sql, txtHoraS, txtHoraE;
         Ponto p = select(cpf, data);
+        Funcionario f = fmetodo.select(p.getCpf());
+        float contaSalario, horaS, horaE;
         int id=0;
         try{
             if(p == null){
@@ -25,6 +28,15 @@ public class PontoDAO extends GenericDAO{
             }else if(p.getHoraSaidaM() == null){
                 sql ="UPDATE registrohora SET HorarioSaidaM = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, hora, data);
+                
+                //Fazer o calculo de cada horarios fechado, pra ficar mais facil;
+                txtHoraS = String.valueOf(hora).replaceAll("[:]", ".");
+                txtHoraE = String.valueOf(p.getHoraEntradaM()).replaceAll("[:]", ".");
+                System.out.println(txtHoraS +"\n"+txtHoraE);
+                horaS= Float.parseFloat(txtHoraS); horaE = Float.parseFloat(txtHoraE);
+                contaSalario = (horaS - horaE)* f.getValorHora();
+                sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, cpf, contaSalario, data);
                 return true;
             }else if(p.getHoraEntradaV() == null){
                 sql="UPDATE registrohora SET HorarioEntradaV = ? WHERE DataRegistro = ? AND Cpf = ?";
@@ -33,6 +45,14 @@ public class PontoDAO extends GenericDAO{
             }else if(p.getHoraSaidaV() == null){
                 sql = "UPDATE registrohora SET HorarioSaidaV = ? WHERE DataRegistro = ? AND Cpf = ?";
                  update(sql, cpf, hora, data);
+                 
+                txtHoraS = String.valueOf(hora).replaceAll("[:]", ".");
+                txtHoraE = String.valueOf(p.getHoraEntradaV()).replaceAll("[:]", ".");
+                System.out.println(txtHoraS +"\n"+txtHoraE);
+                horaS= Float.parseFloat(txtHoraS); horaE = Float.parseFloat(txtHoraE);
+                contaSalario = ((horaS - horaE)* f.getValorHora()) + p.getSalarioDoDia();
+                sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, cpf, contaSalario, data);
                 return true;
             }else if(p.getHorarioEntradaEx() == null){
                 sql = "UPDATE registrohora SET HorarioEntradaEx = ? WHERE DataRegistro = ? AND Cpf = ?";
@@ -41,6 +61,14 @@ public class PontoDAO extends GenericDAO{
             }else if(p.getHorarioSaidaEx() == null){
                 sql = "UPDATE registrohora SET HorarioSaidaEx = ? WHERE DataRegistro = ? AND Cpf = ?";
                  update(sql, cpf, hora, data);
+                 
+                txtHoraS = String.valueOf(hora).replaceAll("[:]", ".");
+                txtHoraE = String.valueOf(p.getHorarioEntradaEx()).replaceAll("[:]", ".");
+                System.out.println(txtHoraS +"\n"+txtHoraE);
+                horaS= Float.parseFloat(txtHoraS); horaE = Float.parseFloat(txtHoraE);
+                contaSalario = ((horaS - horaE)* f.getValorHora()) + p.getSalarioDoDia();
+                sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, cpf, contaSalario, data);
                 return true;
             }else{
                 alertas.alertaError("Cadastros Feitos para o dia de hoje", "Foram feitos os 6 registros do dia de hoje."
@@ -112,7 +140,8 @@ public class PontoDAO extends GenericDAO{
                         hev,
                         hsv,
                         hee,
-                        hse
+                        hse,
+                        rs.getFloat("SalarioDoDia")
                     );
                     return p;
                 }
@@ -181,7 +210,8 @@ public class PontoDAO extends GenericDAO{
                         hev,
                         hsv, 
                         hee,
-                        hse
+                        hse,
+                        rs.getFloat("SalarioDoDia")
                     );
                     lista.add(ponto);
                 }
@@ -246,7 +276,8 @@ public class PontoDAO extends GenericDAO{
                         hev,
                         hsv, 
                         hee,
-                        hse
+                        hse,
+                        rs.getFloat("SalarioDoDia")                            
                     );
                     lista.add(ponto);
                 }

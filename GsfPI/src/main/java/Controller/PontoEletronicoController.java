@@ -281,7 +281,7 @@ public class PontoEletronicoController {
                 
         }   
 
-    private boolean cadastroDePonto() {
+    private boolean cadastroDePonto() throws SQLException {
         long cpfNum = Long.parseLong(txtCpfPonto.getText());
         int id = pMetodo.numId();
         Time hora = Time.valueOf(LocalTime.now().truncatedTo(MINUTES));

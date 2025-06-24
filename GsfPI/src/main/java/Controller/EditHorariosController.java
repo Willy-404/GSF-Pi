@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Faccao;
+import model.Funcionario;
+import model.FuncionarioDAO;
 import model.Perfil;
 import model.Ponto;
 import model.PontoDAO;
@@ -127,48 +129,97 @@ public class EditHorariosController {
     
     Alertas alertas = new Alertas();
     PontoDAO metodo = new PontoDAO();
-    
+    FuncionarioDAO fmetodo = new FuncionarioDAO();
     @FXML
-    void onClickConfirmar(ActionEvent event) throws IOException {
+    void onClickConfirmar(ActionEvent event) throws IOException, SQLException {
         //Fazer Verificações
         LocalTime hem, hev, hsm, hsv, hee, hse;
+        float salario = 0, horaS = 0, horaE=0;
+        Funcionario fun = fmetodo.select(pontoSalvo.getCpf());
+        String txthoraS, txthoraE;
+        //Periodo Matutino 
         if(txtEntradaM.getText().equals("")){
             hem = null;
         }else{
             hem = LocalTime.parse(txtEntradaM.getText());
-        }
-        
-        if(txtEntradaV.getText().equals("")){
-            hev = null;
-        }else{
-            hev = LocalTime.parse(txtEntradaV.getText());
-        }
-        
-        if(txtEntradaE.getText().equals("")){
-            hee = null;
-        }else{
-            hee = LocalTime.parse(txtEntradaE.getText());
+            txthoraE = String.valueOf(hem).replaceAll("[:]", ".");
+            horaE = Float.parseFloat(txthoraE);
         }
         
         if(txtSaidaM.getText().equals("")){
             hsm = null;
         }else{
             hsm = LocalTime.parse(txtSaidaM.getText());
+            txthoraS = String.valueOf(hsm).replaceAll("[:]", ".");
+            horaS = Float.parseFloat(txthoraS);
+        }
+        
+        if(horaE == 0 && horaS == 0){
+           horaE = 1; 
+           horaS = 1; 
+        }else if(horaE == 0 || horaS == 0){        
+            alertas.alertaError("Horário Incompleto", "Informe os valores de Entrada e Saída!");
+        }else{
+            salario = (horaS - horaE) * fun.getValorHora();
+            horaE = 0; 
+            horaS = 0; 
+        }
+        
+        //Periodo Vespertino
+        if(txtEntradaV.getText().equals("")){
+            hev = null;
+        }else{
+            hev = LocalTime.parse(txtEntradaV.getText());
+            txthoraE = String.valueOf(hev).replaceAll("[:]", ".");
+            horaE = Float.parseFloat(txthoraE);
         }
         
         if(txtSaidaV.getText().equals("")){
             hsv = null;
         }else{
             hsv = LocalTime.parse(txtSaidaV.getText());
+            txthoraS = String.valueOf(hsv).replaceAll("[:]", ".");
+            horaS = Float.parseFloat(txthoraS);
+        }
+        
+        if(horaE == 0 && horaS == 0){
+           horaE = 1; 
+           horaS = 1; 
+        }else if(horaE == 0 || horaS == 0){        
+            alertas.alertaError("Horário Incompleto", "Informe os valores de Entrada e Saída!");
+        }else{
+            salario = ((horaS - horaE) * fun.getValorHora())+ salario;
+            horaE = 0; 
+            horaS = 0; 
+        }
+        
+        //Periodo Extra
+        if(txtEntradaE.getText().equals("")){
+            hee = null;
+        }else{
+            hee = LocalTime.parse(txtEntradaE.getText());
+            txthoraE = String.valueOf(hee).replaceAll("[:]", ".");
+            horaE = Float.parseFloat(txthoraE);
         }
         
         if(txtSaidaE.getText().equals("")){
             hse = null;
         }else{
             hse = LocalTime.parse(txtSaidaE.getText());
+            txthoraS = String.valueOf(hse).replaceAll("[:]", ".");
+            horaS = Float.parseFloat(txthoraS);
         }
         
-        Ponto pUpdate = new Ponto(pontoSalvo.getId(), pontoSalvo.getCpf(), pontoSalvo.getData(), hem, hsm, hev, hsv, hee, hse);
+        if(horaE == 0 && horaS == 0){
+           horaE = 1; 
+           horaS = 1; 
+        }else if(horaE == 0 || horaS == 0){        
+            alertas.alertaError("Horário Incompleto", "Informe os valores de Entrada e Saída!");
+        }else{
+            salario = ((horaS - horaE) * fun.getValorHora())+ salario;
+        }
+        
+        Ponto pUpdate = new Ponto(pontoSalvo.getId(), pontoSalvo.getCpf(), pontoSalvo.getData(), hem, hsm, hev, hsv, hee, hse, salario);
        
         if(metodo.editarHorario(pUpdate)){
             alertas.alertaInformation("Edição Concluída", "Edição concluída com sucesso!");
