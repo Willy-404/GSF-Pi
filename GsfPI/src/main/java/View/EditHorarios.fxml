@@ -1,112 +1,234 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="588.0" prefWidth="836.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditHorariosController">
-   <children>
-      <Label fx:id="lblTitulo" layoutX="252.0" layoutY="19.0" text="Edição do Horarios" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <GridPane layoutY="83.0" prefHeight="494.0" prefWidth="836.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+
+<BorderPane style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditHorariosController">
+   <top>
+      <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="500.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu fx:id="menuHome" mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem fx:id="itemTelaInicial" mnemonicParsing="false" onAction="#OnClickVisuTelaHome" text="Tela Inicial" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuVisualizar" mnemonicParsing="false" text="Visualizar">
+               <items>
+                  <MenuItem fx:id="itemVisuFuncionario" mnemonicParsing="false" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemVisuFornecedor" mnemonicParsing="false" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
+                  <MenuItem fx:id="itemVisuLote" mnemonicParsing="false" onAction="#OnClickVisuLote1" text="Lote" />
+                  <MenuItem fx:id="itemVisuPonto" mnemonicParsing="false" onAction="#OnClickVisuPonto1" text="Ponto" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuCadastrar" mnemonicParsing="false" text="Cadastrar">
+               <items>
+                  <MenuItem fx:id="itemCadFuncionario" mnemonicParsing="false" onAction="#OnClickCadFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemCadFornecedor" mnemonicParsing="false" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
+                  <MenuItem fx:id="itemCadLote" mnemonicParsing="false" onAction="#OnClickCadLote1" text="Lote" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="314.0" text="Horário Entrada" textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="32.0" prefWidth="339.0" text="Horário Entrada" textFill="WHITE" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="317.0" text="Horário Saída" textFill="WHITE" GridPane.rowIndex="5">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="298.0" text="Horário Saída" textFill="WHITE" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="358.0" text="Horário Entrada" textFill="WHITE" GridPane.rowIndex="7">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="337.0" text="Horário Saída" textFill="WHITE" GridPane.rowIndex="8">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label prefHeight="24.0" prefWidth="310.0" text=" Turno Matutino" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="12.0" prefHeight="27.0" prefWidth="314.0" text=" Turno Extra" textFill="WHITE" GridPane.rowIndex="6">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="106.0" prefHeight="27.0" prefWidth="314.0" text=" Turno Vespertino" textFill="WHITE" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <GridPane prefHeight="64.0" prefWidth="378.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <GridPane prefHeight="494.0" prefWidth="836.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#onClickConfirmar" prefHeight="20.0" prefWidth="142.0" text="Confirmar" textFill="#4d7794">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onClickCancelar" prefHeight="35.0" prefWidth="140.0" text="Cancelar" textFill="#4d7794" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <Line endX="314.29290771484375" endY="-0.41421353816986084" startX="-100.0" startY="-0.4142862558364868" stroke="WHITE" />
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="314.0" text="Horário Entrada" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="4">
+                     <children>
+                        <Line endX="100.0" startX="-317.1593933105469" startY="-0.7071067690849304" stroke="WHITE" />
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="339.0" text="Horário Entrada" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="5">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="317.0" text="Horário Saída" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="298.0" text="Horário Saída" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="7">
+                     <children>
+                        <Line endX="104.6156005859375" endY="-0.4142571687698364" startX="-312.67730712890625" startY="-0.41421353816986084" stroke="WHITE" />
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="358.0" text="Horário Entrada" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="8">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="337.0" text="Horário Saída" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" style="-fx-background-color: &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import javafx.scene.control.Menu?&gt;&lt;?import javafx.scene.control.MenuBar?&gt;&lt;?import javafx.scene.control.MenuItem?&gt;&lt;MenuBar fx:id=&quot;MenuBar&quot; prefHeight=&quot;26.0&quot; prefWidth=&quot;1776.0&quot; style=&quot;-fx-background-color: #5496c5;&quot; xmlns=&quot;http://javafx.com/javafx/23.0.1&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot;&gt;   &lt;menus&gt;      &lt;Menu fx:id=&quot;menuHome&quot; mnemonicParsing=&quot;false&quot; text=&quot;Home&quot;&gt;         &lt;items&gt;            &lt;MenuItem fx:id=&quot;itemTelaInicial&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickVisuTelaHome&quot; text=&quot;Tela Inicial&quot; /&gt;         &lt;/items&gt;      &lt;/Menu&gt;      &lt;Menu fx:id=&quot;menuVisualizar&quot; mnemonicParsing=&quot;false&quot; text=&quot;Visualizar&quot;&gt;         &lt;items&gt;            &lt;MenuItem fx:id=&quot;itemVisuFuncionario&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickVisuFuncionario1&quot; text=&quot;Funcionario&quot; /&gt;            &lt;MenuItem fx:id=&quot;itemVisuFornecedor&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickVisuFornecedor1&quot; text=&quot;Fornecedor&quot; /&gt;            &lt;MenuItem fx:id=&quot;itemVisuLote&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickVisuLote1&quot; text=&quot;Lote&quot; /&gt;            &lt;MenuItem fx:id=&quot;itemVisuPonto&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickVisuPonto1&quot; text=&quot;Ponto&quot; /&gt;         &lt;/items&gt;      &lt;/Menu&gt;      &lt;Menu fx:id=&quot;menuCadastrar&quot; mnemonicParsing=&quot;false&quot; text=&quot;Cadastrar&quot;&gt;         &lt;items&gt;            &lt;MenuItem fx:id=&quot;itemCadFuncionario&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickCadFuncionario1&quot; text=&quot;Funcionario&quot; /&gt;            &lt;MenuItem fx:id=&quot;itemCadFornecedor&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickCadFornecedor1&quot; text=&quot;Fornecedor&quot; /&gt;            &lt;MenuItem fx:id=&quot;itemCadLote&quot; mnemonicParsing=&quot;false&quot; onAction=&quot;#OnClickCadLote1&quot; text=&quot;Lote&quot; /&gt;         &lt;/items&gt;      &lt;/Menu&gt;   &lt;/menus&gt;&lt;/MenuBar&gt;;">
+                     <children>
+                        <Label prefHeight="35.0" prefWidth="188.0" text=" Turno Matutino" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="6">
+                     <children>
+                        <Line endX="173.1385040283203" endY="-55.269588470458984" startX="-244.15438842773438" startY="-53.85537338256836" stroke="WHITE" />
+                        <Label prefHeight="35.0" prefWidth="142.0" text=" Turno Extra" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.rowIndex="3">
+                     <children>
+                        <Line endX="118.29289245605469" endY="-29.778175354003906" startX="-295.06231689453125" startY="-30.485939025878906" stroke="WHITE" />
+                        <Label prefHeight="35.0" prefWidth="206.0" text=" Turno Vespertino" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <GridPane alignment="TOP_CENTER" prefHeight="64.0" prefWidth="378.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <FlowPane alignment="TOP_CENTER">
+                           <children>
+                              <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onClickCancelar" prefHeight="35.0" prefWidth="140.0" text="Cancelar" textFill="#4d7794">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </GridPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="txtEntradaM" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="txtSaidaM" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <TextField fx:id="txtEntradaV" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets top="8.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <TextField fx:id="txtSaidaV">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <TextField fx:id="txtEntradaE" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <children>
+                        <TextField fx:id="txtSaidaE" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="10">
+                     <children>
+                        <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#onClickConfirmar" prefHeight="20.0" prefWidth="142.0" text="Confirmar" textFill="#4d7794">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </FlowPane>
+                  <Line endX="735.2928466796875" endY="1.9142310619354248" startX="-100.0" stroke="WHITE" GridPane.rowIndex="9" />
+                  <Line endX="100.0" startX="100.00016784667969" startY="-946.3606567382812" stroke="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                </children>
             </GridPane>
-            <TextField fx:id="txtEntradaM" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtSaidaM" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtEntradaV" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="txtSaidaV" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="txtEntradaE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="txtSaidaE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
-      </GridPane>
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </center>
+</BorderPane>
