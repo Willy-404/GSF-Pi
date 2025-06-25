@@ -12,6 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,6 +32,39 @@ public class EditHorariosController {
 
     @FXML
     private Button btnConfirmar;
+    
+    @FXML
+    private MenuBar MenuBar;
+    
+    @FXML
+    private MenuItem itemCadFornecedor;
+
+    @FXML
+    private MenuItem itemCadFuncionario;
+
+    @FXML
+    private MenuItem itemCadLote;
+
+    @FXML
+    private MenuItem itemTelaInicial;
+
+    @FXML
+    private MenuItem itemVisuFornecedor;
+
+    @FXML
+    private MenuItem itemVisuFuncionario;
+
+    @FXML
+    private MenuItem itemVisuLote;
+
+    @FXML
+    private MenuItem itemVisuPonto;
+
+    @FXML
+    private Menu menuCadastrar;
+
+    @FXML
+    private Menu menuHome;
 
     @FXML
     private Label lblTitulo;
@@ -227,6 +263,46 @@ public class EditHorariosController {
         }else{
             alertas.alertaError("Erro ao editar", "Erro ao editar!");
         }
+    }
+    
+    @FXML
+    void OnClickCadFornecedor1(ActionEvent event) throws IOException {
+       CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickCadFuncionario1(ActionEvent event) throws IOException {
+        CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickCadLote1(ActionEvent event) throws IOException {
+        CadastroLotesController.trocarCadLotes(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
+        VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
+         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickVisuLote1(ActionEvent event) throws IOException {
+        VisualizarLotesController.trocarVizLotes(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickVisuPonto1(ActionEvent event) throws IOException {
+        VisualizarPontoController.trocarVizPonto(MenuBar, f);
+    }
+
+    @FXML
+    void OnClickVisuTelaHome(ActionEvent event) throws IOException {
+        TelaHomeController.trocarTelaHome(MenuBar, f);
     }
    
 }
