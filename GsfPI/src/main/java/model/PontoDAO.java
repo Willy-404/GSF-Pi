@@ -223,12 +223,16 @@ public class PontoDAO extends GenericDAO{
         return lista;
     }
     
-    public List<Ponto> pesquisa(String sql){
+    public List<Ponto> pesquisa(String sql, Object... parametros){
         List<Ponto> lista = new ArrayList<>();
          LocalTime hem, hev, hsm, hsv, hee, hse;
         try (Connection connection = ConexaoBD.conectar();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
+             for (int i = 0; i < parametros.length; i++) {
+                preparedStatement.setObject(i + 1, parametros[i]);
+            }
+             
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                      if(rs.getTime("HorarioEntradaM") == null){
@@ -313,6 +317,8 @@ public class PontoDAO extends GenericDAO{
                     + "HorarioSaidaEx = ? WHERE DataRegistro = ? AND Cpf = ?";
             update(sql, p.getCpf(),p.getHoraEntradaM(),p.getHoraSaidaM(),p.getHoraEntradaV(),p.getHoraSaidaV(),p.getHorarioEntradaEx(),
                     p.getHorarioSaidaEx(),p.getData());
+            //fazer as contas do Salario de cada momento e depois adicionar ao SalarioMes pra poder ser feito o salario enquanto agente edita tambem 
+            
             return true;
          }catch (SQLException e) {  
             e.printStackTrace();

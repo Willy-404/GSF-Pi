@@ -243,7 +243,7 @@ public class VisualizarPontoController {
          if(event.getClickCount() == 2){
              Funcionario fun = TabelaIdentificação.getSelectionModel().getSelectedItem();
              String cpf = String.valueOf(fun.getCpf());
-             txtCpf.setText(cpf);
+             txtCpf.setText(String.valueOf(fun.getCpf()).replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4"));
              txtNome.setText(fun.getNomeFuncionario());
              cbMes.getItems().addAll("JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO");
              btnPesquisaMes.setVisible(true);
@@ -341,71 +341,73 @@ public class VisualizarPontoController {
     void onClickPesquisaMes(ActionEvent event) throws SQLException{
         //Pesquisa dos meses de horario 
         String sql;
-        long cpf = Long.parseLong(txtCpf.getText());
+        long cpf = Long.parseLong(txtCpf.getText().replaceAll("[.-]", ""));
         if(cbMes.getSelectionModel().getSelectedItem() !=  null){
             if(cbMes.getSelectionModel().getSelectedItem().equals("JANEIRO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 1";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 1 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("FEVEREIRO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 2";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 2 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("MARÇO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 3";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 3 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("ABRIL")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 4";
-               pontoPesq = pmetodo.pesquisa(sql);  
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 4 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf);  
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("MAIO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 5";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 5 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("JUNHO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 6";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 6 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("JULHO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 7";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 7 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("AGOSTO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 8";
-               pontoPesq = pmetodo.pesquisa(sql);  
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 8 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf);  
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("SETEMBRO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 9";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 9 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("OUTUBRO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 10";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 10 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("NOVEMBRO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 11";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 11 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
                
             }else if(cbMes.getSelectionModel().getSelectedItem().equals("DEZEMBRO")){
-               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 12";
-               pontoPesq = pmetodo.pesquisa(sql); 
+               sql = "SELECT* FROM registrohora WHERE MONTH(DataRegistro) = 12 and Cpf = ?";
+               pontoPesq = pmetodo.pesquisa(sql, cpf); 
             }
             float SalarioMes = 0;
-            if(pontoPesq == null){
+            if(pontoPesq.isEmpty()){
                 alertas.alertaError("Nenhum Registro nesse mês foi Encontrado", "Registros desse mês não existe no sistema, selecione um mês com registros validos!");
                 txtPesquisa.setText("");
+                cbMes.setValue("");
                 lblSalario.setVisible(false);
                 txtSalario.setVisible(false);
                 carregarPonto(cpf);
             }else{
                 for (Ponto ponto : pontoPesq) {
                     SalarioMes = SalarioMes + ponto.getSalarioDoDia();
+                    System.out.println(ponto.getSalarioDoDia());
                 }
                 
                 lblSalario.setVisible(true);
                 txtSalario.setVisible(true);
-                txtSalario.setText(String.valueOf("SalarioMes"));
+                txtSalario.setText(String.valueOf(SalarioMes));
                 ObservableList<Ponto> listaObPonto = FXCollections.observableArrayList(pontoPesq);
                 TabelaPonto.setItems(listaObPonto);
 
