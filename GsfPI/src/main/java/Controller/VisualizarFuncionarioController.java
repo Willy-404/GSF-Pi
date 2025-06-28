@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,13 +21,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
 import model.Perfil;
@@ -47,7 +48,7 @@ public class VisualizarFuncionarioController {
     private TableColumn<Funcionario, LocalDate> colNascimento;
 
     @FXML
-    private TableColumn<Funcionario, String> colCPF;
+    private TableColumn<Funcionario, Long> colCPF;
 
     @FXML
     private TableColumn<Funcionario, Float> colSalario;
@@ -111,17 +112,58 @@ public class VisualizarFuncionarioController {
     }
     FuncionarioDAO lmetodo = new FuncionarioDAO();
     Alertas alertas = new Alertas();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     //Método para buscar do banco de dados
     public void carregarFuncionarios() {
-         //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Funcionario> funcionarioList = lmetodo.ListarFuncionario();
         ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioList);
         tabelaFuncionario.setItems(listaFuncionario);
         colCPF.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+        colCPF.setCellFactory(column -> new TableCell<Funcionario, Long>() {
+            @Override
+            protected void updateItem(Long item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);    
+                } else {
+                    String cpf = String.format("%011d", item); // Garante 11 dígitos com zeros à esquerda
+                    String cpfFormatado = cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+                    setText(cpfFormatado);
+                }
+            }
+        });
         colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
         colNascimento.setCellValueFactory(new PropertyValueFactory<>("DataNascimento"));
+        colNascimento.setCellFactory(column -> new TableCell<Funcionario, LocalDate>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.format(formatter));
+                }
+            }
+        });
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+        colTelefone.setCellFactory(column -> new TableCell<Funcionario, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.length() < 10) {
+                    setText(null);
+                } else {
+                    String telefoneFormatado;
+                    if (item.length() == 11) {
+                        telefoneFormatado = item.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+                    } else {
+                        telefoneFormatado = item.replaceAll("(\\d{2})(\\d{4})(\\d{4})", "($1) $2-$3");
+                    }
+                setText(telefoneFormatado);
+                }
+            }
+        });
         colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
         colSalario.setCellValueFactory(new PropertyValueFactory<>("ValorHora"));
         colCargo.setCellValueFactory(new PropertyValueFactory<>("Cargo"));
@@ -279,9 +321,50 @@ public class VisualizarFuncionarioController {
                 ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioPesq);
                 tabelaFuncionario.setItems(listaFuncionario);
                 colCPF.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+                colCPF.setCellFactory(column -> new TableCell<Funcionario, Long>() {
+                    @Override
+                    protected void updateItem(Long item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);    
+                        } else {
+                            String cpf = String.format("%011d", item); // Garante 11 dígitos com zeros à esquerda
+                            String cpfFormatado = cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+                            setText(cpfFormatado);
+                        }
+                    }
+                });
                 colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
                 colNascimento.setCellValueFactory(new PropertyValueFactory<>("DataNascimento"));
+                colNascimento.setCellFactory(column -> new TableCell<Funcionario, LocalDate>() {
+                    @Override
+                    protected void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            setText(item.format(formatter));
+                        }
+                    }
+                });
                 colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+                colTelefone.setCellFactory(column -> new TableCell<Funcionario, String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null || item.length() < 10) {
+                            setText(null);
+                        } else {
+                            String telefoneFormatado;
+                            if (item.length() == 11) {
+                                telefoneFormatado = item.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+                            } else {
+                                telefoneFormatado = item.replaceAll("(\\d{2})(\\d{4})(\\d{4})", "($1) $2-$3");
+                            }
+                            setText(telefoneFormatado);
+                        }
+                    }
+                });
                 colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
                 colSalario.setCellValueFactory(new PropertyValueFactory<>("ValorHora"));
                 colCargo.setCellValueFactory(new PropertyValueFactory<>("Cargo"));

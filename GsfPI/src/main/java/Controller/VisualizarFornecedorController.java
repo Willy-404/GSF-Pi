@@ -19,13 +19,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Faccao;
 import model.Fornecedor;
 import model.FornecedorDAO;
 import model.Perfil;
@@ -114,14 +114,43 @@ public class VisualizarFornecedorController {
 
     //Método para buscar do banco de dados
     public void visuFornecedor() {
-        //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Fornecedor> fornecedorList = lmetodo.ListarFornecedor();
         ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorList);
         tabelaFornecedor.setItems(listaFornecedor);
         colCnpj.setCellValueFactory(new PropertyValueFactory<>("CnpjFornecedor"));
+        colCnpj.setCellFactory(column -> new TableCell<Fornecedor, Long>() {
+            @Override
+            protected void updateItem(Long item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    String cnpj = String.format("%014d", item); // Garante 14 dígitos com zeros à esquerda
+                    String cnpjFormatado = cnpj.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5");
+                    setText(cnpjFormatado);
+                }
+            }
+        });
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("UsuarioFornecedor"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+        colTelefone.setCellFactory(column -> new TableCell<Fornecedor, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.length() < 10) {
+                    setText(null);
+                } else {
+                    String telefoneFormatado;
+                    if (item.length() == 11) {
+                        telefoneFormatado = item.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+                    } else {
+                        telefoneFormatado = item.replaceAll("(\\d{2})(\\d{4})(\\d{4})", "($1) $2-$3");
+                    }
+                setText(telefoneFormatado);
+                }
+            }
+        });
         colEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
         
     }
@@ -275,9 +304,39 @@ public class VisualizarFornecedorController {
                 ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorPesq);
                 tabelaFornecedor.setItems(listaFornecedor);
                 colCnpj.setCellValueFactory(new PropertyValueFactory<>("CnpjFornecedor"));
+                colCnpj.setCellFactory(column -> new TableCell<Fornecedor, Long>() {
+                    @Override
+                    protected void updateItem(Long item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            String cnpj = String.format("%014d", item); // Garante 14 dígitos com zeros à esquerda
+                            String cnpjFormatado = cnpj.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5");
+                            setText(cnpjFormatado);
+                        }
+                    }
+                });
                 colRepresentante.setCellValueFactory(new PropertyValueFactory<>("NomeRepreFornecedor"));
                 colEmail.setCellValueFactory(new PropertyValueFactory<>("UsuarioFornecedor"));
                 colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
+                colTelefone.setCellFactory(column -> new TableCell<Fornecedor, String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null || item.length() < 10) {
+                            setText(null);
+                        } else {
+                            String telefoneFormatado;
+                            if (item.length() == 11) {
+                                telefoneFormatado = item.replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
+                            } else {
+                                telefoneFormatado = item.replaceAll("(\\d{2})(\\d{4})(\\d{4})", "($1) $2-$3");
+                            }
+                        setText(telefoneFormatado);
+                        }
+                    }
+                });
                 colEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
             }
         }else {

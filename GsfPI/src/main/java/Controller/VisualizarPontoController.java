@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -21,13 +22,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Faccao;
 import model.Funcionario;
 import model.FuncionarioDAO;
 import model.Perfil;
@@ -138,6 +139,7 @@ public class VisualizarPontoController {
     FuncionarioDAO fmetodo = new FuncionarioDAO();
     public Stage stage;
     Alertas alertas = new Alertas();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     private void carregarPonto(long cpf) {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
@@ -146,6 +148,18 @@ public class VisualizarPontoController {
         TabelaPonto.setItems(listaObPonto);
         
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colData.setCellFactory(column -> new TableCell<Ponto, LocalDate>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.format(formatter));
+                }
+            }
+        });
+
         colEntrada.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaM"));
         colSaida.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaM"));
         colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaV"));
@@ -159,6 +173,19 @@ public class VisualizarPontoController {
         TabelaIdentificação.setItems(listaObFunc);
         
         colCpf.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+        colCpf.setCellFactory(column -> new TableCell<Funcionario, Long>() {
+            @Override
+            protected void updateItem(Long item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);    
+                } else {
+                    String cpf = String.format("%011d", item); // Garante 11 dígitos com zeros à esquerda
+                    String cpfFormatado = cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+                    setText(cpfFormatado);
+                }
+            }
+        });
         colNome.setCellValueFactory(new PropertyValueFactory("NomeFuncionario"));
     }
     
@@ -289,6 +316,19 @@ public class VisualizarPontoController {
                 ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioPesq);
                 TabelaIdentificação.setItems(listaFuncionario);
                 colCpf.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
+                colCpf.setCellFactory(column -> new TableCell<Funcionario, Long>() {
+                    @Override
+                    protected void updateItem(Long item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);    
+                        } else {
+                            String cpf = String.format("%011d", item); // Garante 11 dígitos com zeros à esquerda
+                            String cpfFormatado = cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+                            setText(cpfFormatado);
+                        }
+                    }
+                });
                 colNome.setCellValueFactory(new PropertyValueFactory<>("NomeFuncionario"));
             }
         }else {
@@ -370,6 +410,17 @@ public class VisualizarPontoController {
                 TabelaPonto.setItems(listaObPonto);
 
                 colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+                colData.setCellFactory(column -> new TableCell<Ponto, LocalDate>() {
+                    @Override
+                    protected void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            setText(item.format(formatter));
+                        }
+                    }
+                });
                 colEntrada.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaM"));
                 colSaida.setCellValueFactory(new PropertyValueFactory<>("HoraSaidaM"));
                 colEntrada1.setCellValueFactory(new PropertyValueFactory<>("HoraEntradaV"));

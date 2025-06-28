@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,7 +29,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import model.Faccao;
 
 import model.Lotes;
 import model.LotesDAO;
@@ -140,7 +141,8 @@ public class VisualizarLotesController {
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
     int validarSelecao = 0;
-
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
     private void carregarLotes() {
          //Ao puxar para a table view temos que voltar ao padrão pedido nos outros momentos, se usa replaceAll?
         List<Lotes> lotesList = lmetodo.listarLotes();
@@ -149,7 +151,29 @@ public class VisualizarLotesController {
         
         colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
         colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+        colPrazo.setCellFactory(column -> new TableCell<Lotes, LocalDate>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.format(formatter));
+                }
+            }
+        });
         colEntrada.setCellValueFactory(new PropertyValueFactory<>("Entrada"));
+        colEntrada.setCellFactory(column -> new TableCell<Lotes, LocalDate>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.format(formatter));
+                }
+            }
+        });
         colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
         colColeção.setCellValueFactory(new PropertyValueFactory<>("Colecao"));
         colTecido.setCellValueFactory(new PropertyValueFactory<>("Tecido"));
@@ -291,7 +315,29 @@ public class VisualizarLotesController {
 
                 colReferencia.setCellValueFactory(new PropertyValueFactory<>("Referencia"));
                 colPrazo.setCellValueFactory(new PropertyValueFactory<>("Prazo"));
+                colPrazo.setCellFactory(column -> new TableCell<Lotes, LocalDate>() {
+                    @Override
+                    protected void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            setText(item.format(formatter));
+                        }
+                    }
+                });
                 colEntrada.setCellValueFactory(new PropertyValueFactory<>("Entrada"));
+                colEntrada.setCellFactory(column -> new TableCell<Lotes, LocalDate>() {
+                    @Override
+                    protected void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            setText(item.format(formatter));
+                        }
+                    }
+                });
                 colModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
                 colColeção.setCellValueFactory(new PropertyValueFactory<>("Colecao"));
                 colTecido.setCellValueFactory(new PropertyValueFactory<>("Tecido"));
