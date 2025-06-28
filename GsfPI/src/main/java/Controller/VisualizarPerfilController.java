@@ -113,8 +113,8 @@ public class VisualizarPerfilController {
         this.p=f;
         if(f.getTipoPerfil().toString().equals("Faccao")){
            faccao = fd.selecionar(f.getCNPJ());
-           txtCnpj.setText(String.valueOf(faccao.getCNPJFaccao()));
-           txtContato.setText(faccao.getTelefone());
+           txtCnpj.setText(String.valueOf(faccao.getCNPJFaccao()).replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5"));
+           txtContato.setText(faccao.getTelefone().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3"));
            txtEmail.setText(faccao.getEmailAcesso());
            txtNome.setText(faccao.getNomeRepreFaccao());
            txtSenha.setText(faccao.getSenha()); 
@@ -124,11 +124,11 @@ public class VisualizarPerfilController {
         }else{
             System.out.println(f.getCNPJ()+ " Fornecedor");
             forne = fmetodo.selecionar(f.getCNPJ());
-            txtCnpj.setText(String.valueOf(forne.getCnpjFornecedor()));
+            txtCnpj.setText(String.valueOf(forne.getCnpjFornecedor()).replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5"));
             txtNome.setText(forne.getNomeRepreFornecedor());
             txtEmail.setText(forne.getUsuarioFornecedor());
             txtSenha.setText(forne.getSenha());
-            txtContato.setText(forne.getTelefone());
+            txtContato.setText(forne.getTelefone().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3"));
             
             lblEndereco.setVisible(true);
             txtEndereco.setVisible(true); 

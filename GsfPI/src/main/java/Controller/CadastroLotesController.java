@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -392,7 +393,11 @@ public class CadastroLotesController {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
                 && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
-            VisualizarLotesController.trocarVizLotes(btnVoltar, f);
+            if(btnConfirmarLote.getText().equals("Editar")){
+                VisualizarLotesController.trocarVizLotes(btnVoltar, f);
+            }else{
+                TelaHomeController.trocarTelaHome(btnVoltar, f);
+            }
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Sair?");
@@ -400,7 +405,12 @@ public class CadastroLotesController {
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        VisualizarLotesController.trocarVizLotes(btnVoltar, f);
+                        if(btnConfirmarLote.getText().equals("Editar")){
+                            VisualizarLotesController.trocarVizLotes(btnVoltar, f);
+                        }else{
+                            TelaHomeController.trocarTelaHome(btnVoltar, f);
+                        }
+                        
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

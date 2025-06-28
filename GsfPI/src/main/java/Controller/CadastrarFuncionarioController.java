@@ -505,8 +505,8 @@ public class CadastrarFuncionarioController {
     
     public void setValores(Funcionario f){
             txtNome.setText(f.getNomeFuncionario());
-            txtCpf.setText(String.valueOf(f.getCpf()));
-            txtContato.setText(f.getTelefone());
+            txtCpf.setText(String.valueOf(f.getCpf()).replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4"));
+            txtContato.setText(f.getTelefone().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3"));
             txtNascimento.setValue(f.getDataNascimento());
             txtEmail.setText(f.getEmail());
             String salarioFormatado = String.valueOf(f.getValorHora()).replaceAll("[.]", ",");
