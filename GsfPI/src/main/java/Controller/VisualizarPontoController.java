@@ -16,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -247,6 +249,9 @@ public class VisualizarPontoController {
              txtNome.setText(fun.getNomeFuncionario());
              cbMes.getItems().addAll("JANEIRO","FEVEREIRO","MARÇO","ABRIL","MAIO","JUNHO","JULHO","AGOSTO","SETEMBRO","OUTUBRO","NOVEMBRO","DEZEMBRO");
              btnPesquisaMes.setVisible(true);
+             cbMes.setValue("");
+             lblSalario.setVisible(false);   
+             txtSalario.setVisible(false);
              carregarPonto(fun.getCpf());
          }
     }
@@ -254,8 +259,20 @@ public class VisualizarPontoController {
     @FXML
     void onSelectHora(MouseEvent event) throws IOException {
         if(event.getClickCount() == 2){
-            Ponto p = TabelaPonto.getSelectionModel().getSelectedItem();
-            EditHorariosController.trocarTelaEditHora(TabelaPonto, f, p);
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Editar");
+            alerta.setHeaderText("Deseja realizar a edição dos horários! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        Ponto p = TabelaPonto.getSelectionModel().getSelectedItem();
+                        EditHorariosController.trocarTelaEditHora(TabelaPonto, f, p);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } 
+            });
+            
         }
     }
      public static void trocarVizPonto(MenuBar menuBar, Perfil f)throws IOException {

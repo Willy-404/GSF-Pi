@@ -17,8 +17,8 @@ public class PontoDAO extends GenericDAO{
         String sql, txtHoraS, txtHoraE;
         Ponto p = select(cpf, data);
         Funcionario f = fmetodo.select(p.getCpf());
-        float contaSalario, horaS, horaE;
-        int id=0;
+        float contaSalario, horaS, horaE, horaET, horaST;
+        int id=0, horaEI, horaSI;
         try{
             if(p == null){
                 id = numId();
@@ -32,9 +32,16 @@ public class PontoDAO extends GenericDAO{
                 //Fazer o calculo de cada horarios fechado, pra ficar mais facil;
                 txtHoraS = String.valueOf(hora).replaceAll("[:]", ".");
                 txtHoraE = String.valueOf(p.getHoraEntradaM()).replaceAll("[:]", ".");
-                System.out.println(txtHoraS +"\n"+txtHoraE);
-                horaS= Float.parseFloat(txtHoraS); horaE = Float.parseFloat(txtHoraE);
-                contaSalario = (horaS - horaE)* f.getValorHora();
+                
+                horaE = Float.parseFloat(txtHoraE);
+                horaEI = (int)horaE;
+                horaET = ((horaE - horaEI)/60)+ horaEI;
+                
+                horaS = Float.parseFloat(txtHoraS);
+                horaSI =(int)horaS;
+                horaST = ((horaE - horaEI)/60)+ horaEI;
+                
+                contaSalario = ((horaST - horaET)* f.getValorHora()) + p.getSalarioDoDia();
                 sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, contaSalario, data);
                 return true;
@@ -47,10 +54,17 @@ public class PontoDAO extends GenericDAO{
                  update(sql, cpf, hora, data);
                  
                 txtHoraS = String.valueOf(hora).replaceAll("[:]", ".");
-                txtHoraE = String.valueOf(p.getHoraEntradaV()).replaceAll("[:]", ".");
-                System.out.println(txtHoraS +"\n"+txtHoraE);
-                horaS= Float.parseFloat(txtHoraS); horaE = Float.parseFloat(txtHoraE);
-                contaSalario = ((horaS - horaE)* f.getValorHora()) + p.getSalarioDoDia();
+                txtHoraE = String.valueOf(p.getHoraEntradaM()).replaceAll("[:]", ".");
+                
+                horaE = Float.parseFloat(txtHoraE);
+                horaEI = (int)horaE;
+                horaET = ((horaE - horaEI)/60)+ horaEI;
+                
+                horaS = Float.parseFloat(txtHoraS);
+                horaSI =(int)horaS;
+                horaST = ((horaE - horaEI)/60)+ horaEI;
+                
+                contaSalario = ((horaST - horaET)* f.getValorHora()) + p.getSalarioDoDia();
                 sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, contaSalario, data);
                 return true;
@@ -63,10 +77,17 @@ public class PontoDAO extends GenericDAO{
                  update(sql, cpf, hora, data);
                  
                 txtHoraS = String.valueOf(hora).replaceAll("[:]", ".");
-                txtHoraE = String.valueOf(p.getHorarioEntradaEx()).replaceAll("[:]", ".");
-                System.out.println(txtHoraS +"\n"+txtHoraE);
-                horaS= Float.parseFloat(txtHoraS); horaE = Float.parseFloat(txtHoraE);
-                contaSalario = ((horaS - horaE)* f.getValorHora()) + p.getSalarioDoDia();
+                txtHoraE = String.valueOf(p.getHoraEntradaM()).replaceAll("[:]", ".");
+                
+                horaE = Float.parseFloat(txtHoraE);
+                horaEI = (int)horaE;
+                horaET = ((horaE - horaEI)/60)+ horaEI;
+                
+                horaS = Float.parseFloat(txtHoraS);
+                horaSI =(int)horaS;
+                horaST = ((horaE - horaEI)/60)+ horaEI;
+                
+                contaSalario = ((horaST - horaET)* f.getValorHora()) + p.getSalarioDoDia();
                 sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
                 update(sql, cpf, contaSalario, data);
                 return true;
@@ -310,15 +331,68 @@ public class PontoDAO extends GenericDAO{
          return i;
     }
     
-    public boolean editarHorario(Ponto p){
-        String sql;
+    public boolean editarHorario(Ponto p) throws SQLException{
+        String sql, txtHoraS, txtHoraE;
+        float contaSalario, horaS, horaE, horaET, horaST;
+        int horaSI, horaEI;
+        Ponto pSelect;
+        Funcionario f = fmetodo.select(p.getCpf());
          try{
             sql ="UPDATE registrohora SET HorarioEntradaM = ?, HorarioSaidaM = ?, HorarioEntradaV = ?, HorarioSaidaV = ?, HorarioEntradaEx = ?,"
                     + "HorarioSaidaEx = ? WHERE DataRegistro = ? AND Cpf = ?";
             update(sql, p.getCpf(),p.getHoraEntradaM(),p.getHoraSaidaM(),p.getHoraEntradaV(),p.getHoraSaidaV(),p.getHorarioEntradaEx(),
                     p.getHorarioSaidaEx(),p.getData());
-            //fazer as contas do Salario de cada momento e depois adicionar ao SalarioMes pra poder ser feito o salario enquanto agente edita tambem 
-            
+            //Conta pro salario de dia 
+            if((p.getHoraEntradaM() != null) && (p.getHoraSaidaM() != null)){
+                txtHoraS = String.valueOf(p.getHoraSaidaM()).replaceAll("[:]", ".");
+                txtHoraE = String.valueOf(p.getHoraEntradaM()).replaceAll("[:]", ".");
+                
+                horaE = Float.parseFloat(txtHoraE);
+                horaEI = (int)horaE;
+                horaET = ((horaE - horaEI)/60)+ horaEI;
+                
+                horaS = Float.parseFloat(txtHoraS);
+                horaSI =(int)horaS;
+                horaST = ((horaE - horaEI)/60)+ horaEI;
+                
+                contaSalario = ((horaST - horaET)* f.getValorHora()) + p.getSalarioDoDia();
+                sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, p.getCpf(), contaSalario, p.getData());
+            }
+            pSelect = select(p.getData(), p.getCpf());
+            if((p.getHoraEntradaV() != null) && (p.getHoraSaidaV() != null)){
+                txtHoraS = String.valueOf(p.getHoraSaidaV()).replaceAll("[:]", ".");
+                txtHoraE = String.valueOf(p.getHoraEntradaV()).replaceAll("[:]", ".");
+                 
+                horaE = Float.parseFloat(txtHoraE);
+                horaEI = (int)horaE;
+                horaET = ((horaE - horaEI)/60)+ horaEI;
+                
+                horaS = Float.parseFloat(txtHoraS);
+                horaSI =(int)horaS;
+                horaST = ((horaE - horaEI)/60)+ horaEI;
+                
+                contaSalario = ((horaST - horaET)* f.getValorHora()) + p.getSalarioDoDia();
+                sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, p.getCpf(), contaSalario, p.getData());
+            }
+            pSelect = select(p.getData(), p.getCpf());
+            if((p.getHorarioEntradaEx()!= null) && (p.getHorarioSaidaEx()!= null)){
+                txtHoraS = String.valueOf(p.getHorarioSaidaEx()).replaceAll("[:]", ".");
+                txtHoraE = String.valueOf(p.getHorarioEntradaEx()).replaceAll("[:]", ".");
+                 
+                horaE = Float.parseFloat(txtHoraE);
+                horaEI = (int)horaE;
+                horaET = ((horaE - horaEI)/60)+ horaEI;
+                
+                horaS = Float.parseFloat(txtHoraS);
+                horaSI =(int)horaS;
+                horaST = ((horaE - horaEI)/60)+ horaEI;
+                
+               contaSalario = ((horaST - horaET)* f.getValorHora()) + p.getSalarioDoDia();
+                sql = "UPDATE registrohora SET SalarioDoDia = ? WHERE DataRegistro = ? AND Cpf = ?";
+                update(sql, p.getCpf(), contaSalario, p.getData());
+            }
             return true;
          }catch (SQLException e) {  
             e.printStackTrace();
