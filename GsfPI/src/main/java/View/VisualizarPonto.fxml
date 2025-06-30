@@ -25,7 +25,7 @@
             </Menu>
             <Menu fx:id="menuVisualizar" text="Visualizar">
                <items>
-                  <MenuItem fx:id="itemVisuFuncionario" onAction="#OnClickVisuFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemVisuFuncionario" onAction="#OnClickVisuFuncionario1" text="Funcionário" />
                   <MenuItem fx:id="itemVisuFornecedor" onAction="#OnClickVisuFornecedor1" text="Fornecedor" />
                   <MenuItem fx:id="itemVisuLote" onAction="#OnClickVisuLote1" text="Lote" />
                   <MenuItem fx:id="itemVisuPonto" onAction="#OnClickVisuPonto1" text="Ponto" />
@@ -33,7 +33,7 @@
             </Menu>
             <Menu text="Cadastrar">
                <items>
-                  <MenuItem fx:id="itemCadFuncionario" onAction="#OnClickCadFuncionario1" text="Funcionario" />
+                  <MenuItem fx:id="itemCadFuncionario" onAction="#OnClickCadFuncionario1" text="Funcionário" />
                   <MenuItem fx:id="itemCadFornecedor" onAction="#OnClickCadFornecedor1" text="Fornecedor" />
                   <MenuItem fx:id="itemCadLote" onAction="#OnClickCadLote1" text="Lote" />
                </items>
