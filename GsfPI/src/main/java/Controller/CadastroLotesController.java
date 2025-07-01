@@ -702,13 +702,30 @@ public class CadastroLotesController {
         int RefeLote = Integer.parseInt(ReferenciaSalva);
         ItemLoteDAO metodo = new ItemLoteDAO();
         List<ItemLote> lista = metodo.listarSubgrupos(RefeLote);
-        int i = 0;
+        /*int i = 0;
         for (ItemLote item : ItensLote){
             ItemLote subgrupo = new ItemLote(RefeLote,item.getQuantidade(),item.getTamanho(),item.getLinha());
+            for(int j=0;j<lmetodo.numIdSubGrupo();j++){
+                
+            }
             if(metodo.editarSubgrupo(subgrupo, lista.get(i).getId()) == false){
                 return false;
             }
             i++;
+        }*/
+        for (int i = 0; i < ItensLote.size(); i++) {
+            ItemLote itemAtual = ItensLote.get(i);
+            ItemLote subgrupo = new ItemLote(RefeLote,itemAtual.getQuantidade(),itemAtual.getTamanho(),itemAtual.getLinha());
+            if(i<lista.size()){
+                int idE = lista.get(i).getId();
+                if(!metodo.editarSubgrupo(subgrupo, idE)){
+                    return false;
+                }
+            }else{
+                if(!metodo.cadastroSubgrupo(subgrupo)){
+                    return false;
+                }
+            }
         }
         return true;
     }
