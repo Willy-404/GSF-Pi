@@ -429,7 +429,7 @@ public class CadastrarFornecedorController {
             PerfilDAO pmetodo = new PerfilDAO();
             
             Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone, Endereco);
-            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjItemTrocado) != true && pmetodo.editarPerfilCnpj(p, cnpjItemTrocado) != true){
+            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjItemTrocado) != true || pmetodo.editarPerfilCnpj(p, cnpjItemTrocado) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
                  alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");

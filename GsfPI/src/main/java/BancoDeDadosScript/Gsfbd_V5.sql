@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `gsf` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gsf`;
--- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gsf
 -- ------------------------------------------------------
--- Server version	8.0.41
+-- Server version	8.0.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,34 +42,6 @@ LOCK TABLES `faccao` WRITE;
 /*!40000 ALTER TABLE `faccao` DISABLE KEYS */;
 INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123'),(11111111111112,'f','f@gmail.com','f','(47) 99999-9999'),(12345678901234,'Felipe','banana','banana',NULL),(22222222222222,'f','felipe.w28@gmail.com','f','47999122334');
 /*!40000 ALTER TABLE `faccao` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `fluxos`
---
-
-DROP TABLE IF EXISTS `fluxos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fluxos` (
-  `idFluxos` int NOT NULL AUTO_INCREMENT,
-  `EstadoProducao` varchar(20) NOT NULL,
-  `Descricao` varchar(100) DEFAULT NULL,
-  `DataHora` datetime NOT NULL,
-  `Referencia` int NOT NULL,
-  PRIMARY KEY (`idFluxos`,`Referencia`),
-  KEY `Referencia_idx` (`Referencia`),
-  CONSTRAINT `Referencia_fk` FOREIGN KEY (`Referencia`) REFERENCES `lote` (`Referencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fluxos`
---
-
-LOCK TABLES `fluxos` WRITE;
-/*!40000 ALTER TABLE `fluxos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fluxos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -264,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-01  0:56:04
+-- Dump completed on 2025-07-01  9:52:25
