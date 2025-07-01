@@ -182,6 +182,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -209,6 +210,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -236,6 +238,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -263,6 +266,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -290,6 +294,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -317,6 +322,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -344,6 +350,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }
@@ -371,6 +378,7 @@ public class CadastroLotesController {
             alerta.setTitle("Sair?");
             if(btnConfirmarLote.getText().equals("Editar")){
                 alerta.setHeaderText("Ao sair as informações alteradas serão perdidas! ");
+                atualizarSaida();
             }else{
                 alerta.setHeaderText("Ao sair as informações apresentadas serão perdidas! ");
             }  
@@ -407,6 +415,7 @@ public class CadastroLotesController {
                     try {
                         if(btnConfirmarLote.getText().equals("Editar")){
                             VisualizarLotesController.trocarVizLotes(btnVoltar, f);
+                            atualizarSaida();
                         }else{
                             TelaHomeController.trocarTelaHome(btnVoltar, f);
                         }
@@ -492,7 +501,7 @@ public class CadastroLotesController {
             int quantidade = Integer.parseInt(txtQuantidade.getText());
             Lotes loteEdit = new Lotes(RefInt, txtPrazo.getValue(), txtEntrada.getValue(), valorPreco, txtTecido.getText(), 
                 txtMarca.getText(), cbColecao.getSelectionModel().getSelectedItem(), cbModelo.getSelectionModel().getSelectedItem(), quantidade);
-            if(metodo.editarLotes(loteEdit, RefInt) != true || updateDeSubgrupos()!= true){
+            if(metodo.editarLotes(loteEdit, refSalva) != true || updateDeSubgrupos()!= true){
                 alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                 txtLinha.setText("");
                 txtQuantidadeItem.setText("");
@@ -556,7 +565,7 @@ public class CadastroLotesController {
                     subgrupo.setLinha(txtLinha.getText());
                     subgrupo.setTamanho(cbTamanho.getSelectionModel().getSelectedItem());
                     boolean itemUpdate = lmetodo.editarSubgrupo(subgrupo, subgrupo.getId());
-                    System.out.println(itemUpdate);
+                    
                     if(itemUpdate == true){
                         setValoresSubGrupo(subgrupo.getRefeLote());
                          
@@ -567,6 +576,11 @@ public class CadastroLotesController {
                         btnAdicionar.setText("Adicionar");  
                     }else{
                         alertas.alertaError("Edição de Item", "Erro na edição de Item!");
+                        txtLinha.setText("");
+                        txtQuantidadeItem.setText("");
+                        cbTamanho.setValue(null);
+
+                        btnAdicionar.setText("Adicionar"); 
                     }
                     
                 }
@@ -610,9 +624,9 @@ public class CadastroLotesController {
         thc.setTextButon("Editar");
         thc.setTextLabel("Edição de Lote");
         thc.setValoresSubGrupo(l.getReferencia());
+        thc.SalvarItensOriginais(l.getReferencia());
         
         thc.setValores(l);
-        //Carregar os SubGrupos 
         thc.setStage(home);
 
         Scene cena = new Scene(root);
@@ -707,8 +721,11 @@ public class CadastroLotesController {
         subgrupo = new ItemLote(Quantidade, Tamanho, Linha);     
         return subgrupo;
     }
+    List<ItemLote> itensSalvosAntesEdit;
+    public void SalvarItensOriginais(int ref){
+       itensSalvosAntesEdit = lmetodo.listarSubgrupos(ref);
+    }
     
-   
     public void carregarSubgruposCadastro(List<ItemLote> subgruposList) {
         ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
         tbSubGrupo.setItems(listSubgrupos);
@@ -725,7 +742,9 @@ public class CadastroLotesController {
         lblTitulo.setText(txtLabel);
     }
     
+    int refSalva;
     public void setValores(Lotes l){
+        refSalva = l.getReferencia();
         txtReferencia.setText(String.valueOf(l.getReferencia()));
         txtEntrada.setValue(l.getEntrada());
         txtMarca.setText(l.getMarca());
@@ -738,10 +757,10 @@ public class CadastroLotesController {
         txtTecido.setText(l.getTecido());
     }
     
+    
     public void setValoresSubGrupo(int ref){
-        ItemLoteDAO metodo = new ItemLoteDAO();
         ItensLote = lmetodo.listarSubgrupos(ref); 
-        List<ItemLote> subgruposList = metodo.listarSubgrupos(ref);
+        List<ItemLote> subgruposList = ItensLote;
         ObservableList<ItemLote> listSubgrupos = FXCollections.observableArrayList(subgruposList);
         tbSubGrupo.setItems(listSubgrupos);
         colTamanho.setCellValueFactory(new PropertyValueFactory<>("Tamanho"));
@@ -749,24 +768,41 @@ public class CadastroLotesController {
         colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
     }
     
+    public void atualizarSaida(){
+        int i = 0;
+        for (ItemLote item : itensSalvosAntesEdit) {
+            ItemLote il = new ItemLote(itensSalvosAntesEdit.get(i).getRefeLote(),itensSalvosAntesEdit.get(i).getQuantidade(),
+                    itensSalvosAntesEdit.get(i).getTamanho(),itensSalvosAntesEdit.get(i).getLinha());
+               lmetodo.editarSubgrupo(il, itensSalvosAntesEdit.get(i).getId()); 
+            i++;
+        }
+    }
+    
     @FXML
     void onClickExcluir(ActionEvent event) {
         ItemLote item = tbSubGrupo.getSelectionModel().getSelectedItem();
-        
         if (item != null){
             int id = item.getId();
-        
-            ItemLoteDAO excluir = new ItemLoteDAO();
-            if (!excluir.deletarSubgrupo(item, id)){
-                alertas.alertaError("Erro na exclusão", "Exclusão não efetivada!");
-            }else {
-                tbSubGrupo.getItems().remove(item);
-                txtQuantidadeItem.setText("");
-                cbTamanho.setValue(null);
-                txtLinha.setText("");
-            }
-        } else{
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Deletar?");
+            alerta.setHeaderText("Ao deletar essas informações serão perdidas! ");
+            alerta.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    ItemLoteDAO excluir = new ItemLoteDAO();
+                    if (!excluir.deletarSubgrupo(item, id)){
+                        alertas.alertaError("Erro na exclusão", "Exclusão não efetivada!");
+                    }else {
+                        tbSubGrupo.getItems().remove(item);
+                        txtQuantidadeItem.setText("");
+                        cbTamanho.setValue(null);
+                        txtLinha.setText("");
+                    }
+                } 
+            });
+        }else{
             alertas.alertaError("Nenhum Item selecionado","Selecione um Item para poder excluir!");
         }
+        
+            
     }
 }

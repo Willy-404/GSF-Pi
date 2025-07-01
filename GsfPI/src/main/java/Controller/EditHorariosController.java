@@ -24,6 +24,7 @@ import model.Perfil;
 import model.Ponto;
 import model.PontoDAO;
 import util.Alertas;
+import util.Validacao;
 
 public class EditHorariosController {
 
@@ -89,7 +90,6 @@ public class EditHorariosController {
 
     public static void trocarTelaEditHora(TableView t, Perfil f, Ponto p) throws IOException{
         Stage ponto = new Stage();
-        ponto.setMaximized(true);
         ponto.setTitle("Editar Horários");
 
         URL url = new File("src/main/java/view/EditHorarios.fxml").toURI().toURL();
@@ -101,9 +101,13 @@ public class EditHorariosController {
         thc.setValores(p);
         thc.setStage(ponto);
 
+        ponto.initOwner(t.getScene().getWindow());
+        ponto.initModality(javafx.stage.Modality.WINDOW_MODAL);
+        ponto.setResizable(false);
+        
         Scene cena = new Scene(root);
         ponto.setScene(cena);
-        ponto.show();
+        ponto.showAndWait();
         
         ((Stage) t.getScene().getWindow()).close();
     }
@@ -166,6 +170,7 @@ public class EditHorariosController {
     Alertas alertas = new Alertas();
     PontoDAO metodo = new PontoDAO();
     FuncionarioDAO fmetodo = new FuncionarioDAO();
+    Validacao validacao = new Validacao();
     @FXML
     void onClickConfirmar(ActionEvent event) throws IOException, SQLException {
         //Fazer Verificações
@@ -177,7 +182,12 @@ public class EditHorariosController {
         if(txtEntradaM.getText().equals("")){
             hem = null;
         }else{
-            hem = LocalTime.parse(txtEntradaM.getText());
+            String[] partes = txtEntradaM.getText().split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            String horaFormatada = String.format("%02d:%02d", hora, minuto);
+            hem = LocalTime.parse(horaFormatada);
+            
             txthoraE = String.valueOf(hem).replaceAll("[:]", ".");
             horaE = Float.parseFloat(txthoraE);
         }
@@ -185,7 +195,12 @@ public class EditHorariosController {
         if(txtSaidaM.getText().equals("")){
             hsm = null;
         }else{
-            hsm = LocalTime.parse(txtSaidaM.getText());
+            String[] partes = txtSaidaM.getText().split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            String horaFormatada = String.format("%02d:%02d", hora, minuto);
+            hsm = LocalTime.parse(horaFormatada);
+            
             txthoraS = String.valueOf(hsm).replaceAll("[:]", ".");
             horaS = Float.parseFloat(txthoraS);
         }
@@ -194,7 +209,8 @@ public class EditHorariosController {
            horaE = 1; 
            horaS = 1; 
         }else if(horaE == 0 || horaS == 0){        
-            alertas.alertaError("Horário Incompleto", "Informe os valores de Entrada e Saída!");
+            alertas.alertaError("Horário Matutino Incompleto", "Informe os valores de Entrada e Saída!");
+            return;
         }else{
             salario = (horaS - horaE) * fun.getValorHora();
             horaE = 0; 
@@ -205,7 +221,12 @@ public class EditHorariosController {
         if(txtEntradaV.getText().equals("")){
             hev = null;
         }else{
-            hev = LocalTime.parse(txtEntradaV.getText());
+            String[] partes = txtEntradaV.getText().split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            String horaFormatada = String.format("%02d:%02d", hora, minuto);
+            hev = LocalTime.parse(horaFormatada);
+            
             txthoraE = String.valueOf(hev).replaceAll("[:]", ".");
             horaE = Float.parseFloat(txthoraE);
         }
@@ -213,7 +234,12 @@ public class EditHorariosController {
         if(txtSaidaV.getText().equals("")){
             hsv = null;
         }else{
-            hsv = LocalTime.parse(txtSaidaV.getText());
+            String[] partes = txtSaidaV.getText().split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            String horaFormatada = String.format("%02d:%02d", hora, minuto);
+            hsv = LocalTime.parse(horaFormatada);
+            
             txthoraS = String.valueOf(hsv).replaceAll("[:]", ".");
             horaS = Float.parseFloat(txthoraS);
         }
@@ -222,7 +248,8 @@ public class EditHorariosController {
            horaE = 1; 
            horaS = 1; 
         }else if(horaE == 0 || horaS == 0){        
-            alertas.alertaError("Horário Incompleto", "Informe os valores de Entrada e Saída!");
+            alertas.alertaError("Horário Vespertino Incompleto", "Informe os valores de Entrada e Saída!");
+            return;
         }else{
             salario = ((horaS - horaE) * fun.getValorHora())+ salario;
             horaE = 0; 
@@ -233,7 +260,12 @@ public class EditHorariosController {
         if(txtEntradaE.getText().equals("")){
             hee = null;
         }else{
-            hee = LocalTime.parse(txtEntradaE.getText());
+            String[] partes = txtEntradaE.getText().split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            String horaFormatada = String.format("%02d:%02d", hora, minuto);
+            hee = LocalTime.parse(horaFormatada);
+            
             txthoraE = String.valueOf(hee).replaceAll("[:]", ".");
             horaE = Float.parseFloat(txthoraE);
         }
@@ -241,7 +273,12 @@ public class EditHorariosController {
         if(txtSaidaE.getText().equals("")){
             hse = null;
         }else{
-            hse = LocalTime.parse(txtSaidaE.getText());
+            String[] partes = txtSaidaE.getText().split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            String horaFormatada = String.format("%02d:%02d", hora, minuto);
+            hse = LocalTime.parse(horaFormatada);
+            
             txthoraS = String.valueOf(hse).replaceAll("[:]", ".");
             horaS = Float.parseFloat(txthoraS);
         }
@@ -250,7 +287,7 @@ public class EditHorariosController {
            horaE = 1; 
            horaS = 1; 
         }else if(horaE == 0 || horaS == 0){        
-            alertas.alertaError("Horário Incompleto", "Informe os valores de Entrada e Saída!");
+            alertas.alertaError("Horário Extra Incompleto", "Informe os valores de Entrada e Saída!");
         }else{
             salario = ((horaS - horaE) * fun.getValorHora())+ salario;
         }

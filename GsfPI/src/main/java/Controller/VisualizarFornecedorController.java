@@ -289,7 +289,7 @@ public class VisualizarFornecedorController {
     }
     
     Fornecedor fornecedorPesq;
-    FornecedorDAO metodo;
+    FornecedorDAO metodo = new FornecedorDAO();
     @FXML
     void OnClickPesquisar(ActionEvent event) throws SQLException {
         //Pesquisa por nome do Fornecedor 
@@ -299,7 +299,6 @@ public class VisualizarFornecedorController {
                 alertas.alertaError("Nenhum Fornecedor Encontrado", "Fornecedor não registrado no sistema, digite um Fornecedor válido!");
                 txtPesquisa.setText("");
                 visuFornecedor();
-
             }else{
                 ObservableList<Fornecedor> listaFornecedor = FXCollections.observableArrayList(fornecedorPesq);
                 tabelaFornecedor.setItems(listaFornecedor);

@@ -23,6 +23,7 @@ import model.FornecedorDAO;
 import model.Perfil;
 import model.PerfilDAO;
 import util.Alertas;
+import util.Validacao;
 
 public class SaidaPontoController {
 
@@ -52,7 +53,7 @@ public class SaidaPontoController {
 
     Alertas alertas = new Alertas();
     PerfilDAO pmetodo = new PerfilDAO();
-
+    Validacao validacao = new Validacao();
     // Ação do botão cancelar
     @FXML
     void onClickCancelar(ActionEvent event) throws IOException {
@@ -68,23 +69,32 @@ public class SaidaPontoController {
       @FXML
     void onClickConfirmar(ActionEvent event) throws IOException, SQLException {
         if(lblEmail.isVisible()){
-            Perfil pT = pmetodo.selecionaPerfilEmail(txtEmail.getText());
-            pT.setSenha(txtSenha.getText());
-            if(pmetodo.editarPerfilEmail(pT, txtEmail.getText())){
-                alertas.alertaInformation("Recuperação realizada com sucesso", "Senha alterada e pronta para uso!");
-                if(pT.getTipoPerfil().toString().equals("Faccao")){
-                    FaccaoDAO fmetodo = new FaccaoDAO();
-                    Faccao f = fmetodo.selecionar(pT.getCNPJ());
-                    f.setSenha(txtSenha.getText());
-                    fmetodo.editarFaccao(f,pT.getCNPJ());
+                Perfil pT = pmetodo.selecionaPerfilEmail(txtEmail.getText());
+                if(pT == null){
+                    alertas.alertaError("Email não existe no sistema", "Digite um email válido para realizar a alteração da senha!");
                 }else{
-                    FornecedorDAO fmetodo = new FornecedorDAO();
-                    Fornecedor f = fmetodo.selecionar(pT.getCNPJ());
-                    f.setSenha(txtSenha.getText());
-                    fmetodo.editarFornecedor(f,pT.getCNPJ());
+                    if(txtSenha.getText().equals("")){
+                        alertas.alertaError("Digite uma senha", "Digite uma senha válida para realizar a alteração!");
+                    }else{
+                       pT.setSenha(txtSenha.getText());
+                       if(pmetodo.editarPerfilEmail(pT, txtEmail.getText())){
+                           alertas.alertaInformation("Recuperação realizada com sucesso", "Senha alterada e pronta para uso!");
+                           if(pT.getTipoPerfil().toString().equals("Faccao")){
+                               FaccaoDAO fmetodo = new FaccaoDAO();
+                               Faccao f = fmetodo.selecionar(pT.getCNPJ());
+                               f.setSenha(txtSenha.getText());
+                               fmetodo.editarFaccao(f,pT.getCNPJ());
+                           }else{
+                               FornecedorDAO fmetodo = new FornecedorDAO();
+                               Fornecedor f = fmetodo.selecionar(pT.getCNPJ());
+                               f.setSenha(txtSenha.getText());
+                               fmetodo.editarFornecedor(f,pT.getCNPJ());
+                           }
+                           LoginController.trocarLogin(btnConfirmar);
+                       }    
+                    }
+                    
                 }
-                LoginController.trocarLogin(btnConfirmar);
-            }
         }else{
             if(txtSenha.getText().equals(f.getSenha())){
                 TelaHomeController.trocarTelaHome(btnConfirmar, f);

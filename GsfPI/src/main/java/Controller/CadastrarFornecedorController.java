@@ -429,7 +429,7 @@ public class CadastrarFornecedorController {
             PerfilDAO pmetodo = new PerfilDAO();
             
             Fornecedor fornecedor = new Fornecedor(CNPJFornecedor, NomeRepreFornecedor, EmailAcesso, Senha, Telefone, Endereco);
-            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjnum) != true && pmetodo.editarPerfilCnpj(p, cnpjnum) != true){
+            if(fornecedorMetodo.editarFornecedor(fornecedor, cnpjItemTrocado) != true && pmetodo.editarPerfilCnpj(p, cnpjItemTrocado) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
                  alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
@@ -512,8 +512,9 @@ public class CadastrarFornecedorController {
     public void setTextLabel(String txtLabel){
         lblTitulo.setText(txtLabel);
     }
-    
+    Long cnpjItemTrocado;
     public void setValores (Fornecedor f){
+        cnpjItemTrocado = f.getCnpjFornecedor();
         txtCnpj.setText(String.valueOf(f.getCnpjFornecedor()).replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5"));
         txtContato.setText(f.getTelefone().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3"));
         txtEmail.setText(f.getUsuarioFornecedor());

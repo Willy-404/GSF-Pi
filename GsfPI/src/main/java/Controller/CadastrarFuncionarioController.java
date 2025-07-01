@@ -415,9 +415,10 @@ public class CadastrarFuncionarioController {
             FuncionarioDAO funcionarioMetodo = new FuncionarioDAO();
             String valorTexto = txtSalario.getText().replaceAll("[,]", ".");
             float valorSalario = Float.parseFloat(valorTexto);
-            Funcionario funcionario = new Funcionario(cpfnum, txtNome.getText(), txtNascimento.getValue(), txtContato.getText(), 
+            LocalDate DataNascimento = txtNascimento.getValue();
+            Funcionario funcionario = new Funcionario(cpfnum, txtNome.getText(), DataNascimento, txtContato.getText(), 
                     txtEmail.getText(), valorSalario, cbCargo.getValue());
-            if(funcionarioMetodo.editarFuncionario(funcionario, cpfnum) != true){
+            if(funcionarioMetodo.editarFuncionario(funcionario, cpfItemTrocado) != true){
                  alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
             }else {
                  alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
@@ -503,7 +504,9 @@ public class CadastrarFuncionarioController {
         lblTitulo.setText(txtLabel);
     }
     
+    long cpfItemTrocado;
     public void setValores(Funcionario f){
+            cpfItemTrocado = f.getCpf();
             txtNome.setText(f.getNomeFuncionario());
             txtCpf.setText(String.valueOf(f.getCpf()).replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4"));
             txtContato.setText(f.getTelefone().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3"));

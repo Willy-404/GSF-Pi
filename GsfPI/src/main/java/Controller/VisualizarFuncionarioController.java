@@ -308,15 +308,15 @@ public class VisualizarFuncionarioController {
     }
     
     Funcionario funcionarioPesq;
-    FuncionarioDAO metodo;
     @FXML
     void OnClickPesquisar(ActionEvent event) throws SQLException {
         //Pesquisa por nome do Fornecedor 
         if(!txtPesquisa.getText().equals("")){
-            funcionarioPesq = metodo.pesquisa(txtPesquisa.getText());
+            funcionarioPesq = lmetodo.pesquisa(txtPesquisa.getText());
             if(funcionarioPesq == null){
                 alertas.alertaError("Nenhum Funcionário Encontrado", "Funcionário não registrado no sistema, digite um Funcionário válido!");
                 txtPesquisa.setText("");
+                carregarFuncionarios();
             }else{
                 ObservableList<Funcionario> listaFuncionario = FXCollections.observableArrayList(funcionarioPesq);
                 tabelaFuncionario.setItems(listaFuncionario);
@@ -328,7 +328,7 @@ public class VisualizarFuncionarioController {
                         if (empty || item == null) {
                             setText(null);    
                         } else {
-                            String cpf = String.format("%011d", item); // Garante 11 dígitos com zeros à esquerda
+                            String cpf = String.format("%011d", item);
                             String cpfFormatado = cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
                             setText(cpfFormatado);
                         }
