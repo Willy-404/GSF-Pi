@@ -47,15 +47,16 @@
                <children>
                   <TableView fx:id="TabelaLotes" layoutX="79.0" onMouseClicked="#onSelecionaItem" prefHeight="750.0" prefWidth="1566.0" style="-fx-background-color: #5496c5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0">
                     <columns>
-                      <TableColumn fx:id="colReferencia" prefWidth="170.0" text="REFERÊNCIA" />
-                        <TableColumn fx:id="colPrazo" prefWidth="170.0" text="PRAZO" />
-                        <TableColumn fx:id="colEntrada" prefWidth="170.0" text="ENTRADA" />
-                        <TableColumn fx:id="colModelo" prefWidth="170.0" text="MODELO" />
-                        <TableColumn fx:id="colColeção" prefWidth="170.0" text="COLEÇÃO" />
-                        <TableColumn fx:id="colTecido" prefWidth="170.0" text="TECIDO" />
-                        <TableColumn fx:id="colMarca" prefWidth="170.0" text="MARCA" />
-                      <TableColumn fx:id="colQuantidade" minWidth="0.0" prefWidth="206.0" text="QUANTIDADE" />
-                        <TableColumn fx:id="colPreco" prefWidth="170.0" text="PREÇO" />
+                      <TableColumn fx:id="colReferencia" prefWidth="155.0" text="REFERÊNCIA" />
+                        <TableColumn fx:id="colPrazo" prefWidth="155.0" text="PRAZO" />
+                        <TableColumn fx:id="colEntrada" prefWidth="155.0" text="ENTRADA" />
+                        <TableColumn fx:id="colModelo" prefWidth="155.0" text="MODELO" />
+                        <TableColumn fx:id="colColeção" prefWidth="155.0" text="COLEÇÃO" />
+                        <TableColumn fx:id="colTecido" prefWidth="155.0" text="TECIDO" />
+                        <TableColumn fx:id="colMarca" prefWidth="155.0" text="MARCA" />
+                      <TableColumn fx:id="colQuantidade" minWidth="0.0" prefWidth="155.0" text="QUANTIDADE" />
+                        <TableColumn fx:id="colPreco" prefWidth="155.0" text="PREÇO" />
+                        <TableColumn fx:id="colFornecedor" prefWidth="155.0" text="FORNECEDOR" />
                     </columns>
                   </TableView>
                   <Label layoutX="200.0" layoutY="26.0" prefHeight="30.0" prefWidth="225.0" text="Visualizar Lotes" textFill="WHITE">

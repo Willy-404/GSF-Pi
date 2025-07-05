@@ -8,6 +8,9 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -15,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastrarFornecedorController">
+<BorderPane prefHeight="329.0" prefWidth="1772.0" style="-fx-background-color: #386b8f;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastrarFornecedorController">
    <top>
       <MenuBar fx:id="MenuBar" prefHeight="26.0" prefWidth="1776.0" style="-fx-background-color: #5496c5;" BorderPane.alignment="CENTER">
          <menus>
@@ -209,7 +212,17 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <PasswordField fx:id="txtSenha" prefHeight="46.0" prefWidth="262.0" />
+                              <AnchorPane prefHeight="32.0" prefWidth="262.0">
+                                 <children>
+                                    <PasswordField fx:id="txtSenha" prefHeight="46.0" prefWidth="262.0" />
+                                    <TextField fx:id="txtSenhaVisivel" prefHeight="46.0" prefWidth="262.0" visible="false" />
+                                    <ImageView fx:id="ImageSenha" fitHeight="24.0" fitWidth="24.0" layoutX="236.0" layoutY="11.0" onMouseClicked="#onClickVerSenha" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../resources/imagens/visivel.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </FlowPane>
                      </children>

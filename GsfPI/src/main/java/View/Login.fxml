@@ -38,6 +38,12 @@
             <PasswordField fx:id="txtSenha" layoutX="203.0" layoutY="251.0" prefHeight="36.0" prefWidth="195.0" promptText="Senha" />
             <Hyperlink fx:id="LinkCadastrar" layoutX="165.0" layoutY="287.0" onAction="#OnClickLinkCadastro" text="Não possui conta? Cadastrar" textFill="#6dc7f4" />
             <Hyperlink fx:id="LinkRecuperar" layoutX="165.0" layoutY="305.0" onAction="#OnClickLinkRecuperar" text="Esqueceu a senha? Recuperar" textFill="#6dc7f4" />
+            <TextField fx:id="txtSenhaVisivel" layoutX="203.0" layoutY="251.0" prefHeight="36.0" prefWidth="195.0" promptText="Senha" visible="false" />
+            <ImageView fx:id="ImageSenha" fitHeight="24.0" fitWidth="24.0" layoutX="374.0" layoutY="257.0" onMouseClicked="#onClickVerSenha" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/imagens/visivel.png" />
+               </image>
+            </ImageView>
       
          </children>
       </AnchorPane>

@@ -14,6 +14,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
@@ -27,6 +29,9 @@ public class CadastroController {
 
     @FXML
     private Button btnCadastrar;
+    
+    @FXML
+    private ImageView ImageSenha;
 
     @FXML
     private Button btnSair;
@@ -45,9 +50,28 @@ public class CadastroController {
 
     @FXML
     private TextField txtTelefone;
+    
+    @FXML
+    private TextField txtSenhaVisivel;
 
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
+    
+    @FXML
+    void onClickVerSenha(MouseEvent event) {
+        if(txtSenha.isVisible()){
+            String senha = txtSenha.getText();
+            txtSenhaVisivel.setText(senha);
+            txtSenha.setVisible(false);
+            txtSenhaVisivel.setVisible(true);
+        }else{
+            String senha = txtSenhaVisivel.getText();
+            txtSenha.setText(senha);
+            txtSenhaVisivel.setVisible(false);
+            txtSenha.setVisible(true);
+        }
+    }
+    
     @FXML
     void onClickCadastrar(ActionEvent event) throws IOException {
         long cnpjnum;
@@ -84,8 +108,14 @@ public class CadastroController {
             alertas.alertaError("Tamanho do campo Telefone Incompativel!","Tamanho do texto digitado no campo Telefone fora do permitido!");
             return;
                    
-        }else if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
-            return;
+        }else if(txtSenha.isVisible()){
+            if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
+                return;
+            }
+        }else{
+            if(validacao.itemisEmpty(txtSenhaVisivel.getText(),"Senha")){
+                return;
+            }
         }
 
         if (cadastroDeFaccao() != true) {
@@ -96,7 +126,12 @@ public class CadastroController {
             String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
             long Cnpj = Long.parseLong(cnpjSemPontos);
             String EmailAcesso = txtEmail.getText();
-            String Senha = txtSenha.getText();
+            String Senha;
+            if(txtSenha.isVisible()){
+                Senha = txtSenha.getText();
+            }else{
+                Senha = txtSenhaVisivel.getText();
+            }
             TipoPerfil perfil = TipoPerfil.FACCAO;
             
             Perfil p = new Perfil(Cnpj, EmailAcesso, Senha, perfil);
@@ -113,7 +148,7 @@ public class CadastroController {
     void onClickSair(ActionEvent event) throws IOException {
         LoginController lc = new LoginController();
         if(txtNomeCompleto.getText().isEmpty() && txtEmail.getText().isEmpty() &&  txtCnpj.getText().isEmpty() && 
-           txtTelefone.getText().isEmpty() &&  txtSenha.getText().isEmpty()){
+           txtTelefone.getText().isEmpty() &&  (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())){
            lc.trocarLogin(btnSair);
         }else{
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -153,7 +188,12 @@ public class CadastroController {
         long CnpjFaccao = Long.parseLong(cnpjSemPontos);
         String NomeRepreFaccao = txtNomeCompleto.getText();
         String EmailAcesso = txtEmail.getText();
-        String Senha = txtSenha.getText();
+        String Senha;
+            if(txtSenha.isVisible()){
+                Senha = txtSenha.getText();
+            }else{
+                Senha = txtSenhaVisivel.getText();
+            }
         String Telefone = txtTelefone.getText();
         Faccao f = new Faccao(CnpjFaccao, NomeRepreFaccao, EmailAcesso, Senha,Telefone);
         FaccaoDAO fmetodo = new FaccaoDAO(); 

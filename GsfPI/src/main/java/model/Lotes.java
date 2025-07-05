@@ -12,6 +12,7 @@ public class Lotes {
     private String Colecao;
     private String Modelo;
     private int QuantidadeT;
+    private String NomeFornecedor;
 
     public Lotes(int Referencia, LocalDate Prazo, int Quantidade) {
         this.Referencia = Referencia;
@@ -23,7 +24,7 @@ public class Lotes {
         this.Referencia = Referencia;
     }
 
-    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, float Preco, String Tecido, String Marca, String Colecao, String Modelo) {
+    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, float Preco, String Tecido, String Marca, String Colecao, String Modelo, String Nome) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
         this.Entrada = Entrada;
@@ -32,9 +33,18 @@ public class Lotes {
         this.Marca = Marca;
         this.Colecao = Colecao;
         this.Modelo = Modelo;
+        this.NomeFornecedor = Nome;
     }
 
-    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, float Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade) {
+    public String getNomeFornecedor() {
+        return NomeFornecedor;
+    }
+
+    public void setNomeFornecedor(String NomeFornecedor) {
+        this.NomeFornecedor = NomeFornecedor;
+    }
+
+    public Lotes(int Referencia, LocalDate Prazo, LocalDate Entrada, float Preco, String Tecido, String Marca, String Colecao, String Modelo, int Quantidade, String Nome) {
         this.Referencia = Referencia;
         this.Prazo = Prazo;
         this.Entrada = Entrada;
@@ -44,6 +54,7 @@ public class Lotes {
         this.Colecao = Colecao;
         this.Modelo = Modelo;
         this.QuantidadeT = Quantidade;
+         this.NomeFornecedor = Nome;
     }
 
     public int getReferencia() {

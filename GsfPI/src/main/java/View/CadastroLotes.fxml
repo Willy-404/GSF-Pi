@@ -340,7 +340,7 @@
                                           <Insets right="80.0" />
                                        </padding>
                                        <children>
-                                          <Label text="            Entrada" textFill="WHITE">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="234.0" text="Entrada" textFill="WHITE">
                                              <font>
                                                 <Font name="System Bold" size="24.0" />
                                              </font>
@@ -450,8 +450,19 @@
                                        <padding>
                                           <Insets right="33.0" />
                                        </padding>
+                                       <children>
+                                          <ComboBox fx:id="cbFornecedor" prefHeight="45.0" prefWidth="150.0" />
+                                       </children>
                                     </FlowPane>
-                                    <FlowPane alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="293.0" />
+                                    <FlowPane prefHeight="31.0" prefWidth="293.0">
+                                       <children>
+                                          <Label contentDisplay="CENTER" prefHeight="35.0" prefWidth="198.0" text="Fornecedor" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </FlowPane>
                                  </children>
                               </GridPane>
                               <GridPane>

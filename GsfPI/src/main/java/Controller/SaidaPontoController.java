@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Faccao;
@@ -29,6 +31,12 @@ public class SaidaPontoController {
 
     @FXML
     private Button btnCancelar;
+    
+    @FXML
+    private TextField txtSenhaVisivel;
+    
+    @FXML
+    private ImageView ImageSenha;
 
     @FXML
     private Button btnConfirmar;
@@ -54,6 +62,24 @@ public class SaidaPontoController {
     Alertas alertas = new Alertas();
     PerfilDAO pmetodo = new PerfilDAO();
     Validacao validacao = new Validacao();
+    
+     
+    @FXML
+    void onClickVerSenha(MouseEvent event) {
+        if(txtSenha.isVisible()){
+            String senha = txtSenha.getText();
+            txtSenhaVisivel.setText(senha);
+            txtSenha.setVisible(false);
+            txtSenhaVisivel.setVisible(true);
+            
+        }else{
+            String senha = txtSenhaVisivel.getText();
+            txtSenha.setText(senha);
+            txtSenhaVisivel.setVisible(false);
+            txtSenha.setVisible(true);
+        }
+    }
+    
     // Ação do botão cancelar
     @FXML
     void onClickCancelar(ActionEvent event) throws IOException {
@@ -73,34 +99,57 @@ public class SaidaPontoController {
                 if(pT == null){
                     alertas.alertaError("Email não existe no sistema", "Digite um email válido para realizar a alteração da senha!");
                 }else{
-                    if(txtSenha.getText().equals("")){
-                        alertas.alertaError("Digite uma senha", "Digite uma senha válida para realizar a alteração!");
+                    if(txtSenha.isVisible()){
+                        if(txtSenha.getText().equals("")){
+                            alertas.alertaError("Digite uma senha", "Digite uma senha válida para realizar a alteração!");
+                        }else{
+                           pT.setSenha(txtSenha.getText());
+                         }
                     }else{
-                       pT.setSenha(txtSenha.getText());
+                        if(txtSenhaVisivel.getText().equals("")){
+                            alertas.alertaError("Digite uma senha", "Digite uma senha válida para realizar a alteração!");
+                        }else{
+                           pT.setSenha(txtSenhaVisivel.getText());
+                        }
+                    }      
                        if(pmetodo.editarPerfilEmail(pT, txtEmail.getText())){
                            alertas.alertaInformation("Recuperação realizada com sucesso", "Senha alterada e pronta para uso!");
                            if(pT.getTipoPerfil().toString().equals("Faccao")){
                                FaccaoDAO fmetodo = new FaccaoDAO();
                                Faccao f = fmetodo.selecionar(pT.getCNPJ());
-                               f.setSenha(txtSenha.getText());
+                               if(txtSenha.isVisible()){
+                                  f.setSenha(txtSenha.getText()); 
+                               }else{
+                                   f.setSenha(txtSenhaVisivel.getText()); 
+                               }
                                fmetodo.editarFaccao(f,pT.getCNPJ());
                            }else{
                                FornecedorDAO fmetodo = new FornecedorDAO();
                                Fornecedor f = fmetodo.selecionar(pT.getCNPJ());
-                               f.setSenha(txtSenha.getText());
+                               if(txtSenha.isVisible()){
+                                  f.setSenha(txtSenha.getText()); 
+                               }else{
+                                   f.setSenha(txtSenhaVisivel.getText()); 
+                               }
                                fmetodo.editarFornecedor(f,pT.getCNPJ());
                            }
                            LoginController.trocarLogin(btnConfirmar);
                        }    
                     }
-                    
-                }
         }else{
-            if(txtSenha.getText().equals(f.getSenha())){
-                TelaHomeController.trocarTelaHome(btnConfirmar, f);
+            if(txtSenha.isVisible()){
+                if(txtSenha.getText().equals(f.getSenha())){
+                    TelaHomeController.trocarTelaHome(btnConfirmar, f);
+                }else{
+                    alertas.alertaError("Senha incorreta", "Digite uma senha valida!");  
+                } 
             }else{
-                alertas.alertaError("Senha incorreta", "Digite uma senha valida!");  
-            } 
+                if(txtSenhaVisivel.getText().equals(f.getSenha())){
+                    TelaHomeController.trocarTelaHome(btnConfirmar, f);
+                }else{
+                    alertas.alertaError("Senha incorreta", "Digite uma senha valida!");  
+                } 
+            }
         }
         
     }

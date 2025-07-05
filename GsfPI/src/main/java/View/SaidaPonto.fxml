@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -46,5 +48,11 @@
          </font>
       </Label>
       <TextField fx:id="txtEmail" layoutX="132.0" layoutY="26.0" prefHeight="26.0" prefWidth="406.0" promptText="Digite o email do perfil" />
+      <TextField fx:id="txtSenhaVisivel" layoutX="132.0" layoutY="65.0" prefHeight="27.0" prefWidth="406.0" promptText="Digite a senha do perfil" visible="false" />
+      <ImageView fx:id="ImageSenha" fitHeight="24.0" fitWidth="24.0" layoutX="514.0" layoutY="67.0" onMouseClicked="#onClickVerSenha" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../resources/imagens/visivel.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

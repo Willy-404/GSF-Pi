@@ -19,6 +19,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.Fornecedor;
@@ -36,6 +38,28 @@ public class CadastrarFornecedorController {
         return userInfo;
     }  
 
+    
+    @FXML
+    private ImageView ImageSenha;
+    
+    @FXML
+    private TextField txtSenhaVisivel;
+ @FXML
+    void onClickVerSenha(MouseEvent event) {
+        if(txtSenha.isVisible()){
+            String senha = txtSenha.getText();
+            txtSenhaVisivel.setText(senha);
+            txtSenha.setVisible(false);
+            txtSenhaVisivel.setVisible(true);
+            
+        }else{
+            String senha = txtSenhaVisivel.getText();
+            txtSenha.setText(senha);
+            txtSenhaVisivel.setVisible(false);
+            txtSenha.setVisible(true);
+        }
+    }
+    
     @FXML
     private MenuBar MenuBar;
     
@@ -108,7 +132,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty() 
+                && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                         CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -134,7 +159,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                         CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -160,7 +186,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickCadLote1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty()  && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty()  && txtEndereco.getText().isEmpty()
+                && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                         CadastroLotesController.trocarCadLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -186,7 +213,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
         if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                          VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -212,7 +240,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                        VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f); 
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -238,7 +267,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuLote1(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                 && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                         VisualizarLotesController.trocarVizLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -264,7 +294,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                 && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                         VisualizarPontoController.trocarVizPonto(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -290,7 +321,8 @@ public class CadastrarFornecedorController {
     @FXML
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
          if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                 && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                         TelaHomeController.trocarTelaHome(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -317,7 +349,8 @@ public class CadastrarFornecedorController {
     void OnClickVoltar(ActionEvent event) throws IOException {
         //Verificação de itemisEmpty para mostrar alerta CONFIRMATION
             if (txtCnpj.getText().isEmpty() && txtEmail.getText().isEmpty() && txtNome.getText().isEmpty()
-                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()) {
+                &&  txtContato.getText().isEmpty() && txtEndereco.getText().isEmpty()
+                    && (txtSenha.getText().isEmpty() && txtSenhaVisivel.getText().isEmpty())) {
                 TelaHomeController.trocarTelaHome(btnVoltar, f);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -375,10 +408,14 @@ public class CadastrarFornecedorController {
             
         }else if(validacao.itemisEmpty(txtSenha.getText(), "Senha")){
             return;
-        }else if(txtSenha.getText().length() > 20){
-            alertas.alertaError("Tamanho do campo Senha Incompativel","Tamanho do texto digitado no campo Senha fora do permitido!");
-            return;
-            
+        }else if(txtSenha.isVisible()){
+            if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
+                return;
+            }
+        }else if(txtSenhaVisivel.isVisible()){
+            if(validacao.itemisEmpty(txtSenhaVisivel.getText(),"Senha")){
+                return;
+            }   
         }else if(validacao.itemisEmpty(txtContato.getText(),"Telefone")){
             return;
         }else if(validacao.ValidaFormatTell(txtContato.getText())){
@@ -398,7 +435,12 @@ public class CadastrarFornecedorController {
                  String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
                 long Cnpj = Long.parseLong(cnpjSemPontos);
                 String EmailAcesso = txtEmail.getText();
-                String Senha = txtSenha.getText();
+                String Senha;
+                if(txtSenha.isVisible()){
+                    Senha = txtSenha.getText();
+                }else{
+                    Senha = txtSenhaVisivel.getText();
+                }
                 TipoPerfil perfil = TipoPerfil.FORNECEDOR;
             
                 Perfil p = new Perfil(Cnpj, EmailAcesso, Senha, perfil);
@@ -410,6 +452,7 @@ public class CadastrarFornecedorController {
                 txtContato.setText("");
                 txtEmail.setText("");
                 txtSenha.setText("");
+                txtSenhaVisivel.setText("");
                 txtNome.setText("");
                 txtEndereco.setText("");
             }
@@ -419,7 +462,12 @@ public class CadastrarFornecedorController {
             String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
             long CNPJFornecedor = Long.parseLong(cnpjSemPontos);
             String NomeRepreFornecedor = txtNome.getText();
-            String Senha = txtSenha.getText();
+            String Senha;
+            if(txtSenha.isVisible()){
+                Senha = txtSenha.getText();
+            }else{
+                Senha = txtSenhaVisivel.getText();
+            } 
             String EmailAcesso = txtEmail.getText();
             String Telefone = txtContato.getText();
             String Endereco = txtEndereco.getText();
@@ -490,7 +538,12 @@ public class CadastrarFornecedorController {
          String cnpjSemPontos = txtCnpj.getText().replaceAll("[./-]", "");
         long CNPJFornecedor = Long.parseLong(cnpjSemPontos);
         String NomeRepreFornecedor = txtNome.getText();
-        String Senha = txtSenha.getText();
+        String Senha;
+            if(txtSenha.isVisible()){
+                Senha = txtSenha.getText();
+            }else{
+                Senha = txtSenhaVisivel.getText();
+            }
         String EmailAcesso = txtEmail.getText();
         String Telefone = txtContato.getText();
         String Endereco = txtEndereco.getText();

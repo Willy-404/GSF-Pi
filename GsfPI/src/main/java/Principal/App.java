@@ -29,7 +29,7 @@ public class App extends Application {
 
         Stage telaLogin = new Stage();
         LoginController lc = loader.getController();
-
+        lc.senha();
         lc.setStage(telaLogin);
 
         Scene cena = new Scene(root);

@@ -52,6 +52,12 @@
                </font></Button>
             <TextField fx:id="txtCnpj" layoutX="210.0" layoutY="223.0" prefHeight="29.0" prefWidth="191.0" promptText="CNPJ" />
             <TextField fx:id="txtTelefone" layoutX="210.0" layoutY="271.0" prefHeight="29.0" prefWidth="191.0" promptText="Telefone" />
+            <TextField fx:id="txtSenhaVisivel" layoutX="210.0" layoutY="318.0" prefHeight="30.0" prefWidth="191.0" promptText="Senha" visible="false" />
+            <ImageView fx:id="ImageSenha" fitHeight="24.0" fitWidth="24.0" layoutX="380.0" layoutY="323.0" onMouseClicked="#onClickVerSenha" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/imagens/visivel.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +18,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Faccao;
 import model.FaccaoDAO;
@@ -91,10 +96,32 @@ public class VisualizarPerfilController {
     private TextField txtNome;
     
     @FXML
-    private TextField txtSenha;
+    private PasswordField txtSenha;
     
     @FXML
     private Label lblEndereco;
+    
+    @FXML
+    private ImageView ImageSenha;
+    
+    @FXML
+    private TextField txtSenhaVisivel;
+    
+     @FXML
+    void onClickVerSenha(MouseEvent event) {
+        if(txtSenha.isVisible()){
+            String senha = txtSenha.getText();
+            txtSenhaVisivel.setText(senha);
+            txtSenha.setVisible(false);
+            txtSenhaVisivel.setVisible(true);
+            
+        }else{
+            String senha = txtSenhaVisivel.getText();
+            txtSenha.setText(senha);
+            txtSenhaVisivel.setVisible(false);
+            txtSenha.setVisible(true);
+        }
+    }
     
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
@@ -207,11 +234,16 @@ public class VisualizarPerfilController {
      @FXML
     void OnClickEditar(ActionEvent event) throws IOException {
         //seleciona o id da faccao que será modificada
-        
-        long cnpjT = Long.parseLong(txtCnpj.getText());
+        String cnpjSemTraço = txtCnpj.getText().replaceAll("[./-]", "");
+        long cnpjT = Long.parseLong(cnpjSemTraço);
         String NomeRepreT = txtNome.getText();
         String EmailAcessoT = txtEmail.getText();
-        String SenhaT = txtSenha.getText();
+        String SenhaT;
+            if(txtSenha.isVisible()){
+                SenhaT = txtSenha.getText();
+            }else{
+                SenhaT = txtSenhaVisivel.getText();
+            }
         String TelefoneT = txtContato.getText();
         String EnderecoT = txtEndereco.getText();
         PerfilDAO pmetodo = new PerfilDAO();
@@ -244,8 +276,16 @@ public class VisualizarPerfilController {
          }else if(validacao.itemisEmpty(txtNome.getText(),"Nome")){
             return;
             
-         }else if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
+         }else if(validacao.itemisEmpty(txtSenha.getText(), "Senha")){
             return;
+        }else if(txtSenha.isVisible()){
+            if(validacao.itemisEmpty(txtSenha.getText(),"Senha")){
+                return;
+            }
+        }else if(txtSenhaVisivel.isVisible()){
+            if(validacao.itemisEmpty(txtSenhaVisivel.getText(),"Senha")){
+                return;
+            }   
          }else if(txtSenha.getText().length() > 20){
             alertas.alertaError("Tamanho do campo Senha Incompativel","Tamanho do texto digitado no campo Senha fora do permitido!");
             return;
@@ -264,14 +304,17 @@ public class VisualizarPerfilController {
             alerta.setHeaderText("Deseja fazer a edição das informações?");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    if(fmetodo.editarFaccao(fTroca, id) != true && pmetodo.editarPerfilCnpj(Ptroca, id) != true){
+                    if(fmetodo.editarFaccao(fTroca, id) != true || pmetodo.editarPerfilCnpj(Ptroca, id) != true){
                         alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                     }else{
                         alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                         try {
                             setPerfil(Ptroca);
+                            TelaHomeController.trocarTelaHome(btnEditar, p);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                        } catch (IOException ex) {
+                            Logger.getLogger(VisualizarPerfilController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }else{
@@ -293,14 +336,16 @@ public class VisualizarPerfilController {
             alerta.setHeaderText("Deseja fazer a edição das informações?");
             alerta.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    if(fmetodo.editarFornecedor(fTroca, id) != true && pmetodo.editarPerfilCnpj(Ptroca, id) != true){
+                    if(fmetodo.editarFornecedor(fTroca, id) != true || pmetodo.editarPerfilCnpj(Ptroca, id) != true){
                         alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                     }else{
                         alertas.alertaInformation("Edição Concluida", "Edição concluída com sucesso!");
                         try {
-                            setPerfil(Ptroca);
+                            setPerfil(Ptroca);TelaHomeController.trocarTelaHome(btnEditar, p);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                        } catch (IOException ex) {
+                            Logger.getLogger(VisualizarPerfilController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }else{

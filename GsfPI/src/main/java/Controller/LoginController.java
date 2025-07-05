@@ -15,8 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Faccao;
 import model.LoginDAO;
 import model.Perfil;
 import util.Alertas;
@@ -29,6 +30,9 @@ private Connection conexao;
     
     @FXML
     private Hyperlink LinkCadastrar;
+
+    @FXML
+    private ImageView ImageSenha;
     
      @FXML
     private Hyperlink LinkRecuperar;
@@ -41,8 +45,33 @@ private Connection conexao;
 
     @FXML
     private PasswordField txtSenha;
+    
+    @FXML
+    private TextField txtSenhaVisivel;
 
-    Alertas alertas = new Alertas();
+    Alertas alertas = new Alertas();  
+    
+    public void senha(){
+        txtSenhaVisivel.setVisible(false);
+        txtSenha.setVisible(true);
+    }
+   
+    @FXML
+    void onClickVerSenha(MouseEvent event) {
+        if(txtSenha.isVisible()){
+            String senha = txtSenha.getText();
+            txtSenhaVisivel.setText(senha);
+            txtSenha.setVisible(false);
+            txtSenhaVisivel.setVisible(true);
+            
+        }else{
+            String senha = txtSenhaVisivel.getText();
+            txtSenha.setText(senha);
+            txtSenhaVisivel.setVisible(false);
+            txtSenha.setVisible(true);
+        }
+    }
+    
     @FXML
     void onClickTelaHome(ActionEvent event) throws IOException {
         
@@ -68,16 +97,30 @@ private Connection conexao;
         public Perfil processarLogin() throws IOException, SQLException {
         if (!dao.bancoOnline()) {
             System.out.println("Banco de dados desconectado!");
-        } else if (txtEmail.getText() != null && !txtEmail.getText().isEmpty() && txtSenha.getText() != null && !txtSenha.getText().isEmpty()) {
-            String Email = txtEmail.getText();
-            String Senha = txtSenha.getText();
-            
-            LoginDAO loginDAO = new LoginDAO();
-            Perfil p = loginDAO.autenticar(Email, Senha);
-            
-            return p;
+        } else if(txtSenha.isVisible()){
+            if (txtEmail.getText() != null && !txtEmail.getText().isEmpty() && txtSenha.getText() != null && !txtSenha.getText().isEmpty()) {
+                String Email = txtEmail.getText();
+                String Senha = txtSenha.getText();
+
+                LoginDAO loginDAO = new LoginDAO();
+                Perfil p = loginDAO.autenticar(Email, Senha);
+
+                return p;
+            }else {
+                System.out.println("Verifique as informações!");
+            }
         } else {
-            System.out.println("Verifique as informações!");
+            if (txtEmail.getText() != null && !txtEmail.getText().isEmpty() && txtSenhaVisivel.getText() != null && !txtSenhaVisivel.getText().isEmpty()) {
+                String Email = txtEmail.getText();
+                String Senha = txtSenhaVisivel.getText();
+
+                LoginDAO loginDAO = new LoginDAO();
+                Perfil p = loginDAO.autenticar(Email, Senha);
+
+                return p;
+            }else {
+                System.out.println("Verifique as informações!");
+            }
         }
     return null;
 
@@ -107,7 +150,11 @@ private Connection conexao;
             URL url = new File("src/main/java/view/Login.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
-
+            
+            LoginController lc = loader.getController();
+            lc.senha();
+            lc.setStage(home);
+            
             Scene cena = new Scene(root);
             home.setScene(cena);
             home.show();

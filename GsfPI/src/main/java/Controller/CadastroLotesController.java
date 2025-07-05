@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -30,7 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Faccao;
+import model.Fornecedor;
+import model.FornecedorDAO;
 import model.ItemLote;
 import model.ItemLoteDAO;
 import model.Lotes;
@@ -69,6 +69,9 @@ public class CadastroLotesController {
 
     @FXML
     private ComboBox<String> cbTamanho;
+    
+     @FXML
+    private ComboBox<String> cbFornecedor;
 
     @FXML
     private MenuItem itemCadFornecedor;
@@ -138,8 +141,9 @@ public class CadastroLotesController {
 
     Perfil f;
     public Stage stage;
-
-    public void setPerfil(Perfil f) {
+    FornecedorDAO fmetodo = new FornecedorDAO();
+    
+    public void setPerfil(Perfil f){
         this.f = f;
         if(f.getTipoPerfil().toString().equals("Fornecedor")){
             itemCadFornecedor.setVisible(false);
@@ -147,12 +151,22 @@ public class CadastroLotesController {
             itemVisuFornecedor.setVisible(false);
             itemVisuFuncionario.setVisible(false);
             itemVisuPonto.setVisible(false);
+            try{
+               Fornecedor forne = fmetodo.selecionar(f.getCNPJ());
+               cbFornecedor.getItems().add(forne.getNomeRepreFornecedor()); 
+            }catch(SQLException e){
+                e.printStackTrace();
+            }  
         }else{
              itemCadFornecedor.setVisible(true);
             itemCadFuncionario.setVisible(true);
             itemVisuFornecedor.setVisible(true);
             itemVisuFuncionario.setVisible(true);
             itemVisuPonto.setVisible(true);
+            List<Fornecedor> forne = fmetodo.ListarFornecedor();
+            for(int i=0; i<forne.size();i++){
+                cbFornecedor.getItems().add(forne.get(i).getNomeRepreFornecedor());
+            }
         }
     }
     Alertas alertas = new Alertas();
@@ -161,7 +175,8 @@ public class CadastroLotesController {
     List<ItemLote> ItensLote = new ArrayList<>();
     LotesDAO metodo = new LotesDAO();
     ItemLoteDAO lmetodo = new ItemLoteDAO();
-     
+    
+    
     @FXML
     public void initialize() {
         // Adiciona opções ao ComboBox
@@ -175,7 +190,8 @@ public class CadastroLotesController {
     void OnClickCadFornecedor1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         CadastrarFornecedorController.trocarCadFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -203,7 +219,8 @@ public class CadastroLotesController {
     void OnClickCadFuncionario1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         CadastrarFuncionarioController.trocarCadFuncionario(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -231,7 +248,8 @@ public class CadastroLotesController {
     void OnClickCadLote1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         CadastroLotesController.trocarCadLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -259,7 +277,8 @@ public class CadastroLotesController {
     void OnClickVisuFornecedor1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         VisualizarFornecedorController.trocarVizFornecedor(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -287,7 +306,8 @@ public class CadastroLotesController {
     void OnClickVisuFuncionario1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         VisualizarFuncionarioController.trocarVizFuncionario(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -315,7 +335,8 @@ public class CadastroLotesController {
     void OnClickVisuLote1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         VisualizarLotesController.trocarVizLotes(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -343,7 +364,8 @@ public class CadastroLotesController {
     void OnClickVisuPonto1(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                        VisualizarPontoController.trocarVizPonto(MenuBar, f); 
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -371,7 +393,8 @@ public class CadastroLotesController {
     void OnClickVisuTelaHome(ActionEvent event) throws IOException {
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
                         TelaHomeController.trocarTelaHome(MenuBar, f);
         } else {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -400,7 +423,8 @@ public class CadastroLotesController {
         //Validação de saída
         if (txtReferencia.getText().isEmpty() && txtMarca.getText().isEmpty() && txtTecido.getText().isEmpty()
                 && cbColecao.getSelectionModel().getSelectedItem() == null && txtPrazo.getValue() == null && txtEntrada.getValue() == null
-                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()) {
+                && txtPreco.getText().isEmpty() && cbModelo.getSelectionModel().getSelectedItem() == null && txtQuantidade.getText().isEmpty()
+                && cbFornecedor.getSelectionModel().getSelectedItem() == null) {
             if(btnConfirmarLote.getText().equals("Editar")){
                 VisualizarLotesController.trocarVizLotes(btnVoltar, f);
             }else{
@@ -480,7 +504,10 @@ public class CadastroLotesController {
             
         }else if(validacao.itemisEmpty(txtQuantidade.getText(), "Quantidade")){
             return;
-        }//Validar quantidades dos itens e quantidade total, as duas tem que ser iguais;
+            
+        } else if (validacao.itemNull(cbFornecedor.getSelectionModel().getSelectedItem(), "Fornecedor")) {
+            return;
+        }
 
         ReferenciaSalva = txtReferencia.getText();
         if(edit == false){
@@ -498,13 +525,15 @@ public class CadastroLotesController {
                 txtEntrada.setValue(null);
                 cbModelo.setValue(null);
                 tbSubGrupo.setItems(null);
+                cbFornecedor.setValue(null);
             }
         }else{
              String valorTexto = txtPreco.getText().replaceAll("[,]", ".");
             float valorPreco = Float.parseFloat(valorTexto);
             int quantidade = Integer.parseInt(txtQuantidade.getText());
             Lotes loteEdit = new Lotes(RefInt, txtPrazo.getValue(), txtEntrada.getValue(), valorPreco, txtTecido.getText(), 
-                txtMarca.getText(), cbColecao.getSelectionModel().getSelectedItem(), cbModelo.getSelectionModel().getSelectedItem(), quantidade);
+                txtMarca.getText(), cbColecao.getSelectionModel().getSelectedItem(), cbModelo.getSelectionModel().getSelectedItem(), quantidade,
+            cbFornecedor.getSelectionModel().getSelectedItem());
             if(metodo.editarLotes(loteEdit, refSalva) != true || updateDeSubgrupos()!= true){
                 alertas.alertaError("Erro na Edição", "Ocorreu um problema na edição!");
                 txtLinha.setText("");
@@ -677,9 +706,10 @@ public class CadastroLotesController {
         String Colecao = cbColecao.getSelectionModel().getSelectedItem();
         String Modelo = cbModelo.getSelectionModel().getSelectedItem();
         int Quantidade = Integer.valueOf(txtQuantidade.getText());
+        String nome = cbFornecedor.getSelectionModel().getSelectedItem();
        
 
-        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade);
+        Lotes l = new Lotes(Referencia, Prazo, Entrada, Preco, Tecido, Marca, Colecao, Modelo, Quantidade, nome);
         LotesDAO LDmetodo = new LotesDAO();
         return LDmetodo.cadastroLotes(l);
 
@@ -702,17 +732,6 @@ public class CadastroLotesController {
         int RefeLote = Integer.parseInt(ReferenciaSalva);
         ItemLoteDAO metodo = new ItemLoteDAO();
         List<ItemLote> lista = metodo.listarSubgrupos(RefeLote);
-        /*int i = 0;
-        for (ItemLote item : ItensLote){
-            ItemLote subgrupo = new ItemLote(RefeLote,item.getQuantidade(),item.getTamanho(),item.getLinha());
-            for(int j=0;j<lmetodo.numIdSubGrupo();j++){
-                
-            }
-            if(metodo.editarSubgrupo(subgrupo, lista.get(i).getId()) == false){
-                return false;
-            }
-            i++;
-        }*/
         for (int i = 0; i < ItensLote.size(); i++) {
             ItemLote itemAtual = ItensLote.get(i);
             ItemLote subgrupo = new ItemLote(RefeLote,itemAtual.getQuantidade(),itemAtual.getTamanho(),itemAtual.getLinha());
@@ -775,6 +794,7 @@ public class CadastroLotesController {
         cbColecao.setValue(l.getColecao());
         cbModelo.setValue(l.getModelo());
         txtTecido.setText(l.getTecido());
+        cbFornecedor.setValue(l.getNomeFornecedor());
     }
     
     

@@ -136,8 +136,10 @@ public class VisualizarLotesController {
 
     @FXML
     private TableColumn<Lotes, String> colTecido;
-
     
+    @FXML
+    private TableColumn<Lotes, String> colFornecedor;
+ 
     Alertas alertas = new Alertas();
     Validacao validacao = new Validacao();
     int validarSelecao = 0;
@@ -180,6 +182,7 @@ public class VisualizarLotesController {
         colMarca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
         colQuantidade.setCellValueFactory(new PropertyValueFactory<>("QuantidadeT"));
         colPreco.setCellValueFactory(new PropertyValueFactory<>("Preco"));
+        colFornecedor.setCellValueFactory(new PropertyValueFactory<>("NomeFornecedor"));
     }
 
     @FXML
