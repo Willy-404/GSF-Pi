@@ -40,7 +40,7 @@ CREATE TABLE `faccao` (
 
 LOCK TABLES `faccao` WRITE;
 /*!40000 ALTER TABLE `faccao` DISABLE KEYS */;
-INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123'),(11111111111112,'f','f@gmail.com','f','(47) 99999-9999'),(12345678901234,'Felipe','banana','banana',NULL),(22222222222222,'f','felipe.w28@gmail.com','f','47999122334');
+INSERT INTO `faccao` VALUES (11111111111111,'f','f','f','123'),(11111111111112,'f','f@gmail.com','f','(47) 99999-9999'),(12245375000197,'Marcos','marcos@gmail.com','marcos','47923426789'),(12325467000107,'Marcos','Marcos@gmail.com','marcos','47999124578'),(12345546000106,'Marcos Aurelio','Marcos@gmail.com','marcos','47998703256'),(12345678901234,'Felipe','banana','banana',NULL),(13478924000196,'Artur Silva dos Santos','arturS@gmail.com','Artur','(47) 97486-7542'),(13965746000186,'Roberto Silva','roberto34@gmail.com','roberto','(47) 95378-0572'),(22222222222222,'f','felipe.w28@gmail.com','f','47999122334');
 /*!40000 ALTER TABLE `faccao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
-INSERT INTO `fornecedor` VALUES (12123123123123,'Larissa','Larissa@gmail.com','l','(47) 99745-5432','Rua Portugal '),(12321675486533,'felipe','felipe@gmail.com','f','(47) 99912-2334','Rua dali');
+INSERT INTO `fornecedor` VALUES (12123123123123,'Ana Maria','Ana@gmail.com','ana234','(47) 99745-5432','Rua Portugal '),(12321675486533,'Marcus Rogério','Rogerio@gmail.com','roger','(47) 99912-2334','Rua dali'),(13425673000156,'Bonifacio Almeida','Almeida@gmail.com','al123','(47) 994327593','Rua Santorion, nº 475'),(13536965000176,'Fausto Souza','faustos@gmail.com','faustao','(47) 99324-0865','Avenida das comunidades, nº 1147'),(13546893000175,'Pedro Silva','pedro@gmail.com','pedro','47568976342','Rua escandina'),(13549350000154,'Rafael Perreira','perreira1@gmail.com','Rafa','(47) 947289223','Rua alemanha, nº 81');
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (10087956734,'lari','2006-04-24','(45) 98765-0943','Larissa@gmail.com',8.50,'Costureira',NULL),(12378956076,'felipe','2007-03-28','(28) 99876-7645','felipe@gmail.com',12.30,'Manual',NULL),(23465734576,'willian','2020-01-21','(67) 90765-8754','willian@gmail.com',13.00,'Costureira',NULL);
+INSERT INTO `funcionario` VALUES (10087956734,'Eduardo Lopes','2006-04-24','(45) 98765-0943','EduLopes@gmail.com',8.50,'Costureira',NULL),(12378956076,'Alessandra M. Silva','2007-03-28','(28) 99876-7645','Silva@gmail.com',12.30,'Manual',NULL),(13342022906,'William Presley','1996-05-28','(47) 99674-8534','presley32@gmail.com',9.50,'Manual',NULL),(23465734576,'Romulo B. Arragão','2020-01-21','(67) 90765-8754','Beninga@gmail.com',13.00,'Costureira',NULL);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `itemlote` (
 
 LOCK TABLES `itemlote` WRITE;
 /*!40000 ALTER TABLE `itemlote` DISABLE KEYS */;
-INSERT INTO `itemlote` VALUES (1,4,2,'P','Preto'),(2,4,2,'M','Azul'),(3,3,23,'PP','Preto'),(4,3,20,'P','Azul'),(5,3,21,'GG','Rosa');
+INSERT INTO `itemlote` VALUES (1,1326,213,'1','Preto'),(2,1243,117,'P','Preto'),(3,1243,116,'G','Preto');
 /*!40000 ALTER TABLE `itemlote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +161,7 @@ CREATE TABLE `lote` (
 
 LOCK TABLES `lote` WRITE;
 /*!40000 ALTER TABLE `lote` DISABLE KEYS */;
-INSERT INTO `lote` VALUES (1,'2025-07-03','2025-07-02',2.40,'Algodão','Gucci','Primavera','Blusa',123,'Larissa'),(3,'2025-07-18','2025-07-10',2.54,'Algodão','A','Verão','Legging',1233,'Felipe'),(4,'2025-06-19','2025-06-03',2.40,'A','A','Verão','Short',5,'Larissa'),(12,'2025-06-05','2025-06-05',2.40,'Algoritmo','A','Inverno','Short',1233,'Felipe'),(1123,'2025-07-12','2025-07-05',2.34,'A','A','Verão','Calça',1234,'Larissa');
+INSERT INTO `lote` VALUES (1243,'2025-07-05','2025-07-01',2.40,'Algodão','Aluisio','Outono','Short',213,'Marcus Rogério'),(1326,'2025-07-11','2025-06-30',2.40,'algodão','Fantoni','Primavera','Blusa',235,'Pedro Silva'),(1453,'2025-07-10','2025-07-01',2.54,'Algodão','Gucci','Primavera','Blusa',243,'Bonifacio Almeida');
 /*!40000 ALTER TABLE `lote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +187,7 @@ CREATE TABLE `perfil` (
 
 LOCK TABLES `perfil` WRITE;
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-INSERT INTO `perfil` VALUES (12321,'ff','f','Fornecedor'),(11111111111111,'f','f','Faccao'),(11111111111112,'f@gmail.com','f','Faccao'),(12123123123123,'Larissa@gmail.com','l','Fornecedor'),(12345678901234,'banana','banana','Faccao'),(22222222222222,'felipe.w28@gmail.com','f','Faccao');
+INSERT INTO `perfil` VALUES (12321,'ff','f','Fornecedor'),(11111111111111,'f','f','Faccao'),(11111111111112,'f@gmail.com','f','Faccao'),(12123123123123,'Ana@gmail.com','ana234','Fornecedor'),(12245375000197,'marcos@gmail.com','marcos','Faccao'),(12321675486533,'Marcus Rogério','roger','Fornecedor'),(12325467000107,'Marcos@gmail.com','marcos','Faccao'),(12345546000106,'Marcos@gmail.com','marcos','Faccao'),(12345678901234,'banana','banana','Faccao'),(13425673000156,'Almeida@gmail.com','al123','Fornecedor'),(13478924000196,'arturS@gmail.com','Artur','Faccao'),(13536965000176,'faustos@gmail.com','faustao','Fornecedor'),(13546893000175,'pedro@gmail.com','pedro','Fornecedor'),(13549350000154,'perreira1@gmail.com','Rafa','Fornecedor'),(13965746000186,'roberto34@gmail.com','roberto','Faccao'),(22222222222222,'felipe.w28@gmail.com','f','Faccao');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +221,7 @@ CREATE TABLE `registrohora` (
 
 LOCK TABLES `registrohora` WRITE;
 /*!40000 ALTER TABLE `registrohora` DISABLE KEYS */;
-INSERT INTO `registrohora` VALUES (0,10087956734,'2025-06-08','07:30:00','09:30:00','13:05:00','14:05:00','07:00:00',NULL,25.50),(1,10087956734,'2025-06-21','22:39:00','23:39:00',NULL,NULL,NULL,NULL,8.50);
+INSERT INTO `registrohora` VALUES (0,10087956734,'2025-06-08','07:30:00','09:30:00','13:05:00','14:05:00','07:00:00',NULL,25.50),(1,10087956734,'2025-06-21','22:39:00','23:39:00',NULL,NULL,NULL,NULL,8.50),(2,13342022906,'2025-06-07','11:58:00',NULL,NULL,NULL,NULL,NULL,NULL),(3,13342022906,'2025-07-06','12:20:00','14:20:00','17:00:00','18:00:00',NULL,NULL,28.50);
 /*!40000 ALTER TABLE `registrohora` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -234,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-06  3:37:16
+-- Dump completed on 2025-07-06 15:16:09

@@ -16,7 +16,7 @@ public class PontoDAO extends GenericDAO{
     public boolean cadastroHora(long cpf, LocalDate data, Time hora) throws SQLException{
         String sql, txtHoraS, txtHoraE;
         Ponto p = select(cpf, data);
-        Funcionario f = fmetodo.select(p.getCpf());
+        Funcionario f = fmetodo.select(cpf);
         float contaSalario, horaS, horaE, horaET, horaST;
         int id=0, horaEI, horaSI;
         try{
@@ -104,7 +104,7 @@ public class PontoDAO extends GenericDAO{
     }
     
     public Ponto select(Object... parametros){
-        String sql = "SELECT FROM registrohora WHERE Cpf = ? AND DataRegistro = ?";
+        String sql = "SELECT * FROM registrohora WHERE Cpf = ? AND DataRegistro = ?";
         Ponto p = null;
         LocalTime hem, hev, hsm, hsv, hee, hse;
         int id;
