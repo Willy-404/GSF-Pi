@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `gsf` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gsf`;
--- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gsf
 -- ------------------------------------------------------
--- Server version	8.0.42
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -68,7 +68,7 @@ CREATE TABLE `fornecedor` (
 
 LOCK TABLES `fornecedor` WRITE;
 /*!40000 ALTER TABLE `fornecedor` DISABLE KEYS */;
-INSERT INTO `fornecedor` VALUES (12123123123122,'Larissa','Larissa@gmail.com','l','(47) 99745-5432','Rua Portugal '),(12321675486533,'felipe','felipe@gmail.com','f','(47) 99912-2334','Rua dali');
+INSERT INTO `fornecedor` VALUES (12123123123123,'Larissa','Larissa@gmail.com','l','(47) 99745-5432','Rua Portugal '),(12321675486533,'felipe','felipe@gmail.com','f','(47) 99912-2334','Rua dali');
 /*!40000 ALTER TABLE `fornecedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,11 +149,9 @@ CREATE TABLE `lote` (
   `Marca` varchar(30) NOT NULL,
   `Colecao` varchar(15) NOT NULL,
   `Modelo` varchar(30) NOT NULL,
-  `CnpjFornecedor` bigint DEFAULT NULL,
   `QuantidadeT` int NOT NULL,
-  PRIMARY KEY (`Referencia`),
-  KEY `CnpjFornecedor_idx` (`CnpjFornecedor`),
-  CONSTRAINT `CnpjFornecedor` FOREIGN KEY (`CnpjFornecedor`) REFERENCES `fornecedor` (`CnpjFornecedor`)
+  `NomeFornecedor` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`Referencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -163,7 +161,7 @@ CREATE TABLE `lote` (
 
 LOCK TABLES `lote` WRITE;
 /*!40000 ALTER TABLE `lote` DISABLE KEYS */;
-INSERT INTO `lote` VALUES (1,'2025-07-03','2025-07-02',2.40,'Algodão','Gucci','Primavera','Blusa',NULL,123),(3,'2025-07-18','2025-07-10',2.54,'Algodão','A','Verão','Legging',NULL,1233),(4,'2025-06-19','2025-06-03',2.40,'A','A','Verão','Short',NULL,5),(12,'2025-06-05','2025-06-05',2.40,'Algoritmo','A','Inverno','Short',NULL,1233);
+INSERT INTO `lote` VALUES (1,'2025-07-03','2025-07-02',2.40,'Algodão','Gucci','Primavera','Blusa',123,'Larissa'),(3,'2025-07-18','2025-07-10',2.54,'Algodão','A','Verão','Legging',1233,'Felipe'),(4,'2025-06-19','2025-06-03',2.40,'A','A','Verão','Short',5,'Larissa'),(12,'2025-06-05','2025-06-05',2.40,'Algoritmo','A','Inverno','Short',1233,'Felipe'),(1123,'2025-07-12','2025-07-05',2.34,'A','A','Verão','Calça',1234,'Larissa');
 /*!40000 ALTER TABLE `lote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-01  9:52:25
+-- Dump completed on 2025-07-06  3:37:16
